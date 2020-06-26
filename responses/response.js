@@ -70,4 +70,24 @@ class SendHTML extends Response{
     }
 }
 
-module.exports = {Send200,Send400,Send404,Send405,Send413,Send500,SendJson,SendHTML};
+class SendCSS extends Response{
+    constructor(){
+        super();
+        super.setHeaders(200,"OK",{"Content-Type": "text/css"});
+    }
+}
+
+class SendJS extends Response{
+    constructor(){
+        super();
+        super.setHeaders(200,"OK",{"Content-Type": "text/javascript"});
+    }
+}
+
+class SendIMG extends Response{
+    constructor(format){
+        super();
+        super.setHeaders(200,"OK",{"Content-Type": `image/${format}`});
+    }
+}
+module.exports = {Send200,Send400,Send404,Send405,Send413,Send500,SendJson,SendHTML,SendCSS,SendJS,SendIMG};
