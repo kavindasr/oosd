@@ -1,4 +1,4 @@
-import {Get,Post,Delete,Put} from "../methods/method";
+const {Get,Post,Put,Delete} = require("../methods/method");
 
 function getMethod(req,res){
     res.setHeader('Access-Control-Allow-Origin','*');

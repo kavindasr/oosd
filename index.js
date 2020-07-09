@@ -7,10 +7,11 @@ const methhodFactory = require("./factories/MethodFactory");
 const server = http.createServer((req,res)=>{
     //console.log("Hello world");
     console.log(req.method,req.url);
-    if(seperator == 'api'){
+    const method = methhodFactory.getMethod(req,res);
+    if(method.getPath(1) == 'api'){
         //api method
     }
-    else if(seperator == 'public'){
+    else if(method.getPath(1) == 'public'){
         //access public folder
         public.send(req,res);
     }

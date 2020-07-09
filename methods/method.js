@@ -42,7 +42,14 @@ class Post extends Method{
     }
 }
 
-class Put extends Methods{
+class Put extends Method{
+    constructor(req,res){
+        super(req,res);
+        this.body = getBody(this.req);
+    }
+}
+
+class Delete extends Method{
     constructor(req,res){
         super(req,res);
         this.body = getBody(this.req);
@@ -97,4 +104,4 @@ class Update extends Method{
 }*/
 
 
-module.exports = {Get,Post,Update};
+module.exports = {Get,Post,Put,Delete};
