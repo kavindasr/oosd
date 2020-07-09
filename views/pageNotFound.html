@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <title>Not found</title>
     <style>
         *{
@@ -12,10 +13,30 @@
         h1{
             color: #F7F9F9;
             text-align: center;
+            font-family: 'Fredoka One', cursive,arial;
+        }
+        img{
+            max-width: 99%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+        .center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
 <body>
-    <img src="/public/images/404.svg">
+    <div class="center"> 
+        <img src="/public/images/404.svg">
+        <h1>PAGE NOT FOUND</h1>
+    </div>
+   
 </body>
 </html>

@@ -1,4 +1,55 @@
+const url = require('url');
+
+function  getBody(req){
+    var reqBody ='';
+    req.on("data",(data)=>{
+        reqBody += data;
+        // if(reqBody.length>1e7){
+        //     httpMsgs.send413(req,res);
+        // }
+    });
+    req.on("end", ()=>{
+        return reqBody;
+    });
+    
+}
 class Method{ 
+    constructor(req,res){
+        this.req = req;
+        this.res = res;
+        this.type = req.method;
+        this.url = url.parse(req.url);
+        this.seperator = req.url.split('/');
+    }
+    getPath(ind){
+        return this.seperator[ind];
+    }
+    getURL(){
+        return this.url;
+    }
+}
+
+class Get extends Method{
+    constructor(req,res){
+        super(req,res);
+    }
+}
+
+class Post extends Method{
+    constructor(req,res){
+        super(req,res);
+        this.body = getBody(this.req);    
+    }
+}
+
+class Put extends Methods{
+    constructor(req,res){
+        super(req,res);
+        this.body = getBody(this.req);
+    }
+}
+
+/*class Method{ 
     constructor(req,res){
         this.query = null ;
         this.req = req;
@@ -43,6 +94,7 @@ class Update extends Method{
     setQuery(table,fields,conditions){
         this.query = `UPDATE ${table} SET ${fields} WHERE ${conditions}`;
     }
-}
+}*/
+
 
 module.exports = {Get,Post,Update};
