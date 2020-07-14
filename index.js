@@ -1,5 +1,5 @@
 const http = require("http");
-const settings = require("./settings");
+const {webSettings} = require("./settings");
 const views = require("./factories/viewsFolder");
 const public = require("./factories/publicFolder");
 const methhodFactory = require("./factories/MethodFactory");
@@ -15,6 +15,7 @@ const server = http.createServer((req,res)=>{
     console.log(req.method,req.url);
     
     const method = methhodFactory.getMethod(req,res);
+    
     if(method.getPath(1) == 'api'){
         //api method
     }
@@ -29,6 +30,6 @@ const server = http.createServer((req,res)=>{
 
 });
 
-server.listen(settings.webPort,()=>{
-    console.log("Listening on port",settings.webPort);
+server.listen(webSettings.webport,()=>{
+    console.log("Listening on port",webSettings.webport);
 });

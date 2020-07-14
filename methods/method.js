@@ -1,5 +1,7 @@
-const url = require('url');
+const {URL,URLSearchParams}= require('url');
+const {webSettings} = require("../settings");
 
+const keys = ['oosd'];
 function  getBody(req){
     var reqBody ='';
     req.on("data",(data)=>{
@@ -9,7 +11,7 @@ function  getBody(req){
         // }
     });
     req.on("end", ()=>{
-        return reqBody;
+        return JSON.parse(reqBody);
     });
     
 }
@@ -18,7 +20,7 @@ class Method{
         this.req = req;
         this.res = res;
         this.type = req.method;
-        this.url = url.parse(req.url);
+        this.url = new URL(webSettings.protocol+"://"+webSettings.host+":"+webSettings.webport+req.url);
         this.seperator = req.url.split('/');
     }
     getPath(ind){
@@ -26,6 +28,10 @@ class Method{
     }
     getURL(){
         return this.url;
+    }
+
+    searchURL(query){
+        return this.url.searchParams.get(query);
     }
     getUser(){
         

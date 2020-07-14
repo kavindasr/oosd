@@ -5,7 +5,11 @@ exports.dbConfig ={
     user: 'ksr',
     password: 'ksr199841',
     host: 'localhost',
-    database: 'oosd',
+    database: 'oosd', 
 };
 
-exports.webPort = 8000;
+exports.webSettings  = {
+    webport:8000,
+    protocol: 'http',
+    host: 'localhost',
+}
