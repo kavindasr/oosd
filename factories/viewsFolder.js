@@ -1,4 +1,4 @@
-const {read} = require("../fs/fs");
+const {read} = require("../services/fs");
 const path = require("path");
 const {SendHTML} = require("../responses/response");
 

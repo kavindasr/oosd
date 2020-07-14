@@ -4,9 +4,16 @@ const views = require("./factories/viewsFolder");
 const public = require("./factories/publicFolder");
 const methhodFactory = require("./factories/MethodFactory");
 
+// const Cookies = require("cookies");
+// const keys = ['keyboard cat']
+// if(req.url === "/test"){
+//         var cookies = new Cookies(req, res, { keys: keys });
+//         //cookies.set("LastVisit",new Date().toISOString(),{maxAge:500000,signed:true});
+//         console.log(cookies.get("LastVisit",{signed:true}));
+//     }
 const server = http.createServer((req,res)=>{
-    //console.log("Hello world");
     console.log(req.method,req.url);
+    
     const method = methhodFactory.getMethod(req,res);
     if(method.getPath(1) == 'api'){
         //api method

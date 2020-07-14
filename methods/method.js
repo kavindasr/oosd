@@ -27,6 +27,9 @@ class Method{
     getURL(){
         return this.url;
     }
+    getUser(){
+        
+    }
 }
 
 class Get extends Method{
