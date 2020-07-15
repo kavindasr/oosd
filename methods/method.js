@@ -1,19 +1,23 @@
-const {URL,URLSearchParams}= require('url');
+const {URL}= require('url');
 const {webSettings} = require("../settings");
-
+const Cookies = require("cookies");
 const keys = ['oosd'];
-function  getBody(req){
-    var reqBody ='';
-    req.on("data",(data)=>{
-        reqBody += data;
-        // if(reqBody.length>1e7){
-        //     httpMsgs.send413(req,res);
-        // }
-    });
+
+function  getBODY(req){
+    return new Promise((resolve,reject)=>{
+        var reqBody ='';
+        req.on("data",(data)=>{
+            reqBody += data;
+            if(reqBody.length>1e7){
+                reject({err:"Can't handle the request"});
+            }
+        });
     req.on("end", ()=>{
-        return JSON.parse(reqBody);
+        //console.log(reqBody);
+        resolve(JSON.parse(reqBody));
     });
     
+    });
 }
 class Method{ 
     constructor(req,res){
@@ -26,15 +30,14 @@ class Method{
     getPath(ind){
         return this.seperator[ind];
     }
-    getURL(){
-        return this.url;
-    }
 
     searchURL(query){
         return this.url.searchParams.get(query);
     }
-    getUser(){
-        
+    getToken(){
+        var cookies = new Cookies(this.req, this.res, { keys: keys });
+        var token = cookies.get("OOSD_TOKEN",{signed:true});
+        return token;
     }
 }
 
@@ -47,21 +50,36 @@ class Get extends Method{
 class Post extends Method{
     constructor(req,res){
         super(req,res);
-        this.body = getBody(this.req);    
+        this.body = null;
+    }
+
+    async getBody(){
+        this.body = await getBODY(this.req);
+        return this.body;
     }
 }
 
 class Put extends Method{
     constructor(req,res){
         super(req,res);
-        this.body = getBody(this.req);
+        this.body = null;
+    }
+    
+    async getBody(){
+        this.body = await getBODY(this.req);
+        return this.body;
     }
 }
 
 class Delete extends Method{
     constructor(req,res){
         super(req,res);
-        this.body = getBody(this.req);
+        this.body = null;
+    }
+    
+    async getBody(){
+        this.body = await getBODY(this.req);
+        return this.body;
     }
 }
 

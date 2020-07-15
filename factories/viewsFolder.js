@@ -1,31 +1,28 @@
 const {read} = require("../services/fs");
 const path = require("path");
-const {SendHTML} = require("../responses/response");
+const {SendHTML,Send500} = require("../responses/response");
 
 
 
-async function render(req,res){
-    var sendHTML = new SendHTML();
+async function render(pathname){
     var filePath;
-    if(path.extname(path.posix.basename(req.url)) != ''){ // if shows a error change posix to wni32 
-        filePath = "./views"+req.url;
+    if(path.extname(path.posix.basename(pathname)) != ''){ // if shows a error change posix to wni32 
+        filePath = "./views"+pathname;
     }
     else{
-        filePath = "./views"+req.url+".html";
+        filePath = "./views"+pathname+".html";
     }
     try{
         var data = await read(filePath);
-        sendHTML.send(res,data);
+        return new SendHTML(data);
     }
     catch(err){
         try{
             var page404 = await read("./views/pageNotFound.html");
-            sendHTML.send(res,page404);
+            return new SendHTML(page404);
         }
         catch(e){
-            res.writeHead(400);
-            res.write("400 Bad request");
-            res.end();
+            return new Send500();
         }
     }
  

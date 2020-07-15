@@ -2,8 +2,8 @@ const {read} = require("../services/fs");
 const path = require("path");
 const {Send404,SendCSS,SendJS,SendIMG} = require("../responses/response");
 
-async function send(req,res){
-    const ext = path.extname(path.posix.basename(req.url));
+async function send(pathname){
+    const ext = path.extname(path.posix.basename(pathname));
     var response;
     if(ext == '.css'){
         response = new SendCSS();
@@ -13,23 +13,23 @@ async function send(req,res){
     }
     else{
         if(ext == '.svg'){
-            response = new SendIMG("svg+xml");
+            response = new SendIMG(null,"svg+xml");
         }
         else if(ext == '.jpg'){
-            response = new SendIMG("jpeg");
+            response = new SendIMG(null,"jpeg");
         }
         else{
-            response = new SendIMG("png");
+            response = new SendIMG(null,"png");
         }
     }
     try{
-        var data = await read("."+req.url);
-        response.send(res,data);
+        var data = await read("."+pathname);
+        response.setData(data);
+        return response;
     }
     catch(err){
-        var send404 = new Send404();
-        send404.send(res);
         console.log("file not found");
+        return new Send404();
     }
  
 }

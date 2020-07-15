@@ -1,92 +1,97 @@
 class Response{
+    constructor(data){
+        this.data = data;
+    }
     setHeaders(code,msg,type){
         this.code = code;
         this.msg = msg;
         this.type = type;
     }
-
-    send(res,data){
+    setData(data){
+        this.data = data;
+    }
+    send(res){
         res.writeHead(this.code,this.msg,this.type);
-        if(data){
-            res.write(data);
+        if(this.data){
+            res.write(this.data);
         }
         res.end();
     }
 }
 
 class Send200 extends Response{
-    constructor(){
-        super();
+    constructor(data){
+        super(data);
         super.setHeaders(200,"OK",{"Content-Type":"application/json"});
     }
 }
 
 class Send400 extends Response{
-    constructor(){
-        super();
+    constructor(data){
+        super(data);
         super.setHeaders(400,"Bad request",{"Content-Type":"application/json"});
     }
 }
 
 class Send404 extends Response{
-    constructor(){
-        super();
+    constructor(data){
+        super(data);
         super.setHeaders(404,"Not found",{"Content-Type":"application/json"});
     }
 }
 
 class Send405 extends Response{
-    constructor(){
-        super();
+    constructor(data){
+        super(data);
         super.setHeaders(405,"Method not allowed",{"Content-Type":"application/json"});
     }
 }
 
 class Send413 extends Response{
-    constructor(){
-        super();
+    constructor(data){
+        super(data);
         super.setHeaders(413,"Large request",{"Content-Type":"application/json"});
     }
 }
 
 class Send500 extends Response{
-    constructor(){
-        super();
+    constructor(data){
+        super(data);
         super.setHeaders(500,"Internal error occuered",{"Content-Type":"application/json"});
     }
 }
 
 class SendJson extends Response{
-    constructor(){
-        super();
+    constructor(data){
+        super(data);
         super.setHeaders(200,"OK",{"Content-Type": "application/json"});
     }
 }
 
 class SendHTML extends Response{
-    constructor(){
-        super();
+    constructor(data){
+        super(data);
         super.setHeaders(200,"OK",{"Content-Type": "text/html"});
     }
 }
 
 class SendCSS extends Response{
-    constructor(){
-        super();
+    constructor(data){
+        super(data);
         super.setHeaders(200,"OK",{"Content-Type": "text/css"});
     }
 }
 
 class SendJS extends Response{
-    constructor(){
-        super();
+    constructor(data){
+        super(data);
         super.setHeaders(200,"OK",{"Content-Type": "text/javascript"});
     }
 }
 
 class SendIMG extends Response{
-    constructor(format){
-        super();
+    constructor(data,format){
+        super(data);
         super.setHeaders(200,"OK",{"Content-Type": `image/${format}`});
     }
 }
