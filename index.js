@@ -23,29 +23,30 @@ const server = http.createServer((req,res)=>{
     // })();  // use self-invoking function to avoid null body
     (async ()=>{
         var response = null;
-        try{
-            if(method.getPath(1) == 'public'){
+        if(method.getPath(1) == 'public'){
             //access public folder
             response = await public.send(method.url.pathname);
-            }
-            else if(method.getPath(1) == 'login'){
-                response = await views.render(method.url.pathname);
+        }
+        else if(method.getPath(1) == 'login'){
+            response = await views.render(method.url.pathname);
+        }
+        else{
+            const token = method.getToken();
+            if(method.getPath(1) == 'api'){
+                //api method
             }
             else{
-                const token = method.getToken();
-                if(method.getPath(1) == 'api'){
-                    //api method
-                }
-                else{
-                    //render views
-                    response = views.render(method.url.pathname);
-                }   
-            }
-        }catch(err){
-            
+                //render views
+                response = await views.render(method.url.pathname);
+            }   
+        }
+        if(response){
+            response.send(method.res);
+        }
+        else{
+            method.res.end();
         }
         
-        response.send(method.res);
     })();
     
 
