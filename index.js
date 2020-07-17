@@ -3,11 +3,20 @@ const {webSettings} = require("./settings");
 const views = require("./factories/viewsFolder");
 const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
+const userBuilder = require("./factories/userBuilder");
+
+
+
 
 const server = http.createServer((req,res)=>{
+
     console.log(req.method,req.url);
     
     const method = methodFactory.getMethod(req,res);
+    
+    // find the relevent user and wrap it with the method
+
+
     //const token = method.getToken();
     //console.log(method.url);
     // (async ()=>{
@@ -21,7 +30,14 @@ const server = http.createServer((req,res)=>{
             response = await public.send(method.url.pathname);
         }
         else if(method.getPath(1) == 'login'){
-            response = await views.render(method.url.pathname);
+
+            if (method.type=="GET"){
+                response = await views.render(method.url.pathname);
+            }else if (method.type=="POST"){
+                const UBuilder = new userBuilder(method);
+                const user = UBuilder.create();
+            }
+            
         }
         else if(method.getPath(1) == ''){
             redirect(method,'/login');
@@ -61,3 +77,6 @@ server.listen(webSettings.webport,()=>{
 function redirect(method,path){
     method.res.writeHead(302,{'Content-Type':'text/plain','Location':webSettings.protocol+"://"+webSettings.host+":"+webSettings.webport+path});
 }
+
+
+

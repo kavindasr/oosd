@@ -2,10 +2,10 @@
 
 exports.dbConfig ={
     connectionLimit : 10,
-    user: 'ksr',
-    password: 'ksr199841',
+    user: 'root',
+    password: 'Meelan@37562',
     host: 'localhost',
-    database: 'oosd', 
+    database: 'mcDB', 
 };
 
 exports.webSettings  = {

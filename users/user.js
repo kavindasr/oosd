@@ -1,32 +1,45 @@
-const {hash,compare} = require("bcrypt");
+
 const uniqid = require('uniqid');
 //users[]
 class User{
-    constructor(userName, password){
+    constructor(userName,type){
         this.sessionID = uniqid();
         this.userName = userName;
-        hash(password,10,(err,encrypted)=>{
-            if(err){
-                return {err};
-            }
-            this.hashedPassword = encrypted;
-            console.log(this.sessionID,this.userName,this.hashedPassword);
-        });
+        this.type=type;
+      
     }
-    async compareHash(password){
-        console.log(await compare(password,this.hashedPassword));
-    }
+   
 }
 
 class DepotSupervisor extends User{
-    constructor(userName,password){
-        super(userName,password);
+    constructor(userName,type){
+        super(userName,type);
     }
 }
 
-class MohOfficer extends User{
-    constructor(userName,password){
-        super(userName,password);
+class MOH extends User{
+    constructor(userName,type){
+        super(userName,type);
     }
 }
-module.exports = {DepotSupervisor,MohOfficer};
+
+class Clerk extends User{
+    constructor(userName,type){
+        super(userName,type);
+    }
+}
+
+class Mayor extends User{
+    constructor(userName,type){
+        super(userName,type);
+    }
+}
+module.exports = {DepotSupervisor,MOH,Clerk,Mayor};
+
+// hash(password,10,(err,encrypted)=>{
+//     if(err){
+//         return {err};
+//     }
+//     this.hashedPassword = encrypted;
+//     console.log(this.sessionID,this.userName,this.hashedPassword);
+// });

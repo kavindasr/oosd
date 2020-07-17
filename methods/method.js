@@ -26,6 +26,7 @@ class Method{
         this.type = req.method;
         this.url = new URL(webSettings.protocol+"://"+webSettings.host+":"+webSettings.webport+req.url);
         this.seperator = req.url.split('/');
+        this.user=null;
     }
     getPath(ind){
         return this.seperator[ind];
@@ -38,6 +39,10 @@ class Method{
         var cookies = new Cookies(this.req, this.res, { keys: keys });
         var token = cookies.get("OOSD_TOKEN",{signed:true});
         return token;
+    }
+
+    setUser(user){
+        this.user=user;
     }
 }
 
