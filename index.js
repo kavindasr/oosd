@@ -4,10 +4,8 @@ const views = require("./factories/viewsFolder");
 const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
 const userBuilder = require("./factories/userBuilder");
-
-
-
 const {getUser} = require('./services/user-services');
+
 
 const server = http.createServer((req,res)=>{
 

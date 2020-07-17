@@ -1,4 +1,4 @@
-const {hash,compare} = require("bcrypt");
+const {hash,compare} = require("bcryptjs");
 const {getUserID} = require('./auth-services');
 const user = require("../users/user");
 const users = new Map();

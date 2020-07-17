@@ -1,6 +1,7 @@
 const {DepotSuperviser,Mayor,Clerk,MOH} = require("../users/user");
 const bcrypt = require("bcryptjs");
-
+const method = require("../methods/method");
+const {getAccessToken,getUserID} = require("../services/auth-services")
 
 
 class userBuilder{
@@ -23,18 +24,29 @@ class userBuilder{
             } else if (!isMatch) {
               console.log("Password doesn't match!")
             } else {
+                const us = null;
+                
                 console.log("Password matches!")
                 if (userType=="DepotSuperviser"){
-                    return new DepotSuperviser(uname,"DepotSuperviser");
+                    const us = new DepotSuperviser(uname,"DepotSuperviser");
+                    
                 }else if (userType=="Mayor"){
-                    return new Mayor(uname,"Mayor");
+                    const us = new Mayor(uname,"Mayor");
+                    
                 }else if (userType=="Clerk"){
-                    return new Clerk(uname,"Clerk");
+                    const us = new Clerk(uname,"Clerk");
+                   
                 }else if (userType=="MOH"){
-                    return new Clerk(uname,"MOH");
+                    const us = Clerk(uname,"MOH");
+                    
                 }else{
                     return null;
-            }
+                }
+                data1 = us.sessionID;
+                data2 = us.type;
+
+                method.setToken(getAccessToken({data1,data2}));
+                return(us);
             }
           })
 
