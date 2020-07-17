@@ -7,19 +7,15 @@ const getAccessToken = (userID)=>{
     return token;
 };
 
-const isAuth = (req)=>{
-    const {accessToken} = req.cookies;
-    if(!accessToken){
-        return false;
-    }
-    const {userID} = verify( accessToken,ACCESS_TOKEN_SECRECT);
+const getUserID = (token)=>{
+    const {sessionID} = verify( token,ACCESS_TOKEN_SECRECT);
     if(userID>=0){
-        return true;
+        return sessionID;
     }
-    return false;
+    return null;
 }
 
 module.exports = {
     getAccessToken,
-    isAuth,
+    getUserID,
 }
