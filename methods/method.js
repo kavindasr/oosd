@@ -41,6 +41,11 @@ class Method{
         return token;
     }
 
+    setToken(token){
+        var cookies = new Cookies(this.req, this.res, { keys: keys });
+        cookies.set('OOSD_TOKEN', token, { signed: true, maxAge:500000})
+    }
+
     setUser(user){
         this.user=user;
     }
