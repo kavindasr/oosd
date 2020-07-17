@@ -8,7 +8,7 @@ exports.executeSQL = (sql)=>{
             if (err) throw err; // not connected!
            
             // Use the connection
-            connection.query('SELECT something FROM sometable', function (error, results, fields) {
+            connection.query(sql, function (error, results, fields) {
 
                 // When done with the connection, release it.
                 connection.release();
