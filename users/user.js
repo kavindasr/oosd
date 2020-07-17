@@ -21,14 +21,12 @@ class User{
 class DepotSupervisor extends User{
     constructor(userName,password){
         super(userName,password);
-        this.ACCESS_TOKEN_SECRECT = "Hello_SuperviSOR";
     }
 }
 
 class MohOfficer extends User{
     constructor(userName,password){
         super(userName,password);
-        this.ACCESS_TOKEN_SECRECT = "Hello_DOCTOR";
     }
 }
 module.exports = {DepotSupervisor,MohOfficer};
