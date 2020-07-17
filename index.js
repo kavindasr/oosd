@@ -3,9 +3,8 @@ const {webSettings} = require("./settings");
 const views = require("./factories/viewsFolder");
 const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
-const userBuilder = require("./factories/userBuilder");
+const UserBuilder = require("./factories/userBuilder");
 const {getUser} = require('./services/user-services');
-
 
 const server = http.createServer((req,res)=>{
 
@@ -33,10 +32,9 @@ const server = http.createServer((req,res)=>{
             if (method.type=="GET"){
                 response = await views.render(method.url.pathname);
             }else if (method.type=="POST"){
-                const UBuilder = new userBuilder(method);
-                const user = UBuilder.create();
-            }
-            
+                const uBuilder = new UserBuilder(method);
+                const user = uBuilder.create();
+            }  
         }
         else if(method.getPath(1) == ''){
             redirect(method,'/login');

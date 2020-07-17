@@ -11,7 +11,7 @@ class User{
    
 }
 
-class DepotSupervisor extends User{
+class DepotSuperviser extends User{
     constructor(userName,type){
         super(userName,type);
     }
@@ -34,7 +34,7 @@ class Mayor extends User{
         super(userName,type);
     }
 }
-module.exports = {DepotSupervisor,MOH,Clerk,Mayor};
+module.exports = {DepotSuperviser,MOH,Clerk,Mayor};
 
 // hash(password,10,(err,encrypted)=>{
 //     if(err){

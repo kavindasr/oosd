@@ -1,11 +1,9 @@
 const {DepotSuperviser,Mayor,Clerk,MOH} = require("../users/user");
 const bcrypt = require("bcryptjs");
-const method = require("../methods/method");
 const {getAccessToken,getUserID} = require("../services/auth-services")
 
-
-class userBuilder{
-    constructor(){
+class UserBuilder{
+    constructor(method){
         this.method=method;
     }
 
@@ -13,7 +11,7 @@ class userBuilder{
         const body = await method.getBODY();
         const uname=body.userName;
         const pass=body.password;
-
+        //password="password"
         const userType = "MOH";  // should be read from the database
         const hashedPass="$2a$10$PI7tlwPvEqVr2nYQCrIfNekoLkxEHk48hvpD44VBRTP6WRkhRGJwu"; // should be read from the database
         
@@ -24,20 +22,20 @@ class userBuilder{
             } else if (!isMatch) {
               console.log("Password doesn't match!")
             } else {
-                const us = null;
+                var us = null;
                 
                 console.log("Password matches!")
                 if (userType=="DepotSuperviser"){
-                    const us = new DepotSuperviser(uname,"DepotSuperviser");
+                    us = new DepotSuperviser(uname,"DepotSuperviser");
                     
                 }else if (userType=="Mayor"){
-                    const us = new Mayor(uname,"Mayor");
+                    us = new Mayor(uname,"Mayor");
                     
                 }else if (userType=="Clerk"){
-                    const us = new Clerk(uname,"Clerk");
+                    us = new Clerk(uname,"Clerk");
                    
                 }else if (userType=="MOH"){
-                    const us = Clerk(uname,"MOH");
+                    us = MOH(uname,"MOH");
                     
                 }else{
                     return null;
@@ -56,7 +54,7 @@ class userBuilder{
 }
 
 
-module.exports = userBuilder;
+module.exports = UserBuilder;
 
 
 
