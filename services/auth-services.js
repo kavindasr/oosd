@@ -1,8 +1,9 @@
 const {sign, verify} = require("jsonwebtoken");
 
 const ACCESS_TOKEN_SECRECT = "ksr";
-const getAccessToken = (userID)=>{
-    token = sign({userID}, ACCESS_TOKEN_SECRECT,{expiresIn:"5m"});
+
+const getAccessToken = (data)=>{
+    token = sign(data, ACCESS_TOKEN_SECRECT,{expiresIn:"5m"});
     console.log(token);
     return token;
 };
