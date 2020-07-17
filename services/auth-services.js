@@ -8,8 +8,8 @@ const getAccessToken = (userID)=>{
 };
 
 const getUserID = (token)=>{
-    const {sessionID} = verify( token,ACCESS_TOKEN_SECRECT);
-    if(userID>=0){
+    const {sessionID} = verify(token,ACCESS_TOKEN_SECRECT);
+    if(sessionID>=0){
         return sessionID;
     }
     return null;

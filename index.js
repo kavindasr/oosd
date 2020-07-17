@@ -3,6 +3,7 @@ const {webSettings} = require("./settings");
 const views = require("./factories/viewsFolder");
 const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
+const {getUser} = require('./services/user-services');
 
 const server = http.createServer((req,res)=>{
     console.log(req.method,req.url);
@@ -28,8 +29,8 @@ const server = http.createServer((req,res)=>{
         }
         else{
             const token = method.getToken();
-            const user = getUser(token);
             if(token){
+                const user = getUser(token);
                 if(method.getPath(1) == 'api'){
                     //api method
                 }
