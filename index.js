@@ -7,6 +7,7 @@ const userBuilder = require("./factories/userBuilder");
 
 
 
+const {getUser} = require('./services/user-services');
 
 const server = http.createServer((req,res)=>{
 
@@ -45,6 +46,7 @@ const server = http.createServer((req,res)=>{
         else{
             const token = method.getToken();
             if(token){
+                const user = getUser(token);
                 if(method.getPath(1) == 'api'){
                     //api method
                 }

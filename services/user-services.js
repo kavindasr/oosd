@@ -1,20 +1,10 @@
 const {hash,compare} = require("bcrypt");
-const users = [];
+const {getUserID} = require('./auth-services');
+const user = require("../users/user");
+const users = new Map();
 
-const addUser = async (email,password,name)=>{
-    const hashedPassword = await hash(password,10)
-
-    if(users.find(u=> u.email === email)){
-        throw new Error(`User with email: ${email} already exists`);
-    }
-    const user = {
-        id:users.length,
-        email,
-        name,
-        password: hashedPassword
-    };
-    users.push(user);
-    console.log(user);
+const addUser = async (user)=>{
+    users.set(user.sessionID,user); // should be added to db
 }
 
 const authUser = async (email,password)=>{
@@ -30,7 +20,19 @@ const authUser = async (email,password)=>{
     return false;
 };
 
+const getUser = async (token)=>{
+    const sessionID = getUserID(token);
+    if(sessionID){
+        user = users.get(sessionID); //should check db also if user is null
+        return user;
+    }
+    else{
+        return null;
+    }
+}
+
 module.exports = {
     addUser,
     authUser,
+    getUser,
 };
