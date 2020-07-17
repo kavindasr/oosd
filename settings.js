@@ -1,15 +1,25 @@
-// change credentials before run the server
+require('dotenv').config();
 
-exports.dbConfig ={
-    connectionLimit : 10,
-    user: 'ksr',
-    password: 'ksr199841',
-    host: 'localhost',
-    database: 'oosd', 
-};
+const host = process.env.Host;
+const webport = process.env.WEBPORT;
+const protocol = process.env.PROTOCOL;
+const connectionLimit = process.env.CONNECTIONLIMIT;
+const user = process.env.USER;
+const password = process.env.PASSWORD;
+const database = process.env.DATABASE;
+
+console.log(host);
 
 exports.webSettings  = {
-    webport:8000,
-    protocol: 'http',
-    host: 'localhost',
+    webport,
+    protocol,
+    host,
 }
+
+exports.dbConfig ={
+    connectionLimit,
+    user,
+    password,
+    host,
+    database, 
+};
