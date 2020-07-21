@@ -7,7 +7,14 @@ const ksr = {
                 database: 'oosd2', 
             } ;
 
-exports.dbConfig =ksr;
+const rnj = {
+                connectionLimit : 10,
+                user: 'root',
+                password: 'Roshi#@97324',
+                host: 'localhost',
+                database: 'oosd', 
+            } ;
+exports.dbConfig =rnj;
 
 exports.webSettings  = {
     webport:8000,

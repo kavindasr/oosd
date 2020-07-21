@@ -11,53 +11,53 @@ class UserBuilder{
 
     async create(){
         const body = parse(await this.method.getBody());
-        console.log(body.userName,body.password);
+        const uname = body.userName;
+        const password=body.password;
+        console.log(uname,password);
+        //console.log(body.userName,body.password);
         try{
-             const tt = await executeSQL(`SELECT user_type FROM user_table WHERE user_name = '${body.userName}'`);
-             console.log(tt);
-        }
-        catch(e){
+            const credential = await executeSQL(`SELECT user_type , password FROM user_table WHERE user_name = '${uname}'`);
+            const hashedPass = credential[0].password;
+            const userType= credential[0].user_type;
+            console.log(hashedPass , userType);
+
+            bcrypt.compare(password, hashedPass, function(err, isMatch) {
+                if (err) {
+                  console.log("error");
+                } else if (!isMatch) {
+                  console.log("Password doesn't match!")
+                } else {
+                    var us = null;
+                    
+                    console.log("Password matches!")
+                    if (userType=="DepotSuperviser"){
+                        us = new DepotSuperviser(uname,"DepotSuperviser");
+                        
+                    }else if (userType=="Mayor"){
+                        us = new Mayor(uname,"Mayor");
+                        
+                    }else if (userType=="Clerk"){
+                        us = new Clerk(uname,"Clerk");
+                       
+                    }else if (userType=="moh"){
+                        us =  new MOH(uname,"moh");
+                        
+                    }else{
+                        return null;
+                    }
+                    const data1 = us.sessionID;
+                    const data2 = us.type;
+                    console.log(data1,data2);
+                    this.method.setToken(getAccessToken({data1,data2}));
+                    //this.method.setToken(getAccessToken({data1,data2}));
+                    return(us);
+                }
+              });
+
+        }catch(e){
             console.log("sdfs  eeerrrr");
         }
         
-        //password="password"
-        const userType = "MOH";  // should be read from the database
-        const hashedPass="$2a$10$PI7tlwPvEqVr2nYQCrIfNekoLkxEHk48hvpD44VBRTP6WRkhRGJwu"; // should be read from the database
-        
-/*
-        bcrypt.compare(pass, hashedPass, function(err, isMatch) {
-            if (err) {
-              console.log("error");
-            } else if (!isMatch) {
-              console.log("Password doesn't match!")
-            } else {
-                var us = null;
-                
-                console.log("Password matches!")
-                if (userType=="DepotSuperviser"){
-                    us = new DepotSuperviser(uname,"DepotSuperviser");
-                    
-                }else if (userType=="Mayor"){
-                    us = new Mayor(uname,"Mayor");
-                    
-                }else if (userType=="Clerk"){
-                    us = new Clerk(uname,"Clerk");
-                   
-                }else if (userType=="MOH"){
-                    us = MOH(uname,"MOH");
-                    
-                }else{
-                    return null;
-                }
-                data1 = us.sessionID;
-                data2 = us.type;
-
-                method.setToken(getAccessToken({data1,data2}));
-                return(us);
-            }
-          })
-*/
-
     }
 
 }
