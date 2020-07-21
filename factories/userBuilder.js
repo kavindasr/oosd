@@ -1,6 +1,6 @@
 const {DepotSuperviser,Mayor,Clerk,MOH} = require("../users/user");
-const bcrypt = require("bcryptjs");
-const {getAccessToken,getUserID} = require("../services/auth-services")
+const {compare} = require("bcryptjs");
+const {getAccessToken} = require("../services/auth-services")
 const { parse } = require('querystring');
 const {executeSQL} = require('../db/db');
 
@@ -20,42 +20,37 @@ class UserBuilder{
             const hashedPass = credential[0].password;
             const userType= credential[0].user_type;
             console.log(hashedPass , userType);
-
-            bcrypt.compare(password, hashedPass, function(err, isMatch) {
-                if (err) {
-                  console.log("error");
-                } else if (!isMatch) {
-                  console.log("Password doesn't match!")
-                } else {
-                    var us = null;
+            const success = await compare(password,hashedPass);
+            console.log(success);
+            if(success){
+                var us = null;
+                console.log("Password matches!")
+                if (userType=="depotSuperviser"){
+                    us = new DepotSuperviser(uname,"DepotSuperviser");
                     
-                    console.log("Password matches!")
-                    if (userType=="DepotSuperviser"){
-                        us = new DepotSuperviser(uname,"DepotSuperviser");
-                        
-                    }else if (userType=="Mayor"){
-                        us = new Mayor(uname,"Mayor");
-                        
-                    }else if (userType=="Clerk"){
-                        us = new Clerk(uname,"Clerk");
-                       
-                    }else if (userType=="moh"){
-                        us =  new MOH(uname,"moh");
-                        
-                    }else{
-                        return null;
-                    }
-                    const data1 = us.sessionID;
-                    const data2 = us.type;
-                    console.log(data1,data2);
-                    this.method.setToken(getAccessToken({data1,data2}));
-                    //this.method.setToken(getAccessToken({data1,data2}));
-                    return(us);
+                }else if (userType=="mayor"){
+                    us = new Mayor(uname,"Mayor");
+                    
+                }else if (userType=="clerk"){
+                    us = new Clerk(uname,"Clerk");
+                    
+                }else if (userType=="moh"){
+                    us =  new MOH(uname,"moh");
+                    
+                }else{
+                    return null;
                 }
-              });
-
+                const data1 = us.sessionID;
+                const data2 = us.type;
+                const token = getAccessToken({data1,data2});
+                this.method.setToken(token);
+                return us;
+            }
+            else{
+                return null;
+            }
         }catch(e){
-            console.log("sdfs  eeerrrr");
+            return {err:"internel error", status:500};
         }
         
     }

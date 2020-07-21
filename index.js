@@ -11,9 +11,7 @@ const server = http.createServer((req,res)=>{
     console.log(req.method,req.url);
     
     const method = methodFactory.getMethod(req,res);
-    
     // find the relevent user and wrap it with the method
-
 
     //const token = method.getToken();
     //console.log(method.url);

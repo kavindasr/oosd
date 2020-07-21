@@ -14,7 +14,7 @@ const rnj = {
                 host: 'localhost',
                 database: 'oosd', 
             } ;
-exports.dbConfig =rnj;
+exports.dbConfig =ksr;
 
 exports.webSettings  = {
     webport:8000,
