@@ -13,18 +13,15 @@ class UserBuilder{
         const body = parse(await this.method.getBody());
         const uname = body.userName;
         const password=body.password;
-        console.log(uname,password);
-        //console.log(body.userName,body.password);
+        
         try{
             const credential = await executeSQL(`SELECT user_type , password FROM user_table WHERE user_name = '${uname}'`);
             const hashedPass = credential[0].password;
             const userType= credential[0].user_type;
-            console.log(hashedPass , userType);
             const success = await compare(password,hashedPass);
-            console.log(success);
             if(success){
                 var us = null;
-                console.log("Password matches!")
+                console.log("Password matches!");
                 if (userType=="depotSuperviser"){
                     us = new DepotSuperviser(uname,"DepotSuperviser");
                     
@@ -43,10 +40,11 @@ class UserBuilder{
                 const data1 = us.sessionID;
                 const data2 = us.type;
                 const token = getAccessToken({data1,data2});
-                this.method.setToken(token);
-                return us;
+                //this.method.setToken(token);
+                return {user:us,token:token};
             }
             else{
+                console.log("Password mismatch!");
                 return null;
             }
         }catch(e){

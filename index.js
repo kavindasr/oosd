@@ -31,7 +31,9 @@ const server = http.createServer((req,res)=>{
                 response = await views.render(method.url.pathname);
             }else if (method.type=="POST"){
                 const uBuilder = new UserBuilder(method);
-                const user = uBuilder.create();
+                var user,token;
+                ({user,token} = await uBuilder.create());
+                method.setToken(token);
             }  
         }
         else if(method.getPath(1) == ''){

@@ -43,7 +43,6 @@ class Method{
     }
 
     setToken(token){
-        console.log("sddfds",token);
         var cookies = new Cookies(this.req, this.res, { keys: keys });
         cookies.set('OOSD_TOKEN', token, { signed: true, maxAge:500000})
     }
