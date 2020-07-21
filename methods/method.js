@@ -1,6 +1,7 @@
 const {URL}= require('url');
 const {webSettings} = require("../settings");
 const Cookies = require("cookies");
+const {ApiGet,ApiPost,ApiPut,ApiDelete} = require("./apiMethod");
 const keys = ['oosd'];
 
 function  getBODY(req){
@@ -49,11 +50,15 @@ class Method{
     setUser(user){
         this.user=user;
     }
+
 }
 
 class Get extends Method{
     constructor(req,res){
         super(req,res);
+    }
+    getApiMethod(){
+        return new ApiGet(this);
     }
 }
 
@@ -66,6 +71,10 @@ class Post extends Method{
     async getBody(){
         this.body = await getBODY(this.req);
         return this.body;
+    }
+
+    getApiMethod(){
+        return new ApiPost(this);
     }
 }
 
@@ -79,6 +88,10 @@ class Put extends Method{
         this.body = await getBODY(this.req);
         return this.body;
     }
+
+    getApiMethod(){
+        return new ApiPut(this);
+    }
 }
 
 class Delete extends Method{
@@ -91,54 +104,10 @@ class Delete extends Method{
         this.body = await getBODY(this.req);
         return this.body;
     }
-}
 
-/*class Method{ 
-    constructor(req,res){
-        this.query = null ;
-        this.req = req;
-        this.res = res;
-    }
-    get getQuery(){
-        return this.query;
-    }
-    send(){
-        //send response
+    getApiMethod(){
+        return new ApiDelete(this);
     }
 }
-
-class Get extends Method{
-    constructor(req,res){
-        super(req,res);
-    }
-    setQuery(fields,table,conditions){
-        if(conditions){
-            this.query = `SELECT ${fields} FROM ${table} WHERE ${conditions}`;
-        }
-        else{
-            this.query = `SELECT ${fields} FROM ${table}`;
-        }
-        
-    }
-}
-
-class Post extends Method{
-    constructor(req,res){
-        super(req,res);   
-    }
-    setQuery(table,fields,values){
-        this.query = `INSERT INTO ${table} (${fields}) VALUES (${values})`;
-    }
-}
-
-class Update extends Method{
-    constructor(req,res){
-        super(req,res);
-    }
-    setQuery(table,fields,conditions){
-        this.query = `UPDATE ${table} SET ${fields} WHERE ${conditions}`;
-    }
-}*/
-
 
 module.exports = {Get,Post,Put,Delete};

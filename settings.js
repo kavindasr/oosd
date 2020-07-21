@@ -1,12 +1,13 @@
 // change credentials before run the server
+const ksr = {
+                connectionLimit : 10,
+                user: 'ksr',
+                password: 'ksr199841',
+                host: 'localhost',
+                database: 'oosd', 
+            } ;
 
-exports.dbConfig ={
-    connectionLimit : 10,
-    user: 'root',
-    password: 'Meelan@37562',
-    host: 'localhost',
-    database: 'mcDB', 
-};
+exports.dbConfig =ksr;
 
 exports.webSettings  = {
     webport:8000,

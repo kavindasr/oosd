@@ -45,6 +45,7 @@ const server = http.createServer((req,res)=>{
                 const user = getUser(token);
                 if(method.getPath(1) == 'api'){
                     //api method
+                    const apiMethod = method.getApiMethod();
                 }
                 else{
                     //render views
