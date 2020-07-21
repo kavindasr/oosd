@@ -2,6 +2,7 @@ const {DepotSuperviser,Mayor,Clerk,MOH} = require("../users/user");
 const bcrypt = require("bcryptjs");
 const {getAccessToken,getUserID} = require("../services/auth-services")
 const { parse } = require('querystring');
+const {executeSQL} = require('../db/db');
 
 class UserBuilder{
     constructor(method){
@@ -11,6 +12,14 @@ class UserBuilder{
     async create(){
         const body = parse(await this.method.getBody());
         console.log(body.userName,body.password);
+        try{
+             const tt = await executeSQL(`SELECT user_type FROM user_table WHERE user_name = '${body.userName}'`);
+             console.log(tt);
+        }
+        catch(e){
+            console.log("sdfs  eeerrrr");
+        }
+        
         //password="password"
         const userType = "MOH";  // should be read from the database
         const hashedPass="$2a$10$PI7tlwPvEqVr2nYQCrIfNekoLkxEHk48hvpD44VBRTP6WRkhRGJwu"; // should be read from the database

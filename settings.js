@@ -4,7 +4,7 @@ const ksr = {
                 user: 'ksr',
                 password: 'ksr199841',
                 host: 'localhost',
-                database: 'oosd', 
+                database: 'oosd2', 
             } ;
 
 exports.dbConfig =ksr;
