@@ -14,7 +14,7 @@ function  getBODY(req){
         });
     req.on("end", ()=>{
         //console.log(reqBody);
-        resolve(JSON.parse(reqBody));
+        resolve(reqBody); 
     });
     
     });

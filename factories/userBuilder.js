@@ -1,6 +1,7 @@
 const {DepotSuperviser,Mayor,Clerk,MOH} = require("../users/user");
 const bcrypt = require("bcryptjs");
 const {getAccessToken,getUserID} = require("../services/auth-services")
+const { parse } = require('querystring');
 
 class UserBuilder{
     constructor(method){
@@ -8,14 +9,13 @@ class UserBuilder{
     }
 
     async create(){
-        const body = await method.getBODY();
-        const uname=body.userName;
-        const pass=body.password;
+        const body = parse(await this.method.getBody());
+        console.log(body.userName,body.password);
         //password="password"
         const userType = "MOH";  // should be read from the database
         const hashedPass="$2a$10$PI7tlwPvEqVr2nYQCrIfNekoLkxEHk48hvpD44VBRTP6WRkhRGJwu"; // should be read from the database
         
-
+/*
         bcrypt.compare(pass, hashedPass, function(err, isMatch) {
             if (err) {
               console.log("error");
@@ -47,7 +47,7 @@ class UserBuilder{
                 return(us);
             }
           })
-
+*/
 
     }
 
