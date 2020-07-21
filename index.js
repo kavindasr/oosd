@@ -40,28 +40,23 @@ const server = http.createServer((req,res)=>{
             redirect(method,'/login');
         }
         else{
-            // const token = method.getToken();
-            // if(token){
-            //     const user = getUser(token);
-            //     if(method.getPath(1) == 'api'){
-            //         //api method
-            //         const apiMethod = method.getApiMethod();
-            //         apiMethod.setQuery();
-            //     }
-            //     else{
-            //         //render views
-            //         response = await views.render(method.url.pathname);
-            //     }   
-            // }
-            // else{
-            //     redirect(method,'/login');
-            // }
-            
+            const token = method.getToken();
+            if(token){
+                const user = getUser(token);
                 if(method.getPath(1) == 'api'){
                     //api method
                     const apiMethod = method.getApiMethod();
                     apiMethod.setQuery();
                 }
+                else{
+                    //render views
+                    response = await views.render(method.url.pathname);
+                }   
+            }
+            else{
+                redirect(method,'/login');
+            }
+            
         }
         if(response){
             response.send(method.res);
