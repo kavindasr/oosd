@@ -1,3 +1,4 @@
+const {getGetQD} = require('../services/api-services');
 class ApiMethod{ 
     constructor(method){
         this.query = null ;
@@ -15,12 +16,13 @@ class ApiGet extends ApiMethod{
     constructor(method){
         super(method);
     }
-    setQuery(fields,table,conditions){
-        if(conditions){
-            this.query = `SELECT ${fields} FROM ${table} WHERE ${conditions}`;
+    setQuery(){
+        var qd = getGetQD(this.method);
+        if(qd.conditions){
+            this.query = `SELECT ${qd.fields} FROM ${qd.table} WHERE ${qd.conditions}`;
         }
         else{
-            this.query = `SELECT ${fields} FROM ${table}`;
+            this.query = `SELECT ${qd.fields} FROM ${qd.table}`;
         }
         
     }
