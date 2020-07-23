@@ -10,7 +10,7 @@ const table = new Map(
 
 const condition = new Map(
     [
-        ['id','employee_id'],
+        ['empid','employee_id'], //id to empid
         ['date','tdate'],
         ['div','division']
     ]
@@ -19,7 +19,7 @@ const condition = new Map(
 const field = new Map(
     [
         ['all','*'],
-        //add unique key to represnt deferent combinations of fields
+        //add unique key to represnt different combinations of fields
     ]
 );
 
