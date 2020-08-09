@@ -11,14 +11,7 @@ const server = http.createServer((req,res)=>{
     console.log(req.method,req.url);
     
     const method = methodFactory.getMethod(req,res);
-    // find the relevent user and wrap it with the method
 
-    //const token = method.getToken();
-    //console.log(method.url);
-    // (async ()=>{
-    //     var body = await method.getBody(); 
-    //     console.log(body);
-    // })();  // use self-invoking function to avoid null body
     (async ()=>{
         var response = null;
         if(method.getPath(1) == 'public'){
@@ -47,7 +40,7 @@ const server = http.createServer((req,res)=>{
                     //api method
                     const apiMethod = method.getApiMethod();
                     apiMethod.setQuery();
-                    response = await apiMethod.execute()
+                    response = await apiMethod.execute();
                 }
                 else{
                     //render views
