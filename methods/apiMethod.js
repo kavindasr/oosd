@@ -1,4 +1,5 @@
-const {getGetQD} = require('../services/api-services');
+const  {getTable,getConditon,getField} = require('../services/api-map');
+
 class ApiMethod{ 
     constructor(method){
         this.query = null ;
@@ -6,6 +7,14 @@ class ApiMethod{
     }
     get getQuery(){
         return this.query;
+    }
+    setFeilds(){
+        const fieldsList = this.method.getPath(3).split('&');
+        var arr = [];
+        for (var element of fieldsList){
+            arr.push(getField(element));
+        }
+        return arr.join();
     }
     send(){
         //send response
@@ -28,13 +37,13 @@ class ApiGet extends ApiMethod{
         super(method);
     }
     setQuery(){
-        var qd = getGetQD(this.method);
-        if(qd.conditions){
-            this.query = `SELECT ${qd.fields} FROM ${qd.table} WHERE ${qd.conditions}`;
-        }
-        else{
-            this.query = `SELECT ${qd.fields} FROM ${qd.table}`;
-        }
+        const fields = this.setFeilds();
+        // if(qd.conditions){
+        //     this.query = `SELECT ${qd.fields} FROM ${qd.table} WHERE ${qd.conditions}`;
+        // }
+        // else{
+        //     this.query = `SELECT ${qd.fields} FROM ${qd.table}`;
+        // }
         
     }
 }
@@ -65,6 +74,15 @@ class ApiDelete extends ApiMethod{
     setQuery(table,conditions){
         this.query = `DELETE FROM ${table} WHERE ${conditions}`;
     }
+}
+
+function jsBody(reqBody){
+    var datString="";
+    var data = JSON.parse(reqBody);
+    for (let key in data){
+        datString=datString  + getFields(key) + "=" + data[key] + ",";
+    }
+    return(datString.slice(0,-1));
 }
 
 module.exports = {ApiGet,ApiPost,ApiPut,ApiDelete};
