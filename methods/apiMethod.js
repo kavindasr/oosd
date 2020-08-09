@@ -1,4 +1,6 @@
 const {getGetQD} = require('../services/api-services');
+const {getFields} = require('../services/api-map');
+
 class ApiMethod{ 
     constructor(method){
         this.query = null ;
@@ -54,6 +56,15 @@ class ApiDelete extends ApiMethod{
     setQuery(table,conditions){
         this.query = `DELETE FROM ${table} WHERE ${conditions}`;
     }
+}
+
+function jsBody(reqBody){
+    var datString="";
+    var data = JSON.parse(reqBody);
+    for (let key in data){
+        datString=datString  + getFields(key) + "=" + data[key] + ",";
+    }
+    return(datString.slice(0,-1));
 }
 
 module.exports = {ApiGet,ApiPost,ApiPut,ApiDelete};
