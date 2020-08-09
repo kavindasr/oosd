@@ -16,9 +16,7 @@ class ApiMethod{
         }
         return arr.join();
     }
-    send(){
-        //send response
-    }
+
     setConditions(){
         var conditionQ=[];
         var part ="";
@@ -28,7 +26,18 @@ class ApiMethod{
         });
         return conditionQ.join();
         //console.log(conditionQ.join());
-
+    }
+    async jsBody(){
+        const reqBody = await this.method.getBody();
+        var datString="";
+        var data = JSON.parse(reqBody);
+        for (let key in data){
+            datString=datString  + getFields(key) + "=" + data[key] + ",";
+        }
+        return(datString.slice(0,-1));
+    }
+    send(){
+        //send response
     }
 }
 
@@ -76,13 +85,5 @@ class ApiDelete extends ApiMethod{
     }
 }
 
-function jsBody(reqBody){
-    var datString="";
-    var data = JSON.parse(reqBody);
-    for (let key in data){
-        datString=datString  + getFields(key) + "=" + data[key] + ",";
-    }
-    return(datString.slice(0,-1));
-}
 
 module.exports = {ApiGet,ApiPost,ApiPut,ApiDelete};
