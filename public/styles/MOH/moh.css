@@ -1,0 +1,75 @@
+body {
+  background-color: black;
+  color: aliceblue;
+  font-size: x-large;
+}
+
+.bg-colour {
+  background-color: rgb(11, 3, 85);
+}
+
+.card {
+  border-radius: 4px;
+  background-color: rgb(185, 221, 255);
+}
+
+.bodycontent {
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.form-group {
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  font-family: arial;
+  color: black;
+  font-size: 17px;
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  font-family: arial;
+  font-size: 20px;
+  width: 100%;
+  background-color: rgba(76, 175, 80, 0.7);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: rgba(69, 160, 73, 0.9);
+}
+
+#btn {
+  width: 325px;
+  height: 40px;
+  display: inline-block;
+  font-size: 20px;
+  background-color: rgb(11, 3, 85);
+  font-family: sans-serif;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+
+#sub {
+  display: flex;
+  justify-content: center;
+}
