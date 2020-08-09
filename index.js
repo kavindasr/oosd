@@ -47,6 +47,8 @@ const server = http.createServer((req,res)=>{
                     //api method
                     const apiMethod = method.getApiMethod();
                     apiMethod.setQuery();
+                    console.log(apiMethod.getQuery);
+                    //apiMethod.send();
                 }
                 else{
                     //render views

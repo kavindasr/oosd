@@ -30,6 +30,7 @@ class ApiMethod{
         //console.log(conditionQ.join());
 
     }
+
 }
 
 class ApiGet extends ApiMethod{
@@ -38,12 +39,13 @@ class ApiGet extends ApiMethod{
     }
     setQuery(){
         const fields = this.setFeilds();
-        // if(qd.conditions){
-        //     this.query = `SELECT ${qd.fields} FROM ${qd.table} WHERE ${qd.conditions}`;
-        // }
-        // else{
-        //     this.query = `SELECT ${qd.fields} FROM ${qd.table}`;
-        // }
+        const condition = this.setConditions();
+        if(condition){
+            this.query = `SELECT ${fields} FROM ${getTable(this.method.getPath(2))} WHERE ${condition}`;
+        }
+        else{
+            this.query = `SELECT ${fields} FROM ${getTable(this.method.getPath(2))}`;
+        }
         
     }
 }

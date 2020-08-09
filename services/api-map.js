@@ -4,7 +4,7 @@ const table = new Map(
         ['employee','employee_table'],
         ['attendance','daily_attendance'],
         ['division','division_table'],
-        ['division','vehicle_detail']
+        ['vehicle','vehicle_detail']
     ]
 );
 
