@@ -1,8 +1,9 @@
 body{
-  background-color: #1F618D;
+  background-color: black;
   color: aliceblue;
   font-size: x-large;
 }
+
 .flex-container {
   display: flex;
   flex-wrap: wrap;
