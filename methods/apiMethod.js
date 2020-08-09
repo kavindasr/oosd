@@ -1,4 +1,6 @@
 const  {getTable,getConditon,getField} = require('../services/api-map');
+const {executeSQL} = require('../db/db');
+const {Send500,SendJson} = require('../responses/response');
 
 class ApiMethod{ 
     constructor(method){
@@ -36,8 +38,13 @@ class ApiMethod{
         }
         return(datString.slice(0,-1));
     }
-    send(){
-        //send response
+    async execute(){
+        try{
+            const data = await executeSQL(this.getQuery);
+            return new SendJson(data);
+        }catch(e){
+            return new Send500(e);
+        }
     }
 }
 
