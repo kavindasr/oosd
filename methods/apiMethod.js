@@ -10,6 +10,17 @@ class ApiMethod{
     send(){
         //send response
     }
+    setConditions(){
+        var conditionQ=[];
+        var part ="";
+        this.method.url.searchParams.forEach((value, name, searchParams) => {
+            part = `${getConditon(name)}="${value}"`
+            conditionQ.push(part);
+        });
+        return conditionQ.join();
+        //console.log(conditionQ.join());
+
+    }
 }
 
 class ApiGet extends ApiMethod{
