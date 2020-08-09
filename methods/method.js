@@ -26,7 +26,7 @@ class Method{
         this.res = res;
         this.type = req.method;
         this.url = new URL(webSettings.protocol+"://"+webSettings.host+":"+webSettings.webport+req.url);
-        this.seperator = req.url.split(/[/,?]/);
+        this.seperator = req.url.split('/');
         this.user=null;
     }
     getPath(ind){
