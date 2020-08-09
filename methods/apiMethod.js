@@ -41,7 +41,7 @@ class ApiMethod{
     async execute(){
         try{
             const data = await executeSQL(this.getQuery);
-            return new SendJson(data);
+            return new SendJson(JSON.stringify(data));
         }catch(e){
             return new Send500(e);
         }
