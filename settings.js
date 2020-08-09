@@ -14,7 +14,16 @@ const rnj = {
                 host: 'localhost',
                 database: 'oosd', 
             } ;
-exports.dbConfig =ksr;
+
+const msb = {
+                connectionLimit : 10,
+                user: 'root',
+                password: 'Meelan@37562',
+                host: 'localhost',
+                database: 'mcDB'
+            } ;
+
+exports.dbConfig =msb;
 
 exports.webSettings  = {
     webport:8000,
