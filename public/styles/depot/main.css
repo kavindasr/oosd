@@ -1,0 +1,25 @@
+body{
+  background-color: #1F618D;
+  color: aliceblue;
+  font-size: x-large;
+}
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex-container > div {
+  background-color: #154360;
+  width: 150px;
+  padding: 50px;
+  margin: 5px;
+  text-align: center;
+  line-height: 40px;
+  
+}
+
+.flex-container > div:hover{
+    background-color: #0e2a3b;
+    cursor: pointer;
+}
