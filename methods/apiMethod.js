@@ -26,7 +26,7 @@ class ApiMethod{
             part = `${getConditon(name)}="${value}"`
             conditionQ.push(part);
         });
-        return conditionQ.join();
+        return conditionQ.join(" AND ");
         //console.log(conditionQ.join());
     }
     async jsBody(){

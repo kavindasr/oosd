@@ -12,7 +12,8 @@ const condition = new Map(
     [
         ['empid','employee_id'], //id to empid
         ['date','tdate'],
-        ['div','division']
+        ['div','division'],
+        ['divno','division_no']
     ]
 );
 
