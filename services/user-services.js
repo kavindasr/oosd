@@ -20,10 +20,11 @@ const authUser = async (email,password)=>{
     return false;
 };
 
-const getUser = async (token)=>{
+const getUser = (token)=>{
+    console.log(users);
     const sessionID = getUserID(token);
     if(sessionID){
-        user = users.get(sessionID); //should check db also if user is null
+        const user = users.get(sessionID); //should check db also if user is null
         return user;
     }
     else{

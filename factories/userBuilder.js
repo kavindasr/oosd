@@ -39,7 +39,7 @@ class UserBuilder{
                 }
                 const data1 = us.sessionID;
                 const data2 = us.type;
-                const token = getAccessToken({data1,data2});
+                const token = getAccessToken({sessionID:data1,type:data2});
                 //this.method.setToken(token);
                 return {user:us,token:token};
             }

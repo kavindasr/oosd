@@ -4,7 +4,7 @@ const views = require("./factories/viewsFolder");
 const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
 const UserBuilder = require("./factories/userBuilder");
-const {getUser} = require('./services/user-services');
+const {getUser,addUser} = require('./services/user-services');
 
 const server = http.createServer((req,res)=>{
 
@@ -27,6 +27,7 @@ const server = http.createServer((req,res)=>{
                 var user,token;
                 ({user,token} = await uBuilder.create());
                 method.setToken(token);
+                addUser(user);
             }  
         }
         else if(method.getPath(1) == ''){
@@ -35,11 +36,11 @@ const server = http.createServer((req,res)=>{
         else{
             const token = method.getToken();
             if(token){
-                const user = getUser(token);
+                const user = await getUser(token);
                 if(method.getPath(1) == 'api'){
                     //api method
                     const apiMethod = method.getApiMethod();
-                    const que = await apiMethod.setQuery();
+                    await apiMethod.setQuery();
                     //console.log(apiMethod.getQuery);
                     response = await apiMethod.execute();
                 }
