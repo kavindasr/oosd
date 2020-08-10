@@ -30,7 +30,7 @@ const isr = {
   host: "localhost",
   database: "oosdnewdb",
 };
-
+//dsfd
 exports.dbConfig = ksr;
 
 exports.webSettings = {
