@@ -12,7 +12,7 @@ const rnj = {
   user: "root",
   password: "Roshi#@97324",
   host: "localhost",
-  database: "oosd",
+  database: "wms_db",
 };
 
 const msb = {
@@ -31,7 +31,7 @@ const isr = {
   database: "oosdnewdb",
 };
 //dsfd
-exports.dbConfig = ksr;
+exports.dbConfig = rnj;
 
 exports.webSettings = {
   webport: 8000,

@@ -23,7 +23,7 @@ class ApiMethod{
         var conditionQ=[];
         var part ="";
         this.method.url.searchParams.forEach((value, name, searchParams) => {
-            part = `${getConditon(name)}="${value}"`
+            part = `${getConditon(name)}=${value}`
             conditionQ.push(part);
         });
         return conditionQ.join(" AND ");
@@ -42,13 +42,11 @@ class ApiMethod{
         } 
         return({"field":fieldStr.slice(0,-1),"val":valueStr.slice(0,-1)});
     }
-    async execute(sql){
+    async execute(){
         try{
-            const data =  await executeSQL(sql);
-            data.then(function(val){
-                return new SendJson(JSON.stringify(val));
-            })
-            data.catch(console.log("db failed"));
+            
+            const data =  await executeSQL(this.query);
+            return new SendJson(JSON.stringify(data));
             
         }catch(e){ 
             //return new Send500(e);
@@ -85,7 +83,6 @@ class ApiPost extends ApiMethod{
         const values = StrComp["val"];
 
         this.query = `INSERT INTO ${getTable(this.method.getPath(2))} (${fields}) VALUES (${values})`;
-
         return(true);
         
     }

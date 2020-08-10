@@ -20,8 +20,13 @@ const condition = new Map(
 const field = new Map(
     [
         ['all','*'],
-        ['empName','employee_id'],
-        ['empType', 'employee_type']
+        ['empId','employee_id'],
+        ['salId','salary_id'],
+        ['empName','name'],
+        ['bdate', 'dob'],
+        ['empType', 'employee_type'],
+        ['sex','gender']
+
         //add unique key to represnt different combinations of fields
     ]
 );

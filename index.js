@@ -39,7 +39,8 @@ const server = http.createServer((req,res)=>{
                 if(method.getPath(1) == 'api'){
                     //api method
                     const apiMethod = method.getApiMethod();
-                    apiMethod.setQuery();
+                    const que = await apiMethod.setQuery();
+                    //console.log(apiMethod.getQuery);
                     response = await apiMethod.execute();
                 }
                 else{
