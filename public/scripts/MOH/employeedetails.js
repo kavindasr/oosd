@@ -1,9 +1,9 @@
 function viewEmployee() {
   var xhttp = new XMLHttpRequest();
   var url =
-    "http://localhost:8000/api/employees/all?empid=" +
+    "http://localhost:8000/api/employee/all?empid=" +
     document.getElementById("idnum").value;
-  console.log(url);
+    
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var empdetails = JSON.parse(this.responseText);

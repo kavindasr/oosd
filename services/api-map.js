@@ -25,7 +25,10 @@ const field = new Map(
         ['empName','name'],
         ['bdate', 'dob'],
         ['empType', 'employee_type'],
-        ['sex','gender']
+        ['sex','gender'],
+        ['date','tdate'],
+        ['div', 'division'],
+        ['mode','vehiclewalk']
 
         //add unique key to represnt different combinations of fields
     ]
