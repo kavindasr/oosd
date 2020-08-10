@@ -38,7 +38,7 @@ class ApiMethod{
         for (let key in data){
 
             fieldStr = fieldStr + getField(key) + ",";
-            valueStr = valueStr + "'" + data[key] + "'"+ ",";
+            valueStr = valueStr  + data[key] + ",";
         } 
         return({"field":fieldStr.slice(0,-1),"val":valueStr.slice(0,-1)});
     }
