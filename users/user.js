@@ -6,7 +6,6 @@ class User{
         this.sessionID = uniqid();
         this.userName = userName;
         this.type=type;
-      
     }
    
 }
@@ -14,6 +13,13 @@ class User{
 class DepotSuperviser extends User{
     constructor(userName,type){
         super(userName,type);
+        this.apiAccess = {
+            employee        : {GET:true,POST:false,PUT:false,DELETE:false},
+            attenattendance : {GET:true,POST:false,PUT:false,DELETE:false},
+        }
+    }
+    apiAccessControl(table , methodType){
+
     }
 }
 
