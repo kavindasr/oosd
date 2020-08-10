@@ -23,7 +23,7 @@ const msb = {
                 database: 'mcDB'
             } ;
 
-exports.dbConfig =msb;
+exports.dbConfig =ksr;
 
 exports.webSettings  = {
     webport:8000,
