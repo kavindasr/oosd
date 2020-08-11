@@ -1,7 +1,9 @@
 const {hash,compare} = require("bcryptjs");
 const {getUserID} = require('./auth-services');
-const user = require("../users/user");
 const {executeSQL} = require("../db/db");
+const {Send200,Send406,Send500} = require("../responses/response");
+const user = require("../users/user");
+
 const users = new Map();
 
 const addUser = async (user)=>{
@@ -11,11 +13,22 @@ const addUser = async (user)=>{
 
 const signup = async (method) =>{
     const {userName,userType,password} = JSON.parse(await method.getBody());
+    console.log(userName);
     try{
-        const data = executeSQL(`SELECT user_name FROM user_table WHERE user_name = ${userName}`);
-        console.log(data);
+        const data = await executeSQL(`SELECT user_name FROM user_table WHERE user_name = '${userName}'`);
+        if(data[0]){
+            console.log("USER exisits");
+            return new Send406();
+        }
+        else{
+            console.log("newUSER");
+            const hashedPassword = await hash(password,10);
+            console.log("newUSER", hashedPassword);
+            const data = await executeSQL(`INSERT INTO user_table VALUES ('${userName}','${userType}','${hashedPassword}')`);
+        }
     }catch(e){
-        console.log(e);
+        return new Send500(e);
+        
     }
     
 }

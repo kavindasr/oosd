@@ -14,9 +14,9 @@ async function render(pathname){
     }
     try{
         var data = await read(filePath);
-        return new SendHTML(data);
+        return new SendHTML(data);  
     }
-    catch(err){
+    catch(err){ 
         try{
             var page404 = await read("./views/pageNotFound.html");
             return new SendHTML(page404);

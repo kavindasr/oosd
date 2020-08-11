@@ -47,6 +47,13 @@ class Send405 extends Response{
     }
 }
 
+class Send406 extends Response{
+    constructor(data){
+        super(data);
+        super.setHeaders(406,"Not acceptable",{"Content-Type":"application/json"});
+    }
+}
+
 class Send413 extends Response{
     constructor(data){
         super(data);
@@ -95,4 +102,4 @@ class SendIMG extends Response{
         super.setHeaders(200,"OK",{"Content-Type": `image/${format}`});
     }
 }
-module.exports = {Send200,Send400,Send404,Send405,Send413,Send500,SendJson,SendHTML,SendCSS,SendJS,SendIMG};
+module.exports = {Send200,Send400,Send404,Send405,Send406,Send413,Send500,SendJson,SendHTML,SendCSS,SendJS,SendIMG};
