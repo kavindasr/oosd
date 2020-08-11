@@ -16,9 +16,11 @@ class UserBuilder{
         
         try{
             const credential = await executeSQL(`SELECT user_type , password FROM user_table WHERE user_name = '${uname}'`);
+            
             const hashedPass = credential[0].password;
             const userType= credential[0].user_type;
             const success = await compare(password,hashedPass);
+            
             if(success){
                 var us = null;
                 console.log("Password matches!");

@@ -6,6 +6,7 @@ const methodFactory = require("./factories/MethodFactory");
 const UserBuilder = require("./factories/userBuilder");
 const {getUser,addUser} = require('./services/user-services');
 
+
 const server = http.createServer((req,res)=>{
 
     console.log(req.method,req.url);
@@ -37,14 +38,14 @@ const server = http.createServer((req,res)=>{
             const token = method.getToken();
             if(token){
                 const user = await getUser(token);
-                if(method.getPath(1) == 'api'){
+
+                if(method.getPath(1) == 'api' && user.apiAccessControl(method.getPath(2),method.type)){
                     //api method
                     const apiMethod = method.getApiMethod();
                     await apiMethod.setQuery();
-                    //console.log(apiMethod.getQuery);
                     response = await apiMethod.execute();
                 }
-                else{
+                else if (user.viewAccessControl(method.url.pathname)){
                     //render views
                     response = await views.render(method.url.pathname);
                 }   

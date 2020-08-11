@@ -6,7 +6,28 @@ class User{
         this.sessionID = uniqid();
         this.userName = userName;
         this.type=type;
+        this.apiAccess=null;
+        this.viewAccess=null;
     }
+
+    apiAccessControl(table ,methodType){
+        if (this.apiAccess[table][methodType]){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    viewAccessControl(pathname){
+        const path = pathname;
+        const accessCond = path.split("/")[1];
+        if (this.viewAccess[accessCond] && accessCond.length > 2){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
    
 }
 
@@ -14,32 +35,101 @@ class DepotSuperviser extends User{
     constructor(userName,type){
         super(userName,type);
         this.apiAccess = {
-            employee        : {GET:true,POST:false,PUT:false,DELETE:false},
-            attenattendance : {GET:true,POST:false,PUT:false,DELETE:false},
+            employee             : {GET:false,POST:false,PUT:false,DELETE:false},
+            attendance           : {GET:false,POST:true,PUT:true,DELETE:false},
+            division             : {GET:false,POST:false,PUT:false,DELETE:false},
+            vehicle              : {GET:false,POST:true,PUT:false,DELETE:false},
+
+            // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
+            // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
+            // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
+        }
+        this.viewAccess = {
+            "depot":true,
+            "moh"  :false,
+            "clerk":false,
+            "mayor":false
         }
     }
-    apiAccessControl(table , methodType){
-
-    }
+    
 }
 
 class MOH extends User{
     constructor(userName,type){
         super(userName,type);
+        this.apiAccess = {
+            employee             : {GET:true,POST:true,PUT:false,DELETE:true},
+            attendance           : {GET:true,POST:false,PUT:false,DELETE:false},
+            division             : {GET:false,POST:false,PUT:false,DELETE:false},
+            vehicle              : {GET:false,POST:false,PUT:false,DELETE:false},
+
+            // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
+            // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
+            // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
+        }
+
+        this.viewAccess = {
+            "depot":false,
+            "moh"  :true,
+            "clerk":false,
+            "mayor":false
+        }
     }
+
+    
 }
 
 class Clerk extends User{
     constructor(userName,type){
         super(userName,type);
+        this.apiAccess = {
+            employee             : {GET:false,POST:false,PUT:false,DELETE:false},
+            attendance           : {GET:false,POST:false,PUT:false,DELETE:false},
+            division             : {GET:false,POST:false,PUT:false,DELETE:false},
+            vehicle              : {GET:false,POST:false,PUT:false,DELETE:false},
+
+            // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
+            // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
+            // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
+        }
+
+        this.viewAccess = {
+            "depot":false,
+            "moh"  :false,
+            "clerk":true,
+            "mayor":false
+        }
     }
+    
 }
 
 class Mayor extends User{
     constructor(userName,type){
         super(userName,type);
+        this.apiAccess = {
+            employee             : {GET:false,POST:false,PUT:false,DELETE:false},
+            attendance           : {GET:true,POST:false,PUT:false,DELETE:false},
+            division             : {GET:false,POST:false,PUT:false,DELETE:false},
+            vehicle              : {GET:false,POST:false,PUT:false,DELETE:false},
+
+            // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
+            // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
+            // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
+        }
+
+        this.viewAccess = {
+            "depot":false,
+            "moh"  :false,
+            "clerk":false,
+            "mayor":true
+        }
     }
 }
+
+
+
+
+
 module.exports = {DepotSuperviser,MOH,Clerk,Mayor};
 
 // hash(password,10,(err,encrypted)=>{
