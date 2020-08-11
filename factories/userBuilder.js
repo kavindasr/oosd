@@ -24,20 +24,20 @@ class UserBuilder{
             if(success){
                 var us = null;
                 console.log("Password matches!");
-                if (userType=="depotSuperviser"){
-                    us = new DepotSuperviser(uname,"DepotSuperviser");
+                if (userType=="depot"){
+                    us = new DepotSuperviser(uname,"depot");
                     
                 }else if (userType=="mayor"){
-                    us = new Mayor(uname,"Mayor");
+                    us = new Mayor(uname,"mayor");
                     
                 }else if (userType=="clerk"){
-                    us = new Clerk(uname,"Clerk");
+                    us = new Clerk(uname,"clerk");
                     
                 }else if (userType=="moh"){
                     us =  new MOH(uname,"moh");
                     
                 }else{
-                    return null;
+                    return {user:{err:true},token:"password mismatch"};
                 }
                 const data1 = us.sessionID;
                 const data2 = us.type;
