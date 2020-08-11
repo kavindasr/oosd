@@ -19,9 +19,10 @@ class User{
     }
 
     viewAccessControl(pathname){
-        const path = pathname;
-        const accessCond = path.split("/")[1];
-        if (this.viewAccess[accessCond] && accessCond.length > 2){
+        const path = pathname.split("/");
+        const accessCond = path[1];
+    
+        if (this.viewAccess[accessCond] || path.length == 2){
             return true;
         }else{
             return false;
@@ -75,7 +76,7 @@ class MOH extends User{
             "clerk":false,
             "mayor":false
         }
-        this.mainPage = '/depot/main';
+        this.mainPage = '/moh/home';
     }
 
     

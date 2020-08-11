@@ -27,15 +27,14 @@ const server = http.createServer((req,res)=>{
                 const uBuilder = new UserBuilder(method);
                 var user,token;
                 ({user,token} = await uBuilder.create());
+                
                 if(user.err){
                     redirect(method,'/login')
                 }
                 else{
-                    console.log(user);
                     method.setToken(token);
                     addUser(user);
                     redirect(method,user.mainPage)
-
                 }
                 
             }  
@@ -61,7 +60,12 @@ const server = http.createServer((req,res)=>{
                 }
                 else{
                     //render views
-                    response = await views.render(method.url.pathname);
+                    if (user.viewAccessControl(method.url.pathname)){
+                        response = await views.render(method.url.pathname);
+                    }
+                    else{
+                        console.log("Cant access view request");
+                    }
                 }   
             }
             else{
