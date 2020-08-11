@@ -79,37 +79,43 @@
       <div class="col-12 col-sm-5">
         <div class="card">
           <h3 class="card-header text-white bg-colour">
-            Add Employee
+            Daily Attendence
           </h3>
           <div class="card-body">
-            <center><h1 style="color: black;">REMOVE EMPLOYEE</h1></center>
+            <center><h1 style="color: black;">Daily Attendence</h1></center>
             <form action="" target="_self">
               <br />
               <div id="togglepart">
                 <label
                   for="mass"
                   style="font-family: arial; color: rgb(0, 0, 0);"
-                  >Index number</label
+                  >Enter Date</label
                 >
                 <input
-                  type="text"
-                  id="mass"
-                  name="Weight"
-                  placeholder="180044"
+                  id="inpdate"
+                  type="string"
+                  name="emp_id"
+                  placeholder="1997-07-28"
                 />
               </div>
-              <div id="sub">
-                <button id="btn" type="button" onclick="submitAttendance()">
-                  REMOVE
-                </button>
-              </div>
             </form>
+            <div id="sub">
+              <button id="btn" type="button" onclick="viewEmployee()">
+                SUBMIT
+              </button>
+            </div>
+            <div id="detail">
+              <p id="empID"></p>
+              <p id="empdiv"></p>
+              <p id="entdate"></p>
+              <p id="vehiclewalk"></p>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <script src="/public/scripts/MOH/-Employee.js"></script>
+    <script src="/public/scripts/MOH/dailyattendence.js"></script>
     <script src="/public/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

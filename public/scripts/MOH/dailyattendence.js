@@ -1,8 +1,11 @@
 function viewEmployee() {
   var xhttp = new XMLHttpRequest();
+  console.log("hiiii");
   var url =
-    "http://localhost:8000/api/employee/all?empid=" +
-    document.getElementById("idnum").value;
+    'http://localhost:8000/api/attendance/all?date="' +
+    document.getElementById("inpdate").value +
+    '"';
+  console.log(url);
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var empdetails = JSON.parse(this.responseText);
@@ -15,13 +18,11 @@ function viewEmployee() {
 }
 
 function renderHtml(data) {
-  document.getElementById("empName").innerHTML = "Name  : " + data[0].name;
   document.getElementById("empID").innerHTML =
     "Employee ID  : " + data[0].employee_id;
-  document.getElementById("empSalID").innerHTML =
-    "Salary ID  : " + data[0].salary_id;
-  document.getElementById("empGender").innerHTML =
-    "Gender  : " + data[0].gender;
-  document.getElementById("empType").innerHTML =
-    "Employee Type  : " + data[0].employee_type;
+  document.getElementById("empdiv").innerHTML =
+    "Division  : " + data[0].division;
+  document.getElementById("entdate").innerHTML = "date  : " + data[0].tdate;
+  document.getElementById("vehiclewalk").innerHTML =
+    "vehiclewalk  : " + data[0].vehiclewalk;
 }
