@@ -1,10 +1,23 @@
 const {hash,compare} = require("bcryptjs");
 const {getUserID} = require('./auth-services');
 const user = require("../users/user");
+const {executeSQL} = require("../db/db");
 const users = new Map();
 
 const addUser = async (user)=>{
     users.set(user.sessionID,user); // should be added to db
+
+}
+
+const signup = async (method) =>{
+    const {userName,userType,password} = JSON.parse(await method.getBody());
+    try{
+        const data = executeSQL(`SELECT user_name FROM user_table WHERE user_name = ${userName}`);
+        console.log(data);
+    }catch(e){
+        console.log(e);
+    }
+    
 }
 
 const authUser = async (email,password)=>{
@@ -21,7 +34,6 @@ const authUser = async (email,password)=>{
 };
 
 const getUser = (token)=>{
-    console.log(users);
     const sessionID = getUserID(token);
     if(sessionID){
         const user = users.get(sessionID); //should check db also if user is null
@@ -36,4 +48,5 @@ module.exports = {
     addUser,
     authUser,
     getUser,
+    signup,
 };

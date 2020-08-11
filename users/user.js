@@ -1,6 +1,6 @@
 
 const uniqid = require('uniqid');
-//users[]
+
 class User{
     constructor(userName,type){
         this.sessionID = uniqid();
@@ -13,6 +13,7 @@ class User{
 class DepotSuperviser extends User{
     constructor(userName,type){
         super(userName,type);
+        this.mainPage = '/depot/main';
         this.apiAccess = {
             employee        : {GET:true,POST:false,PUT:false,DELETE:false},
             attenattendance : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -26,6 +27,7 @@ class DepotSuperviser extends User{
 class MOH extends User{
     constructor(userName,type){
         super(userName,type);
+        this.mainPage = '/depot/main';
     }
 }
 
