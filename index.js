@@ -4,7 +4,7 @@ const views = require("./factories/viewsFolder");
 const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
 const UserBuilder = require("./factories/userBuilder");
-const {getUser,addUser} = require('./services/user-services');
+const {getUser,addUser,signup} = require('./services/user-services');
 
 
 const server = http.createServer((req,res)=>{
@@ -27,8 +27,17 @@ const server = http.createServer((req,res)=>{
                 const uBuilder = new UserBuilder(method);
                 var user,token;
                 ({user,token} = await uBuilder.create());
-                method.setToken(token);
-                addUser(user);
+                if(user.err){
+                    redirect(method,'/login')
+                }
+                else{
+                    console.log(user);
+                    method.setToken(token);
+                    addUser(user);
+                    redirect(method,user.mainPage)
+
+                }
+                
             }  
         }
         else if(method.getPath(1) == ''){
@@ -45,7 +54,12 @@ const server = http.createServer((req,res)=>{
                     await apiMethod.setQuery();
                     response = await apiMethod.execute();
                 }
-                else if (user.viewAccessControl(method.url.pathname)){
+                //else if (user.viewAccessControl(method.url.pathname)){
+                else if(method.getPath(1) == 'signup'){
+                    //only allowed MOH users
+                    signup(method);
+                }
+                else{
                     //render views
                     response = await views.render(method.url.pathname);
                 }   

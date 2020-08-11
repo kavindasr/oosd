@@ -47,10 +47,10 @@ class UserBuilder{
             }
             else{
                 console.log("Password mismatch!");
-                return null;
+                return {user:{err:true},token:"password mismatch"};
             }
         }catch(e){
-            return {err:"internel error", status:500};
+            return {user:{err:true},token:"User name is not vaild"};
         }
         
     }

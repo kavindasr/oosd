@@ -41,18 +41,13 @@ Can use these endpoints to interact with daily_attendance
                         "mode"  : 1  
                     }
                 ]
-    5. PUT - update an employee details - localhost:8000/attendance
+    5. PUT - update an employee details - localhost:8000/api/attendance?empid=178
         body -  {
                     "date"          : "2020-05-30",     --str
                     "division"      : 1,                --int 
-                    "employee_id"   :31,                --int
                     "method"        :1                  --int
                 }
-    6. DELETE- delete an employee       - localhost:8000/attendance
-         body - {
-                    "date"          : //YYYY-MM-DD,     --str
-                    "employee_id    : //id              --int
-                }
+    6. DELETE- delete an employee       - localhost:8000/api/attendance?empid=178&tdate=1999-09-08
 ------------------------------------------------------------------------------------------------
 Can use these endpoint to interact with vehicle_detail table
     1.>>GET - get list of vehicles       - localhost:8000/api/vehicle/all
