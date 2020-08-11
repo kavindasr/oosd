@@ -8,7 +8,14 @@ const users = new Map();
 
 const addUser = async (user)=>{
     users.set(user.sessionID,user); // should be added to db
-
+    const timeNow = new Date().toTimeString().split(" ")[0];
+    var sessionQ = `INSERT INTO session_table VALUES ("${user.sessionID}","${user.type}","${user.userName}","${timeNow}")`;
+    //console.log(sessionQ);
+    try{    
+        const data =  await executeSQL(sessionQ);    
+    }catch(e){ 
+        return e;
+    }
 }
 
 const signup = async (method) =>{
