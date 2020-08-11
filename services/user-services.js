@@ -17,14 +17,12 @@ const signup = async (method) =>{
     try{
         const data = await executeSQL(`SELECT user_name FROM user_table WHERE user_name = '${userName}'`);
         if(data[0]){
-            console.log("USER exisits");
             return new Send406();
         }
         else{
-            console.log("newUSER");
             const hashedPassword = await hash(password,10);
-            console.log("newUSER", hashedPassword);
             const data = await executeSQL(`INSERT INTO user_table VALUES ('${userName}','${userType}','${hashedPassword}')`);
+            return new Send200("User added");
         }
     }catch(e){
         return new Send500(e);
