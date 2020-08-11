@@ -31,7 +31,7 @@ const isr = {
   database: "oosdnewdb",
 };
 //dsfd
-exports.dbConfig = isr;
+exports.dbConfig = ksr;
 
 exports.webSettings = {
   webport: 8000,
