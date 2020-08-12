@@ -12,7 +12,7 @@ const addUser = async (user)=>{
         const data = await executeSQL(`INSERT INTO session_table VALUES ('${user.sessionID}','${user.userName}','${user.type}',${new Date().getTime()})`);
     }
     catch(e){
-
+        console.log("error execution");
     }
 
 }
