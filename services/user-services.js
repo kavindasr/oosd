@@ -8,6 +8,12 @@ const users = new Map();
 
 const addUser = async (user)=>{
     users.set(user.sessionID,user); // should be added to db
+    try{
+        const data = await executeSQL(`INSERT INTO session_table VALUES ('${user.sessionID}','${user.userName}','${user.type}',${new Date().getTime()})`);
+    }
+    catch(e){
+
+    }
 
 }
 
@@ -44,10 +50,19 @@ const authUser = async (email,password)=>{
     return false;
 };
 
-const getUser = (token)=>{
+const getUser = async (token, uBuilder)=>{
     const sessionID = getUserID(token);
     if(sessionID){
-        const user = users.get(sessionID); //should check db also if user is null
+        var user = users.get(sessionID); //should check db also if user is null
+        if(!user){
+            try{
+                const data = await executeSQL(`SELECT * FROM session_table WHERE sessionID= '${sessionID}'`);
+                user = uBuilder.userCreation(data[0].userName,data[0].userType,data[0].sessionID,data[0].startTime);
+            }
+            catch(e){
+                return null;
+            }
+        }
         return user;
     }
     else{
