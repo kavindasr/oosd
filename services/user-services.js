@@ -33,8 +33,18 @@ const signup = async (method) =>{
     }catch(e){
         return new Send500(e);
         
+    }   
+}
+
+const logOut = async(token) =>{
+    const sessionID = getUserID(token);
+    users.delete(sessionID);
+    try{
+        const data = await executeSQL(`DELETE FROM session_table WHERE sessionID= '${sessionID}'`);
     }
-    
+    catch(e){
+        console.log("database error");
+    }
 }
 
 const authUser = async (email,password)=>{
@@ -75,4 +85,5 @@ module.exports = {
     authUser,
     getUser,
     signup,
+    logOut,
 };

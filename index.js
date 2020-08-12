@@ -4,7 +4,7 @@ const views = require("./factories/viewsFolder");
 const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
 const UserBuilder = require("./factories/userBuilder");
-const {getUser,addUser,signup} = require('./services/user-services');
+const {getUser,addUser,signup,logOut} = require('./services/user-services');
 
 const uBuilder = new UserBuilder();
 
@@ -57,6 +57,10 @@ const server = http.createServer((req,res)=>{
                 else if(method.getPath(1) == 'signup'){
                     //only allowed MOH users
                     response = await signup(method);
+                }
+                else if(method.getPath(1) == 'logOut'){
+                    await logOut(token);
+                    redirect(method,'/login');
                 }
                 else{
                     //render views
