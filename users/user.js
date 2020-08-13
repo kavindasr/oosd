@@ -49,9 +49,9 @@ class DepotSuperviser extends User{
         this.mainPage = '/depot/main';
         this.apiAccess = {
             employee             : {GET:false,POST:false,PUT:false,DELETE:false},
-            attendance           : {GET:false,POST:true,PUT:true,DELETE:false},
-            division             : {GET:false,POST:false,PUT:false,DELETE:false},
-            vehicle              : {GET:false,POST:true,PUT:false,DELETE:false},
+            attendance           : {GET:false,POST:true,PUT:true,DELETE:true},
+            division             : {GET:true,POST:false,PUT:false,DELETE:false},
+            vehicle              : {GET:true,POST:true,PUT:false,DELETE:false},
 
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -71,10 +71,10 @@ class MOH extends User{
     constructor(userName,type,sessionID){
         super(userName,type,sessionID);
         this.apiAccess = {
-            employee             : {GET:true,POST:true,PUT:false,DELETE:true},
+            employee             : {GET:true,POST:true,PUT:true,DELETE:true},
             attendance           : {GET:true,POST:false,PUT:false,DELETE:false},
-            division             : {GET:false,POST:false,PUT:false,DELETE:false},
-            vehicle              : {GET:false,POST:false,PUT:false,DELETE:false},
+            division             : {GET:true,POST:false,PUT:false,DELETE:false},
+            vehicle              : {GET:true,POST:false,PUT:false,DELETE:false},
 
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},

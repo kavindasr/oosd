@@ -94,23 +94,17 @@ class ApiPut extends ApiMethod {
     }
     async setQuery() {
         const StrComp = await this.jsBody();
-        var fieldsQ = [];
-        const Fields = StrComp["field"];
-        const fields = Fields.split(",");
-        const Values = StrComp["val"];
-        const values = Values.split(",");
+        const Fields = StrComp["field"].split(",");
+        const Values = StrComp["val"].split(",");
         const condition = this.setConditions();
 
-        var i;
-        var fieldStr = "";
-        var fieldstr = "";
-        for (i = 0; i < fields.length; i++) {
-            fieldStr = fields[i] + '="' + values[i] + '"';
+        var fieldsQ = [];
+        for (var i = 0; i < Fields.length; i++) {
+            var fieldStr = `${Fields[i]}=${Values[i]}`;
             fieldsQ.push(fieldStr);
         }
 
-        fieldstr = fieldsQ.join(",");
-
+        const fieldstr = fieldsQ.join(",");
         this.query = `UPDATE ${getTable(this.method.getPath(2))} SET ${fieldstr} WHERE ${condition}`;
     }
 }

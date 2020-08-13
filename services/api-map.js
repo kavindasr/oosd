@@ -17,7 +17,8 @@ const condition = new Map(
         ['date','tdate'],
         ['div','division'],
         ['divno','division_no'],
-        ['gtype','waste_type']
+        ['gtype','waste_type'],
+        ['salid','salary_id'],
     ]
 );
 
