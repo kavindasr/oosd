@@ -4,8 +4,9 @@ const views = require("./factories/viewsFolder");
 const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
 const UserBuilder = require("./factories/userBuilder");
-const {getUser,addUser,signup} = require('./services/user-services');
+const {getUser,addUser,signup,logOut} = require('./services/user-services');
 
+const uBuilder = new UserBuilder();
 
 const server = http.createServer((req,res)=>{
 
@@ -24,9 +25,8 @@ const server = http.createServer((req,res)=>{
             if (method.type=="GET"){
                 response = await views.render(method.url.pathname);
             }else if (method.type=="POST"){
-                const uBuilder = new UserBuilder(method);
                 var user,token;
-                ({user,token} = await uBuilder.create());
+                ({user,token} = await uBuilder.create(method));
                 
                 if(user.err){
                     redirect(method,'/login')
@@ -45,7 +45,7 @@ const server = http.createServer((req,res)=>{
         else{
             const token = method.getToken();
             if(token){
-                const user = await getUser(token);
+                const user = await getUser(token,uBuilder);
 
                 if(method.getPath(1) == 'api' && user.apiAccessControl(method.getPath(2),method.type)){
                     //api method
@@ -56,7 +56,11 @@ const server = http.createServer((req,res)=>{
                 //else if (user.viewAccessControl(method.url.pathname)){
                 else if(method.getPath(1) == 'signup'){
                     //only allowed MOH users
-                    signup(method);
+                    response = await signup(method);
+                }
+                else if(method.getPath(1) == 'logOut'){
+                    await logOut(token);
+                    redirect(method,'/login');
                 }
                 else{
                     //render views
@@ -64,7 +68,7 @@ const server = http.createServer((req,res)=>{
                         response = await views.render(method.url.pathname);
                     }
                     else{
-                        console.log("Cant access view request");
+                        console.log("Can't access view request");
                     }
                 }   
             }

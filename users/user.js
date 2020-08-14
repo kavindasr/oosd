@@ -2,8 +2,19 @@
 const uniqid = require('uniqid');
 
 class User{
-    constructor(userName,type){
-        this.sessionID = uniqid();
+    constructor(userName,type,sessionID,startTime){
+        if(sessionID){
+            this.sessionID = sessionID;
+        }
+        else{
+            this.sessionID = uniqid();
+        }
+        if(startTime){
+            this.startTime = startTime;
+        }
+        else{
+            this.startTime = new Date().getTime();
+        }
         this.userName = userName;
         this.type=type;
         this.apiAccess=null;
@@ -33,14 +44,14 @@ class User{
 }
 
 class DepotSuperviser extends User{
-    constructor(userName,type){
-        super(userName,type);
+    constructor(userName,type,sessionID){
+        super(userName,type,sessionID);
         this.mainPage = '/depot/main';
         this.apiAccess = {
             employee             : {GET:false,POST:false,PUT:false,DELETE:false},
-            attendance           : {GET:false,POST:true,PUT:true,DELETE:false},
-            division             : {GET:false,POST:false,PUT:false,DELETE:false},
-            vehicle              : {GET:false,POST:true,PUT:false,DELETE:false},
+            attendance           : {GET:false,POST:true,PUT:true,DELETE:true},
+            division             : {GET:true,POST:false,PUT:false,DELETE:false},
+            vehicle              : {GET:true,POST:true,PUT:false,DELETE:false},
 
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -57,13 +68,13 @@ class DepotSuperviser extends User{
 }
 
 class MOH extends User{
-    constructor(userName,type){
-        super(userName,type);
+    constructor(userName,type,sessionID){
+        super(userName,type,sessionID);
         this.apiAccess = {
-            employee             : {GET:true,POST:true,PUT:false,DELETE:true},
+            employee             : {GET:true,POST:true,PUT:true,DELETE:true},
             attendance           : {GET:true,POST:false,PUT:false,DELETE:false},
-            division             : {GET:false,POST:false,PUT:false,DELETE:false},
-            vehicle              : {GET:false,POST:false,PUT:false,DELETE:false},
+            division             : {GET:true,POST:false,PUT:false,DELETE:false},
+            vehicle              : {GET:true,POST:false,PUT:false,DELETE:false},
 
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -83,8 +94,8 @@ class MOH extends User{
 }
 
 class Clerk extends User{
-    constructor(userName,type){
-        super(userName,type);
+    constructor(userName,type,sessionID){
+        super(userName,type,sessionID);
         this.apiAccess = {
             employee             : {GET:false,POST:false,PUT:false,DELETE:false},
             attendance           : {GET:false,POST:false,PUT:false,DELETE:false},
@@ -107,8 +118,8 @@ class Clerk extends User{
 }
 
 class Mayor extends User{
-    constructor(userName,type){
-        super(userName,type);
+    constructor(userName,type,sessionID){
+        super(userName,type,sessionID);
         this.apiAccess = {
             employee             : {GET:false,POST:false,PUT:false,DELETE:false},
             attendance           : {GET:true,POST:false,PUT:false,DELETE:false},

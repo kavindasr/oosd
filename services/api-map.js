@@ -5,7 +5,9 @@ const table = new Map(
         ['attendance','daily_attendance'],
         ['division','division_table'],
         ['vehicle','vehicle_detail'],
-        ['session','session_table']
+        ['session','session_table'],
+        ['ginbill','gin_billed'],
+        ['gdetail','gtype_detail']
     ]
 );
 
@@ -14,7 +16,9 @@ const condition = new Map(
         ['empid','employee_id'], //id to empid
         ['date','tdate'],
         ['div','division'],
-        ['divno','division_no']
+        ['divno','division_no'],
+        ['gtype','waste_type'],
+        ['salid','salary_id'],
     ]
 );
 
@@ -29,7 +33,10 @@ const field = new Map(
         ['sex','gender'],
         ['date','tdate'],
         ['div', 'division'],
-        ['mode','vehiclewalk']
+        ['mode','vehiclewalk'],
+        ['gID','gindex'],
+        ['gtype','waste_type'],
+        ['unitp','unit_price']
 
         //add unique key to represnt different combinations of fields
     ]

@@ -8,6 +8,12 @@ const users = new Map();
 
 const addUser = async (user)=>{
     users.set(user.sessionID,user); // should be added to db
+    try{
+        const data = await executeSQL(`INSERT INTO session_table VALUES ('${user.sessionID}','${user.userName}','${user.type}',${new Date().getTime()})`);
+    }
+    catch(e){
+        console.log("error execution");
+    }
 
 }
 
@@ -17,20 +23,28 @@ const signup = async (method) =>{
     try{
         const data = await executeSQL(`SELECT user_name FROM user_table WHERE user_name = '${userName}'`);
         if(data[0]){
-            console.log("USER exisits");
             return new Send406();
         }
         else{
-            console.log("newUSER");
             const hashedPassword = await hash(password,10);
-            console.log("newUSER", hashedPassword);
             const data = await executeSQL(`INSERT INTO user_table VALUES ('${userName}','${userType}','${hashedPassword}')`);
+            return new Send200("User added");
         }
     }catch(e){
         return new Send500(e);
         
+    }   
+}
+
+const logOut = async(token) =>{
+    const sessionID = getUserID(token);
+    users.delete(sessionID);
+    try{
+        const data = await executeSQL(`DELETE FROM session_table WHERE sessionID= '${sessionID}'`);
     }
-    
+    catch(e){
+        console.log("database error");
+    }
 }
 
 const authUser = async (email,password)=>{
@@ -46,10 +60,19 @@ const authUser = async (email,password)=>{
     return false;
 };
 
-const getUser = (token)=>{
+const getUser = async (token, uBuilder)=>{
     const sessionID = getUserID(token);
     if(sessionID){
-        const user = users.get(sessionID); //should check db also if user is null
+        var user = users.get(sessionID); //should check db also if user is null
+        if(!user){
+            try{
+                const data = await executeSQL(`SELECT * FROM session_table WHERE sessionID= '${sessionID}'`);
+                user = uBuilder.userCreation(data[0].userName,data[0].userType,data[0].sessionID,data[0].startTime);
+            }
+            catch(e){
+                return null;
+            }
+        }
         return user;
     }
     else{
@@ -62,4 +85,5 @@ module.exports = {
     authUser,
     getUser,
     signup,
+    logOut,
 };

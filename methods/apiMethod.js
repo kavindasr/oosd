@@ -1,6 +1,6 @@
 const { getTable, getConditon, getField } = require("../services/api-map");
 const { executeSQL } = require("../db/db");
-const { Send500, SendJson } = require("../responses/response");
+const { Send500, SendJson, Send200 } = require("../responses/response");
 
 class ApiMethod {
     constructor(method) {
@@ -44,7 +44,13 @@ class ApiMethod {
     async execute() {
         try {
             const data = await executeSQL(this.query);
-            return new SendJson(JSON.stringify(data));
+            if(this.method.type == 'GET'){
+                return new SendJson(JSON.stringify(data));
+            }
+            else{
+                return new Send200();
+            }
+            
         } 
         catch (e) {
             return new Send500(e);
@@ -88,23 +94,17 @@ class ApiPut extends ApiMethod {
     }
     async setQuery() {
         const StrComp = await this.jsBody();
-        var fieldsQ = [];
-        const Fields = StrComp["field"];
-        const fields = Fields.split(",");
-        const Values = StrComp["val"];
-        const values = Values.split(",");
+        const Fields = StrComp["field"].split(",");
+        const Values = StrComp["val"].split(",");
         const condition = this.setConditions();
 
-        var i;
-        var fieldStr = "";
-        var fieldstr = "";
-        for (i = 0; i < fields.length; i++) {
-            fieldStr = fields[i] + '="' + values[i] + '"';
+        var fieldsQ = [];
+        for (var i = 0; i < Fields.length; i++) {
+            var fieldStr = `${Fields[i]}=${Values[i]}`;
             fieldsQ.push(fieldStr);
         }
 
-        fieldstr = fieldsQ.join(",");
-
+        const fieldstr = fieldsQ.join(",");
         this.query = `UPDATE ${getTable(this.method.getPath(2))} SET ${fieldstr} WHERE ${condition}`;
     }
 }

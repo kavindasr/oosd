@@ -8,9 +8,26 @@ class UserBuilder{
     constructor(method){
         this.method=method;
     }
+    userCreation(userName,userType,sessionID){
+        var us = null;
+        if (userType=="depot"){
+            us = new DepotSuperviser(userName,"depot",sessionID);
+            
+        }else if (userType=="mayor"){
+            us = new Mayor(userName,"mayor",sessionID);
+            
+        }else if (userType=="clerk"){
+            us = new Clerk(userName,"clerk",sessionID);
+            
+        }else if (userType=="moh"){
+            us =  new MOH(userName,"moh",sessionID);
+            
+        }
+        return us
+    }
 
-    async create(){
-        const body = parse(await this.method.getBody());
+    async create(method){
+        const body = parse(await method.getBody());
         const uname = body.userName;
         const password=body.password;
         
@@ -22,22 +39,11 @@ class UserBuilder{
             const success = await compare(password,hashedPass);
             
             if(success){
-                var us = null;
+                
                 console.log("Password matches!");
-                if (userType=="depotSuperviser"){
-                    us = new DepotSuperviser(uname,"DepotSuperviser");
-                    
-                }else if (userType=="mayor"){
-                    us = new Mayor(uname,"Mayor");
-                    
-                }else if (userType=="clerk"){
-                    us = new Clerk(uname,"Clerk");
-                    
-                }else if (userType=="moh"){
-                    us =  new MOH(uname,"moh");
-                    
-                }else{
-                    return null;
+                const us = this.userCreation(uname,userType);
+                if(!us){
+                    return {user:{err:true},token:"password mismatch"};
                 }
                 const data1 = us.sessionID;
                 const data2 = us.type;
