@@ -58,6 +58,11 @@ body {
   align-content: center;
 }
 
+.container > div :hover {
+  cursor: pointer;
+  background-color: #e3dfc8 !important;
+}
+
 /*add employee/remove employee form css files*/
 
 #addemployeefile {
