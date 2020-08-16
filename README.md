@@ -82,3 +82,14 @@ Can use these end points to interact with gtype_detail
    
 
 ------------------------------------------------------------------------------------------------
+Can use these end points to interact with gin_billed
+    1.>>>POST - add a new garbage type   - localhost:8000/api/ginbill
+        body -  [
+                    {
+                        "inday" : "'2020-12-12'",
+                        "time" : "'13:13:13'",
+                        "gtypo" : "'deg'",
+                        "weight" : "12",
+                        "amnt" : "1440"
+                    }
+                ]
