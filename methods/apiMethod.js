@@ -1,6 +1,6 @@
 const { getTable, getConditon, getField } = require("../services/api-map");
 const { executeSQL } = require("../db/db");
-const { Send500, SendJson, Send200 } = require("../responses/response");
+const { Send500, SendJson, Send200, Send405 } = require("../responses/response");
 
 class ApiMethod {
     constructor(method) {
@@ -41,7 +41,10 @@ class ApiMethod {
         }
         return { field: fieldStr.slice(0, -1), val: valueStr.slice(0, -1) };
     }
-    async execute() {
+    async execute(isVaild) {
+        if(!isVaild){
+            return new Send405();
+        }
         try {
             const data = await executeSQL(this.query);
             if(this.method.type == 'GET'){
@@ -53,7 +56,7 @@ class ApiMethod {
             
         } 
         catch (e) {
-            return new Send500(e);
+            return new Send500();
         }
     }
 }

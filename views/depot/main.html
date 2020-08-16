@@ -5,48 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/public/styles/depot/main.css" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Depot</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <a class="navbar-brand" href="#">Main</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
+    <!--Navbar -->
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="navbar-nav">
-              <li class="nav-item">
-                  <a class="nav-link" href="depot_edit.html">Edit</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="depot_vehicalRep.html">Vehical repair</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="depot_absentees.html">Absentees</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="depot_summary.html">Summary</a>
-              </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Settings
-                  </a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Change password</a>
-                    <a class="dropdown-item" href="#">Log Out</a>
-                  </div>
-                </li>
-          </ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Edit</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Vehicle Report</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user-circle"></i>
+              <span>&nbsp UserName</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+              <a class="dropdown-item" href="#"><i class="fa fa-cog"></i>&nbsp Change password</a>
+              <a class="dropdown-item" href="/logOut"><i class="fa fa-sign-out"></i>&nbsp Sign out</a>
+            </div>
+          </li>
+        </ul>
       </div>
     </nav>
+    <!--/.Navbar -->
+
 
     <div class="container">
       <form>
         <div class="form-group">
           <label for="inputAddress">Division number</label>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Division number">
+            <input id="divNo" type="text" class="form-control" placeholder="Division number">
             <div class="input-group-append">
               <button class="btn btn-success" type="button" id="button-addon2">Enter</button>
             </div>
@@ -60,13 +62,27 @@
         <div class="form-group">
           <label for="inputAddress">Add or remove employees</label>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Employee ID" id="addRemoveRoad" disabled>
+            <input type="text" id="inpEmpId1" class="form-control" placeholder="Employee ID" id="addRemoveRoad" disabled>
             <div class="input-group-append">
-              <button class="btn btn-primary" type="button" id="button-addon2" disabled>ADD</button>
-              <button class="btn btn-danger" type="button" id="button-addon2"disabled>DEL</button>
+              <button class="btn btn-primary" type="button" id="button-addon2" disabled><i class="fa fa-plus"></i>&nbsp ADD</button>
+              <button class="btn btn-danger" type="button" id="button-addon2"disabled><i class="fa fa-trash"></i>&nbsp DEL</button>
             </div>
-          </div>          
+          </div> 
+
+          <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active text-dark" id="home-tab" onclick="setType(1)" data-toggle="tab" href="#onlyEmp" role="tab" aria-controls="home" aria-selected="true">With-out vehicle</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link text-dark" id="profile-tab" onclick="setType(2)" data-toggle="tab" href="#withVehi" role="tab" aria-controls="profile" aria-selected="false">With vehicle</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><div class="flex-container" id="flexBoxDiv1"></div></div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><div class="flex-container" id="flexBoxDiv2"></div>    </div>
+          </div>    
         </div>
+        <button type="submit" class="btn btn-success btn-block">SAVE</button>
       </form>
     </div>
 

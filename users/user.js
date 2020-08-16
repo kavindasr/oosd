@@ -48,7 +48,7 @@ class DepotSuperviser extends User{
         super(userName,type,sessionID);
         this.mainPage = '/depot/main';
         this.apiAccess = {
-            employee             : {GET:false,POST:false,PUT:false,DELETE:false},
+            employee             : {GET:true,POST:false,PUT:false,DELETE:false},
             attendance           : {GET:false,POST:true,PUT:true,DELETE:true},
             division             : {GET:true,POST:false,PUT:false,DELETE:false},
             vehicle              : {GET:true,POST:true,PUT:false,DELETE:false},
@@ -75,7 +75,7 @@ class MOH extends User{
             attendance           : {GET:true,POST:false,PUT:false,DELETE:false},
             division             : {GET:true,POST:false,PUT:false,DELETE:false},
             vehicle              : {GET:true,POST:false,PUT:false,DELETE:false},
-
+            signup               : {POST:true}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},

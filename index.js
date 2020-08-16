@@ -46,36 +46,41 @@ const server = http.createServer((req,res)=>{
             const token = method.getToken();
             if(token){
                 const user = await getUser(token,uBuilder);
-
-                if(method.getPath(1) == 'api' && user.apiAccessControl(method.getPath(2),method.type)){
-                    //api method
-                    const apiMethod = method.getApiMethod();
-                    await apiMethod.setQuery();
-                    response = await apiMethod.execute();
-                }
-                //else if (user.viewAccessControl(method.url.pathname)){
-                else if(method.getPath(1) == 'signup'){
-                    //only allowed MOH users
-                    response = await signup(method);
-                }
-                else if(method.getPath(1) == 'logOut'){
-                    await logOut(token);
-                    redirect(method,'/login');
-                }
-                else{
-                    //render views
-                    if (user.viewAccessControl(method.url.pathname)){
-                        response = await views.render(method.url.pathname);
+                if(user){
+                    if(method.getPath(1) == 'api'){
+                        //api method
+                        const apiMethod = method.getApiMethod();
+                        await apiMethod.setQuery();
+                        response = await apiMethod.execute(user.apiAccessControl(method.getPath(2),method.type));  
+                    }
+                    else if(method.getPath(1) == 'signup' && user.apiAccessControl(method.getPath(1),method.type)){
+                        //only allowed MOH users
+                        response = await signup(method);
+                    }
+                    else if(method.getPath(1) == 'logOut'){
+                        await logOut(token);
+                        redirect(method,'/login');
                     }
                     else{
-                        console.log("Can't access view request");
-                    }
-                }   
+                        //render views
+                        if (user.viewAccessControl(method.url.pathname)){
+                            response = await views.render(method.url.pathname);
+                        }
+                        else if(user.viewAccessControl(method.url.pathname) == false){
+                            redirect(method,'/notAllowed');
+                        }
+                        else{
+                            redirect(method,'/pageNotFound');
+                        }
+                    }   
+                }
+                else{
+                    redirect(method,'/login');
+                }    
             }
             else{
                 redirect(method,'/login');
-            }
-            
+            } 
         }
         if(response){
             response.send(method.res);
