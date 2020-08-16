@@ -52,8 +52,7 @@ class DepotSuperviser extends User{
             attendance           : {GET:false,POST:true,PUT:true,DELETE:true},
             division             : {GET:true,POST:false,PUT:false,DELETE:false},
             vehicle              : {GET:true,POST:true,PUT:false,DELETE:false},
-            gdetail              : {GET:false,POST:false,PUT:false,DELETE:false},
-            ginbill              : {GET:false,POST:false,PUT:false,DELETE:false}
+
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -76,8 +75,6 @@ class MOH extends User{
             attendance           : {GET:true,POST:false,PUT:false,DELETE:false},
             division             : {GET:true,POST:false,PUT:false,DELETE:false},
             vehicle              : {GET:true,POST:false,PUT:false,DELETE:false},
-            gdetail              : {GET:true,POST:true,PUT:true,DELETE:true},
-            ginbill              : {GET:true,POST:false,PUT:false,DELETE:false},
             signup               : {POST:true}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -99,14 +96,12 @@ class MOH extends User{
 class Clerk extends User{
     constructor(userName,type,sessionID){
         super(userName,type,sessionID);
-        this.mainPage = '/clerk/clerk_in';
         this.apiAccess = {
             employee             : {GET:false,POST:false,PUT:false,DELETE:false},
             attendance           : {GET:false,POST:false,PUT:false,DELETE:false},
             division             : {GET:false,POST:false,PUT:false,DELETE:false},
             vehicle              : {GET:false,POST:false,PUT:false,DELETE:false},
-            gdetail              : {GET:true,POST:false,PUT:false,DELETE:false},
-            ginbill              : {GET:false,POST:true,PUT:false,DELETE:false}
+
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -130,8 +125,7 @@ class Mayor extends User{
             attendance           : {GET:true,POST:false,PUT:false,DELETE:false},
             division             : {GET:false,POST:false,PUT:false,DELETE:false},
             vehicle              : {GET:false,POST:false,PUT:false,DELETE:false},
-            gdetail              : {GET:true,POST:false,PUT:false,DELETE:false},
-            ginbill              : {GET:false,POST:false,PUT:false,DELETE:false},
+
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},

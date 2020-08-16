@@ -36,14 +36,7 @@ const field = new Map(
         ['mode','vehiclewalk'],
         ['gID','gindex'],
         ['gtype','waste_type'],
-        ['unitp','unit_price'],
-        //ginbill
-        ['inday','in_date'],
-        ['time','in_time'],
-        ['gtypo','g_type'],
-        ['weight','in_weight'],
-        ['amnt','bill_amount']
-
+        ['unitp','unit_price']
 
         //add unique key to represnt different combinations of fields
     ]
