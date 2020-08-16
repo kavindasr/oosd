@@ -16,11 +16,6 @@ body{
     color: white;
     font-size: 20px;
 }
-
-.card text-white mx-auto{
-    width: 402px;
-    height: 602px;
-}
 .toggle_radio{
     position: relative;
     background: #4237e5;
