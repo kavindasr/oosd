@@ -4,7 +4,7 @@ const views = require("./factories/viewsFolder");
 const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
 const UserBuilder = require("./factories/userBuilder");
-const {getUser,addUser,signup,logOut} = require('./services/user-services');
+const {getUser,addUser,signup,logOut,changePass} = require('./services/user-services');
 
 const uBuilder = new UserBuilder();
 
@@ -13,6 +13,7 @@ const server = http.createServer((req,res)=>{
     console.log(req.method,req.url);
     
     const method = methodFactory.getMethod(req,res);
+    
 
     (async ()=>{
         var response = null;
@@ -56,6 +57,10 @@ const server = http.createServer((req,res)=>{
                     else if(method.getPath(1) == 'signup' && user.apiAccessControl(method.getPath(1),method.type)){
                         //only allowed MOH users
                         response = await signup(method);
+                    }
+                    else if(method.getPath(1) == 'changePass'&& user.apiAccessControl(method.getPath(1),method.type)){
+                        console.log("came here");
+                        response = await changePass(method);
                     }
                     else if(method.getPath(1) == 'logOut'){
                         await logOut(token);

@@ -36,6 +36,25 @@ const signup = async (method) =>{
     }   
 }
 
+const changePass = async (method) =>{
+    const {NewPassword} = JSON.parse(await method.getBody());
+    const uName = method.searchURL("uName");
+    try{
+        const data = await executeSQL(`SELECT user_name FROM user_table WHERE user_name = ${uName}`);
+        if(data[0]){
+            const hashedPassword = await hash(NewPassword,10);
+            const data = await executeSQL(`UPDATE user_table SET password = '${hashedPassword}' WHERE user_name = ${uName} `); 
+            return new Send200("Password Changed");
+        }
+        else{
+            return new Send406("error");
+        }
+    }catch(e){
+        return new Send500(e);
+        
+    }   
+}
+
 const logOut = async(token) =>{
     const sessionID = getUserID(token);
     users.delete(sessionID);
@@ -86,4 +105,5 @@ module.exports = {
     getUser,
     signup,
     logOut,
+    changePass,
 };
