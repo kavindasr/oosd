@@ -1,7 +1,7 @@
 const {URL}= require('url');
 const {webSettings} = require("../settings");
 const Cookies = require("cookies");
-const {ApiGet,ApiPost,ApiPut,ApiDelete} = require("./apiMethod");
+const {ApiGet,ApiPost,ApiPut,ApiDelete,ApiHead} = require("./apiMethod");
 const keys = ['oosd'];
 
 function  getBODY(req){
@@ -110,4 +110,13 @@ class Delete extends Method{
     }
 }
 
-module.exports = {Get,Post,Put,Delete};
+class Head extends Method{
+    constructor(req,res){
+        super(req,res);
+    }
+    getApiMethod(){
+        return new ApiHead(this);
+    }
+}
+
+module.exports = {Get,Post,Put,Delete,Head};

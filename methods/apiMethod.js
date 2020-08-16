@@ -123,4 +123,15 @@ class ApiDelete extends ApiMethod {
     }
 }
 
-module.exports = { ApiGet, ApiPost, ApiPut, ApiDelete };
+class ApiHead extends ApiMethod {
+    constructor(method) {
+        super(method);
+    }
+    setQuery() {
+        const fields = this.setFeilds();
+        const condition = this.setConditions();
+        this.query = `SELECT ${fields} FROM ${getTable(this.method.getPath(2))} WHERE ${condition}`;
+    }
+}
+
+module.exports = { ApiGet, ApiPost, ApiPut, ApiDelete, ApiHead };

@@ -1,4 +1,4 @@
-const {Get,Post,Put,Delete} = require("../methods/method");
+const {Get,Post,Put,Delete, Head} = require("../methods/method");
 
 function getMethod(req,res){
     res.setHeader('Access-Control-Allow-Origin','*');
@@ -16,6 +16,9 @@ function getMethod(req,res){
         case "PUT":
             return(new Put(req,res));
 
+        case "Head":
+            return(new Head(req,res));
+            
         default:
             console.log("Default");
             //httpMsgs.send405(req,res);
