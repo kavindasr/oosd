@@ -9,11 +9,19 @@ const getAccessToken = (data)=>{
 };
 
 const getUserID = (token)=>{
-    const {sessionID} = verify(token,ACCESS_TOKEN_SECRECT);
-    if(sessionID){
-        return sessionID;
+    try{
+        const {sessionID} = verify(token,ACCESS_TOKEN_SECRECT);
+        if(sessionID){
+            return sessionID;
+        }
+        return null;
     }
-    return null;
+    catch(err){
+        console.log("Invaild token"); //when token expires
+        return null;
+    }
+    
+    
 }
 
 module.exports = {

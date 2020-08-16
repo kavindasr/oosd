@@ -11,3 +11,14 @@
 //         division_container.appendChild(division);
 //     }
 // })();
+var type = 1;
+
+function setType(i){
+    type = i;
+    console.log(type);
+}
+
+const User = (empId,type)=>{
+    this.empId = empId;
+    this.type = type;
+}
