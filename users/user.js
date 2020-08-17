@@ -75,7 +75,11 @@ class MOH extends User{
             attendance           : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
             division             : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
             vehicle              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
-            signup               : {POST:true}
+            gdetail              : {GET:true,POST:true,PUT:true,DELETE:true,HEAD:true},
+            ginbill              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
+            signup               : {POST:true},
+            changePass           : {PUT:true}
+            
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},

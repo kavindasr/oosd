@@ -54,21 +54,6 @@ Can use these endpoint to interact with division table
     1.>>>GET - get list of divisions         - localhost:8000/api/division/all
     2.>>>GET - get details of a division     - localhost:8000/api/division/all?divno=2
 ------------------------------------------------------------------------------------------------
-Use this to add new user
-    1.>>>POST - add a user to the user table - localhost:8000/signup
-    body - 
-            {
-                "userName": "rose",
-                "userType": "clerk",
-                "password": "clerk"
-            }
-
-------------------------------------------------------------------------------------------------
-Passwords
-    MOH - meelan - password
-    Clerk -rose - clerk
-    Depot - kavinda - depot
-------------------------------------------------------------------------------------------------
 Can use these end points to interact with gtype_detail
     1.>>GET - get the unit price for a garbage type - localhost:8000/api/gdetail/unitp?gtype="degradable"
     2.>>POST - add a new garbage type   - localhost:8000/api/gdetail
@@ -81,4 +66,39 @@ Can use these end points to interact with gtype_detail
                 ]
    
 
+------------------------------------------------------------------------------------------------
+Can use these end points to interact with gin_billed
+    1.>>>POST - add a new garbage type   - localhost:8000/api/ginbill
+        body -  [
+                    {
+                        "inday" : "'2020-12-12'",
+                        "time" : "'13:13:13'",
+                        "gtypo" : "'deg'",
+                        "weight" : "12",
+                        "amnt" : "1440"
+                    }
+                ]
+
+------------------------------------------------------------------------------------------------
+
+Can use these end points to interact with the user_table
+
+1.>>>POST - add a user to the user table - localhost:8000/signup
+    body - 
+            {
+                "userName": "rose",
+                "userType": "clerk",
+                "password": "clerk"
+            }
+
+2.>>>PUT - change the password of an existing user - localhost:8000/changePass?uName='Meelan'
+    body - 
+            {
+                "NewPassword" : "password"
+            }
+
+Passwords
+    MOH - meelan - password
+    Clerk -rose - clerk
+    Depot - kavinda - depot
 ------------------------------------------------------------------------------------------------
