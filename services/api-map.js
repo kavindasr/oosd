@@ -33,6 +33,7 @@ const field = new Map(
         ['sex','gender'],
         ['date','tdate'],
         ['div', 'division'],
+        ['divName','division_name'],
         ['mode','vehiclewalk'],
         ['gID','gindex'],
         ['gtype','waste_type'],

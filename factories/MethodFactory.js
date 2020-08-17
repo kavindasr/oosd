@@ -16,9 +16,9 @@ function getMethod(req,res){
         case "PUT":
             return(new Put(req,res));
 
-        case "Head":
+        case "HEAD":
             return(new Head(req,res));
-            
+
         default:
             console.log("Default");
             //httpMsgs.send405(req,res);

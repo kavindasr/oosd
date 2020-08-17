@@ -48,10 +48,10 @@ class DepotSuperviser extends User{
         super(userName,type,sessionID);
         this.mainPage = '/depot/main';
         this.apiAccess = {
-            employee             : {GET:true,POST:false,PUT:false,DELETE:false},
-            attendance           : {GET:false,POST:true,PUT:true,DELETE:true},
-            division             : {GET:true,POST:false,PUT:false,DELETE:false},
-            vehicle              : {GET:true,POST:true,PUT:false,DELETE:false},
+            employee             : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
+            attendance           : {GET:false,POST:true,PUT:true,DELETE:true,HEAD:false},
+            division             : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
+            vehicle              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:true},
 
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -71,10 +71,10 @@ class MOH extends User{
     constructor(userName,type,sessionID){
         super(userName,type,sessionID);
         this.apiAccess = {
-            employee             : {GET:true,POST:true,PUT:true,DELETE:true},
-            attendance           : {GET:true,POST:false,PUT:false,DELETE:false},
-            division             : {GET:true,POST:false,PUT:false,DELETE:false},
-            vehicle              : {GET:true,POST:false,PUT:false,DELETE:false},
+            employee             : {GET:true,POST:true,PUT:true,DELETE:true,HEAD:true},
+            attendance           : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
+            division             : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
+            vehicle              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
             signup               : {POST:true}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -97,10 +97,10 @@ class Clerk extends User{
     constructor(userName,type,sessionID){
         super(userName,type,sessionID);
         this.apiAccess = {
-            employee             : {GET:false,POST:false,PUT:false,DELETE:false},
-            attendance           : {GET:false,POST:false,PUT:false,DELETE:false},
-            division             : {GET:false,POST:false,PUT:false,DELETE:false},
-            vehicle              : {GET:false,POST:false,PUT:false,DELETE:false},
+            employee             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
+            attendance           : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
+            division             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
+            vehicle              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
 
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -121,10 +121,10 @@ class Mayor extends User{
     constructor(userName,type,sessionID){
         super(userName,type,sessionID);
         this.apiAccess = {
-            employee             : {GET:false,POST:false,PUT:false,DELETE:false},
-            attendance           : {GET:true,POST:false,PUT:false,DELETE:false},
-            division             : {GET:false,POST:false,PUT:false,DELETE:false},
-            vehicle              : {GET:false,POST:false,PUT:false,DELETE:false},
+            employee             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
+            attendance           : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
+            division             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
+            vehicle              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
 
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -145,11 +145,3 @@ class Mayor extends User{
 
 
 module.exports = {DepotSuperviser,MOH,Clerk,Mayor};
-
-// hash(password,10,(err,encrypted)=>{
-//     if(err){
-//         return {err};
-//     }
-//     this.hashedPassword = encrypted;
-//     console.log(this.sessionID,this.userName,this.hashedPassword);
-// });
