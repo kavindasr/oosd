@@ -52,6 +52,8 @@ class DepotSuperviser extends User{
             attendance           : {GET:false,POST:true,PUT:true,DELETE:true,HEAD:false},
             division             : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
             vehicle              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:true},
+            gdetail              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
+            ginbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false}
 
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -100,12 +102,14 @@ class MOH extends User{
 class Clerk extends User{
     constructor(userName,type,sessionID){
         super(userName,type,sessionID);
+        this.mainPage = '/clerk/clerk_in';
         this.apiAccess = {
             employee             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             attendance           : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             division             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             vehicle              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
-
+            gdetail              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
+            ginbill              : {GET:false,POST:true,PUT:false,DELETE:false,HEAD:false}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -129,7 +133,8 @@ class Mayor extends User{
             attendance           : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
             division             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             vehicle              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
-
+            gdetail              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false},
+            ginbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
