@@ -39,23 +39,34 @@ function calculate(){
 }
 
 function submitGin(){
+    var postUrl = "http://localhost:8000/api/gunbill";
     var d = new Date();
     var gin_date = d.getFullYear() +"-" +(d.getMonth()+1)+"-"+d.getDate();
     var gin_time = new Date().toTimeString().split(" ")[0];
     var gin_type= document.getElementById('selbox1').value;
     var gin_weight = parseInt(document.getElementById('weight').value);
-    var gin_bill = parseInt(document.getElementById('amount').value);
-
+    var gin_bill = document.getElementById('amount').value;
 
     var ginObj = {
-                    inday   :   `'${gin_date}'`,
-                    time    :   `'${gin_time}'`,
-                    gtypo   :   `'${gin_type}'`,
-                    weight  :   gin_weight, 
-                    amnt    :   gin_bill 
-                    };
-    
+        inday   :   `'${gin_date}'`,
+        time    :   `'${gin_time}'`,
+        gtypo   :   `'${gin_type}'`,
+        weight  :   gin_weight 
+        }; 
+
+    if (gin_bill !== ""){
+        var gin_amnt = parseInt(document.getElementById('amount').value);
+        var ginObj = {
+                            inday   :   `'${gin_date}'`,
+                            time    :   `'${gin_time}'`,
+                            gtypo   :   `'${gin_type}'`,
+                            weight  :   gin_weight, 
+                            amnt    :   gin_amnt 
+                            };
+        var postUrl = "http://localhost:8000/api/ginbill";
+    };
     console.log(ginObj);
+    console.log(postUrl);
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -64,6 +75,6 @@ function submitGin(){
 
         }
     };
-    xhttp.open("POST", "http://localhost:8000/api/ginbill", true);
+    xhttp.open("POST", postUrl, true);
     xhttp.send(JSON.stringify(ginObj))
 }

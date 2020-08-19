@@ -53,8 +53,8 @@ class DepotSuperviser extends User{
             division             : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
             vehicle              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:true},
             gdetail              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
-            ginbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false}
-
+            ginbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
+            gunbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -79,6 +79,7 @@ class MOH extends User{
             vehicle              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
             gdetail              : {GET:true,POST:true,PUT:true,DELETE:true,HEAD:true},
             ginbill              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
+            gunbill              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
             signup               : {POST:true},
             changePass           : {PUT:true}
             
@@ -109,7 +110,8 @@ class Clerk extends User{
             division             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             vehicle              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             gdetail              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
-            ginbill              : {GET:false,POST:true,PUT:false,DELETE:false,HEAD:false}
+            ginbill              : {GET:false,POST:true,PUT:false,DELETE:false,HEAD:false},
+            gunbill              : {GET:false,POST:true,PUT:false,DELETE:false,HEAD:false}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -134,7 +136,8 @@ class Mayor extends User{
             division             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             vehicle              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             gdetail              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false},
-            ginbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false}
+            ginbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
+            gunbill              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},

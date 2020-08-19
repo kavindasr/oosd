@@ -6,6 +6,7 @@ const table = new Map(
         ['division','division_table'],
         ['vehicle','vehicle_detail'],
         ['session','session_table'],
+        ['gunbill','gin_unbilled'],
         ['ginbill','gin_billed'],
         ['gdetail','gtype_detail']
     ]
