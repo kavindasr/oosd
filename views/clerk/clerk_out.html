@@ -42,6 +42,61 @@
     </nav>
     <!--/.Navbar -->
 
+    <div class="mt-5 container">
+      <div class="row">
+        <div class="col-sm-7 rounded-left" style="background-color: #4e5db5;">
+          <!-- form -->
+          <form class="mb-4" style="font-size: large;">
+
+            <div class="mx-auto" style="width:180px ">
+              <p class="font-weight-bolder" style="font-family: sans-serif;"><h3>Garbage Out</h3></p>
+            </div>
+
+            <div id="gtype" class="form-group">
+                <label for="sel1">Garbage Type</label>
+                <select class="form-control" id="selbox1" onchange="getPrice()">
+                    <option>----Select TYPE----</option>
+                    <option value=degradable>Degradable</option>
+                    <option value =nondegradable>Non-Degradable</option>
+                </select>
+            </div>       
+             
+            <div id = "price" class="form-group">
+                <label for="pricekg">Price per 1kg(Rs.)</label>
+                <label class="form-control" id="priceperkg">
+            </div>
+
+            <div id = "gweight" class="form-group">
+                <label for="lweight">Weight(kg)</label>
+                <input type="number" class="form-control" id="weight" placeholder="kg">
+            </div>
+        
+            
+            <div id="bill" class="input-group mb-3">
+                <label for="lamount">Bill Amount(Rs.)</label>
+                <div id="grp" class="input-group mb-3">
+                    <input type="number" class="form-control" id="amount" placeholder="Rs.">
+                    <div class="input-group-append">
+                        <button class="btn btn-dark" type="button" onclick="calculate()">SHOW</button> 
+                    </div>
+                </div>
+            </div> 
+        
+            <div id="div7" >
+                <button id="btn" class="btn btn-block" style="background-color:lightseagreen "type="button" data-toggle="modal" data-target="#myModal" data-backdrop="static" onclick="getData()">SAVE</button>
+            </div>
+        </form>
+        <!-- form -->
+        </div>
+
+        <div id="imgdiv" class="col-sm-5 rounded-right" style="background: linear-gradient(to bottom, #3399ff 0%, #ff66ff 100%); padding-top: 100px;">
+          <div class="img">
+            <img class="my-auto d-block img-fluid" src="/public/images/man.svg">
+          </div>
+        </div>
+
+      </div>
+    </div>
 
 
     <script src="/public/scripts/clerk/clerk_out.js"></script>
