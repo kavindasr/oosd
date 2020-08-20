@@ -2,9 +2,11 @@ function toggle(x){
     if (x==0){
         document.getElementById("bill").style.display="block";
         document.getElementById("price").style.display="block";
+        document.getElementById("a").style.display="block";
     }else{
         document.getElementById("bill").style.display="none";
         document.getElementById("price").style.display="none";
+        document.getElementById("a").style.display="none";
         return;
     }
 }
@@ -38,6 +40,22 @@ function calculate(){
 
 }
 
+function getData(){
+    var d = new Date();
+    var gin_date = d.getFullYear() +"-" +(d.getMonth()+1)+"-"+d.getDate();
+    var gin_time = new Date().toTimeString().split(" ")[0];
+    var gin_type= document.getElementById('selbox1').value;
+    var gin_weight = parseInt(document.getElementById('weight').value);
+    var gin_bill = parseInt(document.getElementById('amount').value);
+
+    document.getElementById("date").innerHTML = gin_date;
+    document.getElementById("time").innerHTML = gin_time;
+    document.getElementById("gartype").innerHTML = gin_type;
+    document.getElementById("wght").innerHTML = gin_weight;
+    document.getElementById("amnt").innerHTML = "Rs. " + gin_bill
+
+}
+
 function submitGin(){
     var postUrl = "http://localhost:8000/api/gunbill";
     var d = new Date();
@@ -66,12 +84,11 @@ function submitGin(){
         var postUrl = "http://localhost:8000/api/ginbill";
     };
     console.log(ginObj);
-    console.log(postUrl);
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            alert("Gargabe In details added successfully..");
+            if(!alert("Gargabe In details added successfully..")){window.location.reload();}
 
         }
     };
