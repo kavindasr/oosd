@@ -62,30 +62,37 @@
         <div class="form-group">
           <label for="inputAddress">Add or remove employees</label>
           <div class="input-group mb-3">
-            <input type="text" id="inpEmpId" class="form-control" placeholder="Employee ID" id="addRemoveRoad" disabled>
+            <input type="text" id="inpEmpId" class="form-control" placeholder="Employee ID" onfocus="this.value=''" disabled>
             <div class="input-group-append">
-              <button class="btn btn-primary" type="button" id="addBtn" disabled><i class="fa fa-plus"></i>&nbsp ADD</button>
-              <button class="btn btn-danger" type="button" id="removeBtn"disabled><i class="fa fa-trash"></i>&nbsp DEL</button>
+              <button class="btn btn-primary" type="button" id="addBtn" onclick="addEmp()" disabled><i class="fa fa-plus"></i>&nbsp ADD</button>
+              <button class="btn btn-danger" type="button" id="removeBtn" onclick="removeEmp()" disabled><i class="fa fa-trash"></i>&nbsp DEL</button>
             </div>
           </div> 
 
           <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-              <a class="nav-link active text-dark" id="home-tab" onclick="setType(1)" data-toggle="tab" href="#onlyEmp" role="tab" aria-controls="home" aria-selected="true">With-out vehicle</a>
+              <a class="nav-link active text-dark" id="home-tab" onclick="setType(1)" data-toggle="tab" href="#onlyEmp" role="tab" aria-controls="employees" aria-selected="true">With-out vehicle</a>
             </li>
             <li class="nav-item" role="presentation">
-              <a class="nav-link text-dark" id="profile-tab" onclick="setType(2)" data-toggle="tab" href="#withVehi" role="tab" aria-controls="profile" aria-selected="false">With vehicle</a>
+              <a class="nav-link text-dark" id="profile-tab" onclick="setType(2)" data-toggle="tab" href="#withVehi" role="tab" aria-controls="Vehicle" aria-selected="false">With vehicle</a>
             </li>
           </ul>
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><div class="flex-container" id="flexBoxDiv1"></div></div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><div class="flex-container" id="flexBoxDiv2"></div>    </div>
+          <div class="tab-content" id="myTabContent" style="padding: 10px;border-style: solid; border-color: aliceblue; border-width: 1px;">
+            <div class="tab-pane fade show active" id="onlyEmp" role="tabpanel" aria-labelledby="home-tab"><div class="flex-container" id="flexBoxDiv1"></div></div>
+            <div class="tab-pane fade" id="withVehi" role="tabpanel" aria-labelledby="profile-tab"><div class="flex-container" id="flexBoxDiv2"></div></div>
           </div>    
         </div>
-        <button type="submit" class="btn btn-success btn-block">SAVE</button>
+        <button id="submit" type="submit" class="btn btn-success btn-block mx-auto d-block" onclick="save()">SAVE</button>
       </form>
+      <a class='btn pull-right' id="clear" href="/depot/main">
+        <div>
+          <i class="fa fa-trash fa-2x"></i>
+        </div>
+      </a>
     </div>
 
+    <script src="/public/scripts/depot/localStorage.js"></script>
+    <script src="/public/scripts/depot/api.js"></script>
     <script src="/public/scripts/depot/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="/public/bootstrap/js/bootstrap.min.js"></script>

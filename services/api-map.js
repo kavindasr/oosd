@@ -6,6 +6,7 @@ const table = new Map(
         ['division','division_table'],
         ['vehicle','vehicle_detail'],
         ['session','session_table'],
+        ['gunbill','gin_unbilled'],
         ['ginbill','gin_billed'],
         ['gdetail','gtype_detail']
     ]
@@ -37,7 +38,13 @@ const field = new Map(
         ['mode','vehiclewalk'],
         ['gID','gindex'],
         ['gtype','waste_type'],
-        ['unitp','unit_price']
+        ['unitp','unit_price'],
+        //ginbill
+        ['inday','in_date'],
+        ['time','in_time'],
+        ['gtypo','g_type'],
+        ['weight','in_weight'],
+        ['amnt','bill_amount']
 
         //add unique key to represnt different combinations of fields
     ]
