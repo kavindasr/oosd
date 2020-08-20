@@ -4,7 +4,7 @@ const views = require("./factories/viewsFolder");
 const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
 const UserBuilder = require("./factories/userBuilder");
-const {getUser,addUser,signup,logOut,changePass} = require('./services/user-services');
+const {getUser,addUser,signup,logOut,changePass,checkExpiry,getSessions} = require('./services/user-services');
 
 const uBuilder = new UserBuilder();
 
@@ -13,6 +13,8 @@ const server = http.createServer((req,res)=>{
     console.log(req.method,req.url);
     
     const method = methodFactory.getMethod(req,res);
+
+    
     
 
     (async ()=>{
@@ -47,6 +49,7 @@ const server = http.createServer((req,res)=>{
             const token = method.getToken();
             if(token){
                 const user = await getUser(token,uBuilder);
+                user.setLastUsedTime(new Date().getTime());
                 if(user){
                     if(method.getPath(1) == 'api'){
                         //api method
@@ -101,6 +104,9 @@ const server = http.createServer((req,res)=>{
 
 server.listen(webSettings.webport,()=>{
     console.log("Listening on port",webSettings.webport);
+    getSessions(uBuilder); // loads any session data from the db
+    checkExpiry(); // continuously checks for the expiry at each 5 mts 
+    
 });
 
 function redirect(method,path){

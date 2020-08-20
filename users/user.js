@@ -2,19 +2,20 @@
 const uniqid = require('uniqid');
 
 class User{
-    constructor(userName,type,sessionID,startTime){
+    constructor(userName,type,sessionID,lastUsedTime){
         if(sessionID){
             this.sessionID = sessionID;
         }
         else{
             this.sessionID = uniqid();
         }
-        if(startTime){
-            this.startTime = startTime;
+        if(lastUsedTime){
+            this.lastUsedTime = lastUsedTime;
         }
         else{
-            this.startTime = new Date().getTime();
+            this.lastUsedTime = Number(new Date().getTime());
         }
+
         this.userName = userName;
         this.type=type;
         this.apiAccess=null;
@@ -39,7 +40,20 @@ class User{
             return false;
         }
     }
+
+    setLastUsedTime(time){
+        this.lastUsedTime = Number(time);
+    }
     
+    isExpired(){
+
+        const inactiveTime = Number(new Date().getTime()) - this.lastUsedTime ; 
+        if (inactiveTime> 3600000){ // session expires after 1 hour of inactivity
+            return (true);
+        }else{
+            return (false);
+        }
+    }
    
 }
 

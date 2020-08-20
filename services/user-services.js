@@ -83,21 +83,46 @@ const getUser = async (token, uBuilder)=>{
     const sessionID = getUserID(token);
     if(sessionID){
         var user = users.get(sessionID); //should check db also if user is null
-        if(!user){
-            try{
-                const data = await executeSQL(`SELECT * FROM session_table WHERE sessionID= '${sessionID}'`);
-                user = uBuilder.userCreation(data[0].userName,data[0].userType,data[0].sessionID,data[0].startTime);
-            }
-            catch(e){
-                return null;
-            }
-        }
         return user;
     }
     else{
         return null;
     }
 }
+
+const checkExpiry = () =>{
+    setInterval(exCheck,300000); // checking at a rate of 5 mts
+}
+
+async function exCheck(){
+
+    for (const [key, value] of users.entries()) {
+        if (value.isExpired()){
+            console.log( value.userName + " expired");
+            users.delete(key);
+            try{
+                const data = await executeSQL(`DELETE FROM session_table WHERE sessionID= '${key}'`);
+            }catch(e){
+                console.log("database error");
+            }
+        }else{
+            console.log( value.userName + " Not yet expired");
+        }
+    }
+
+}
+
+const getSessions = async (uBuilder) => {
+    const data = await executeSQL(`SELECT * FROM session_table`);
+    for (const [key, value] of data.entries()) {
+        var user = uBuilder.userCreation(value.userName,value.userType,value.sessionID,value.startTime);
+        users.set(user.sessionID,user);
+    }
+
+    console.log(users);
+}
+
+
 
 module.exports = {
     addUser,
@@ -106,4 +131,18 @@ module.exports = {
     signup,
     logOut,
     changePass,
+    checkExpiry,
+    getSessions
 };
+
+
+
+// if(!user){
+        //     try{
+        //         const data = await executeSQL(`SELECT * FROM session_table WHERE sessionID= '${sessionID}'`);
+        //         user = uBuilder.userCreation(data[0].userName,data[0].userType,data[0].sessionID,data[0].startTime);
+        //     }
+        //     catch(e){
+        //         return null;
+        //     }
+        // }
