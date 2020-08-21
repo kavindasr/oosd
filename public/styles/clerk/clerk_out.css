@@ -45,3 +45,14 @@ body{
       display: none;
     }
   }
+
+  /* 
+  for the recycle symbol in the invoice. removed
+  .fa, .fas {
+    font-weight: 1000;
+    font-size: 40px;
+    width: 50px;
+  } */
+  .row{
+    flex-wrap: nowrap;
+  }

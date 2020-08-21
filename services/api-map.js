@@ -8,7 +8,8 @@ const table = new Map(
         ['session','session_table'],
         ['gunbill','gin_unbilled'],
         ['ginbill','gin_billed'],
-        ['gdetail','gtype_detail']
+        ['gdetail','gtype_detail'],
+        ['gout' , 'garbage_out']
     ]
 );
 
@@ -44,8 +45,11 @@ const field = new Map(
         ['time','in_time'],
         ['gtypo','g_type'],
         ['weight','in_weight'],
-        ['amnt','bill_amount']
-
+        ['amnt','bill_amount'],
+        //gout
+        ['oday','out_date'],
+        ['otime','out_time'],
+        ['oweight','weight']
         //add unique key to represnt different combinations of fields
     ]
 );

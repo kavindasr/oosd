@@ -180,11 +180,11 @@ body{
 .row{
   flex-wrap: nowrap;
 }
-.fa, .fas {
+/* .fa, .fas {
   font-weight: 1000;
   font-size: 40px;
   width: 50px;
-}
+} */
 /* Add Animation */
 @-webkit-keyframes animatetop {
   from {top:-300px; opacity:0} 
