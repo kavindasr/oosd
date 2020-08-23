@@ -43,67 +43,156 @@
     <!--/.Navbar -->
 
 
-    
+    <!-- container -->
     <div class="mt-5 container">
       <div class="row">
-        <!-- image -->
-        <div id="imgdiv" class="col-sm-5 rounded-left" style="background: linear-gradient(to bottom, #009999 0%, #003366 100%); padding-top: 100px;">
-          <div class="img">
-            <img class="my-auto d-block img-fluid" src="/public/images/comp.svg">
+          <!-- image -->
+          <div id="imgdiv" class="col-sm-5 rounded-left" style="background: linear-gradient(to bottom, #009999 0%, #003366 100%); padding-top: 100px;">
+            <div class="img">
+              <img class="my-auto d-block img-fluid" src="/public/images/comp.svg">
+            </div>
           </div>
-        </div>
+
+
+        
 
         <div class="col-sm-7 rounded-right" style="background-color: #359b9b;">
-          <!-- form -->
-          <form class="mb-4" style="font-size: large;">
 
-            <div class="mx-auto" style="width:300px ">
-              <p class="font-weight-bolder" style="font-family: sans-serif;"><h3>Compost Production</h3></p>
-            </div>
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist" style="font-size: large;">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active text-dark" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="employees" aria-selected="true">Compost In</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link text-dark" id="profile-tab" data-toggle="tab" href="#menu1" onclick="getPctPrice()" role="tab" aria-controls="Vehicle" aria-selected="false">Compost Out</a>
+              </li>
+            </ul>
 
-            <div id="gtype" class="form-group">
-                <label for="sel1">Garbage Type</label>
-                <select class="form-control" id="selbox1" onchange="getPrice()">
-                    <option>----Select TYPE----</option>
-                    <option value=degradable>Degradable</option>
-                    <option value =nondegradable>Non-Degradable</option>
-                </select>
-            </div>       
-             
-            <div id = "price" class="form-group">
-                <label for="pricekg">Price per 1kg(Rs.)</label>
-                <label class="form-control" id="priceperkg">
-            </div>
+          <!-- Tab panes -->
+            <div class="tab-content">
+              <div id="home" class="container tab-pane active"><br>
+                <!-- form -->
+                  <form class="mb-4" style="font-size: large;">
 
-            <div id = "gweight" class="form-group">
-                <label for="lweight">Weight(kg)</label>
-                <input type="number" class="form-control" id="weight" placeholder="kg">
-            </div>
-        
-            
-            <div id="bill" class="input-group mb-3">
-                <label for="lamount">Bill Amount(Rs.)</label>
-                <div id="grp" class="input-group mb-3">
-                    <input type="number" class="form-control" id="amount" placeholder="Rs.">
-                    <div class="input-group-append">
-                        <button class="btn btn-dark" type="button" onclick="calculate()">SHOW</button> 
+                    <div class="mx-auto" style="width:150px ">
+                      <p class="font-weight-bolder" style="font-family: sans-serif;"><h3>Compost In</h3></p>
                     </div>
-                </div>
-            </div> 
-        
-            <div id="div7 " >
-                <button id="btn" class="btn btn-block" style="background-color:#0d4d57; color: white;"type="button" data-toggle="modal" data-target="#myModal" data-backdrop="static" onclick="getData()">SAVE</button>
+
+                    <div id = "nopct" class="form-group">
+                        <label for="compct">Packets Produced</label>
+                        <input type="number" class="form-control" id="compct">
+                    </div>
+                
+                    <div id="div7 " >
+                        <button id="btn" class="btn btn-block" style="background-color:#0d4d57; color: white;"type="button" onclick="compIn()">SUBMIT</button>
+                    </div>
+                </form>
+                <!-- form -->
+              </div>
+              <!-- home tab content ends -->
+
+              <div id="menu1" class="container tab-pane fade"><br>
+                <!-- form -->
+                <form class="mb-4" style="font-size: large;">
+
+                  <div class="mx-auto" style="width:170px ">
+                    <p class="font-weight-bolder" style="font-family: sans-serif;"><h3>Compost Out</h3></p>
+                  </div>  
+                  
+                  <div id = "price" class="form-group">
+                      <label for="pricepct">Price per Compost Packet(Rs.)</label>
+                      <label class="form-control" id="priceperpct">
+                  </div>
+
+                  <div id = "pctsold" class="form-group">
+                      <label for="pcts">No of Packets</label>
+                      <input type="number" class="form-control" id="nofpct">
+                  </div>
+                  
+                  <div id="bill" class="input-group mb-3">
+                    <label for="lamount">Bill Amount(Rs.)</label>
+                    <div id="grp" class="input-group mb-3">
+                        <input type="number" class="form-control" id="amount" placeholder="Rs.">
+                        <div class="input-group-append">
+                            <button class="btn btn-dark" type="button" onclick="calculate()">SHOW</button> 
+                        </div>
+                    </div>
+                  </div> 
+
+                  <div id="div7 " >
+                      <button id="btn" class="btn btn-block" style="background-color:#0d4d57; color: white;"type="button" data-toggle="modal" data-target="#myModal" data-backdrop="static" onclick="getData()">SAVE</button>
+                  </div>
+              </form>
+              <!-- form -->
+
+              </div>
+              <!-- menu1 tab content end -->
             </div>
-        </form>
-        <!-- form -->
+            <!-- tab pane content div ends -->
         </div>
-
-        
-
       </div>
     </div>
+    <!-- container -->
 
+    
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background: linear-gradient(to bottom, #009999 0%, #003366 100%); font-size: large;">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <!-- <i class="fas fa-recycle"></i> -->
+            <h4 style="line-height: 1.9; padding-left: 12px;" class="modal-title"><b>INVOICE</b></h4>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6 ml-auto">Disposal Site,
+                  Sundarapola, Yanthampalawa.
+                </div>
+              </div>
+            </div>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="container-fluid">
+              
+              <div class="row">
+                <div class="col-sm-6">Type  :</div>
+                <div class="col-sm-6" id = "gartype">Compost</div>
+              </div>
 
+              <div class="row">
+                <div class="col-sm-6">Date    :</div>
+                <div class="col-sm-6" id = "date"></div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">Time    :</div>
+                <div class="col-sm-6" id = "time"></div>
+              </div>
+              
+              <div class="row">
+                <div class="col-sm-6">No of Packets    :</div>
+                <div class="col-sm-6" id = "pct"></div>
+              </div>
+
+              <div class="row" id ="a">
+                <div class="col-sm-6">Amount    :</div>
+                <div class="col-sm-6" id = "amnt"></div>
+              </div>
+          </div>
+        </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button id="btnf" type="button" class="btn btn-info" data-dismiss="modal" onclick="compOut()">Submit</button>
+            <button id="btnf" type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- The Modal -->
 
     <script src="/public/scripts/clerk/clerk_comp.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

@@ -9,7 +9,9 @@ const table = new Map(
         ['gunbill','gin_unbilled'],
         ['ginbill','gin_billed'],
         ['gdetail','gtype_detail'],
-        ['gout' , 'garbage_out']
+        ['gout' , 'garbage_out'],
+        ['compin', 'compost_in'],
+        ['compout', 'compost_out']
     ]
 );
 
@@ -49,7 +51,10 @@ const field = new Map(
         //gout
         ['oday','out_date'],
         ['otime','out_time'],
-        ['oweight','weight']
+        ['oweight','weight'],
+        //compost
+        ['pctin','pct_produced'],
+        ['pctout','pct_sold']
         //add unique key to represnt different combinations of fields
     ]
 );

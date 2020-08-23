@@ -126,7 +126,9 @@ class Clerk extends User{
             gdetail              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
             ginbill              : {GET:false,POST:true,PUT:false,DELETE:false,HEAD:false},
             gunbill              : {GET:false,POST:true,PUT:false,DELETE:false,HEAD:false},
-            gout                 : {GET:false,POST:true,PUT:false,DELETE:false,HEAD:false}
+            gout                 : {GET:false,POST:true,PUT:false,DELETE:false,HEAD:false},
+            compin               : {GET:false,POST:true,PUT:false,DELETE:false,HEAD:false},
+            compout              : {GET:false,POST:true,PUT:false,DELETE:false,HEAD:false}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
