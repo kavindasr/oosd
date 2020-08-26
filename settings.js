@@ -20,7 +20,7 @@ const msb = {
   user: "root",
   password: "Meelan@37562",
   host: "localhost",
-  database: "mcDB",
+  database: "wmsdb",
 };
 
 const isr = {
@@ -31,7 +31,7 @@ const isr = {
   database: "oosdnewdb",
 };
 //dsfd
-exports.dbConfig = ksr;
+exports.dbConfig = msb;
 
 exports.webSettings = {
   webport: 8000,

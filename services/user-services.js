@@ -95,7 +95,6 @@ const checkExpiry = () =>{
 }
 
 async function exCheck(){
-
     for (const [key, value] of users.entries()) {
         if (value.isExpired()){
             console.log( value.userName + " expired");
@@ -114,10 +113,15 @@ async function exCheck(){
 
 const getSessions = async (uBuilder) => {
     const data = await executeSQL(`SELECT * FROM session_table`);
-    for (const [key, value] of data.entries()) {
-        var user = uBuilder.userCreation(value.user_name,value.user_type,value.sessionID,value.start_time);
-        users.set(user.sessionID,user);
+    if (data.length!=0){
+        for (const [key, value] of data.entries()) {
+            var user = uBuilder.userCreation(value.user_name,value.user_type,value.sessionID,value.start_time);
+            users.set(user.sessionID,user);
+        }
+    }else{
+        console.log("No existing user");
     }
+    
 }
 
 
