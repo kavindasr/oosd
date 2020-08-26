@@ -71,15 +71,17 @@
 
           <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-              <a class="nav-link active text-dark" id="home-tab" onclick="setType(1)" data-toggle="tab" href="#onlyEmp" role="tab" aria-controls="employees" aria-selected="true">With-out vehicle</a>
+              <a class="nav-link active text-warning" id="home-tab" onclick="setType(1)" data-toggle="tab" href="#onlyEmp" role="tab" aria-controls="employees" aria-selected="true">With-out vehicle</a>
             </li>
             <li class="nav-item" role="presentation">
-              <a class="nav-link text-dark" id="profile-tab" onclick="setType(2)" data-toggle="tab" href="#withVehi" role="tab" aria-controls="Vehicle" aria-selected="false">With vehicle</a>
+              <a class="nav-link text-warning"  id="profile-tab" onclick="setType(2)" data-toggle="tab" href="#withVehi" role="tab" aria-controls="Vehicle" aria-selected="false">With vehicle</a>
             </li>
           </ul>
           <div class="tab-content" id="myTabContent" style="padding: 10px;border-style: solid; border-color: aliceblue; border-width: 1px;">
+            <br>
             <div class="tab-pane fade show active" id="onlyEmp" role="tabpanel" aria-labelledby="home-tab"><div class="flex-container" id="flexBoxDiv1"></div></div>
             <div class="tab-pane fade" id="withVehi" role="tabpanel" aria-labelledby="profile-tab"><div class="flex-container" id="flexBoxDiv2"></div></div>
+            <br>
           </div>    
         </div>
         <button id="submit" type="submit" class="btn btn-success btn-block mx-auto d-block" onclick="save()">SAVE</button>
@@ -90,7 +92,7 @@
         </div>
       </a>
     </div>
-
+    <br>
     <script src="/public/scripts/depot/localStorage.js"></script>
     <script src="/public/scripts/depot/api.js"></script>
     <script src="/public/scripts/depot/main.js"></script>

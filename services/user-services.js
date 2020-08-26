@@ -79,7 +79,7 @@ const authUser = async (email,password)=>{
     return false;
 };
 
-const getUser = async (token, uBuilder)=>{
+const getUser =  (token)=>{
     const sessionID = getUserID(token);
     if(sessionID){
         var user = users.get(sessionID); //should check db also if user is null
@@ -115,11 +115,9 @@ async function exCheck(){
 const getSessions = async (uBuilder) => {
     const data = await executeSQL(`SELECT * FROM session_table`);
     for (const [key, value] of data.entries()) {
-        var user = uBuilder.userCreation(value.userName,value.userType,value.sessionID,value.startTime);
+        var user = uBuilder.userCreation(value.user_name,value.user_type,value.sessionID,value.start_time);
         users.set(user.sessionID,user);
     }
-
-    console.log(users);
 }
 
 

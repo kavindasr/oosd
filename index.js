@@ -48,7 +48,7 @@ const server = http.createServer((req,res)=>{
         else{
             const token = method.getToken();
             if(token){
-                const user = await getUser(token,uBuilder);
+                const user = getUser(token);
                 user.setLastUsedTime(new Date().getTime());
                 if(user){
                     if(method.getPath(1) == 'api'){
@@ -62,7 +62,6 @@ const server = http.createServer((req,res)=>{
                         response = await signup(method);
                     }
                     else if(method.getPath(1) == 'changePass'&& user.apiAccessControl(method.getPath(1),method.type)){
-                        console.log("came here");
                         response = await changePass(method);
                     }
                     else if(method.getPath(1) == 'logOut'){

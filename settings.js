@@ -4,7 +4,7 @@ const ksr = {
   user: "ksr",
   password: "ksr199841",
   host: "localhost",
-  database: "oosd2",
+  database: "oosd3",
 };
 
 const rnj = {
