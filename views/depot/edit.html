@@ -42,10 +42,25 @@
     </nav>
     <!--/.Navbar -->
 
+    <button id="submit" class="btn btn-danger btn-block mx-auto d-block" onclick="submit()">Submit attendance</button>
 
+    <div class="swap">
+        <div class="input-group mb-3">
+            <input id="empId" type="number" class="form-control bg-dark text-light" placeholder="Employee ID" aria-label="Employee ID" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-warning" type="button" disabled>TO</button>
+              </div>
+            <input id="divNo" type="number" class="form-control bg-dark text-light" placeholder="Division no" aria-label="Division no" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-warning" type="button" onclick="change()">ADD</button>
+            </div>
+          </div>
+    </div>
+
+    <div id="container" class="card-group"></div>
     
     <br>
-    <script src="/public/scripts/depot/localStorage.js"></script>
+    <script src="/public/scripts/depot/storage.js"></script>
     <script src="/public/scripts/depot/api.js"></script>
     <script src="/public/scripts/depot/edit.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

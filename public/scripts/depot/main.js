@@ -11,12 +11,12 @@ function setType(i){
         if(emp.div == divNo && emp.mode == type){
             updateView(emp.empId);
         }
-    })
+    });
     console.log(type);
 }
 
 async function getDiv(){
-    divNo = document.getElementById("divNo").value;
+    divNo = parseInt(document.getElementById("divNo").value);
     try{
         const divName = await apiCall('GET', `http://localhost:8000/api/division/all?divno=${divNo}`);
         document.getElementById('division_name').innerHTML = 'Division name: '+divName[0].division_name;
@@ -30,7 +30,7 @@ async function getDiv(){
 }
 
 function addEmp(){
-    const empId = document.getElementById("inpEmpId").value;
+    const empId = parseInt(document.getElementById("inpEmpId").value);
     const emp = oosd_data.attendance.find(e=>e.empId == empId);
     if(!emp){
         oosd_data.attendance.push(
@@ -52,16 +52,23 @@ function addEmp(){
 function removeEmp(){
     const empId = document.getElementById("inpEmpId").value;
     const emp = oosd_data.attendance.find(e=>e.empId == empId);
-    const index = oosd_data.attendance.indexOf(emp);
-    if (index > -1) {
-        oosd_data.attendance.splice(index, 1);
+    if(emp){
+        if(emp.div == divNo && emp.mode == type){
+            const index = oosd_data.attendance.indexOf(emp);
+            if (index > -1) {
+                oosd_data.attendance.splice(index, 1);
+            }
+            setType(type);
+        }
+        else{
+            alert("Employee ID not belongs to this division");
+        }
     }
-    setType(type);
+    else{
+        alert("This Employee ID is not being added");
+    }
+    
     console.log(oosd_data);
-}
-
-function save(){
-    localStorage.setItem("OOSD_STORAGE", JSON.stringify(oosd_data));
 }
 
 function updateView(empId){

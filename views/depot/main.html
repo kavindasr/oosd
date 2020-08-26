@@ -48,7 +48,7 @@
         <div class="form-group">
           <label for="inputAddress">Division number</label>
           <div class="input-group mb-3">
-            <input id="divNo" type="text" class="form-control" placeholder="Division number">
+            <input id="divNo" type="n" class="form-control" placeholder="Division number" min="1" max="21">
             <div class="input-group-append">
               <button class="btn btn-success" type="button" id="button-addon2" onclick="getDiv()">Enter</button>
             </div>
@@ -62,7 +62,7 @@
         <div class="form-group">
           <label for="inputAddress">Add or remove employees</label>
           <div class="input-group mb-3">
-            <input type="text" id="inpEmpId" class="form-control" placeholder="Employee ID" onfocus="this.value=''" disabled>
+            <input type="number" id="inpEmpId" class="form-control" placeholder="Employee ID" onfocus="this.value=''" disabled>
             <div class="input-group-append">
               <button class="btn btn-primary" type="button" id="addBtn" onclick="addEmp()" disabled><i class="fa fa-plus"></i>&nbsp ADD</button>
               <button class="btn btn-danger" type="button" id="removeBtn" onclick="removeEmp()" disabled><i class="fa fa-trash"></i>&nbsp DEL</button>
@@ -77,7 +77,7 @@
               <a class="nav-link text-warning"  id="profile-tab" onclick="setType(2)" data-toggle="tab" href="#withVehi" role="tab" aria-controls="Vehicle" aria-selected="false">With vehicle</a>
             </li>
           </ul>
-          <div class="tab-content" id="myTabContent" style="padding: 10px;border-style: solid; border-color: aliceblue; border-width: 1px;">
+          <div class="tab-content bg-white text-info" id="myTabContent" style="padding: 10px;border-style: solid; border-color: aliceblue; border-radius: 0px 0px 4px 4px;">
             <br>
             <div class="tab-pane fade show active" id="onlyEmp" role="tabpanel" aria-labelledby="home-tab"><div class="flex-container" id="flexBoxDiv1"></div></div>
             <div class="tab-pane fade" id="withVehi" role="tabpanel" aria-labelledby="profile-tab"><div class="flex-container" id="flexBoxDiv2"></div></div>
