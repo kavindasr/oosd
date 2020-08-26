@@ -1,6 +1,8 @@
 var type = 1;
 var divNo = null;
 
+document.getElementById("userName").innerHTML = sessionStorage.getItem("OOSD_session"); // insert this line to get user name in navbar
+
 function setType(i){
     type = i;
     const element = document.getElementById(`flexBoxDiv${type}`);

@@ -29,10 +29,11 @@ const server = http.createServer((req,res)=>{
                 ({user,token} = await uBuilder.create(method));
                 
                 if(user.err){
+                    method.setToken(token,false,5000);
                     redirect(method,'/login')
                 }
                 else{
-                    method.setToken(token);
+                    method.setToken(token,true,50000000);
                     addUser(user);
                     redirect(method,user.mainPage)
                 }

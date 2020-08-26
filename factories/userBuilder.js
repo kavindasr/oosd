@@ -53,10 +53,10 @@ class UserBuilder{
             }
             else{
                 console.log("Password mismatch!");
-                return {user:{err:true},token:"password mismatch"};
+                return {user:{err:true},token:"Password mismatch!"};
             }
         }catch(e){
-            return {user:{err:true},token:"User name is not vaild"};
+            return {user:{err:true},token:"User name is not vaild!"};
         }
         
     }

@@ -220,3 +220,8 @@ a:hover{
 		justify-content: center;
 	}
 }
+
+#error{
+	color: 	#d73d4c;
+	display: none;
+}

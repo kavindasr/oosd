@@ -42,9 +42,9 @@ class Method{
         return token;
     }
 
-    setToken(token){
+    setToken(token,httpOnly,time){
         var cookies = new Cookies(this.req, this.res, { keys: keys });
-        cookies.set('OOSD_TOKEN', token, { signed: true, maxAge:50000000})
+        cookies.set('OOSD_TOKEN', token, { signed: true, maxAge:time,httpOnly:httpOnly});
     }
 
     setUser(user){
