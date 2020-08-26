@@ -14,9 +14,6 @@ const server = http.createServer((req,res)=>{
     
     const method = methodFactory.getMethod(req,res);
 
-    
-    
-
     (async ()=>{
         var response = null;
         if(method.getPath(1) == 'public'){
@@ -49,8 +46,8 @@ const server = http.createServer((req,res)=>{
             const token = method.getToken();
             if(token){
                 const user = getUser(token);
-                user.setLastUsedTime(new Date().getTime());
                 if(user){
+                    user.setLastUsedTime(new Date().getTime());
                     if(method.getPath(1) == 'api'){
                         //api method
                         const apiMethod = method.getApiMethod();
