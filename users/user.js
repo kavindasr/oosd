@@ -1,4 +1,4 @@
-
+const {executeSQL} = require("../db/db");
 const uniqid = require('uniqid');
 
 class User{
@@ -43,6 +43,7 @@ class User{
 
     setLastUsedTime(time){
         this.lastUsedTime = Number(time);
+        executeSQL(`UPDATE session_table SET start_time= '${Number(time)}' WHERE sessionID= '${this.sessionID}'`);
     }
     
     isExpired(){

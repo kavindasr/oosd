@@ -7,7 +7,16 @@ const user = require("../users/user");
 const users = new Map();
 
 const addUser = async (user)=>{
-    users.set(user.sessionID,user); // should be added to db
+
+    const chkVar = await executeSQL(`SELECT sessionID FROM session_table WHERE user_name = '${user.userName}'`);
+    
+    for (const [key, value] of chkVar.entries()) { // Removing any existing clients with the logger's userName
+        users.delete(value.sessionID);
+        await executeSQL(`DELETE FROM session_table WHERE sessionID= '${value.sessionID}'`);
+    }
+
+    users.set(user.sessionID, user); 
+
     try{
         const data = await executeSQL(`INSERT INTO session_table VALUES ('${user.sessionID}','${user.userName}','${user.type}',${new Date().getTime()})`);
     }

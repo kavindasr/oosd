@@ -11,12 +11,9 @@ const uBuilder = new UserBuilder();
 const server = http.createServer((req,res)=>{
 
     console.log(req.method,req.url);
+
     
     const method = methodFactory.getMethod(req,res);
-
-    
-    
-
     (async ()=>{
         var response = null;
         if(method.getPath(1) == 'public'){
@@ -36,7 +33,7 @@ const server = http.createServer((req,res)=>{
                 }
                 else{
                     method.setToken(token);
-                    addUser(user);
+                    await addUser(user);
                     redirect(method,user.mainPage)
                 }
                 
@@ -48,9 +45,12 @@ const server = http.createServer((req,res)=>{
         else{
             const token = method.getToken();
             if(token){
+                
                 const user = getUser(token);
-                user.setLastUsedTime(new Date().getTime());
                 if(user){
+
+                    user.setLastUsedTime(new Date().getTime());
+                    
                     if(method.getPath(1) == 'api'){
                         //api method
                         const apiMethod = method.getApiMethod();
