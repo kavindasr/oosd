@@ -16,7 +16,7 @@ function apiCall(method,url,data){
         };
         xhttp.open(method, url, true);
         if(data){
-            xhttp.send(data); 
+            xhttp.send(JSON.stringify(data)); 
         }
         else{
             xhttp.send();

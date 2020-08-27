@@ -6,7 +6,12 @@ var oosd_data = JSON.parse(localStorage.getItem('OOSD_STORAGE'));
 if(!oosd_data || oosd_data.date != today){
     oosd_data = {
         date: today,
-        attendance: []
+        attendance: [],
+        submitted:false
     }
+}
+
+function save(){
+    localStorage.setItem("OOSD_STORAGE", JSON.stringify(oosd_data));
 }
 

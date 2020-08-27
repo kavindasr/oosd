@@ -12,8 +12,8 @@ const server = http.createServer((req,res)=>{
 
     console.log(req.method,req.url);
 
-    
     const method = methodFactory.getMethod(req,res);
+    
     (async ()=>{
         var response = null;
         if(method.getPath(1) == 'public'){
@@ -29,10 +29,11 @@ const server = http.createServer((req,res)=>{
                 ({user,token} = await uBuilder.create(method));
                 
                 if(user.err){
+                    method.setToken(token,false,5000);
                     redirect(method,'/login')
                 }
                 else{
-                    method.setToken(token);
+                    method.setToken(token,true,50000000);
                     await addUser(user);
                     redirect(method,user.mainPage)
                 }
