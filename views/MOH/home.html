@@ -48,22 +48,53 @@
           x.style.display = "block";
         }
       }
+
+      function addUserFunction() {
+        var x = document.getElementById("addUserfile");
+        if (x.style.display === "block") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "block";
+        }
+      }
+
+      function removeUserFunction() {
+        var x = document.getElementById("removeUserfile");
+        if (x.style.display === "block") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "block";
+        }
+      }
+
+      function vehicleReportFunction() {
+        var x = document.getElementById("vehicleReportfile");
+        if (x.style.display === "block") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "block";
+        }
+      }
+
     </script>
     <title>MOH</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <a class="navbar-brand" href="#">Main</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapsibleNavbar"
-      >
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="home.html"
+            >
+              Home
+            </a>
+          </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -129,7 +160,19 @@
             </div>
           </li>
         </ul>
-      </div>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user-circle"></i>
+              <span>&nbsp UserName</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+              <a class="dropdown-item" href="#"><i class="fa fa-cog"></i>&nbsp Change password</a>
+              <a class="dropdown-item" href="/logOut"><i class="fa fa-sign-out"></i>&nbsp Sign out</a>
+            </div>
+          </li>
+        </ul>
     </nav>
 
     <div id="addemployeefile" style="display: none;">
@@ -201,7 +244,7 @@
 
     <div id="removeemployeefile" style="display: none;">
       <div class="row row-content bodycontent" id="removeemployeefile">
-        <div class="col-12 col-sm-5">
+        <div class="col-12 col-sm-4">
           <div class="card">
             <div class="card-body">
               <center>
@@ -236,7 +279,7 @@
 
     <div id="employeedetailfile" style="display: none;">
       <div class="row row-content bodycontent" id="employeedetailfile">
-        <div class="col-12 col-sm-5">
+        <div class="col-12 col-sm-4">
           <div class="card">
             <div class="card-body">
               <center>
@@ -278,7 +321,7 @@
 
     <div id="dailyattendencefile" style="display: none;">
       <div class="row row-content bodycontent">
-        <div class="col-12 col-sm-5">
+        <div class="col-12 col-sm-4">
           <div class="card">
             <div class="card-body">
               <center>
@@ -310,6 +353,133 @@
                 <p id="empdiv"></p>
                 <p id="entdate"></p>
                 <p id="vehiclewalk"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="addUserfile" style="display: none;">
+      <div class="row row-content bodycontent" id="addUserfile">
+        <div class="col-12 col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <center>
+                <h1 style="color: rgb(255, 255, 255);">Add User</h1>
+              </center>
+              <form action="" target="_self">
+                <br />
+                <div id="togglepart">
+                  <label
+                    for="mass"
+                    style="font-family: arial; color: rgb(255, 255, 255);"
+                    >Username</label
+                  >
+                  <input
+                    id="username"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                  />
+                </div>
+                <div id="togglepart">
+                  <label
+                    for="mass"
+                    style="font-family: arial; color: rgb(255, 255, 255);"
+                    >User Type</label
+                  >
+                  <div id="togglepart5">
+                    <div class="box">
+                      <select id="selection">
+                        <option value="M">Clerk</option>
+                        <option value="F">Depot</option>
+                        <option value="F">MOH</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div id="togglepart">
+                  <label
+                    for="mass"
+                    style="font-family: arial; color: rgb(255, 255, 255);"
+                    >Password</label
+                  >
+                  <input
+                    id="password"
+                    type="text"
+                    name="password"
+                    placeholder="180044"
+                  />
+                </div>
+                <div id="sub">
+                  <button id="btn" type="button" onclick="viewEmployee()">
+                    ADD USER
+                  </button>
+                </div>
+              </form>
+              <div id="detail">
+                <p id="empName"></p>
+                <p id="empID"></p>
+                <p id="empSalID"></p>
+                <p id="empGender"></p>
+                <p id="empType"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="removeUserfile" style="display: none;">
+      <div class="row row-content bodycontent" id="removeUserfile">
+        <div class="col-12 col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <center>
+                <h1 style="color: rgb(250, 250, 250);">REMOVE USER</h1>
+              </center>
+              <form action="" target="_self">
+                <br />
+                <div id="togglepart">
+                  <label
+                    for="mass"
+                    style="font-family: arial; color: rgb(255, 255, 255);"
+                    >Remove User</label
+                  >
+                  <input
+                    type="text"
+                    id="USER"
+                    name="user"
+                    placeholder="UserName"
+                  />
+                </div>
+                <div id="sub">
+                  <button id="btn" type="button" onclick="submitAttendance()">
+                    REMOVE
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="vehicleReportfile" style="display: none;">
+      <div class="row row-content bodycontent" id="vehicleReportfile">
+        <div class="col-12 col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <center>
+                <h1 style="color: rgb(255, 255, 255);">Vehicle report</h1>
+              </center>
+              <div id="detail">
+                <p id="empName"></p>
+                <p id="empID"></p>
+                <p id="empSalID"></p>
+                <p id="empGender"></p>
+                <p id="empType"></p>
               </div>
             </div>
           </div>
@@ -426,7 +596,7 @@
             </div>
 
             <div class="col-md-3" style="margin-top: 20px;">
-              <div class="adduser">
+              <div class="adduser" onclick="addUserFunction()">
                 <div class="icon">
                   <i
                     class="fa fa-plus-circle fa-10x"
@@ -452,7 +622,7 @@
             </div>
 
             <div class="col-md-3" style="margin-top: 20px;">
-              <div class="removeuser">
+              <div class="removeuser" onclick="removeUserFunction()">
                 <div class="icon">
                   <i
                     class="fa fa-minus-circle fa-10x"
@@ -504,7 +674,7 @@
             </div>
 
             <div class="col-md-3" style="margin-top: 20px;">
-              <div class="vehiclereport">
+              <div class="vehiclereport" onclick="vehicleReportFunction()">
                 <div class="icon">
                   <i
                     class="fa fa-car fa-10x"
@@ -533,6 +703,10 @@
       </div>
     </div>
 
+    <script src="/public/scripts/MOH/addEmployee.js"></script>
+    <script src="/public/scripts/MOH/dailyattendence.js"></script>
+    <script src="/public/scripts/MOH/employeedetails.js"></script>
+    <script src="/public/scripts/MOH/removeEmployee.js"></script>
     <script src="/public/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
