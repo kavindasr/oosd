@@ -89,7 +89,7 @@ class MOH extends User{
         super(userName,type,sessionID);
         this.apiAccess = {
             employee             : {GET:true,POST:true,PUT:true,DELETE:true,HEAD:true},
-            attendance           : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
+            attendance           : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:true},
             division             : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
             vehicle              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
             gdetail              : {GET:true,POST:true,PUT:true,DELETE:true,HEAD:true},
