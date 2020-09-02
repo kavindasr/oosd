@@ -26,4 +26,4 @@ function submitAttendance() {
   xhttp.open("POST", "http://localhost:8000/employees", true);
   xhttp.send(JSON.stringify(empObj));
 }
-s;
+
