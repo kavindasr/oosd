@@ -30,7 +30,7 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-user-circle"></i>
-              <span>&nbsp UserName</span>
+              <span id="userName">&nbsp UserName</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
               <a class="dropdown-item" href="#"><i class="fa fa-cog"></i>&nbsp Change password</a>
@@ -118,7 +118,12 @@
             <!-- Modal body -->
             <div class="modal-body">
               <div class="container-fluid">
-  
+                
+                <div class="row">
+                  <div class="col-sm-6">Invoice No    :</div>
+                  <div class="col-sm-6" id = "invoice"></div>
+                </div>
+
                 <div class="row">
                   <div class="col-sm-6">Date    :</div>
                   <div class="col-sm-6" id = "date"></div>
@@ -156,7 +161,7 @@
   </div>
 
 
-
+    <script src="/public/scripts/clerk/api.js"></script>
     <script src="/public/scripts/clerk/clerk_out.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="/public/bootstrap/js/bootstrap.min.js"></script>
