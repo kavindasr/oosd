@@ -23,6 +23,7 @@ const condition = new Map(
         ['divno','division_no'],
         ['gtype','waste_type'],
         ['salid','salary_id'],
+        ['gID','gindex']
     ]
 );
 
@@ -52,9 +53,11 @@ const field = new Map(
         ['oday','out_date'],
         ['otime','out_time'],
         ['oweight','weight'],
+        ['invoice','invoice_no'],
         //compost
         ['pctin','pct_produced'],
-        ['pctout','pct_sold']
+        ['pctout','pct_sold'],
+        ['maxid','MAX(invoice_no) AS pr']
         //add unique key to represnt different combinations of fields
     ]
 );

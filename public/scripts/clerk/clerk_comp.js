@@ -1,3 +1,5 @@
+document.getElementById("userName").innerHTML = sessionStorage.getItem("OOSD_session"); // insert this line to get user name in navbar
+
 function compIn(){
     var d = new Date();
     var cin_date = d.getFullYear() +"-" +(d.getMonth()+1)+"-"+d.getDate();
