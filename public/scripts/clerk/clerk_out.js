@@ -13,8 +13,7 @@ async function getGarbageList(){
         gdetails = await apiCall('GET', `http://localhost:8000/api/gdetail/gID&gtype`);
         console.log(gdetails);
         renderHtmlGout(gdetails);
-    }
-    catch(e){
+    }catch(e){
         console.log(e);
     }
 }
@@ -34,8 +33,7 @@ async function getPrice(){
         gprice = await apiCall('GET', 'http://localhost:8000/api/gdetail/unitp?gID=\"'+text+"\"");
         console.log(gprice);
         document.getElementById("priceperkg").innerHTML = gprice[0].unit_price;
-    }
-    catch(e){
+    }catch(e){
         console.log(e);
     }
 }
@@ -50,7 +48,7 @@ async function getDetail(){
     try{
         crntID = await apiCall('GET', 'http://localhost:8000/api/gout/maxid');
         var currentID= crntID[0].pr;
-        if (!currentID){nextID = 1000;}//This is the starting invoice no
+        if (!currentID){nextID = 30000;}//This is the starting invoice no
         else{ nextID=currentID+1;}
     }catch(e){
         console.log(e);
@@ -84,13 +82,14 @@ async function submitGout(){
         amnt    :   arr.gout_bill
     }; 
     console.log(goutObj);
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            if(!alert("Garbage Out details added successfully..")){window.location.reload();}
+    try{
+        await apiCall("POST",'http://localhost:8000/api/gout',goutObj);
+        if(!alert("Garbage Out details added successfully..")){
+            printDiv("myModal");
+            window.location.reload();
         }
-    };
-    xhttp.open("POST", "http://localhost:8000/api/gout", true);
-    xhttp.send(JSON.stringify(goutObj))
+    }catch(e){
+        console.log(e);
+    }
 }
  

@@ -1,91 +1,82 @@
-document.getElementById("userName").innerHTML = sessionStorage.getItem("OOSD_session"); // insert this line to get user name in navbar
-
-function compIn(){
-    var d = new Date();
-    var cin_date = d.getFullYear() +"-" +(d.getMonth()+1)+"-"+d.getDate();
-    var cin_time = new Date().toTimeString().split(" ")[0];
+var d = new Date();
+var date = d.getFullYear() +"-" +(d.getMonth()+1)+"-"+d.getDate();
+var time = new Date().toTimeString().split(" ")[0];
+// insert this line to get user name in navbar
+document.getElementById("userName").innerHTML = sessionStorage.getItem("OOSD_session"); 
+//add compin data to database
+async function compIn(){
     var pct_produce = parseInt(document.getElementById('compct').value);
-
     var compInObj = {
-        inday   :   `'${cin_date}'`,
-        time    :   `'${cin_time}'`,
+        inday   :   `'${date}'`,
+        time    :   `'${time}'`,
         pctin    :   pct_produce
     }; 
-
     console.log(compInObj);
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            if(!alert("Produced compost packet details added successfully..")){window.location.reload();}
-
-        }
-    };
-    xhttp.open("POST", "http://localhost:8000/api/compin", true);
-    xhttp.send(JSON.stringify(compInObj))
-
+    try{
+        await apiCall("POST",'http://localhost:8000/api/compin',compInObj);
+        if(!alert("Produced compost packet details added successfully..")){window.location.reload();}
+    }catch(e){
+        console.log(e);
+    }
 }
 
-function getPctPrice(){
-    var xhttp = new XMLHttpRequest();
-        var url =   'http://localhost:8000/api/gdetail/unitp?gtype="compost"';
-        console.log(url);
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                    var compPrice = JSON.parse(this.responseText);
-                    console.log(compPrice);
-                    document.getElementById("priceperpct").innerHTML = compPrice[0].unit_price;
-            }
-        };
-        xhttp.open("GET", url, true);
-        xhttp.send();
-    
+async function getPctPrice(){
+    try{
+        compPrice = await apiCall('GET', 'http://localhost:8000/api/gdetail/unitp?gtype="compost"');
+        console.log(compPrice);
+        document.getElementById("priceperpct").innerHTML = compPrice[0].unit_price;
+    }catch(e){
+        console.log(e);
+    }
 }
 
 function calculate(){
     var unitp = document.getElementById("priceperpct").innerHTML;
     var pcts = document.getElementById("nofpct").value;
     document.getElementById("amount").value = unitp*pcts;
+}
 
+async function getDetail(){
+    try{
+        crntID = await apiCall('GET', 'http://localhost:8000/api/compout/maxid');
+        var currentID= crntID[0].pr;
+        if (!currentID){nextID = 50000;}//This is the starting invoice no
+        else{ nextID=currentID+1;}
+    }catch(e){
+        console.log(e);
+    }
+    var cout_pcts = parseInt(document.getElementById('nofpct').value);
+    var cout_bill = parseInt(document.getElementById('amount').value);
+
+    return {nextID,cout_pcts,cout_bill};
 }
 //get the invoice data
-function getData(){
-    var d = new Date();
-    var cout_date = d.getFullYear() +"-" +(d.getMonth()+1)+"-"+d.getDate();
-    var cout_time = new Date().toTimeString().split(" ")[0];
-    var cout_pcts = parseInt(document.getElementById('nofpct').value);
-    var cout_bill = parseInt(document.getElementById('amount').value);
-
-    document.getElementById("date").innerHTML = cout_date;
-    document.getElementById("time").innerHTML = cout_time;
-    document.getElementById("pct").innerHTML = cout_pcts;
-    document.getElementById("amnt").innerHTML = "Rs. " + cout_bill
-
+async function getData(){
+    var arrD = await getDetail();
+    console.log(arrD);
+    document.getElementById("invoice").innerHTML = arrD.nextID;
+    document.getElementById("date").innerHTML = date;
+    document.getElementById("time").innerHTML = time;
+    document.getElementById("pct").innerHTML = arrD.cout_pcts;
+    document.getElementById("amnt").innerHTML = "Rs. " + arrD.cout_bill
 }
-function compOut(){
-    var d = new Date();
-    var cout_date = d.getFullYear() +"-" +(d.getMonth()+1)+"-"+d.getDate();
-    var cout_time = new Date().toTimeString().split(" ")[0];
-    var cout_pcts = parseInt(document.getElementById('nofpct').value);
-    var cout_bill = parseInt(document.getElementById('amount').value);
-
+async function compOut(){
+    var arr = await getDetail();
     var compOutObj = {
-        oday   :   `'${cout_date}'`,
-        otime    :   `'${cout_time}'`,
-        pctout    :   cout_pcts,
-        amnt    :   cout_bill
+        invoice :   arr.nextID,
+        oday    :   `'${date}'`,
+        otime   :   `'${time}'`,
+        pctout  :   arr.cout_pcts,
+        amnt    :   arr.cout_bill
     }; 
-
     console.log(compOutObj);
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            if(!alert("Sold compost packet details added successfully..")){window.location.reload();}
-
+    try{
+        await apiCall("POST",'http://localhost:8000/api/compout',compOutObj);
+        if(!alert("Sold compost packet details added successfully..")){
+            printDiv("myModal");
+            window.location.reload();
         }
-    };
-    xhttp.open("POST", "http://localhost:8000/api/compout", true);
-    xhttp.send(JSON.stringify(compOutObj))
-
+    }catch(e){
+        console.log(e);
+    }
 }

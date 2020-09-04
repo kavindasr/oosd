@@ -23,3 +23,13 @@ function apiCall(method,url,data){
         }
     });
 }
+
+function printDiv(divName) {
+    document.getElementById("footer").style.display="none";
+    document.getElementById("btn-close").style.display="none";
+    var printContents = document.getElementById(divName).innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+}
