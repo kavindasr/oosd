@@ -31,11 +31,15 @@ class ApiMethod {
     }
     async jsBody() {
         const reqBody = await this.method.getBody();
-        var fieldStr = "";
-        var valueStr = "";
-        var valueFinal = "";
-        var dataList = JSON.parse(reqBody);
-        
+        var fieldStr = "", valueStr = "", valueFinal = "" ;
+        var data = JSON.parse(reqBody);
+
+        if (Array.isArray(data)){
+            var dataList = data;
+        }else{
+            var dataList = [data];
+        }
+
         for (let key in dataList[0]) {
             fieldStr = fieldStr + getField(key) + ",";
         }
