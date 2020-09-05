@@ -50,7 +50,7 @@ class ApiMethod {
         function doThis(data){
             valueStr = "";
             for (let key in data) {
-                valueStr = valueStr + data[key] + ",";
+                valueStr = valueStr + getReqType(data[key]) + ",";
             }
             valueStr = "(" + valueStr.slice(0, -1) + ")"  ;
             valueFinal = valueFinal + valueStr + "," ;
@@ -151,6 +151,14 @@ class ApiHead extends ApiMethod {
         const fields = this.setFeilds();
         const condition = this.setConditions();
         this.query = `SELECT ${fields} FROM ${getTable(this.method.getPath(2))} WHERE ${condition}`;
+    }
+}
+
+function getReqType(value){
+    if (typeof value == "number"){
+        return (value);
+    }else{
+        return ("'" + value + "'");
     }
 }
 
