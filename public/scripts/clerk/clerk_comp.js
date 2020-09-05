@@ -22,7 +22,7 @@ async function compIn(){
 
 async function getPctPrice(){
     try{
-        compPrice = await apiCall('GET', 'http://localhost:8000/api/gdetail/unitp?gtype="compost"');
+        compPrice = await apiCall('GET', 'http://localhost:8000/api/gdetail/unitp?gtype="Compost"');
         console.log(compPrice);
         document.getElementById("priceperpct").innerHTML = compPrice[0].unit_price;
     }catch(e){

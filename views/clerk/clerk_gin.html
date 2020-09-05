@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/public/styles/clerk/clerk_comp.css" />
+    <link rel="stylesheet" href="/public/styles/clerk/clerk_gin.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Clerk</title>
   </head>
   <body>
     <!--Navbar -->
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Compost Production</a>
+      <a class="navbar-brand" href="#">Garbage In</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
         aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -19,10 +19,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/clerk/clerk_gin">Garbage In</a>
+            <a class="nav-link" href="/clerk/clerk_out">Garbage Out</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/clerk/clerk_out">Garbage Out</a>
+            <a class="nav-link" href="/clerk/clerk_comp">Compost Production</a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons">
@@ -47,79 +47,80 @@
     <div class="mt-5 container">
       <div class="row">
           <!-- image -->
-          <div id="imgdiv" class="col-sm-5 rounded-left" style="background: linear-gradient(to bottom, #009999 0%, #003366 100%); padding-top: 100px;">
-            <div class="img">
-              <img class="my-auto d-block img-fluid" src="/public/images/comp.svg">
-            </div>
+          <div id="imgdiv" class="col-sm-5 rounded-left" style="background-image: url('/public/images/bc4.svg'); background-size: cover; padding-top: 100px;">
           </div>
 
-
-        
-
-        <div class="col-sm-7 rounded-right" style="background-color: #359b9b;">
+          <div class="col-sm-7 rounded-right" style="background-color: #1194b3;">
 
             <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist" style="font-size: large;">
               <li class="nav-item" role="presentation">
-                <a class="nav-link active text-dark" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="employees" aria-selected="true">Compost In</a>
+                <a class="nav-link active text-dark" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-selected="true">Billed</a>
               </li>
               <li class="nav-item" role="presentation">
-                <a class="nav-link text-dark" id="profile-tab" data-toggle="tab" href="#menu1" onclick="getPctPrice()" role="tab" aria-controls="Vehicle" aria-selected="false">Compost Out</a>
+                <a class="nav-link text-dark" id="profile-tab" data-toggle="tab" href="#menu1" role="tab" aria-selected="false">Un Billed</a>
               </li>
             </ul>
 
           <!-- Tab panes -->
             <div class="tab-content">
               <div id="home" class="container tab-pane active"><br>
-                <!-- form -->
+              <!-- form -->
                   <form class="mb-4" style="font-size: large;">
 
-                    <div class="mx-auto" style="width:150px ">
-                      <p class="font-weight-bolder" style="font-family: sans-serif;"><h3>Compost In</h3></p>
+                    <div id="gtype" class="form-group">
+                        <label for="sel1">Garbage Type</label>
+                        <select class="form-control" id="selbox1" onchange="getPrice()">
+                          <option>----Select TYPE----</option>
+                        </select>
+                    </div>       
+                    
+                    <div id = "price" class="form-group">
+                        <label for="pricekg">Price per 1kg(Rs.)</label>
+                        <label class="form-control" id="priceperkg">
                     </div>
 
-                    <div id = "nopct" class="form-group">
-                        <label for="compct">Packets Produced</label>
-                        <input type="number" class="form-control" id="compct">
+                    <div id = "gweight" class="form-group">
+                        <label for="lweight">Weight(kg)</label>
+                        <input type="number" class="form-control" id="weight" placeholder="kg">
                     </div>
                 
-                    <div id="div7 " >
-                        <button id="btn" class="btn btn-block" style="background-color:#0d4d57; color: white;"type="button" onclick="compIn()">SUBMIT</button>
+                    
+                    <div id="bill" class="input-group mb-3">
+                        <label for="lamount">Bill Amount(Rs.)</label>
+                        <div id="grp" class="input-group mb-3">
+                            <input type="number" class="form-control" id="amount" placeholder="Rs.">
+                            <div class="input-group-append">
+                                <button class="btn btn-dark" type="button" onclick="calculate()">SHOW</button> 
+                            </div>
+                        </div>
+                    </div> 
+                    <!-- Button trigger modal -->
+                    <div id="div7" >
+                        <button id="btn" class="btn btn-block" style="background-color:lightseagreen "type="button" data-toggle="modal" data-target="#myModal" data-backdrop="static" onclick="getData()">SAVE</button>
                     </div>
                 </form>
                 <!-- form -->
               </div>
               <!-- home tab content ends -->
 
-              <div id="menu1" class="container tab-pane fade"><br>
+          <div id="menu1" class="container tab-pane fade"><br>
                 <!-- form -->
                 <form class="mb-4" style="font-size: large;">
 
-                  <div class="mx-auto" style="width:170px ">
-                    <p class="font-weight-bolder" style="font-family: sans-serif;"><h3>Compost Out</h3></p>
+                  <div id="gtype" class="form-group">
+                    <label for="sel1">Garbage Type</label>
+                    <select class="form-control" id="selbox2">
+                      <option>----Select TYPE----</option>
+                    </select>
                   </div>  
-                  
-                  <div id = "price" class="form-group">
-                      <label for="pricepct">Price per Compost Packet(Rs.)</label>
-                      <label class="form-control" id="priceperpct">
-                  </div>
 
-                  <div id = "pctsold" class="form-group">
-                      <label for="pcts">No of Packets</label>
-                      <input type="number" class="form-control" id="nofpct">
+                  <div id = "gmass" class="form-group">
+                      <label for="mass">Weight(kg)</label>
+                      <input type="number" class="form-control" id="mass">
                   </div>
-                  
-                  <div id="bill" class="input-group mb-3">
-                    <label for="lamount">Bill Amount(Rs.)</label>
-                    <div id="grp" class="input-group mb-3">
-                        <input type="number" class="form-control" id="amount" placeholder="Rs.">
-                        <div class="input-group-append">
-                            <button class="btn btn-dark" type="button" onclick="calculate()">SHOW</button> 
-                        </div>
-                    </div>
-                  </div> 
-
+                
                   <div id="div7 " >
-                      <button id="btn" class="btn btn-block" style="background-color:#0d4d57; color: white;"type="button" data-toggle="modal" data-target="#myModal" data-backdrop="static" onclick="getData()">SAVE</button>
+                      <button id="btn" class="btn btn-block" style="background-color:#0d4d57; color: white;" type="button" onclick="submitData()">SUBMIT</button>
                   </div>
               </form>
               <!-- form -->
@@ -163,11 +164,6 @@
               </div>
 
               <div class="row">
-                <div class="col-sm-6">Type  :</div>
-                <div class="col-sm-6" id = "gartype">Compost</div>
-              </div>
-
-              <div class="row">
                 <div class="col-sm-6">Date    :</div>
                 <div class="col-sm-6" id = "date"></div>
               </div>
@@ -176,10 +172,15 @@
                 <div class="col-sm-6">Time    :</div>
                 <div class="col-sm-6" id = "time"></div>
               </div>
-              
+
               <div class="row">
-                <div class="col-sm-6">No of Packets    :</div>
-                <div class="col-sm-6" id = "pct"></div>
+                <div class="col-sm-6">Garbage Type  :</div>
+                <div class="col-sm-6" id = "gartype"></div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">Weight(kg)   :</div>
+                <div class="col-sm-6" id = "wght"></div>
               </div>
 
               <div class="row" id ="a">
@@ -190,7 +191,7 @@
         </div>
           <!-- Modal footer -->
           <div class="modal-footer" id="footer">
-            <button id="btnf" type="button" class="btn btn-dark" data-dismiss="modal" onclick="compOut()">Submit & Print</button>
+            <button id="btnf" type="button" class="btn btn-dark" data-dismiss="modal" onclick="submitGBill()">Submit & Print</button>
             <button id="btnf" type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
           </div>
 
@@ -200,7 +201,7 @@
     <!-- The Modal -->
 
     <script src="/public/scripts/clerk/api.js"></script>
-    <script src="/public/scripts/clerk/clerk_comp.js"></script>
+    <script src="/public/scripts/clerk/clerk_gin.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="/public/bootstrap/js/bootstrap.min.js"></script>
   </body>
