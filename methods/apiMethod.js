@@ -42,20 +42,9 @@ class ApiMethod {
 
         for (let key in dataList[0]) {
             fieldStr = fieldStr + getField(key) + ",";
+            valueStr = valueStr + data[key] + ",";
         }
-
-        dataList.forEach(doThis);
-
-        function doThis(data){
-            valueStr = "";
-            for (let key in data) {
-                valueStr = valueStr + data[key] + ",";
-            }
-            valueStr = "(" + valueStr.slice(0, -1) + ")"  ;
-            valueFinal = valueFinal + valueStr + "," ;
-        }
-        
-        return { field: fieldStr.slice(0, -1), val: valueFinal.slice(0, -1) };
+        return { field: fieldStr.slice(0, -1), val: valueStr.slice(0, -1) };
     }
     async execute(isVaild) {
         if(!isVaild){
@@ -105,7 +94,8 @@ class ApiPost extends ApiMethod {
         const fields = StrComp["field"];
         const values = StrComp["val"];
 
-        this.query = `INSERT INTO ${getTable(this.method.getPath(2))} (${fields}) VALUES ${values}`;
+        this.query = `INSERT INTO ${getTable(this.method.getPath(2))} (${fields}) VALUES (${values})`;
+        console.log(this.query);
         return true;
     }
 }

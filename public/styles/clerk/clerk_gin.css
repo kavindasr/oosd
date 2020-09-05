@@ -1,0 +1,24 @@
+body{
+    background-color: #1F618D;
+    color: aliceblue;
+  }
+
+  @media screen and (max-width: 600px){
+    .img{
+      display: none;
+    }
+    #imgdiv{
+      display: none;
+    }
+  }
+  .row{
+    flex-wrap: nowrap;
+  }
+
+  .modal-header{
+    border-bottom: 1px solid #202427;
+  }
+  .modal-footer{
+    border-top: 1px solid #202427;
+  }
+
