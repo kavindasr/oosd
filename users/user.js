@@ -59,8 +59,8 @@ class User{
 }
 
 class DepotSuperviser extends User{
-    constructor(userName,type,sessionID){
-        super(userName,type,sessionID);
+    constructor(userName,type,sessionID,lastUsedTime){
+        super(userName,type,sessionID,lastUsedTime);
         this.mainPage = '/depot/main';
         this.apiAccess = {
             employee             : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
@@ -85,8 +85,8 @@ class DepotSuperviser extends User{
 }
 
 class MOH extends User{
-    constructor(userName,type,sessionID){
-        super(userName,type,sessionID);
+    constructor(userName,type,sessionID,lastUsedTime){
+        super(userName,type,sessionID,lastUsedTime);
         this.apiAccess = {
             employee             : {GET:true,POST:true,PUT:true,DELETE:true,HEAD:true},
             attendance           : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:true},
@@ -118,15 +118,15 @@ class MOH extends User{
 class Clerk extends User{
     constructor(userName,type,sessionID){
         super(userName,type,sessionID);
-        this.mainPage = '/clerk/clerk_in';
+        this.mainPage = '/clerk/clerk_gin';
         this.apiAccess = {
             employee             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             attendance           : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             division             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             vehicle              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             gdetail              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
-            ginbill              : {GET:false,POST:true,PUT:false,DELETE:false,HEAD:false},
-            gunbill              : {GET:false,POST:true,PUT:false,DELETE:false,HEAD:false},
+            ginbill              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
+            gunbill              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
             gout                 : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
             compin               : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
             compout              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false}
@@ -146,8 +146,8 @@ class Clerk extends User{
 }
 
 class Mayor extends User{
-    constructor(userName,type,sessionID){
-        super(userName,type,sessionID);
+    constructor(userName,type,sessionID,lastUsedTime){
+        super(userName,type,sessionID,lastUsedTime);
         this.apiAccess = {
             employee             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             attendance           : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},

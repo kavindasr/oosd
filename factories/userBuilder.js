@@ -8,19 +8,19 @@ class UserBuilder{
     constructor(method){
         this.method=method;
     }
-    userCreation(userName,userType,sessionID){
+    userCreation(userName,userType,sessionID,lastTime){
         var us = null;
         if (userType=="depot"){
-            us = new DepotSuperviser(userName,"depot",sessionID);
+            us = new DepotSuperviser(userName,"depot",sessionID,lastTime);
             
         }else if (userType=="mayor"){
-            us = new Mayor(userName,"mayor",sessionID);
+            us = new Mayor(userName,"mayor",sessionID,lastTime);
             
         }else if (userType=="clerk"){
-            us = new Clerk(userName,"clerk",sessionID);
+            us = new Clerk(userName,"clerk",sessionID,lastTime);
             
         }else if (userType=="moh"){
-            us =  new MOH(userName,"moh",sessionID);
+            us =  new MOH(userName,"moh",sessionID,lastTime);
             
         }
         return us

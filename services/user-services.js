@@ -104,19 +104,24 @@ const checkExpiry = () =>{
 }
 
 async function exCheck(){
-    for (const [key, value] of users.entries()) {
-        if (value.isExpired()){
-            console.log( value.userName + " expired");
-            users.delete(key);
-            try{
-                const data = await executeSQL(`DELETE FROM session_table WHERE sessionID= '${key}'`);
-            }catch(e){
-                console.log("database error");
+    if(users.size!=0){
+        for (const [key, value] of users.entries()) {
+            if (value.isExpired()){
+                console.log( value.userName + " expired");
+                users.delete(key);
+                try{
+                    const data = await executeSQL(`DELETE FROM session_table WHERE sessionID= '${key}'`);
+                }catch(e){
+                    console.log("database error");
+                }
+            }else{
+                console.log( value.userName + " Not yet expired");
             }
-        }else{
-            console.log( value.userName + " Not yet expired");
         }
+    }else{
+        console.log("No logged in users");
     }
+    
 
 }
 
@@ -125,6 +130,7 @@ const getSessions = async (uBuilder) => {
     if (data.length!=0){
         for (const [key, value] of data.entries()) {
             var user = uBuilder.userCreation(value.user_name,value.user_type,value.sessionID,value.start_time);
+            console.log(value.user_name + " logged in");
             users.set(user.sessionID,user);
         }
     }else{

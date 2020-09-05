@@ -125,7 +125,7 @@ Can use these end points to interact with the user_table
                 "password": "clerk"
             }
 
-2.>>>PUT - change the password of an existing user - localhost:8000/changePass?uName='Meelan'
+2.>>>PUT - change the password of an existing user - localhost:8000/changePass?uName='meelan'
     body - 
             {
                 "NewPassword" : "password"
