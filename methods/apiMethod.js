@@ -31,13 +31,14 @@ class ApiMethod {
     }
     async jsBody() {
         const reqBody = await this.method.getBody();
-        var fieldStr = "", valueStr = "", valueFinal = "" ;
+        var fieldStr = "", valueStr = "", valueFinal = "";
+        var dataList = [];
         var data = JSON.parse(reqBody);
 
         if (Array.isArray(data)){
-            var dataList = data;
+            dataList = data;
         }else{
-            var dataList = [data];
+            dataList.push(data);
         }
 
         for (let key in dataList[0]) {
@@ -54,8 +55,7 @@ class ApiMethod {
             valueStr = "(" + valueStr.slice(0, -1) + ")"  ;
             valueFinal = valueFinal + valueStr + "," ;
         }
-
-          
+        
         return { field: fieldStr.slice(0, -1), val: valueFinal.slice(0, -1) };
     }
     async execute(isVaild) {
@@ -107,7 +107,6 @@ class ApiPost extends ApiMethod {
         const values = StrComp["val"];
 
         this.query = `INSERT INTO ${getTable(this.method.getPath(2))} (${fields}) VALUES ${values}`;
-        console.log(this.query);
         return true;
     }
 }
