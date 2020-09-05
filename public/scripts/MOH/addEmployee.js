@@ -7,12 +7,12 @@ function submitAttendance() {
   var emp_type = parseInt(document.getElementById("emtype").value);
 
   var empObj = {
-    employee_id: emp_id,
-    salary_id: sal_id,
-    name: emp_Name,
-    dob: emp_dob,
-    employee_type: emp_type,
-    gender: emp_gen,
+    empId: emp_id,
+    salId: sal_id,
+    empName: emp_Name,
+    bdate: emp_dob,
+    empType: emp_type,
+    sex: emp_gen,
   };
 
   console.log(empObj);
@@ -23,7 +23,7 @@ function submitAttendance() {
       alert("Employee Added Successfully..");
     }
   };
-  xhttp.open("POST", "http://localhost:8000/employees", true);
+  xhttp.open("POST", "http://localhost:8000/api/employee", true);
   xhttp.send(JSON.stringify(empObj));
 }
 
