@@ -1,714 +1,557 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.min.css" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/public/styles/MOH/home.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-      function addemployeeFunction() {
-        var x = document.getElementById("addemployeefile");
-        if (x.style.display === "block") {
-          x.style.display = "none";
-        } else {
-          x.style.display = "block";
-        }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/public/styles/MOH/home.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    function addemployeeFunction() {
+      var x = document.getElementById("addemployeefile");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
       }
+    }
 
-      function removeemployeeFunction() {
-        var x = document.getElementById("removeemployeefile");
-        if (x.style.display === "block") {
-          x.style.display = "none";
-        } else {
-          x.style.display = "block";
-        }
+    function removeemployeeFunction() {
+      var x = document.getElementById("removeemployeefile");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
       }
+    }
 
-      function employeedetailFunction() {
-        var x = document.getElementById("employeedetailfile");
-        if (x.style.display === "block") {
-          x.style.display = "none";
-        } else {
-          x.style.display = "block";
-        }
+    function employeedetailFunction() {
+      var x = document.getElementById("employeedetailfile");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
       }
+    }
 
-      function dailyattendenceFunction() {
-        var x = document.getElementById("dailyattendencefile");
-        if (x.style.display === "block") {
-          x.style.display = "none";
-        } else {
-          x.style.display = "block";
-        }
+    function dailyattendenceFunction() {
+      var x = document.getElementById("dailyattendencefile");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
       }
+    }
 
-      function addUserFunction() {
-        var x = document.getElementById("addUserfile");
-        if (x.style.display === "block") {
-          x.style.display = "none";
-        } else {
-          x.style.display = "block";
-        }
+    function addUserFunction() {
+      var x = document.getElementById("addUserfile");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
       }
+    }
 
-      function removeUserFunction() {
-        var x = document.getElementById("removeUserfile");
-        if (x.style.display === "block") {
-          x.style.display = "none";
-        } else {
-          x.style.display = "block";
-        }
+    function removeUserFunction() {
+      var x = document.getElementById("removeUserfile");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
       }
+    }
 
-      function vehicleReportFunction() {
-        var x = document.getElementById("vehicleReportfile");
-        if (x.style.display === "block") {
-          x.style.display = "none";
-        } else {
-          x.style.display = "block";
-        }
+    function vehicleReportFunction() {
+      var x = document.getElementById("vehicleReportfile");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
       }
+    }
 
-    </script>
-    <title>MOH</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              href="home.html"
-            >
-              Home
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbardrop"
-              data-toggle="dropdown"
-            >
-              Handle Employees
-            </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="addEmployee.html">Add Employee</a>
-              <a class="dropdown-item" href="removeEmployee.html"
-                >Remove Employee</a
-              >
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbardrop"
-              data-toggle="dropdown"
-            >
-              Handle users
-            </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Add User</a>
-              <a class="dropdown-item" href="logout.html">Remove Employee</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbardrop"
-              data-toggle="dropdown"
-            >
-              View Reports
-            </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="dailyattendence.html"
-                >Daily Attendence</a
-              >
-              <a class="dropdown-item" href="#">Vehicle Report</a>
-              <a class="dropdown-item" href="#">Garbage Report</a>
-              <a class="dropdown-item" href="employeedetail.html">Employee Details</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbardrop"
-              data-toggle="dropdown"
-            >
-              Settings
-            </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Change password</a>
-              <a class="dropdown-item" href="#">Log Out</a>
-            </div>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto nav-flex-icons">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-user-circle"></i>
-              <span>&nbsp UserName</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-              <a class="dropdown-item" href="#"><i class="fa fa-cog"></i>&nbsp Change password</a>
-              <a class="dropdown-item" href="/logOut"><i class="fa fa-sign-out"></i>&nbsp Sign out</a>
-            </div>
-          </li>
-        </ul>
-    </nav>
+  </script>
+  <title>MOH</title>
+</head>
 
-    <div id="addemployeefile" style="display: none;">
-      <div class="row row-content bodycontent" id="addemployeefile">
-        <div class="col-12 col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <center><h3 style="color: white;">ADD EMPLOYEE</h3></center>
-              <form class="form-group">
-                <div id="tooglepart1">
-                  <input
-                    id="name"
-                    type="text"
-                    name="Weight1"
-                    placeholder="Name"
-                  />
-                </div>
-                <div id="tooglepart2">
-                  <input
-                    id="id"
-                    type="number"
-                    name="Weight2"
-                    placeholder="Employee ID"
-                  />
-                </div>
-                <div id="tooglepart3">
-                  <input
-                    id="salid"
-                    type="number"
-                    name="Weight3"
-                    placeholder="Salary-ID"
-                  />
-                </div>
-                <div id="togglepart4">
-                  <input
-                    id="dob"
-                    type="text"
-                    name="Bill4"
-                    placeholder="Year/Month/Date"
-                  />
-                </div>
-                <div id="togglepart5">
-                  <div class="box">
-                    <select id="selection">
-                      <option value="M">Male</option>
-                      <option value="F">Female</option>
-                    </select>
-                  </div>
-                </div>
-                <div id="togglepart6">
-                  <input
-                    id="emtype"
-                    type="number"
-                    name="Bill5"
-                    placeholder="Employee Type"
-                  />
-                </div>
-                <div id="sub">
-                  <button id="btn" type="button" onclick="submitAttendance()">
-                    ADD
-                  </button>
-                </div>
-              </form>
-            </div>
+<body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+      aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="home.html">
+            Home
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Handle Employees
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="addEmployee.html">Add Employee</a>
+            <a class="dropdown-item" href="removeEmployee.html">Remove Employee</a>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="removeemployeefile" style="display: none;">
-      <div class="row row-content bodycontent" id="removeemployeefile">
-        <div class="col-12 col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <center>
-                <h1 style="color: rgb(250, 250, 250);">REMOVE EMPLOYEE</h1>
-              </center>
-              <form action="" target="_self">
-                <br />
-                <div id="togglepart">
-                  <label
-                    for="mass"
-                    style="font-family: arial; color: rgb(255, 255, 255);"
-                    >Index number</label
-                  >
-                  <input
-                    type="text"
-                    id="mass"
-                    name="Weight"
-                    placeholder="180044"
-                  />
-                </div>
-                <div id="sub">
-                  <button id="btn" type="button" onclick="submitAttendance()">
-                    REMOVE
-                  </button>
-                </div>
-              </form>
-            </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Handle users
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Add User</a>
+            <a class="dropdown-item" href="logout.html">Remove Employee</a>
           </div>
-        </div>
-      </div>
-    </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            View Reports
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="dailyattendence.html">Daily Attendence</a>
+            <a class="dropdown-item" href="#">Vehicle Report</a>
+            <a class="dropdown-item" href="#">Garbage Report</a>
+            <a class="dropdown-item" href="employeedetail.html">Employee Details</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Settings
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Change password</a>
+            <a class="dropdown-item" href="#">Log Out</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-circle"></i>
+            <span>&nbsp UserName</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+            <a class="dropdown-item" href="#"><i class="fa fa-cog"></i>&nbsp Change password</a>
+            <a class="dropdown-item" href="/logOut"><i class="fa fa-sign-out"></i>&nbsp Sign out</a>
+          </div>
+        </li>
+      </ul>
+  </nav>
 
-    <div id="employeedetailfile" style="display: none;">
-      <div class="row row-content bodycontent" id="employeedetailfile">
-        <div class="col-12 col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <center>
-                <h1 style="color: rgb(255, 255, 255);">Employee Detail</h1>
-              </center>
-              <form action="" target="_self">
-                <br />
-                <div id="togglepart">
-                  <label
-                    for="mass"
-                    style="font-family: arial; color: rgb(255, 255, 255);"
-                    >Enter Employee ID</label
-                  >
-                  <input
-                    id="idnum"
-                    type="number"
-                    name="emp_id"
-                    placeholder="180044"
-                  />
-                </div>
-                <div id="sub">
-                  <button id="btn" type="button" onclick="viewEmployee()">
-                    SUBMIT
-                  </button>
-                </div>
-              </form>
-              <div id="detail">
-                <p id="empName"></p>
-                <p id="empID"></p>
-                <p id="empSalID"></p>
-                <p id="empGender"></p>
-                <p id="empType"></p>
+  <div id="addemployeefile" style="display: none;">
+    <div class="row row-content bodycontent" id="addemployeefile">
+      <div class="col-12 col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <center>
+              <h3 style="color: white;">ADD EMPLOYEE</h3>
+            </center>
+            <form class="form-group">
+              <div id="tooglepart1">
+                <input id="name" type="text" name="Weight1" placeholder="Name" />
               </div>
-            </div>
+              <div id="tooglepart2">
+                <input id="id" type="number" name="Weight2" placeholder="Employee ID" />
+              </div>
+              <div id="tooglepart3">
+                <input id="salid" type="number" name="Weight3" placeholder="Salary-ID" />
+              </div>
+              <div id="togglepart4">
+                <input id="dob" type="text" name="Bill4" placeholder="Year/Month/Date" />
+              </div>
+              <div id="togglepart5">
+                <div class="box">
+                  <select id="selection">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                  </select>
+                </div>
+              </div>
+              <div id="togglepart6">
+                <input id="emtype" type="number" name="Bill5" placeholder="Employee Type" />
+              </div>
+              <div id="sub">
+                <button id="btn" type="button" onclick="submitAttendance()">
+                  ADD
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div id="dailyattendencefile" style="display: none;">
-      <div class="row row-content bodycontent">
-        <div class="col-12 col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <center>
-                <h1 style="color: rgb(255, 255, 255);">Daily Attendence</h1>
-              </center>
-              <form action="" target="_self">
-                <br />
-                <div id="togglepart">
-                  <label
-                    for="mass"
-                    style="font-family: arial; color: rgb(255, 255, 255);"
-                    >Enter Date</label
-                  >
-                  <input
-                    id="inpdate"
-                    type="string"
-                    name="emp_id"
-                    placeholder="1997-07-28"
-                  />
-                </div>
-              </form>
+  <div id="removeemployeefile" style="display: none;">
+    <div class="row row-content bodycontent" id="removeemployeefile">
+      <div class="col-12 col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <center>
+              <h1 style="color: rgb(250, 250, 250);">REMOVE EMPLOYEE</h1>
+            </center>
+            <form action="" target="_self">
+              <br />
+              <div id="togglepart">
+                <label for="number" style="font-family: arial; color: rgb(255, 255, 255);">Index number</label>
+                <input type="text" id="removeid" name="removeid" placeholder="180044" />
+              </div>
+              <div id="sub">
+                <button id="btn" type="button" onclick="removeemp()">
+                  REMOVE
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="employeedetailfile" style="display: none;">
+    <div class="row row-content bodycontent" id="employeedetailfile">
+      <div class="col-12 col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <center>
+              <h1 style="color: rgb(255, 255, 255);">Employee Detail</h1>
+            </center>
+            <form action="" target="_self">
+              <br />
+              <div id="togglepart">
+                <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Enter Employee ID</label>
+                <input id="idnum" type="number" name="emp_id" placeholder="180044" />
+              </div>
               <div id="sub">
                 <button id="btn" type="button" onclick="viewEmployee()">
                   SUBMIT
                 </button>
               </div>
-              <div id="detail">
-                <p id="empID"></p>
-                <p id="empdiv"></p>
-                <p id="entdate"></p>
-                <p id="vehiclewalk"></p>
-              </div>
+            </form>
+            <div id="detail">
+              <p id="empName"></p>
+              <p id="empID"></p>
+              <p id="empSalID"></p>
+              <p id="empGender"></p>
+              <p id="empType"></p>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div id="addUserfile" style="display: none;">
-      <div class="row row-content bodycontent" id="addUserfile">
-        <div class="col-12 col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <center>
-                <h1 style="color: rgb(255, 255, 255);">Add User</h1>
-              </center>
-              <form action="" target="_self">
-                <br />
-                <div id="togglepart">
-                  <label
-                    for="mass"
-                    style="font-family: arial; color: rgb(255, 255, 255);"
-                    >Username</label
-                  >
-                  <input
-                    id="username"
-                    type="text"
-                    name="username"
-                    placeholder="Username"
-                  />
-                </div>
-                <div id="togglepart">
-                  <label
-                    for="mass"
-                    style="font-family: arial; color: rgb(255, 255, 255);"
-                    >User Type</label
-                  >
-                  <div id="togglepart5">
-                    <div class="box">
-                      <select id="selection">
-                        <option value="M">Clerk</option>
-                        <option value="F">Depot</option>
-                        <option value="F">MOH</option>
-                      </select>
-                    </div>
+  <div id="dailyattendencefile" style="display: none;">
+    <div class="row row-content bodycontent">
+      <div class="col-12 col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <center>
+              <h1 style="color: rgb(255, 255, 255);">Daily Attendence</h1>
+            </center>
+            <form action="" target="_self">
+              <br />
+              <div id="togglepart">
+                <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Enter Date</label>
+                <input id="inpdate" type="string" name="emp_id" placeholder="1997-07-28" />
+              </div>
+            </form>
+            <div id="sub">
+              <button id="btn" type="button" onclick="viewEmployee()">
+                SUBMIT
+              </button>
+            </div>
+            <div id="detail">
+              <p id="empID"></p>
+              <p id="empdiv"></p>
+              <p id="entdate"></p>
+              <p id="vehiclewalk"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="addUserfile" style="display: none;">
+    <div class="row row-content bodycontent" id="addUserfile">
+      <div class="col-12 col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <center>
+              <h1 style="color: rgb(255, 255, 255);">Add User</h1>
+            </center>
+            <form action="" target="_self">
+              <br />
+              <div id="togglepart">
+                <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Username</label>
+                <input id="username" type="text" name="username" placeholder="Username" />
+              </div>
+              <div id="togglepart">
+                <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">User Type</label>
+                <div id="togglepart5">
+                  <div class="box">
+                    <select id="selection">
+                      <option value="M">Clerk</option>
+                      <option value="F">Depot</option>
+                      <option value="F">MOH</option>
+                    </select>
                   </div>
                 </div>
-                <div id="togglepart">
-                  <label
-                    for="mass"
-                    style="font-family: arial; color: rgb(255, 255, 255);"
-                    >Password</label
-                  >
-                  <input
-                    id="password"
-                    type="text"
-                    name="password"
-                    placeholder="180044"
-                  />
-                </div>
-                <div id="sub">
-                  <button id="btn" type="button" onclick="viewEmployee()">
-                    ADD USER
-                  </button>
-                </div>
-              </form>
-              <div id="detail">
-                <p id="empName"></p>
-                <p id="empID"></p>
-                <p id="empSalID"></p>
-                <p id="empGender"></p>
-                <p id="empType"></p>
               </div>
+              <div id="togglepart">
+                <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Password</label>
+                <input id="password" type="text" name="password" placeholder="180044" />
+              </div>
+              <div id="sub">
+                <button id="btn" type="button" onclick="viewEmployee()">
+                  ADD USER
+                </button>
+              </div>
+            </form>
+            <div id="detail">
+              <p id="empName"></p>
+              <p id="empID"></p>
+              <p id="empSalID"></p>
+              <p id="empGender"></p>
+              <p id="empType"></p>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div id="removeUserfile" style="display: none;">
-      <div class="row row-content bodycontent" id="removeUserfile">
-        <div class="col-12 col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <center>
-                <h1 style="color: rgb(250, 250, 250);">REMOVE USER</h1>
-              </center>
-              <form action="" target="_self">
-                <br />
-                <div id="togglepart">
-                  <label
-                    for="mass"
-                    style="font-family: arial; color: rgb(255, 255, 255);"
-                    >Remove User</label
-                  >
-                  <input
-                    type="text"
-                    id="USER"
-                    name="user"
-                    placeholder="UserName"
-                  />
-                </div>
-                <div id="sub">
-                  <button id="btn" type="button" onclick="submitAttendance()">
-                    REMOVE
-                  </button>
-                </div>
-              </form>
+  <div id="removeUserfile" style="display: none;">
+    <div class="row row-content bodycontent" id="removeUserfile">
+      <div class="col-12 col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <center>
+              <h1 style="color: rgb(250, 250, 250);">REMOVE USER</h1>
+            </center>
+            <form action="" target="_self">
+              <br />
+              <div id="togglepart">
+                <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Remove User</label>
+                <input type="text" id="USER" name="user" placeholder="UserName" />
+              </div>
+              <div id="sub">
+                <button id="btn" type="button" onclick="submitAttendance()">
+                  REMOVE
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="vehicleReportfile" style="display: none;">
+    <div class="row row-content bodycontent" id="vehicleReportfile">
+      <div class="col-12 col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <center>
+              <h1 style="color: rgb(255, 255, 255);">Vehicle report</h1>
+            </center>
+            <div id="detail">
+              <p id="empName"></p>
+              <p id="empID"></p>
+              <p id="empSalID"></p>
+              <p id="empGender"></p>
+              <p id="empType"></p>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div id="vehicleReportfile" style="display: none;">
-      <div class="row row-content bodycontent" id="vehicleReportfile">
-        <div class="col-12 col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <center>
-                <h1 style="color: rgb(255, 255, 255);">Vehicle report</h1>
-              </center>
-              <div id="detail">
-                <p id="empName"></p>
-                <p id="empID"></p>
-                <p id="empSalID"></p>
-                <p id="empGender"></p>
-                <p id="empType"></p>
+  <div class="wrapper">
+    <div class="works" id="work">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3" style="margin-top: 20px;">
+            <div class="addemployee" onclick="addemployeeFunction()">
+              <div class="icon">
+                <i class="fa fa-user-plus fa-10x" style="
+                      color: rgb(255, 254, 254);
+                      padding-top: 10%;
+                      font-size: 400%;
+                      display: flex;
+                      justify-content: center;
+                    "></i>
               </div>
+              <p class="namedtl" style="
+                      display: flex;
+                      justify-content: center;
+                      color: rgb(255, 254, 254);
+                    ">Add Employee</p>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-3" style="margin-top: 20px;">
+            <div class="removeemployee" onclick="removeemployeeFunction()">
+              <div class="icon">
+                <i class="fa fa-user-times fa-10x" style="
+                      color: rgb(255, 255, 255);
+                      font-size: 400%;
+                      padding-top: 10%;
+                      display: flex;
+                      justify-content: center;
+                    "></i>
+              </div>
+              <p class="namedtl" style="
+                      display: flex;
+                      justify-content: center;
+                      color: rgb(255, 254, 254);
+                    ">Remove Employee</p>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-3" style="margin-top: 20px;">
+            <div class="employeedetails" onclick="employeedetailFunction()">
+              <div class="icon">
+                <i class="fa fa-address-card fa-10x" style="
+                      color: rgb(255, 255, 255);
+                      font-size: 400%;
+                      padding-top: 10%;
+                      display: flex;
+                      justify-content: center;
+                    "></i>
+              </div>
+              <p class="namedtl" style="
+                      display: flex;
+                      justify-content: center;
+                      color: rgb(255, 254, 254);
+                    ">Employee Detail</p>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-3" style="margin-top: 20px;">
+            <div class="dailyattendence" onclick="dailyattendenceFunction()">
+              <div class="icon">
+                <i class="fa fa-address-card fa-10x" style="
+                      color: rgb(255, 255, 255);
+                      font-size: 400%;
+                      padding-top: 10%;
+                      display: flex;
+                      justify-content: center;
+                    "></i>
+              </div>
+              <p class="namedtl" style="
+                      display: flex;
+                      justify-content: center;
+                      color: rgb(255, 254, 254);
+                    ">Daily Attendence</p>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-3" style="margin-top: 20px;">
+            <div class="adduser" onclick="addUserFunction()">
+              <div class="icon">
+                <i class="fa fa-plus-circle fa-10x" style="
+                      color: rgb(255, 254, 254);
+                      padding-top: 10%;
+                      font-size: 400%;
+                      display: flex;
+                      justify-content: center;
+                    "></i>
+              </div>
+              <p class="namedtl" style="
+                      display: flex;
+                      justify-content: center;
+                      color: rgb(255, 254, 254);
+                    ">Add User</p>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-3" style="margin-top: 20px;">
+            <div class="removeuser" onclick="removeUserFunction()">
+              <div class="icon">
+                <i class="fa fa-minus-circle fa-10x" style="
+                      color: rgb(255, 255, 255);
+                      font-size: 400%;
+                      padding-top: 10%;
+                      display: flex;
+                      justify-content: center;
+                    "></i>
+              </div>
+              <p class="namedtl" style="
+                      display: flex;
+                      justify-content: center;
+                      color: rgb(255, 254, 254);
+                    ">Remove User</p>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-3" style="margin-top: 20px;">
+            <div class="garbagereport">
+              <div class="icon">
+                <i class="fa fa-trash-o fa-10x" style="
+                      color: rgb(255, 255, 255);
+                      font-size: 400%;
+                      padding-top: 10%;
+                      display: flex;
+                      justify-content: center;
+                    "></i>
+              </div>
+              <p class="namedtl" style="
+                      display: flex;
+                      justify-content: center;
+                      color: rgb(255, 254, 254);
+                    ">Garbage report</p>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-3" style="margin-top: 20px;">
+            <div class="vehiclereport" onclick="vehicleReportFunction()">
+              <div class="icon">
+                <i class="fa fa-car fa-10x" style="
+                      color: rgb(255, 255, 255);
+                      font-size: 400%;
+                      padding-top: 10%;
+                      display: flex;
+                      justify-content: center;
+                    "></i>
+              </div>
+              <p class="namedtl" style="
+                      display: flex;
+                      justify-content: center;
+                      color: rgb(255, 254, 254);
+                    ">Vehicle Report</p>
+              </p>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="wrapper">
-      <div class="works" id="work">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-3" style="margin-top: 20px;">
-              <div class="addemployee" onclick="addemployeeFunction()">
-                <div class="icon">
-                  <i
-                    class="fa fa-user-plus fa-10x"
-                    style="
-                      color: rgb(255, 254, 254);
-                      padding-top: 10%;
-                      font-size: 400%;
-                      display: flex;
-                      justify-content: center;
-                    "
-                  ></i>
-                </div>
-                <p class="namedtl"
-                    style="
-                      display: flex;
-                      justify-content: center;
-                      color: rgb(255, 254, 254);
-                    "
-                    >Add Employee</p
-                  >
-                </p>
-              </div>
-            </div>
+  <script src="/public/scripts/MOH/addEmployee.js"></script>
+  <script src="/public/scripts/MOH/dailyattendence.js"></script>
+  <script src="/public/scripts/MOH/employeedetails.js"></script>
+  <script src="/public/scripts/MOH/removeEmployee.js"></script>
+  <script src="/public/scripts/MOH/addUser.js"></script>
+  <script src="/public/scripts/MOH/removeUser.js"></script>
+  <script src="/public/scripts/MOH/vehicleReport.js"></script>
+  <script src="/public/scripts/MOH/garbageReport.js"></script>
+  <script src="/public/bootstrap/js/bootstrap.min.js"></script>
+</body>
 
-            <div class="col-md-3" style="margin-top: 20px;">
-              <div class="removeemployee" onclick="removeemployeeFunction()">
-                <div class="icon">
-                  <i
-                    class="fa fa-user-times fa-10x"
-                    style="
-                      color: rgb(255, 255, 255);
-                      font-size: 400%;
-                      padding-top: 10%;
-                      display: flex;
-                      justify-content: center;
-                    "
-                  ></i>
-                </div>
-                <p class="namedtl"
-                    style="
-                      display: flex;
-                      justify-content: center;
-                      color: rgb(255, 254, 254);
-                    "
-                    >Remove Employee</p
-                  >
-                </p>
-              </div>
-            </div>
-
-            <div class="col-md-3" style="margin-top: 20px;">
-              <div class="employeedetails" onclick="employeedetailFunction()">
-                <div class="icon">
-                  <i
-                    class="fa fa-address-card fa-10x"
-                    style="
-                      color: rgb(255, 255, 255);
-                      font-size: 400%;
-                      padding-top: 10%;
-                      display: flex;
-                      justify-content: center;
-                    "
-                  ></i>
-                </div>
-                <p class="namedtl"
-                    style="
-                      display: flex;
-                      justify-content: center;
-                      color: rgb(255, 254, 254);
-                    "
-                    >Employee Detail</p
-                  >
-                </p>
-              </div>
-            </div>
-
-            <div class="col-md-3" style="margin-top: 20px;">
-              <div class="dailyattendence" onclick="dailyattendenceFunction()">
-                <div class="icon">
-                  <i
-                    class="fa fa-address-card fa-10x"
-                    style="
-                      color: rgb(255, 255, 255);
-                      font-size: 400%;
-                      padding-top: 10%;
-                      display: flex;
-                      justify-content: center;
-                    "
-                  ></i>
-                </div>
-                <p class="namedtl"
-                    style="
-                      display: flex;
-                      justify-content: center;
-                      color: rgb(255, 254, 254);
-                    "
-                    >Daily Attendence</p
-                  >
-                </p>
-              </div>
-            </div>
-
-            <div class="col-md-3" style="margin-top: 20px;">
-              <div class="adduser" onclick="addUserFunction()">
-                <div class="icon">
-                  <i
-                    class="fa fa-plus-circle fa-10x"
-                    style="
-                      color: rgb(255, 254, 254);
-                      padding-top: 10%;
-                      font-size: 400%;
-                      display: flex;
-                      justify-content: center;
-                    "
-                  ></i>
-                </div>
-                <p class="namedtl"
-                    style="
-                      display: flex;
-                      justify-content: center;
-                      color: rgb(255, 254, 254);
-                    "
-                    >Add User</p
-                  >
-                </p>
-              </div>
-            </div>
-
-            <div class="col-md-3" style="margin-top: 20px;">
-              <div class="removeuser" onclick="removeUserFunction()">
-                <div class="icon">
-                  <i
-                    class="fa fa-minus-circle fa-10x"
-                    style="
-                      color: rgb(255, 255, 255);
-                      font-size: 400%;
-                      padding-top: 10%;
-                      display: flex;
-                      justify-content: center;
-                    "
-                  ></i>
-                </div>
-                <p class="namedtl"
-                    style="
-                      display: flex;
-                      justify-content: center;
-                      color: rgb(255, 254, 254);
-                    "
-                    >Remove User</p
-                  >
-                </p>
-              </div>
-            </div>
-
-            <div class="col-md-3" style="margin-top: 20px;">
-              <div class="garbagereport">
-                <div class="icon">
-                  <i
-                    class="fa fa-trash-o fa-10x"
-                    style="
-                      color: rgb(255, 255, 255);
-                      font-size: 400%;
-                      padding-top: 10%;
-                      display: flex;
-                      justify-content: center;
-                    "
-                  ></i>
-                </div>
-                <p class="namedtl"
-                    style="
-                      display: flex;
-                      justify-content: center;
-                      color: rgb(255, 254, 254);
-                    "
-                    >Garbage report</p
-                  >
-                </p>
-              </div>
-            </div>
-
-            <div class="col-md-3" style="margin-top: 20px;">
-              <div class="vehiclereport" onclick="vehicleReportFunction()">
-                <div class="icon">
-                  <i
-                    class="fa fa-car fa-10x"
-                    style="
-                      color: rgb(255, 255, 255);
-                      font-size: 400%;
-                      padding-top: 10%;
-                      display: flex;
-                      justify-content: center;
-                    "
-                  ></i>
-                </div>
-                <p class="namedtl"
-                    style="
-                      display: flex;
-                      justify-content: center;
-                      color: rgb(255, 254, 254);
-                    "
-                    >Vehicle Report</p
-                  >
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script src="/public/scripts/MOH/addEmployee.js"></script>
-    <script src="/public/scripts/MOH/dailyattendence.js"></script>
-    <script src="/public/scripts/MOH/employeedetails.js"></script>
-    <script src="/public/scripts/MOH/removeEmployee.js"></script>
-    <script src="/public/scripts/MOH/addUser.js"></script>
-    <script src="/public/scripts/MOH/removeUser.js"></script>
-    <script src="/public/scripts/MOH/vehicleReport.js"></script>
-    <script src="/public/scripts/MOH/garbageReport.js"></script>
-    <script src="/public/bootstrap/js/bootstrap.min.js"></script>
-  </body>
 </html>
