@@ -70,10 +70,10 @@ async function submit(){
     if(cnfm){
         console.log(oosd_data.attendance);
         //post req
-        //await apiCall("POST",'http://localhost:8000/api/attendance',oosd_data.attendance);
-        oosd_data.submitted = true;
-        save();
-        document.getElementById("submit").disabled = true;
+        await apiCall("POST",'http://localhost:8000/api/attendance',oosd_data.attendance);
+        //oosd_data.submitted = true;
+        //save();
+        //document.getElementById("submit").disabled = true;
         
     }
 }

@@ -29,23 +29,36 @@ async function getDiv(){
     setType(type);
 }
 
-function addEmp(){
+async function addEmp(){
     const empId = parseInt(document.getElementById("inpEmpId").value);
-    const emp = oosd_data.attendance.find(e=>e.empId == empId);
-    if(!emp){
-        oosd_data.attendance.push(
-            {
-                date:today,
-                div: divNo,
-                empId: empId,
-                mode: type
-            }
-        )
-        updateView(empId);
+    var validate;
+    try{
+        validate = await apiCall("HEAD",`http://localhost:8000/api/employee/all?empid=${empId}`);
+    }
+    catch(e){
+        validate = e ;
+    }
+    if(validate == "Ok"){
+        const emp = oosd_data.attendance.find(e=>e.empId == empId);
+        if(!emp){
+            oosd_data.attendance.push(
+                {
+                    date:today,
+                    div: divNo,
+                    empId: empId,
+                    mode: type
+                }
+            )
+            updateView(empId);
+        }
+        else{
+            alert("Already added");
+        }
     }
     else{
-        alert("Already added");
+        alert("Invalid employee ID");
     }
+    
     console.log(oosd_data);
 }
 
