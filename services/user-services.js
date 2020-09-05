@@ -125,6 +125,7 @@ const getSessions = async (uBuilder) => {
     if (data.length!=0){
         for (const [key, value] of data.entries()) {
             var user = uBuilder.userCreation(value.user_name,value.user_type,value.sessionID,value.start_time);
+            console.log(value.user_name + " logged in");
             users.set(user.sessionID,user);
         }
     }else{
