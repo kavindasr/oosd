@@ -35,23 +35,17 @@ const server = http.createServer((req,res)=>{
                 else{
                     method.setToken(token,true,50000000);
                     await addUser(user);
-                    redirect(method,user.mainPage)
+                    redirect(method,user.mainPage);
                 }
                 
             }  
         }
-        else if(method.getPath(1) == ''){
-            redirect(method,'/login');
-        }
         else{
             const token = method.getToken();
             if(token){
-                
                 const user = getUser(token);
                 if(user){
-
                     user.setLastUsedTime(new Date().getTime());
-                    
                     if(method.getPath(1) == 'api'){
                         //api method
                         const apiMethod = method.getApiMethod();
@@ -71,7 +65,10 @@ const server = http.createServer((req,res)=>{
                     }
                     else{
                         //render views
-                        if (user.viewAccessControl(method.url.pathname)){
+                        if(method.getPath(1) == ''){
+                            redirect(method,user.mainPage);
+                        }
+                        else if (user.viewAccessControl(method.url.pathname)){
                             response = await views.render(method.url.pathname);
                         }
                         else if(user.viewAccessControl(method.url.pathname) == false){
