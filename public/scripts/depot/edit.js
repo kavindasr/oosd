@@ -1,11 +1,10 @@
-document.getElementById("userName").innerHTML = sessionStorage.getItem("OOSD_session"); // insert this line to get user name in navbar
 var divList;
-
+console.log(JSON.stringify(oosd_data.attendance));
 (async ()=>{
     document.getElementById("submit").disabled = oosd_data.submitted;
 
     try{
-        divList = await apiCall('GET', `http://localhost:8000/api/division/all`);
+        divList = await apiCall('GET', `${domain}/api/division/all`);
     }
     catch(e){
         console.log("Server error");
@@ -70,10 +69,16 @@ async function submit(){
     if(cnfm){
         console.log(oosd_data.attendance);
         //post req
-        await apiCall("POST",'http://localhost:8000/api/attendance',oosd_data.attendance);
-        //oosd_data.submitted = true;
-        //save();
-        //document.getElementById("submit").disabled = true;
-        
+        try{
+            await apiCall("POST",`${domain}/api/attendance`,oosd_data.attendance);
+            oosd_data.submitted = true;
+            save();
+            document.getElementById("submit").disabled = true;   
+            alert("Submitted succussfully"); 
+        }
+        catch(e){
+            alert("Something went wrong try again");
+        }
+           
     }
 }

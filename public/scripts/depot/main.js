@@ -1,7 +1,15 @@
 var type = 1;
 var divNo = null;
+var vehicles;
 
-document.getElementById("userName").innerHTML = sessionStorage.getItem("OOSD_session"); // insert this line to get user name in navbar
+(async ()=>{
+    try{
+        vehicles = await apiCall("GET", `${domain}/api/vehicle/all`);
+    }
+    catch(e){
+        alert("Reload and try again!");
+    }    
+})();
 
 function setType(i){
     type = i;
@@ -18,13 +26,18 @@ function setType(i){
 async function getDiv(){
     divNo = parseInt(document.getElementById("divNo").value);
     try{
-        const divName = await apiCall('GET', `http://localhost:8000/api/division/all?divno=${divNo}`);
+        const divName = await apiCall('GET', `${domain}/api/division/all?divno=${divNo}`);
         document.getElementById('division_name').innerHTML = 'Division name: '+divName[0].division_name;
         document.getElementById('addBtn').disabled = false;
         document.getElementById('removeBtn').disabled = false;
         document.getElementById('inpEmpId').disabled = false;
+        if(divName[0].vehicle != 0){
+            document.getElementById('vehiList').disabled = false;
+            document.getElementById('driverName').disabled = false;
+            updateVehiList();
+        }
     }catch(e){
-        console.log(e);
+        alert("Something went wrong!");
     }
     setType(type);
 }
@@ -33,7 +46,7 @@ async function addEmp(){
     const empId = parseInt(document.getElementById("inpEmpId").value);
     var validate;
     try{
-        validate = await apiCall("HEAD",`http://localhost:8000/api/employee/all?empid=${empId}`);
+        validate = await apiCall("HEAD",`${domain}/api/employee/all?empid=${empId}`);
     }
     catch(e){
         validate = e ;
@@ -90,4 +103,13 @@ function updateView(empId){
     para.appendChild(node);
     const element = document.getElementById(`flexBoxDiv${type}`);
     element.appendChild(para);
+}
+
+function updateVehiList(){
+    vehicles.forEach(v=>{
+        const para = document.createElement("option");
+        const node = document.createTextNode(v.vehicle_num);
+        para.appendChild(node);
+        document.getElementById("vehiList").appendChild(para);
+    });
 }
