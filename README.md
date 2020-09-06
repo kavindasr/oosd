@@ -115,6 +115,22 @@ Can use these end points to interact with compost_out table
                 ]
 
 ------------------------------------------------------------------------------------------------
+Can use these end points to interact with vehicle_distribution table
+    1.>>>GET - GET all details   - localhost:8000/api/vehicleout/all
+    2.>>>GET - GET data by div and date   - localhost:8000/api/vehicleout/all?div=2&date="2020-02-04"
+
+       
+    3..>>>POST - add vehicle distribution detail   - localhost:8000/api/vehicleout
+        body -  [
+                    {
+                        "date": "2020-02-01",
+                        "div": "2",
+                        "vehicleid": "1",
+                        "driver": "A.B.Kumara"
+                    }
+                ]                       
+
+------------------------------------------------------------------------------------------------
 Can use these end points to interact with the user_table
 
 1.>>>POST - add a user to the user table - localhost:8000/signup

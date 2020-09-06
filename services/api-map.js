@@ -12,7 +12,8 @@ const table = new Map(
         ['gdetail','gout_types'],
         ['gout' , 'garbage_out'],
         ['compin', 'compost_in'],
-        ['compout', 'compost_out']
+        ['compout', 'compost_out'],
+        ['vehicleout', 'vehicle_distribution']
     ]
 );
 
@@ -58,7 +59,10 @@ const field = new Map(
         //compost
         ['pctin','pct_produced'],
         ['pctout','pct_sold'],
-        ['maxid','MAX(invoice_no) AS pr']
+        ['maxid','MAX(invoice_no) AS pr'],
+        //vehicle distribution
+        ['vehicleid','vehicle_index'],
+        ['driver','driver']
         //add unique key to represnt different combinations of fields
     ]
 );
