@@ -8,7 +8,8 @@ const table = new Map(
         ['session','session_table'],
         ['gunbill','gin_unbilled'],
         ['ginbill','gin_billed'],
-        ['gdetail','gtype_detail'],
+        ['gintype','gin_types'],
+        ['gdetail','gout_types'],
         ['gout' , 'garbage_out'],
         ['compin', 'compost_in'],
         ['compout', 'compost_out']

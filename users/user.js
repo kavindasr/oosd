@@ -125,6 +125,7 @@ class Clerk extends User{
             division             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             vehicle              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             gdetail              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
+            gintype              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false},
             ginbill              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
             gunbill              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
             gout                 : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
