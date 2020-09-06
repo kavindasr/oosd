@@ -1,48 +1,18 @@
- // insert this line to get user name in navbar
-document.getElementById("userName").innerHTML = sessionStorage.getItem("OOSD_session");
-//get the garbage list
-getGarbageList();
-//date
+getGarbageList("gdetail");//get the garbage list
+
 var d = new Date();
 var date = d.getFullYear() +"-" +(d.getMonth()+1)+"-"+d.getDate();
 var time = new Date().toTimeString().split(" ")[0];
 
-//get the list of garbegs from the database
-async function getGarbageList(){
-    try{
-        gdetails = await apiCall('GET', `http://localhost:8000/api/gdetail/gID&gtype`);
-        console.log(gdetails);
-        renderHtmlGout(gdetails);
-    }catch(e){
-        console.log(e);
-    }
-}
 //render retreived garbage details to the html page
-function renderHtmlGout(data){
-    var htmlPart = "";
+function renderHtmlGtype(data){
+    var htmlPart = "<option> ----SELECT TYPE----</option>";
     for(i=0;i<data.length;i++){
         htmlPart += "<option>" + data[i].gindex +"- "+ data[i].waste_type + "</option>"  ;
     }
     document.getElementById("selbox1").innerHTML = htmlPart;
 }
-//get the price of the selected type
-async function getPrice(){
-    var sel = document.getElementById("selbox1");
-    var text= (sel.options[sel.selectedIndex].text).split("-")[0];
-    try{
-        gprice = await apiCall('GET', 'http://localhost:8000/api/gdetail/unitp?gID=\"'+text+"\"");
-        console.log(gprice);
-        document.getElementById("priceperkg").innerHTML = gprice[0].unit_price;
-    }catch(e){
-        console.log(e);
-    }
-}
-//calculate the bill amount
-function calculate(){
-    var unit = document.getElementById("priceperkg").innerHTML;
-    var mass = document.getElementById("weight").value;
-    document.getElementById("amount").value = unit*mass;
-}
+
 //get the data object
 async function getDetail(){
     try{
@@ -75,9 +45,9 @@ async function submitGout(){
     var arr = await getDetail();
     var goutObj = {
         invoice :   arr.nextID,
-        oday    :   `'${arr.date}'`,
-        otime   :   `'${arr.time}'`,
-        gtype   :   arr.gout_type.split("-")[0],
+        oday    :   date,
+        otime   :   time,
+        gtype   :   parseInt(arr.gout_type.split("-")[0]),
         oweight :   arr.gout_weight ,
         amnt    :   arr.gout_bill
     }; 
