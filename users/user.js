@@ -71,8 +71,9 @@ class DepotSuperviser extends User{
             ginbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             gunbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             vehicleout           : {GET:true,POST:true,PUT:false,DELETE:false},
+            repair               : {GET:true,POST:true,PUT:true,DELETE:false}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
-            // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
+            
         }
         this.viewAccess = {
             "depot":true,
@@ -95,6 +96,7 @@ class MOH extends User{
             gdetail              : {GET:true,POST:true,PUT:true,DELETE:true,HEAD:true},
             ginbill              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
             gunbill              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
+            gintype              : {GET:true,POST:true,PUT:true,DELETE:true,HEAD:false},
             vehicleout           : {GET:true,POST:true,PUT:false,DELETE:false},
             signup               : {POST:true},
             changePass           : {PUT:true}

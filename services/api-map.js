@@ -13,7 +13,8 @@ const table = new Map(
         ['gout' , 'garbage_out'],
         ['compin', 'compost_in'],
         ['compout', 'compost_out'],
-        ['vehicleout', 'vehicle_distribution']
+        ['vehicleout', 'vehicle_distribution'],
+        ['repair', 'vehicle_repair']
     ]
 );
 
@@ -25,7 +26,11 @@ const condition = new Map(
         ['divno','division_no'],
         ['gtype','waste_type'],
         ['salid','salary_id'],
-        ['gID','gindex']
+        ['gID','gindex'],
+        ['invoice','invoice_no'],
+        ['inday','in_date'],
+        ['oday','out_date'],
+        ['vehicleid','vehicle_index']
     ]
 );
 
@@ -62,7 +67,11 @@ const field = new Map(
         ['maxid','MAX(invoice_no) AS pr'],
         //vehicle distribution
         ['vehicleid','vehicle_index'],
-        ['driver','driver']
+        ['driver','driver'],
+         //vehicle_repair
+         ['repin','repair_in'],
+         ['repout','repair_out'],
+         ['replace','repair_place']
         //add unique key to represnt different combinations of fields
     ]
 );
