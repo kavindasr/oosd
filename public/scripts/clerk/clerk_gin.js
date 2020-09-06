@@ -1,17 +1,45 @@
-getGarbageList("gintype");//get the garbage list
-
+getGarbageList();//get the garbage list
 var d = new Date();
 var date = d.getFullYear() +"-" +(d.getMonth()+1)+"-"+d.getDate();
 var time = new Date().toTimeString().split(" ")[0];
+// insert this line to get user name in navbar
+document.getElementById("userName").innerHTML = sessionStorage.getItem("OOSD_session"); 
 
+//get the list of garbegs from the database
+async function getGarbageList(){
+    try{
+        gdetails = await apiCall('GET', `http://localhost:8000/api/gdetail/gID&gtype`);
+        console.log(gdetails);
+        renderHtmlGtype(gdetails);
+    }catch(e){
+        console.log(e);
+    }
+}
 //render retreived garbage details to the html page
 function renderHtmlGtype(data){
-    var htmlPart = "<option> ----SELECT TYPE----</option>";
+    var htmlPart = "";
     for(i=0;i<data.length;i++){
         htmlPart += "<option>" + data[i].gindex +"- "+ data[i].waste_type + "</option>"  ;
     }
     document.getElementById("selbox1").innerHTML = htmlPart;
     document.getElementById("selbox2").innerHTML = htmlPart;
+}
+async function getPrice(){
+    var sel = document.getElementById("selbox1");
+    var text= (sel.options[sel.selectedIndex].text).split("-")[0];
+    try{
+        gprice = await apiCall('GET', 'http://localhost:8000/api/gdetail/unitp?gID=\"'+text+"\"");
+        console.log(gprice);
+        document.getElementById("priceperkg").innerHTML = gprice[0].unit_price;
+    }catch(e){
+        console.log(e);
+    }
+}
+//calculate price
+function calculate(){
+    var unitp = document.getElementById("priceperkg").innerHTML;
+    var weight = document.getElementById("weight").value;
+    document.getElementById("amount").value = unitp*weight;
 }
 //get the details
 async function getDetail(){
@@ -44,9 +72,9 @@ async function submitGBill(){
     var arr = await getDetail();
     var ginObj = {
         invoice :   arr.nextID,
-        inday   :   date,
-        time    :   time,
-        gtypo   :   parseInt(arr.gin_type.split("-")[0]),
+        inday   :   `'${date}'`,
+        time    :   `'${time}'`,
+        gtypo   :   arr.gin_type.split("-")[0],
         weight  :   arr.gin_weight, 
         amnt    :   arr.gin_bill 
     };
@@ -64,12 +92,12 @@ async function submitGBill(){
 
 //submit the data to db
 async function submitData(){
-    var gin_type= parseInt(document.getElementById('selbox2').value.split("-")[0]);
+    var gin_type= document.getElementById('selbox2').value.split("-")[0];
     var gin_weight = parseInt(document.getElementById('mass').value);
     console.log("aa");
     var gObj = {
-        inday   :   date,
-        time    :   time,
+        inday   :   `'${date}'`,
+        time    :   `'${time}'`,
         gtypo   :   gin_type,
         weight  :   gin_weight 
     }; 

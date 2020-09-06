@@ -1,13 +1,14 @@
 var d = new Date();
 var date = d.getFullYear() +"-" +(d.getMonth()+1)+"-"+d.getDate();
 var time = new Date().toTimeString().split(" ")[0];
- 
+// insert this line to get user name in navbar
+document.getElementById("userName").innerHTML = sessionStorage.getItem("OOSD_session"); 
 //add compin data to database
 async function compIn(){
     var pct_produce = parseInt(document.getElementById('compct').value);
     var compInObj = {
-        inday   :   date,
-        time    :   time,
+        inday   :   `'${date}'`,
+        time    :   `'${time}'`,
         pctin    :   pct_produce
     }; 
     console.log(compInObj);
@@ -27,6 +28,12 @@ async function getPctPrice(){
     }catch(e){
         console.log(e);
     }
+}
+
+function calculate(){
+    var unitp = document.getElementById("priceperpct").innerHTML;
+    var pcts = document.getElementById("nofpct").value;
+    document.getElementById("amount").value = unitp*pcts;
 }
 
 async function getDetail(){
@@ -57,8 +64,8 @@ async function compOut(){
     var arr = await getDetail();
     var compOutObj = {
         invoice :   arr.nextID,
-        oday    :   date,
-        otime   :   time,
+        oday    :   `'${date}'`,
+        otime   :   `'${time}'`,
         pctout  :   arr.cout_pcts,
         amnt    :   arr.cout_bill
     }; 
