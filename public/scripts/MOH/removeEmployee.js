@@ -1,5 +1,4 @@
 function removeemp() {
-  console.log("hiiii");
   var url =
     'http://localhost:8000/api/employee?empid=' +
     document.getElementById("removeid").value +
