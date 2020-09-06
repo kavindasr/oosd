@@ -263,7 +263,7 @@
               </div>
             </form>
             <div id="sub">
-              <button id="btn" type="button" onclick="viewEmployee()">
+              <button id="btn" type="button" onclick="viewattendence()">
                 SUBMIT
               </button>
             </div>
@@ -291,26 +291,26 @@
               <br />
               <div id="togglepart">
                 <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Username</label>
-                <input id="username" type="text" name="username" placeholder="Username" />
+                <input id="addusername" type="text" name="username" placeholder="Username" />
               </div>
               <div id="togglepart">
                 <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">User Type</label>
-                <div id="togglepart5">
+                <div id="togglepartadduser">
                   <div class="box">
-                    <select id="selection">
-                      <option value="M">Clerk</option>
-                      <option value="F">Depot</option>
-                      <option value="F">MOH</option>
+                    <select id="adduserselection">
+                      <option value="clerk">Clerk</option>
+                      <option value="depot">Depot</option>
+                      <option value="moh">MOH</option>
                     </select>
                   </div>
                 </div>
               </div>
               <div id="togglepart">
                 <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Password</label>
-                <input id="password" type="text" name="password" placeholder="180044" />
+                <input id="adduserpassword" type="text" name="password" placeholder="180044" />
               </div>
               <div id="sub">
-                <button id="btn" type="button" onclick="viewEmployee()">
+                <button id="btn" type="button" onclick="addusernew()">
                   ADD USER
                 </button>
               </div>
@@ -340,10 +340,10 @@
               <br />
               <div id="togglepart">
                 <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Remove User</label>
-                <input type="text" id="USER" name="user" placeholder="UserName" />
+                <input type="text" id="USERremove" name="user" placeholder="UserName" />
               </div>
               <div id="sub">
-                <button id="btn" type="button" onclick="submitAttendance()">
+                <button id="btn" type="button" onclick="removeuserdb()">
                   REMOVE
                 </button>
               </div>

@@ -23,7 +23,7 @@ class ApiMethod {
         var conditionQ = [];
         var part = "";
         this.method.url.searchParams.forEach((value, name, searchParams) => {
-            part = `${getConditon(name)}=${value}`;
+            part = `${getConditon(name)}="${value}"`;
             conditionQ.push(part);
         });
         return conditionQ.join(" AND ");
@@ -35,9 +35,9 @@ class ApiMethod {
         var dataList = [];
         var data = JSON.parse(reqBody);
 
-        if (Array.isArray(data)){
+        if (Array.isArray(data)) {
             dataList = data;
-        }else{
+        } else {
             dataList.push(data);
         }
 
@@ -47,34 +47,34 @@ class ApiMethod {
 
         dataList.forEach(doThis);
 
-        function doThis(data){
+        function doThis(data) {
             valueStr = "";
             for (let key in data) {
                 valueStr = valueStr + getReqType(data[key]) + ",";
             }
-            valueStr = "(" + valueStr.slice(0, -1) + ")"  ;
-            valueFinal = valueFinal + valueStr + "," ;
+            valueStr = "(" + valueStr.slice(0, -1) + ")";
+            valueFinal = valueFinal + valueStr + ",";
         }
-        
+
         return { field: fieldStr.slice(0, -1), val: valueFinal.slice(0, -1) };
     }
     async execute(isVaild) {
-        if(!isVaild){
+        if (!isVaild) {
             return new Send405();
         }
         try {
             const data = await executeSQL(this.query);
-            if(this.method.type == 'GET'){
+            if (this.method.type == 'GET') {
                 return new SendJson(JSON.stringify(data));
             }
-            else{
-                if(this.method.type == 'HEAD' && data.length == 0){
+            else {
+                if (this.method.type == 'HEAD' && data.length == 0) {
                     return new Send400();
                 }
                 return new Send200();
             }
-            
-        } 
+
+        }
         catch (e) {
             return new Send500();
         }
@@ -90,7 +90,7 @@ class ApiGet extends ApiMethod {
         const condition = this.setConditions();
         if (condition) {
             this.query = `SELECT ${fields} FROM ${getTable(this.method.getPath(2))} WHERE ${condition}`;
-        } 
+        }
         else {
             this.query = `SELECT ${fields} FROM ${getTable(this.method.getPath(2))}`;
         }
@@ -154,10 +154,10 @@ class ApiHead extends ApiMethod {
     }
 }
 
-function getReqType(value){
-    if (typeof value == "number"){
+function getReqType(value) {
+    if (typeof value == "number") {
         return (value);
-    }else{
+    } else {
         return ("'" + value + "'");
     }
 }
