@@ -29,7 +29,7 @@ Can use these endpoints to interact with employee_table
 Can use these endpoints to interact with daily_attendance
     1.>>>GET  - get attendance list       - localhost:8000/api/attendance/all
     2.>>>GET  - get attendance by date    - localhost:8000/api/attendance/all?date='2020-02-05'
-    3.>>>GET  - get attendance of a div by date - localhost:8000/api/attendance/all?date='2020-05-16'&div=3
+    3.>>>GET  - get attendance of a div by 0 - localhost:8000/api/attendance/all?date='2020-05-16'&div=3
     4.>>>POST - Add employee attendance   - localhost:8000/api/attendance
 
                     [
