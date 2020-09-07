@@ -118,8 +118,6 @@ class ApiPut extends ApiMethod {
     async setQuery() {
         const StrComp = await this.jsBody();
         const Fields = StrComp["field"].split(",");
-        const Values = StrComp["val"].slice(1, -1).split(",");
-
         const Values = StrComp["val"].slice(1,-1).split(",");
         const condition = this.setConditions();
 

@@ -13,9 +13,7 @@ const table = new Map(
         ['gout' , 'garbage_out'],
         ['compin', 'compost_in'],
         ['compout', 'compost_out'],
-
-        ['user','user_table']
-
+        ['user','user_table'],
         ['vehicleout', 'vehicle_distribution'],
         ['repair', 'vehicle_repair']
     ]
@@ -30,9 +28,7 @@ const condition = new Map(
         ['gtype','waste_type'],
         ['salid','salary_id'],
         ['gID','gindex'],
-
-        ['userName','user_name']
-
+        ['userName','user_name'],
         ['invoice','invoice_no'],
         ['inday','in_date'],
         ['oday','out_date'],
