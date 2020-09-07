@@ -92,16 +92,16 @@
               <input id="driverName" type="text" class="form-control" placeholder="Driver's name" disabled>
             </div>
           </div>
-          <div class="col-md-3 mb-3">
+          <div class="col-md-6 mb-3">
             <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Add vehicle</label>
             <select class="custom-select my-1 mr-sm-2" id="vehiList" disabled>
-              <option selected>Choose...</option>
             </select>
           </div>
         </div>
 
-        <button id="submit" type="submit" class="btn btn-success btn-block mx-auto d-block" onclick="save()">SAVE</button>
+        <button id="submit" type="submit" class="btn btn-success btn-block mx-auto d-block" onclick="saveToStorage()">SAVE</button>
       </form>
+      
       <a class='btn pull-right' id="clear" href="/depot/main">
         <div>
           <i class="fa fa-trash fa-2x"></i>

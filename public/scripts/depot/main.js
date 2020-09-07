@@ -97,6 +97,39 @@ function removeEmp(){
     console.log(oosd_data);
 }
 
+function saveToStorage(){
+    var element = document.getElementById('vehiList');
+    const vehicle = element.options[element.selectedIndex].value;
+    const driverName = document.getElementById('driverName').value;
+    if(driverName !=''){
+        var vehicle_index;
+        vehicles.forEach(v=>{
+            if(vehicle == v.vehicle_num){
+                vehicle_index = v.index_no;
+            }
+        });
+        var up = false;
+        oosd_data.vehiList.forEach(e=>{
+            if(e.div == divNo){
+                e.vehicleid = vehicle_index;
+                e.driver = driverName;
+                up = true;
+            }
+        });
+        if(!up){
+            const obj = {
+                date: today,
+                div: divNo,
+                vehicleid: vehicle_index,
+                driver: driverName
+            }
+            oosd_data.vehiList.push(obj);
+        }
+    }
+    console.log(oosd_data);
+    save();
+}
+
 function updateView(empId){
     const para = document.createElement("div");
     const node = document.createTextNode(empId);
@@ -106,10 +139,19 @@ function updateView(empId){
 }
 
 function updateVehiList(){
+    const ele = oosd_data.vehiList.find(v=>v.div == divNo);
+    if(ele){
+        document.getElementById('driverName').value = ele.driver;
+    }
     vehicles.forEach(v=>{
         const para = document.createElement("option");
         const node = document.createTextNode(v.vehicle_num);
         para.appendChild(node);
+        if(ele){
+            if(ele.vehicleid == v.index_no){
+                para.selected = true;
+            }
+        }
         document.getElementById("vehiList").appendChild(para);
     });
 }
