@@ -28,10 +28,10 @@ const isr = {
   user: "root",
   password: "rootisuru",
   host: "localhost",
-  database: "oosdnewdb",
+  database: "newoosddb",
 };
 //dsfd
-exports.dbConfig = ksr;
+exports.dbConfig = isr;
 
 exports.webSettings = {
   webport: 8000,

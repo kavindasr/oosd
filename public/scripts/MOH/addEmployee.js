@@ -15,12 +15,11 @@ function submitAttendance() {
     sex: emp_gen,
   };
 
-  console.log(empObj);
-
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       alert("Employee Added Successfully..");
+      window.location.reload();
     }
   };
   xhttp.open("POST", "http://localhost:8000/api/employee", true);

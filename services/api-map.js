@@ -12,7 +12,8 @@ const table = new Map(
         ['gdetail','gout_types'],
         ['gout' , 'garbage_out'],
         ['compin', 'compost_in'],
-        ['compout', 'compost_out']
+        ['compout', 'compost_out'],
+        ['user','user_table']
     ]
 );
 
@@ -24,7 +25,8 @@ const condition = new Map(
         ['divno','division_no'],
         ['gtype','waste_type'],
         ['salid','salary_id'],
-        ['gID','gindex']
+        ['gID','gindex'],
+        ['userName','user_name']
     ]
 );
 

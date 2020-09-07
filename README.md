@@ -18,10 +18,10 @@ Can use these endpoints to interact with employee_table
     5. >>>PUT - update an employee details - localhost:8000/api/employee?empid=10058
         body -  {
                     "salId"     : "10057",
-                    "empName"   : "'T.U.Nimali'",
-                    "bdate"     : "'1989-01-10'",
+                    "empName"   : "T.U.Nimali",
+                    "bdate"     : "1989-01-10",
                     "empType"   : "3",
-                    "sex"       : "'F'"
+                    "sex"       : "F"
                 }
     6. >>>DELETE- delete an employee       - localhost:8000/api/employee?empid=10058
 
