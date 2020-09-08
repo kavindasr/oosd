@@ -171,6 +171,14 @@ input[type="submit"]:hover {
   font-size: 20px;
 }
 
+#wrkdays{
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  border-color: black;
+}
+
 #comfield{
   display: flex;
   justify-content: center;
@@ -185,4 +193,11 @@ input[type="submit"]:hover {
 #empSalID{
   display: flex;
   font-size: 20px;
+}
+
+#detail{
+  display: flex;
+  justify-self: center;
+  justify-items: center;
+  justify-content: center;
 }
