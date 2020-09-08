@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/public/styles/depot/vehicle.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Depot</title>
+  </head>
+  <body>
+    <!--Navbar -->
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Vehicle repot</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/depot/main">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/depot/edit">Edit</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user-circle"></i>
+              <span id="userName">&nbsp UserName</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+              <a class="dropdown-item" href="#"><i class="fa fa-cog"></i>&nbsp Change password</a>
+              <a class="dropdown-item" href="/logOut"><i class="fa fa-sign-out"></i>&nbsp Sign out</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!--/.Navbar -->
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card border-dark">
+                    <div class="card-header">
+                        Vehicle repair detail
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Vehicle</label>
+                                    <select class="form-control">
+                                        <option selected>Choose...</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Service date</label>
+                                    <input type="date" class="form-control" id="serviceDate"> 
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Return date</label>
+                                    <input type="date" class="form-control" id="returnDate">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Other</label>
+                                    <input type="text" class="form-control" if="other">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card border-dark">
+                    <div class="card-header">
+                        In garage
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group" id="garage">
+                            <li class="list-group-item">HD-1234<span class="close fa fa-times"></span></li>
+                            <li class="list-group-item">HD-1234<span class="close fa fa-times"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-dark">
+                    <div class="card-header">
+                        Available vehicles
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group" id="available"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <script src="/public/scripts/api.js"></script>
+    <script src="/public/scripts/depot/vehicle.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/public/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
