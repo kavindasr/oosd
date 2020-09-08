@@ -12,7 +12,10 @@ const table = new Map(
         ['gdetail','gout_types'],
         ['gout' , 'garbage_out'],
         ['compin', 'compost_in'],
-        ['compout', 'compost_out']
+        ['compout', 'compost_out'],
+        ['user','user_table'],
+        ['vehicleout', 'vehicle_distribution'],
+        ['repair', 'vehicle_repair']
     ]
 );
 
@@ -24,7 +27,13 @@ const condition = new Map(
         ['divno','division_no'],
         ['gtype','waste_type'],
         ['salid','salary_id'],
-        ['gID','gindex']
+        ['gID','gindex'],
+        ['userName','user_name'],
+        ['invoice','invoice_no'],
+        ['inday','in_date'],
+        ['oday','out_date'],
+        ['vehicleid','vehicle_index']
+
     ]
 );
 
@@ -58,7 +67,14 @@ const field = new Map(
         //compost
         ['pctin','pct_produced'],
         ['pctout','pct_sold'],
-        ['maxid','MAX(invoice_no) AS pr']
+        ['maxid','MAX(invoice_no) AS pr'],
+        //vehicle distribution
+        ['vehicleid','vehicle_index'],
+        ['driver','driver'],
+         //vehicle_repair
+         ['repin','repair_in'],
+         ['repout','repair_out'],
+         ['replace','repair_place']
         //add unique key to represnt different combinations of fields
     ]
 );

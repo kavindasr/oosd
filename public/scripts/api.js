@@ -25,4 +25,4 @@ function apiCall(method,url,data){
 }
 
 document.getElementById("userName").innerHTML = sessionStorage.getItem("OOSD_session");
-const domain = `http://localhost:8000`; //to reduce coupling 
+const domain = `http://localhost:8000`; //to reduce redundancy

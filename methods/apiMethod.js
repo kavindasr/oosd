@@ -23,7 +23,7 @@ class ApiMethod {
         var conditionQ = [];
         var part = "";
         this.method.url.searchParams.forEach((value, name, searchParams) => {
-            part = `${getConditon(name)}=${value}`;
+            part = `${getConditon(name)}="${value}"`;
             conditionQ.push(part);
         });
         return conditionQ.join(" AND ");
@@ -118,7 +118,7 @@ class ApiPut extends ApiMethod {
     async setQuery() {
         const StrComp = await this.jsBody();
         const Fields = StrComp["field"].split(",");
-        const Values = StrComp["val"].split(",");
+        const Values = StrComp["val"].slice(1,-1).split(",");
         const condition = this.setConditions();
 
         var fieldsQ = [];

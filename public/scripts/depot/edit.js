@@ -74,11 +74,16 @@ async function submit(){
             oosd_data.submitted = true;
             save();
             document.getElementById("submit").disabled = true;   
-            alert("Submitted succussfully"); 
+            
         }
         catch(e){
             alert("Something went wrong try again");
         }
-           
+        try{
+            await apiCall("POST",`${domain}/api/vehicleout`,oosd_data.vehiList);
+        }catch(e){
+            alert("vehicle report error");
+        }
+        alert("Submitted succussfully"); 
     }
 }

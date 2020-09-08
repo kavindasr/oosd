@@ -28,7 +28,7 @@ const isr = {
   user: "root",
   password: "rootisuru",
   host: "localhost",
-  database: "oosdnewdb",
+  database: "newoosddb",
 };
 //dsfd
 exports.dbConfig = msb;
