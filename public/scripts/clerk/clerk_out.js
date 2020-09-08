@@ -16,7 +16,7 @@ function renderHtmlGtype(data){
 //get the data object
 async function getDetail(){
     try{
-        crntID = await apiCall('GET', 'http://localhost:8000/api/gout/maxid');
+        crntID = await apiCall('GET', `${domain}/api/gout/maxid`);
         var currentID= crntID[0].pr;
         if (!currentID){nextID = 30000;}//This is the starting invoice no
         else{ nextID=currentID+1;}
@@ -53,7 +53,7 @@ async function submitGout(){
     }; 
     console.log(goutObj);
     try{
-        await apiCall("POST",'http://localhost:8000/api/gout',goutObj);
+        await apiCall("POST",`${domain}/api/gout`,goutObj);
         if(!alert("Garbage Out details added successfully..")){
             printDiv("myModal");
             window.location.reload();

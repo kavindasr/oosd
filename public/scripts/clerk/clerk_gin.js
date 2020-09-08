@@ -16,7 +16,7 @@ function renderHtmlGtype(data){
 //get the details
 async function getDetail(){
     try{
-        crntID = await apiCall('GET', 'http://localhost:8000/api/ginbill/maxid');
+        crntID = await apiCall('GET', `${domain}/api/ginbill/maxid`);
         var currentID= crntID[0].pr;
         if (!currentID){nextID = 10000;}//This is the starting invoice no
         else{ nextID=currentID+1;}
@@ -52,7 +52,7 @@ async function submitGBill(){
     };
     console.log(ginObj);
     try{
-        await apiCall("POST",'http://localhost:8000/api/ginbill',ginObj);
+        await apiCall("POST",`${domain}/api/ginbill`,ginObj);
         if(!alert("Gargabe In details added successfully..")){
             printDiv("myModal");
             window.location.reload();
@@ -75,7 +75,7 @@ async function submitData(){
     }; 
     console.log(gObj);
     try{
-        await apiCall("POST",'http://localhost:8000/api/gunbill',gObj);
+        await apiCall("POST",`${domain}/api/gunbill`,gObj);
         if(!alert("Garbage In details added successfully..")){
             window.location.reload();
         }

@@ -28,8 +28,8 @@ Can use these endpoints to interact with employee_table
 ------------------------------------------------------------------------------------------------
 Can use these endpoints to interact with daily_attendance
     1.>>>GET  - get attendance list       - localhost:8000/api/attendance/all
-    2.>>>GET  - get attendance by date    - localhost:8000/api/attendance/all?date='2020-02-05'
-    3.>>>GET  - get attendance of a div by 0 - localhost:8000/api/attendance/all?date='2020-05-16'&div=3
+    2.>>>GET  - get attendance by date    - localhost:8000/api/attendance/all?date=2020-02-05
+    3.>>>GET  - get attendance of a div by 0 - localhost:8000/api/attendance/all?date=2020-05-16&div=3
     4.>>>GET  - get number of attended dates - localhost:8000/report/absentee?empID='1758'&month=5
     5.>>>POST - Add employee attendance   - localhost:8000/api/attendance
 
@@ -38,7 +38,7 @@ Can use these endpoints to interact with daily_attendance
                         {"date": "2020-05-12","div": 2,"empId": 211,"mode": 2},
                         {"date": "2020-05-12","div": 2,"empId": 212,"mode": 1}
                     ]
-    6. >>>PUT - update the attendance detail - localhost:8000/api/attendance?empid=178&date='2020-05-12'
+    6. >>>PUT - update the attendance detail - localhost:8000/api/attendance?empid=178&date=2020-05-12
         body -  
             {
                 "div"   : 1,
@@ -54,7 +54,7 @@ Can use these endpoint to interact with division table
     2.>>>GET - get details of a division     - localhost:8000/api/division/all?divno=2
 ------------------------------------------------------------------------------------------------
 Can use these end points to interact with gin_types and gout_types(change the table name to gdetail)
-    1.>>>GET - get the unit price for a garbage type - localhost:8000/api/gintype/unitp?gtype="Degradable"
+    1.>>>GET - get the unit price for a garbage type - localhost:8000/api/gintype/unitp?gtype=Degradable
     2.>>>GET - get all data - localhost:8000/api/gintype/all
     3.>>>POST - add a new garbage type   - localhost:8000/api/gintype
         body -  [
@@ -90,7 +90,7 @@ Can use these end points to interact with gin_billed
 
 ------------------------------------------------------------------------------------------------
 Can use these end points to interact with gin_unbilled table
-    1.>>>GET - get detail by date   - localhost:8000/api/gunbill/all?inday="2020-09-07"
+    1.>>>GET - get detail by date   - localhost:8000/api/gunbill/all?inday=2020-09-07
     2.>>>GET - Get all the entries within a given time period and its summary - 
             localhost:8000/report/dRange/unbilled?sDate='2020-09-01'&eDate='2020-09-30'
     3.>>>POST - add a garbage in entry   - localhost:8000/api/gunbill
@@ -121,7 +121,7 @@ Can use these end points to interact with garbage_out table
                 ]
 ------------------------------------------------------------------------------------------------
 Can use these end points to interact with compost_in table
-    1.>>>GET - get detail by date   - localhost:8000/api/compin/all?inday="2020-12-12"
+    1.>>>GET - get detail by date   - localhost:8000/api/compin/all?inday=2020-12-12
     2.>>>POST - add no of produced comp pct   - localhost:8000/api/compin
         body -  [
                     {
@@ -134,7 +134,7 @@ Can use these end points to interact with compost_in table
 ------------------------------------------------------------------------------------------------
 Can use these end points to interact with compost_out table
     1.>>>GET - get detail by invoice number   - localhost:8000/api/compout/all?invoice=50000
-    2.>>>GET - get detail by date   - localhost:8000/api/compout/all?oday='2020-09-06'
+    2.>>>GET - get detail by date   - localhost:8000/api/compout/all?oday=2020-09-06
     3.>>>POST - add no of sold comp pct   - localhost:8000/api/compout
         body -  [
                     {
@@ -151,7 +151,7 @@ Can use these end points to interact with compost_out table
 ------------------------------------------------------------------------------------------------
 Can use these end points to interact with vehicle_distribution table
     1.>>>GET - GET all details   - localhost:8000/api/vehicleout/all
-    2.>>>GET - GET data by div and date   - localhost:8000/api/vehicleout/all?div=2&date="2020-02-04"
+    2.>>>GET - GET data by div and date   - localhost:8000/api/vehicleout/all?div=2&date=2020-02-04
     3.>>>POST - add vehicle distribution detail   - localhost:8000/api/vehicleout
         body -  [
                     {
@@ -164,7 +164,7 @@ Can use these end points to interact with vehicle_distribution table
 ------------------------------------------------------------------------------------------------
 Can use these end points to interact with vehicle_repair table
     1.>>>GET - GET all details   - localhost:8000/api/repair/all
-    2.>>>GET - GET detail by vehicle index   - localhost:8000/api/repair/all?vehicleid="1"
+    2.>>>GET - GET detail by vehicle index   - localhost:8000/api/repair/all?vehicleid=1
     3.>>>POST - add vehicle repair   - localhost:8000/api/repair
         body -  [
                     {

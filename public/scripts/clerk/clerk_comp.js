@@ -12,7 +12,7 @@ async function compIn(){
     }; 
     console.log(compInObj);
     try{
-        await apiCall("POST",'http://localhost:8000/api/compin',compInObj);
+        await apiCall("POST",`${domain}/api/compin`,compInObj);
         if(!alert("Produced compost packet details added successfully..")){window.location.reload();}
     }catch(e){
         console.log(e);
@@ -21,7 +21,7 @@ async function compIn(){
 
 async function getPctPrice(){
     try{
-        compPrice = await apiCall('GET', 'http://localhost:8000/api/gdetail/unitp?gtype="Compost"');
+        compPrice = await apiCall('GET', `${domain}/api/gdetail/unitp?gtype=Compost`);
         console.log(compPrice);
         document.getElementById("priceperpct").innerHTML = compPrice[0].unit_price;
     }catch(e){
@@ -31,7 +31,7 @@ async function getPctPrice(){
 
 async function getDetail(){
     try{
-        crntID = await apiCall('GET', 'http://localhost:8000/api/compout/maxid');
+        crntID = await apiCall('GET', `${domain}/api/compout/maxid`);
         var currentID= crntID[0].pr;
         if (!currentID){nextID = 50000;}//This is the starting invoice no
         else{ nextID=currentID+1;}
@@ -39,7 +39,7 @@ async function getDetail(){
         console.log(e);
     }
     var cout_pcts = parseInt(document.getElementById('nofpct').value);
-    var cout_bill = parseInt(document.getElementById('amount').value);
+    var cout_bill = document.getElementById('amount').value;
 
     return {nextID,cout_pcts,cout_bill};
 }
@@ -64,7 +64,7 @@ async function compOut(){
     }; 
     console.log(compOutObj);
     try{
-        await apiCall("POST",'http://localhost:8000/api/compout',compOutObj);
+        await apiCall("POST",`${domain}/api/compout`,compOutObj);
         if(!alert("Sold compost packet details added successfully..")){
             printDiv("myModal");
             window.location.reload();

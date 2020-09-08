@@ -1,10 +1,8 @@
-// insert this line to get user name in navbar
-document.getElementById("userName").innerHTML = sessionStorage.getItem("OOSD_session");
 
 //get the list of garbegs from the database i and out
 async function getGarbageList(tablename){
     try{
-        gdetails = await apiCall('GET', `http://localhost:8000/api/${tablename}/gID&gtype`);
+        gdetails = await apiCall('GET', `${domain}/api/${tablename}/gID&gtype`);
         console.log(gdetails);
         renderHtmlGtype(gdetails);
     }catch(e){
@@ -33,7 +31,7 @@ async function getPrice(table){
     var sel = document.getElementById("selbox1");
     var text= (sel.options[sel.selectedIndex].text).split("-")[0];
     try{
-        gprice = await apiCall('GET', `http://localhost:8000/api/${table}/unitp?gID=${text}`);
+        gprice = await apiCall('GET', `${domain}/api/${table}/unitp?gID=${text}`);
         console.log(gprice);
         document.getElementById("priceperkg").innerHTML = gprice[0].unit_price;
     }catch(e){
