@@ -10,18 +10,18 @@ Can use these endpoints to interact with employee_table
                     {
                             "empId"     : "10051",
                             "salId"     : "20051",
-                            "empName"   : "'A.B.C.David'",
-                            "bdate"     : "'1987-09-12'",
+                            "empName"   : "A.B.C.David",
+                            "bdate"     : "1987-09-12",
                             "empType"   : "3",
-                            "sex"       : "'F'"
+                            "sex"       : "F"
                     }
     5. >>>PUT - update an employee details - localhost:8000/api/employee?empid=10058
         body -  {
                     "salId"     : "10057",
-                    "empName"   : "'T.U.Nimali'",
-                    "bdate"     : "'1989-01-10'",
+                    "empName"   : "T.U.Nimali",
+                    "bdate"     : "1989-01-10",
                     "empType"   : "3",
-                    "sex"       : "'F'"
+                    "sex"       : "F"
                 }
     6. >>>DELETE- delete an employee       - localhost:8000/api/employee?empid=10058
 
@@ -30,22 +30,23 @@ Can use these endpoints to interact with daily_attendance
     1.>>>GET  - get attendance list       - localhost:8000/api/attendance/all
     2.>>>GET  - get attendance by date    - localhost:8000/api/attendance/all?date='2020-02-05'
     3.>>>GET  - get attendance of a div by date - localhost:8000/api/attendance/all?date='2020-05-16'&div=3
-    4.>>>POST - Add employee attendance   - localhost:8000/api/attendance
+    4.>>>GET  - get number of attended dates - localhost:8000/report/absentee?empID='1758'&month=5
+    5.>>>POST - Add employee attendance   - localhost:8000/api/attendance
         body -  [
                     {
-                        "date"  : "'2020-05-12'",
+                        "date"  : "2020-05-12",
                         "div"   : 5,
                         "empId" : 178,
                         "mode"  : 1
                     }
                 ]
-    5. >>>PUT - update the attendance detail - localhost:8000/api/attendance?empid=178&date='2020-05-12'
+    6. >>>PUT - update the attendance detail - localhost:8000/api/attendance?empid=178&date='2020-05-12'
         body -  
             {
                 "div"   : 1,
                 "mode"  : 0
             }
-    6. >>>DELETE- delete an attendace record      - localhost:8000/api/attendance?empid=178&date='2020-05-12'
+    7. >>>DELETE- delete an attendace record      - localhost:8000/api/attendance?empid=178&date='2020-05-12'
 ------------------------------------------------------------------------------------------------
 Can use these endpoint to interact with vehicle_detail table
     1.>>>GET - get list of vehicles       - localhost:8000/api/vehicle/all
@@ -60,7 +61,7 @@ Can use these end points to interact with gtype_detail
         body -  [
                     {
                         "gID"   : "19",
-                        "gtype" : "'compost'",
+                        "gtype" : "compost",
                         "unitp" : "1200"
                     }
                 ]
@@ -71,33 +72,44 @@ Can use these end points to interact with gin_billed
     1.>>>POST - add a garbage in entry   - localhost:8000/api/ginbill
         body -  [
                     {
-                        "inday"     : "'2020-12-12'",
-                        "time"      : "'13:13:13'",
-                        "gtypo"     : "'deg'",
+                        "inday"     : "2020-12-12",
+                        "time"      : "13:13:13",
+                        "gtypo"     : "deg",
                         "weight"    : "12",
                         "amnt"      : "1440"
                     }
                 ]
+    2.>>>GET - Get all the entries within a given time period and its summary - 
+            localhost:8000/report/dRange/billed?sDate='2020-09-01'&eDate='2020-09-30'
 
 ------------------------------------------------------------------------------------------------
 Can use these end points to interact with gin_unbilled table
     1.>>>POST - add a unbilled garbage in entry   - localhost:8000/api/gunbill
         body -  [
                     {
-                        "inday"     : "'2020-12-12'",
-                        "time"      : "'13:13:13'",
-                        "gtypo"     : "'deg'",
+                        "inday"     : "2020-12-12",
+                        "time"      : "13:13:13",
+                        "gtypo"     : "deg",
                         "weight"    : "12",
                     }
                 ]
+    2.>>>GET - Get all the entries within a given time period and its summary - 
+            localhost:8000/report/dRange/unbilled?sDate='2020-09-01'&eDate='2020-09-30'
+
+------------------------------------------------------------------------------------------------
+
+Can use these end points to interact with garbage_out
+
+    1.>>>GET - Get all the entries within a given time period and its summary - 
+            localhost:8000/report/dRange/billed?sDate='2020-09-01'&eDate='2020-09-30'
 
 ------------------------------------------------------------------------------------------------
 Can use these end points to interact with compost_in table
     1.>>>POST - add no of produced comp pct   - localhost:8000/api/compin
         body -  [
                     {
-                        "inday"   :   "'2020-1-11'",
-                        "time"    :   "'12:12:12'",
+                        "inday"   :   "2020-1-11",
+                        "time"    :   "12:12:12",
                         "pctin"   :   "12"
                     }
                 ]
@@ -107,12 +119,14 @@ Can use these end points to interact with compost_out table
     1.>>>POST - add no of sold comp pct   - localhost:8000/api/compout
         body -  [
                     {
-                        "oday"      :   "'2020-12-12'",
-                        "otime"     :   "'12:12:12'",
+                        "oday"      :   "2020-12-12",
+                        "otime"     :   "12:12:12",
                         "pctout"    :   "12",
                         "amnt"      :   "1022.00"
                     }
                 ]
+    2.>>>GET - Get all the entries within a given time period and its summary - 
+            localhost:8000/report/dRange/cOut?sDate='2020-09-01'&eDate='2020-09-30'
 
 ------------------------------------------------------------------------------------------------
 Can use these end points to interact with the user_table

@@ -3,6 +3,7 @@ const {webSettings} = require("./settings");
 const views = require("./factories/viewsFolder");
 const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
+const {reportMethod} = require("./methods/reportMethod");
 const UserBuilder = require("./factories/userBuilder");
 const {getUser,addUser,signup,logOut,changePass,checkExpiry,getSessions} = require('./services/user-services');
 
@@ -51,6 +52,11 @@ const server = http.createServer((req,res)=>{
                         const apiMethod = method.getApiMethod();
                         await apiMethod.setQuery();
                         response = await apiMethod.execute(user.apiAccessControl(method.getPath(2),method.type));  
+                    }
+                    else if(method.getPath(1) == 'report'){
+        
+                        const report = new reportMethod(method);
+                        response = await report.execute(user.type);
                     }
                     else if(method.getPath(1) == 'signup' && user.apiAccessControl(method.getPath(1),method.type)){
                         //only allowed MOH users

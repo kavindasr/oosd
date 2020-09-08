@@ -55,7 +55,7 @@ class User{
             return (false);
         }
     }
-   
+    
 }
 
 class DepotSuperviser extends User{
