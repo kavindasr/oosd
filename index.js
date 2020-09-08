@@ -51,7 +51,6 @@ const server = http.createServer((req,res)=>{
                         //api method
                         const apiMethod = method.getApiMethod();
                         await apiMethod.setQuery();
-                        console.log(apiMethod.getQuery);
                         response = await apiMethod.execute(user.apiAccessControl(method.getPath(2),method.type));  
                     }
                     else if(method.getPath(1) == 'report'){

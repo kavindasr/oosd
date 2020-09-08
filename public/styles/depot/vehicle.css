@@ -1,0 +1,17 @@
+body{
+    background-color: #1F618D;
+}
+
+.row,.col-md-6{
+    margin-top:10px !important;
+    margin-bottom: 10px !important;
+}
+
+.close {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    padding: 12px 16px;
+    transform: translate(0%, -50%);
+}
