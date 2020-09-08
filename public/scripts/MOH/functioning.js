@@ -7,6 +7,7 @@ function addemployeeFunction() {
       document.getElementById("removeemployeefile").style.display="none";
       document.getElementById("employeedetailfile").style.display="none";
       document.getElementById("dailyattendencefile").style.display="none";
+      document.getElementById("garbageReportfile").style.display="none";
       document.getElementById("addUserfile").style.display="none";
       document.getElementById("removeUserfile").style.display="none";
       document.getElementById("vehicleReportfile").style.display="none";
@@ -23,6 +24,7 @@ function addemployeeFunction() {
       document.getElementById("employeedetailfile").style.display="none";
       document.getElementById("dailyattendencefile").style.display="none";
       document.getElementById("addUserfile").style.display="none";
+      document.getElementById("garbageReportfile").style.display="none";
       document.getElementById("removeUserfile").style.display="none";
       document.getElementById("vehicleReportfile").style.display="none";
     }
@@ -38,6 +40,7 @@ function addemployeeFunction() {
       document.getElementById("removeemployeefile").style.display="none";
       document.getElementById("dailyattendencefile").style.display="none";
       document.getElementById("addUserfile").style.display="none";
+      document.getElementById("garbageReportfile").style.display="none";
       document.getElementById("removeUserfile").style.display="none";
       document.getElementById("vehicleReportfile").style.display="none";
     }
@@ -55,6 +58,7 @@ function addemployeeFunction() {
       document.getElementById("addUserfile").style.display="none";
       document.getElementById("removeUserfile").style.display="none";
       document.getElementById("vehicleReportfile").style.display="none";
+      document.getElementById("garbageReportfile").style.display="none";
     }
   }
 
@@ -70,6 +74,7 @@ function addemployeeFunction() {
       document.getElementById("dailyattendencefile").style.display="none";
       document.getElementById("removeUserfile").style.display="none";
       document.getElementById("vehicleReportfile").style.display="none";
+      document.getElementById("garbageReportfile").style.display="none";
     }
   }
 
@@ -85,6 +90,7 @@ function addemployeeFunction() {
       document.getElementById("dailyattendencefile").style.display="none";
       document.getElementById("addUserfile").style.display="none";
       document.getElementById("vehicleReportfile").style.display="none";
+      document.getElementById("garbageReportfile").style.display="none";
     }
   }
 
@@ -100,5 +106,23 @@ function addemployeeFunction() {
       document.getElementById("dailyattendencefile").style.display="none";
       document.getElementById("addUserfile").style.display="none";
       document.getElementById("removeUserfile").style.display="none";
+      document.getElementById("garbageReportfile").style.display="none";
     }
   }
+
+    function garbageReportFunction() {
+      var x = document.getElementById("garbageReportfile");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+        document.getElementById("addemployeefile").style.display="none";
+        document.getElementById("removeemployeefile").style.display="none";
+        document.getElementById("employeedetailfile").style.display="none";
+        document.getElementById("dailyattendencefile").style.display="none";
+        document.getElementById("addUserfile").style.display="none";
+        document.getElementById("removeUserfile").style.display="none";
+        document.getElementById("vehicleReportfile").style.display="none";
+      }
+    }
+  

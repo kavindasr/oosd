@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/public/styles/depot/main.css" />
   <link rel="stylesheet" href="/public/styles/MOH/home.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="/public/scripts/MOH/functioning.js"></script>
@@ -170,7 +171,7 @@
                 </button>
               </div>
             </form>
-            <div id="detail">
+            <div id="detail" style="display: none;">
               <p id="empName"></p>
               <p id="empGender"></p>
               <p id="empType"></p>
@@ -178,6 +179,8 @@
                 <p id="empID"></p>
                 <p id="empSalID"></p>
               </div>
+              <button id="wrkdays" type="button" class="btn btn-lg btn-primary" onclick="workingdays()">View number of working days</button>
+              <p id="numdays"></p>
             </div>
           </div>
         </div>
@@ -197,7 +200,7 @@
               <br />
               <div id="togglepart">
                 <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Enter Date</label>
-                <input id="inpdate" type="text" name="emp_id" placeholder="1997-07-28" />
+                <input id="inpdate" type="date" name="attenddate" placeholder="1997-07-28" />
               </div>
             </form>
             <div id="gtype" class="form-group">
@@ -213,7 +216,6 @@
                 </select>
                 </div>
               </div>
-
             </div>
             <div id="sub">
               <button id="btn" type="button" onclick="viewattendence()">
@@ -268,13 +270,6 @@
                 </button>
               </div>
             </form>
-            <div id="detail">
-              <p id="empName"></p>
-              <p id="empID"></p>
-              <p id="empSalID"></p>
-              <p id="empGender"></p>
-              <p id="empType"></p>
-            </div>
           </div>
         </div>
       </div>
@@ -301,6 +296,37 @@
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="garbageReportfile" style="display: none;">
+    <div class="row row-content bodycontent" id="garbageReportfile">
+      <div class="col-12 col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <center>
+              <h1 style="color: rgb(255, 255, 255);">Garbage report</h1>
+            </center>
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active text-light" id="home-tab" onclick="setType(1)" data-toggle="tab" href="#onlyEmp" role="tab" aria-controls="employees" aria-selected="true">Daily</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link text-light"  id="profile-tab" onclick="setType(2)" data-toggle="tab" href="#withVehi" role="tab" aria-controls="Vehicle" aria-selected="false">Weekly</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link text-light"  id="profile-tab" onclick="setType(2)" data-toggle="tab" href="#withVehi" role="tab" aria-controls="Vehicle" aria-selected="false">Monthly</a>
+              </li>
+            </ul>
+            <div class="tab-content bg-white text-info" id="myTabContent" style="padding: 10px;border-style: solid; border-color: aliceblue; border-radius: 0px 0px 4px 4px;">
+              <br>
+              <div class="tab-pane fade show active" id="onlyEmp" role="tabpanel" aria-labelledby="home-tab"><div class="flex-container" id="flexBoxDiv1"></div></div>
+              <div class="tab-pane fade" id="withVehi" role="tabpanel" aria-labelledby="profile-tab"><div class="flex-container" id="flexBoxDiv2"></div></div>
+              <br>
+            </div>
           </div>
         </div>
       </div>
@@ -453,7 +479,7 @@
           </div>
 
           <div class="col-md-3" style="margin-top: 20px;">
-            <div class="garbagereport">
+            <div class="garbagereport" onclick="garbageReportFunction()">
               <div class="icon">
                 <i class="fa fa-trash-o fa-10x" style="
                       color: rgb(255, 255, 255);

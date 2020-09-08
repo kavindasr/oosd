@@ -30,8 +30,8 @@ const isr = {
   host: "localhost",
   database: "newoosddb",
 };
-//dsfd
-exports.dbConfig = msb;
+//dsfds
+exports.dbConfig = isr;
 
 exports.webSettings = {
   webport: 8000,
