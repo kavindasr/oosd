@@ -15,18 +15,14 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
       aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="home.html">
-            Home
-          </a>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
             Handle Employees
@@ -56,22 +52,13 @@
             <a class="dropdown-item" href="employeedetail.html">Employee Details</a>
           </div>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-            Settings
-          </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Change password</a>
-            <a class="dropdown-item" href="#">Log Out</a>
-          </div>
-        </li>
       </ul>
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-user-circle"></i>
-            <span>&nbsp UserName</span>
+            <span id="userName">&nbsp UserName</span>
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
             <a class="dropdown-item" href="#"><i class="fa fa-cog"></i>&nbsp Change password</a>
@@ -79,7 +66,10 @@
           </div>
         </li>
       </ul>
+      </ul>
+    </div>
   </nav>
+  
 
   <div id="addemployeefile" style="display: none;">
     <div class="row row-content bodycontent" id="addemployeefile">
@@ -87,7 +77,7 @@
         <div class="card">
           <div class="card-body">
             <center>
-              <h3 style="color: white;">ADD EMPLOYEE</h3>
+              <h3 style="color: white; display: inline-flex;">ADD EMPLOYEE</h3>
             </center>
             <form class="form-group">
               <div id="tooglepart1">
@@ -131,7 +121,7 @@
         <div class="card">
           <div class="card-body">
             <center>
-              <h1 style="color: rgb(250, 250, 250);">REMOVE EMPLOYEE</h1>
+              <h3 style="color: rgb(250, 250, 250); display: inline-flex;">REMOVE EMPLOYEE</h3>
             </center>
             <form action="" target="_self">
               <br />
@@ -157,7 +147,7 @@
         <div class="card">
           <div class="card-body">
             <center>
-              <h1 style="color: rgb(255, 255, 255);">Employee Detail</h1>
+              <h3 style="color: rgb(255, 255, 255); display: inline-flex;">Employee Detail</h3>
             </center>
             <form action="" target="_self">
               <br />
@@ -172,15 +162,18 @@
               </div>
             </form>
             <div id="detail" style="display: none;">
-              <p id="empName"></p>
-              <p id="empGender"></p>
-              <p id="empType"></p>
+              <h3 id="empName" ></h3>
+              <h4 id="empGender"></h4>
+              <h4 id="empType"></h4>
               <div id="comfield">
                 <p id="empID"></p>
                 <p id="empSalID"></p>
               </div>
-              <button id="wrkdays" type="button" class="btn btn-lg btn-primary" onclick="workingdays()">View number of working days</button>
+              <button id="wrkdays" type="button" onclick="workingdays()">View number of working days</button>
               <p id="numdays"></p>
+            </div>
+            <div id="detail" style="display: none;">
+            
             </div>
           </div>
         </div>
@@ -194,7 +187,7 @@
         <div class="card">
           <div class="card-body">
             <center>
-              <h1 style="color: rgb(255, 255, 255);">Daily Attendence</h1>
+              <h3 style="color: rgb(255, 255, 255); display: inline-flex;">Daily Attendence</h3>
             </center>
             <form action="" target="_self">
               <br />
@@ -240,7 +233,7 @@
         <div class="card">
           <div class="card-body">
             <center>
-              <h1 style="color: rgb(255, 255, 255);">Add User</h1>
+              <h3 style="color: rgb(255, 255, 255); display: inline-flex;">Add User</h3>
             </center>
             <form action="" target="_self">
               <br />
@@ -282,7 +275,7 @@
         <div class="card">
           <div class="card-body">
             <center>
-              <h1 style="color: rgb(250, 250, 250);">REMOVE USER</h1>
+              <h3 style="color: rgb(250, 250, 250); display: inline-flex;">REMOVE USER</h3>
             </center>
             <form action="" target="_self">
               <br />
@@ -308,7 +301,7 @@
         <div class="card">
           <div class="card-body">
             <center>
-              <h1 style="color: rgb(255, 255, 255);">Garbage report</h1>
+              <h3 style="color: rgb(255, 255, 255); display: inline-flex;">Garbage report</h3>
             </center>
             <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
@@ -339,7 +332,7 @@
         <div class="card">
           <div class="card-body">
             <center>
-              <h1 style="color: rgb(255, 255, 255);">Vehicle report</h1>
+              <h3 style="color: rgb(255, 255, 255); display: inline-flex;">Vehicle report</h3>
             </center>
             <div id="detail">
               <p id="empName"></p>
