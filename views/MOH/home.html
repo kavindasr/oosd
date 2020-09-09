@@ -16,7 +16,7 @@
 
 <body>
   <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Home</a>
+    <a class="navbar-brand" onclick="homeFunction()">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
       aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -24,12 +24,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          <a class="nav-link dropdown-toggle"  id="navbardrop" data-toggle="dropdown">
             Handle Employees
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="addEmployee.html">Add Employee</a>
-            <a class="dropdown-item" href="removeEmployee.html">Remove Employee</a>
+            <a class="dropdown-item" onclick="addemployeeFunction()">Add Employee</a>
+            <a class="dropdown-item" onclick="removeemployeeFunction()">Remove Employee</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -37,8 +37,8 @@
             Handle users
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Add User</a>
-            <a class="dropdown-item" href="logout.html">Remove Employee</a>
+            <a class="dropdown-item" onclick="addUserFunction()">Add User</a>
+            <a class="dropdown-item" onclick="removeUserFunction()">Remove Employee</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -46,10 +46,10 @@
             View Reports
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="dailyattendence.html">Daily Attendence</a>
+            <a class="dropdown-item" onclick="dailyattendenceFunction()">Daily Attendence</a>
             <a class="dropdown-item" href="#">Vehicle Report</a>
             <a class="dropdown-item" href="#">Garbage Report</a>
-            <a class="dropdown-item" href="employeedetail.html">Employee Details</a>
+            <a class="dropdown-item" onclick="employeedetailFunction()">Employee Details</a>
           </div>
         </li>
       </ul>
@@ -58,7 +58,7 @@
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-user-circle"></i>
-            <span id="userName">&nbsp UserName</span>
+            <span id="userName"></span>
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
             <a class="dropdown-item" href="#"><i class="fa fa-cog"></i>&nbsp Change password</a>
@@ -201,11 +201,7 @@
               <div id="togglepart5">
                 <div class="box">
                   <select class="form-control" id="divsel2">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option>----Select TYPE----</option>
                 </select>
                 </div>
               </div>
