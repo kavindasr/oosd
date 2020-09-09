@@ -60,7 +60,22 @@ function addemployeeFunction() {
       document.getElementById("vehicleReportfile").style.display="none";
       document.getElementById("garbageReportfile").style.display="none";
     }
-  }
+    var xhttp = new XMLHttpRequest();
+    var url =`http://localhost:8000/api/division/all`;
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
+        console.log(data);
+        var htmlPart = "<option> ----SELECT TYPE----</option>";
+        for(i=0;i<data.length;i++){
+          htmlPart += "<option>" + data[i].division_no +"- "+ data[i].division_name + "</option>"  ;
+        }
+        document.getElementById("divsel2").innerHTML = htmlPart;
+      }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
+    }
 
   function addUserFunction() {
     var x = document.getElementById("addUserfile");
@@ -124,5 +139,16 @@ function addemployeeFunction() {
         document.getElementById("removeUserfile").style.display="none";
         document.getElementById("vehicleReportfile").style.display="none";
       }
+    }
+
+    function homeFunction(){
+      document.getElementById("garbageReportfile").style.display="none";
+      document.getElementById("addemployeefile").style.display="none";
+        document.getElementById("removeemployeefile").style.display="none";
+        document.getElementById("employeedetailfile").style.display="none";
+        document.getElementById("dailyattendencefile").style.display="none";
+        document.getElementById("addUserfile").style.display="none";
+        document.getElementById("removeUserfile").style.display="none";
+        document.getElementById("vehicleReportfile").style.display="none";
     }
   
