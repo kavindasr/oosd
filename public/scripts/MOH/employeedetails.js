@@ -21,7 +21,7 @@ function workingdays() {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var empdetails = JSON.parse(this.responseText);
-      document.getElementById("numdays").innerHTML = data[0].name;
+      document.getElementById("numdays").innerHTML = "Has worked " + empdetails + " days in this month";
     }
   };
   xhttp.open("GET", url, true);
