@@ -33,6 +33,7 @@ const condition = new Map(
         ['inday','in_date'],
         ['oday','out_date'],
         ['vehicleid','vehicle_index'],
+        ['repairVehicleId','vehicle_index'],
         ['getAvailableVehicles','vehicle_repair.vehicle_index IS NULL']
 
     ]

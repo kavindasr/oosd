@@ -166,14 +166,14 @@ Can use these end points to interact with vehicle_repair table
     1.>>>GET - GET all details   - localhost:8000/api/repair/all
     2.>>>GET - GET detail by vehicle index   - localhost:8000/api/repair/all?vehicleid=1
     3.>>>POST - add vehicle repair   - localhost:8000/api/repair
-        body -  [
-                    {
-                        "vehicleid" :   "1",
-                        "repin"     :   "2020-08-02",
-                        "repout"    :   "2020-09-08",
-                        "replace"   :   "kurunegala"
-                    }
-                ]    
+        body -  
+                {
+                    "vehicleid" :   1,
+                    "repin"     :   "2020-08-02",
+                    "repout"    :   "2020-09-08",
+                    "replace"   :   "kurunegala"
+                }
+                   
 ------------------------------------------------------------------------------------------------
 Get data from two tables use join
     Query inner join - localhost:8000/api/table1/join/inner/table2/joiningFieldFromTable1/joiningFieldFromTable2/fieldsTable1/fieldsTable2?conditions

@@ -28,7 +28,7 @@ class ApiMethod {
         var conditionQ = [];
         var part = "";
         this.method.url.searchParams.forEach((value, name, searchParams) => {
-            if(!value && !name){
+            if(!value || !name){
                 this.isQueryValid = false;
             }
             part = `${getConditon(name)}="${value}"`;
@@ -194,9 +194,13 @@ class ApiHead extends ApiMethod {
         super(method);
     }
     setQuery() {
-        const fields = this.setFields();
+        const table = getTable(this.method.getPath(2));
+        if(!table){
+            this.isQueryValid = false;
+        }
+        const fields = this.setFields(this.method.getPath(3),table);
         const condition = this.setConditions();
-        this.query = `SELECT ${fields} FROM ${getTable(this.method.getPath(2))} WHERE ${condition}`;
+        this.query = `SELECT ${fields} FROM ${table} WHERE ${condition}`;
     }
 }
 
