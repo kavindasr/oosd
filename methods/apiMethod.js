@@ -71,7 +71,6 @@ class ApiMethod {
         return { field: fieldStr.slice(0, -1), val: valueFinal.slice(0, -1) };
     }
     async execute(isVaild) {
-        console.log(this.isQueryValid,isVaild);
         if(!isVaild){
             return new Send405();
         }
