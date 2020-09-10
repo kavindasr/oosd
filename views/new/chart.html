@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Degradable', 'Non-Degradable'],
+          ['Monday', 1000, 400],
+          ['Tuesday', 200 , 190],
+          ['Wednesday', 660, 800],
+          ['Thursday', 103, 540],
+          ['Friday', 117, 0],
+          ['Saturday', 66, 112],
+          ['Sunday', 103, 54]
+        ]);
+
+        var options = {
+            chart: {
+                title: 'Garbage Received Unbilled',
+                subtitle: 'Degradable, Non-Degradable: Weekly Report',
+            },
+            chartArea: {
+                backgroundColor: {
+                fill: '#d6e0f0',
+                fillOpacity: 0.1
+                },
+            },
+            backgroundColor: {
+                fill: '#d6e0f0',
+            },
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+  </head>
+  <body>
+    <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+  </body>
+</html>

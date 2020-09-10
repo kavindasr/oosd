@@ -1,8 +1,9 @@
-function run(){
-    document.getElementById("small").style.display = "none";
-    document.getElementById("full").style.display = "block";
+function run(page){
+    document.getElementById("content").innerHTML=`<object type="text/html" data="${page}" ></object>`;
     document.getElementById("icons").className = "col-md-6";
     document.getElementById("view").className = "col-md-6";
+    document.getElementById("small").style.display = "none";
+    document.getElementById("full").style.display = "block";
     document.getElementById("view").style.display = "block";
 }
 
@@ -17,6 +18,7 @@ function full(){
     document.getElementById("view").className = "col-md-12";
     document.getElementById("full").style.display = "none";
     document.getElementById("small").style.display = "block";
+    document.getElementsByTagName("object").style.width = "80vw";
 }
 
 function small(){
