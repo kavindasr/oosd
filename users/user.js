@@ -23,11 +23,17 @@ class User{
     }
 
     apiAccessControl(table ,methodType){
-        if (this.apiAccess[table][methodType]){
-            return true;
-        }else{
+        try{
+            if (this.apiAccess[table][methodType]){
+                return true;
+            }else{
+                return false;
+            } 
+        }
+        catch{
             return false;
         }
+        
     }
 
     viewAccessControl(pathname){

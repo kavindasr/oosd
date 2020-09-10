@@ -175,6 +175,13 @@ Can use these end points to interact with vehicle_repair table
                     }
                 ]    
 ------------------------------------------------------------------------------------------------
+Get data from two tables use join
+    Query inner join - localhost:8000/api/table1/join/inner/table2/joiningFieldFromTable1/joiningFieldFromTable2/fieldsTable1/fieldsTable2?conditions
+
+    Query left join - localhost:8000/api/table1/join/left/table2/joiningFieldFromTable1/joiningFieldFromTable2/fieldsTable1/fieldsTable2?where=condition <-get condition from api-map>
+
+
+------------------------------------------------------------------------------------------------
 Can use these end points to interact with the user_table
 
 1.>>>POST - add a user to the user table - localhost:8000/signup

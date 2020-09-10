@@ -32,7 +32,8 @@ const condition = new Map(
         ['invoice','invoice_no'],
         ['inday','in_date'],
         ['oday','out_date'],
-        ['vehicleid','vehicle_index']
+        ['vehicleid','vehicle_index'],
+        ['getAvailableVehicles','vehicle_repair.vehicle_index IS NULL']
 
     ]
 );
@@ -74,7 +75,10 @@ const field = new Map(
          //vehicle_repair
          ['repin','repair_in'],
          ['repout','repair_out'],
-         ['replace','repair_place']
+         ['replace','repair_place'],
+         ['repairVehicleId','vehicle_index'],
+         //vehicle_detail
+         ['vehicleId','index_no']
         //add unique key to represnt different combinations of fields
     ]
 );

@@ -31,7 +31,7 @@ const isr = {
   database: "newoosddb",
 };
 //dsfds
-exports.dbConfig = msb;
+exports.dbConfig = ksr;
 
 exports.webSettings = {
   webport: 8000,
