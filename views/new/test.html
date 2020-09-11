@@ -48,7 +48,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm tile" style="background-color: #cdb30c;">
-                            <a class='btn' href="#view" onclick="run()">
+                            <a class='btn' href="#view" onclick="run('chart.html')">
                                 <div>
                                     <i class="fa fa-user-plus fa-5x" aria-hidden="true"></i>
                                 </div>
@@ -99,6 +99,33 @@
                             </a>  
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm tile" style="background-color: #cdb30c;">
+                            <a class='btn' href="#view" onclick="run()">
+                                <div>
+                                    <i class="fa fa-user-plus fa-5x" aria-hidden="true"></i>
+                                </div>
+                                <div>Add employee</div>
+                            </a>
+                            
+                        </div>
+                        <div class="col-sm tile" style="background-color: #00bcd4;">
+                            <a class='btn' href="#view" onclick="run()">
+                                <div>
+                                    <i class="fa fa-address-card fa-5x" aria-hidden="true"></i>
+                                </div>
+                                <div>Employee details</div>
+                            </a>
+                        </div>
+                        <div class="col-sm tile" style="background-color: #206a5d;">
+                            <a class='btn' href="#view" onclick="run()">
+                                <div>
+                                    <i class="fa fa-trash fa-5x" aria-hidden="true"></i>
+                                </div>
+                                <div>Garbage report</div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="view" class="col-md-6">
@@ -114,6 +141,8 @@
                 <br>
                 <br>
                 <br>
+                <div id="content">
+                </div>
             </div>
          
         </div>

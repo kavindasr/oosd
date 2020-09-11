@@ -49,3 +49,15 @@ body{
 #small{
     display: none;
 }
+object{
+    width: 820px;
+    height: 520px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: aliceblue !important;
+}
+
+#content{
+    overflow:auto;
+}

@@ -23,11 +23,17 @@ class User{
     }
 
     apiAccessControl(table ,methodType){
-        if (this.apiAccess[table][methodType]){
-            return true;
-        }else{
+        try{
+            if (this.apiAccess[table][methodType]){
+                return true;
+            }else{
+                return false;
+            } 
+        }
+        catch{
             return false;
         }
+        
     }
 
     viewAccessControl(pathname){
@@ -71,7 +77,7 @@ class DepotSuperviser extends User{
             ginbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             gunbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             vehicleout           : {GET:true,POST:true,PUT:false,DELETE:false},
-            repair               : {GET:true,POST:true,PUT:true,DELETE:false}
+            repair               : {GET:true,POST:true,PUT:true,DELETE:true}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             
         }

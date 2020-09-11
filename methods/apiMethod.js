@@ -6,15 +6,20 @@ class ApiMethod {
     constructor(method) {
         this.query = null;
         this.method = method;
+        this.isQueryValid = true;
     }
     get getQuery() {
         return this.query;
     }
-    setFeilds() {
-        const fieldsList = this.method.getPath(3).split("&");
+    setFields(feilds,table) {
+        const fieldsList = feilds.split("&");
         var arr = [];
         for (var element of fieldsList) {
-            arr.push(getField(element));
+            var field = getField(element);
+            if(!field){
+                this.isQueryValid = false;
+            }
+            arr.push(table+"."+field);
         }
         return arr.join();
     }
@@ -23,6 +28,9 @@ class ApiMethod {
         var conditionQ = [];
         var part = "";
         this.method.url.searchParams.forEach((value, name, searchParams) => {
+            if(!value || !name){
+                this.isQueryValid = false;
+            }
             part = `${getConditon(name)}="${value}"`;
             conditionQ.push(part);
         });
@@ -42,7 +50,11 @@ class ApiMethod {
         }
 
         for (let key in dataList[0]) {
-            fieldStr = fieldStr + getField(key) + ",";
+            var field = getField(key);
+            if(!field){
+                this.isQueryValid = false;
+            }
+            fieldStr = fieldStr + field + ",";
         }
 
         dataList.forEach(doThis);
@@ -61,6 +73,9 @@ class ApiMethod {
     async execute(isVaild) {
         if(!isVaild){
             return new Send405();
+        }
+        if(!this.isQueryValid){
+            return new Send400();
         }
         try {
             const data = await executeSQL(this.query);
@@ -86,14 +101,45 @@ class ApiGet extends ApiMethod {
         super(method);
     }
     setQuery() {
-        const fields = this.setFeilds();
-        const condition = this.setConditions();
+        var fields,table,condition;
+        if(this.method.getPath(3) == 'join'){
+            ({table,fields,condition} = this.join());
+        }
+        else{
+            table = getTable(this.method.getPath(2));
+            fields = this.setFields(this.method.getPath(3),table);
+            condition = this.setConditions();
+        }
+        
         if (condition) {
-            this.query = `SELECT ${fields} FROM ${getTable(this.method.getPath(2))} WHERE ${condition}`;
+            this.query = `SELECT ${fields} FROM ${table} WHERE ${condition}`;
         } 
         else {
-            this.query = `SELECT ${fields} FROM ${getTable(this.method.getPath(2))}`;
+            this.query = `SELECT ${fields} FROM ${table}`;
         }
+    }
+    join(){
+        var table1,table2,t1f1,t2f2,type,fieldsT1,fieldsT2;
+        type = this.method.getPath(4);
+        table1 = getTable(this.method.getPath(2));
+        table2 = getTable(this.method.getPath(5));
+        t1f1 = getField(this.method.getPath(6));
+        t2f2 = getField(this.method.getPath(7));
+        if(!table1 || !table2 || !t1f1 || !t2f2){
+            this.isQueryValid = false;
+        }
+        fieldsT1 = this.setFields(this.method.getPath(8),table1);
+        fieldsT2 = this.setFields(this.method.getPath(9),table2);
+        const mid = `${table1} ${type} JOIN ${table2} ON ${table1}.${t1f1} = ${table2}.${t2f2}`;
+        var end,cond;
+        end = `${fieldsT1},${fieldsT2}`;
+        if(type == 'inner'){
+            cond = this.setConditions();
+        }
+        else{
+            cond = getConditon(this.method.searchURL('where'));
+        }
+        return {table:mid,fields:end,condition:cond};
     }
 }
 
@@ -148,9 +194,13 @@ class ApiHead extends ApiMethod {
         super(method);
     }
     setQuery() {
-        const fields = this.setFeilds();
+        const table = getTable(this.method.getPath(2));
+        if(!table){
+            this.isQueryValid = false;
+        }
+        const fields = this.setFields(this.method.getPath(3),table);
         const condition = this.setConditions();
-        this.query = `SELECT ${fields} FROM ${getTable(this.method.getPath(2))} WHERE ${condition}`;
+        this.query = `SELECT ${fields} FROM ${table} WHERE ${condition}`;
     }
 }
 
