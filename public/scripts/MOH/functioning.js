@@ -33,6 +33,7 @@ function addemployeeFunction() {
   function employeedetailFunction() {
     var x = document.getElementById("employeedetailfile");
     if (x.style.display === "block") {
+      window.location.reload();
       x.style.display = "none";
     } else {
       x.style.display = "block";
