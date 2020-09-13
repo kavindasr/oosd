@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+        <link rel="stylesheet" href="/public/styles/depot/main.css" />
+        <link rel="stylesheet" href="/public/styles/MOH/home.css" />
+    </head>
+    <body>
+      <div id="employeedetailfile">
+        <div class="row row-content bodycontent" id="employeedetailfile">
+          <div class="col-12 col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <center>
+                  <h3 style="color: rgb(255, 255, 255); display: inline-flex;">Employee Detail</h3>
+                </center>
+                <form action="" target="_self">
+                  <br />
+                  <div id="togglepart">
+                    <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Enter Employee ID</label>
+                    <input id="idnum" type="number" name="emp_id" placeholder="180044" />
+                  </div>
+                  <div id="sub">
+                    <button id="btn" type="button" onclick="viewEmployee()">
+                      SUBMIT
+                    </button>
+                  </div>
+                </form>
+                <div id="detail" style="display: none;">
+                  <h3 id="empName" ></h3>
+                  <h4 id="empGender"></h4>
+                  <h4 id="empType"></h4>
+                  <div id="comfield">
+                    <p id="empID"></p>
+                    <p id="empSalID"></p>
+                  </div>
+                  <button id="wrkdays" type="button" onclick="workingdays()">View number of working days</button>
+                  <p id="numdays"></p>
+                </div>
+                <div id="detail" style="display: none;">
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="/public/scripts/MOH/employeedetails.js"></script>
+    </body>
+</html>
