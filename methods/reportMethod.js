@@ -27,7 +27,8 @@ class reportMethod{
             arr = getArray('in_weight','gin_billed',sDate,eDate);
         }
         else if(reqType=="billedAmount"){
-            arr = getArray('bill_amount','gin_billed',sDate,eDate);
+            arr = await getArray('bill_amount','gin_billed',sDate,eDate);
+            console.log(arr);
         }else if (reqType=="gOut"){
             data=await executeSQL(`SELECT out_date,g_type, SUM(bill_amount) AS "Total bill",SUM(in_weight) AS
              "Total weight" FROM gin_billed WHERE in_date>=${sDate} AND in_date<=${eDate} GROUP BY in_date,g_type`);
@@ -105,12 +106,13 @@ async function getArray(field,table,sDate,eDate){
     var data = await executeSQL(`SELECT in_date,g_type, SUM(${field}) AS "total" FROM ${table} WHERE in_date>=${sDate} AND in_date<=${eDate} GROUP BY in_date,g_type ORDER BY in_date,g_type`);   
     for(var i=0;i<data.length-1;i++){
         var obj;
-        if(data[i].in_date == data[i+1].in_date){
+        if(String(data[i].in_date)== String(data[i+1].in_date)){
             obj = {
                 date: data[i].in_date,
                 deg: data[i].total,
                 nondeg:data[i+1].total
             }
+            i++;
         }
         else if(data[i].g_type == 1){
             obj = {
