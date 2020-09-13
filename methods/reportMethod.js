@@ -107,26 +107,26 @@ async function getArray(field,table,sDate,eDate){
     for(var i=0;i<data.length-1;i++){
         var obj;
         if(String(data[i].in_date)== String(data[i+1].in_date)){
-            obj = {
-                date: data[i].in_date,
-                deg: data[i].total,
-                nondeg:data[i+1].total
-            }
+            obj = [
+                data[i].in_date,
+                data[i].total,
+                data[i+1].total
+            ]
             i++;
         }
         else if(data[i].g_type == 1){
-            obj = {
-                date:data[i].in_date,
-                deg:data[i].total,
-                nondeg:0
-            }
+            obj = [
+                data[i].in_date,
+                data[i].total,
+                0
+            ]
         }
         else if(data[i].g_type == 2){
-            obj = {
-                date: data[i].in_date,
-                deg:0,
-                nondeg:data[i].total
-            }
+            obj = [
+                data[i].in_date,
+                0,
+                data[i].total
+            ]
         }
         arr.push(obj);
     }
