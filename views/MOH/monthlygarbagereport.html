@@ -9,33 +9,50 @@
         
     </head>
     <body>
-        <div id="ginunbilled" style="display: block;"></div>
-        <div id="ginbilledincome"  style="display: block;">
-            <div id="togglepart">
-                <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Month</label>
-                <div id="togglepartadduser">
-                  <div class="box">
-                    <select id="adduserselection" onchange="monthlyginbilledincome()">
-                      <option value="january">January</option>
-                      <option value="february">February</option>
-                      <option value="march">March</option>
-                      <option value="april">April</option>
-                      <option value="may">May</option>
-                      <option value="june">June</option>
-                      <option value="july">July</option>
-                      <option value="august">August</option>
-                      <option value="september">September</option>
-                      <option value="octomber">Octomber</option>
-                      <option value="november">November</option>
-                      <option value="december">December</option>
-
-                    </select>
-                  </div>
-                </div>
+        <div id="togglepart">
+            <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Type</label>
+            <div id="togglepartadduser">
+              <div class="box">
+                <select id="adduserselection">
+                  <option value="unbilled">Garbage In-unbilled</option>
+                  <option value="february">Garbage In Income-billed</option>
+                  <option value="march">Garbage In Weight-billed</option>
+                  <option value="april">Garbage Out Weight-billed</option>
+                  <option value="may">Garbage Out Income-billed</option>
+                  <option value="june">Compost In Price</option>
+                  <option value="july">Compost In Packets</option>
+                </select>
               </div>
-              <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+            </div>
+          </div>
+            <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Month</label>
+            <div id="togglepartadduser">
+              <div class="box">
+                <select id="adduserselection">
+                  <option value="january">January</option>
+                  <option value="february">February</option>
+                  <option value="march">March</option>
+                  <option value="april">April</option>
+                  <option value="may">May</option>
+                  <option value="june">June</option>
+                  <option value="july">July</option>
+                  <option value="august">August</option>
+                  <option value="september">September</option>
+                  <option value="octomber">Octomber</option>
+                  <option value="november">November</option>
+                  <option value="december">December</option>
 
-        </div>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div id="sub">
+            <button id="btn" type="button" onclick="seperatereports()">
+              ADD USER
+            </button>
+          </div>
+        <div id="ginunbilled" style="display: block;"></div>
+        <div id="ginbilledincome"  style="display: block;"></div>
         <div id="ginbilledprice" style="display: block;"></div>
         <div id="goutweight" style="display: block;"></div>
         <div id="goutincome" style="display: none;"></div>

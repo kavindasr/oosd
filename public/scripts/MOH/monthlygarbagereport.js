@@ -1,13 +1,21 @@
 var d = new Date();
 
-
-function monthlyginbilledincome() {
-    console.log("hiiiiiii");
+function seperatereports(){
+    var month='';
+    var days='';
     if(document.getElementById("adduserselection").value=="august"){
         month=08;
         days=31;
     }
-    
+
+    if(document.getElementById("adduserselection").value=="unbilled"){
+        monthlyginbilledincome(month,days);
+    }
+}
+
+
+function monthlyginbilledincome(month,days) {
+    console.log("hiiiii12345");
     var xhttp = new XMLHttpRequest();
     var url ='http://localhost:8000/report/dRange/unbilled?sDate=' +d.getFullYear() +"-" +month+"-"+"01&eDate="+d.getFullYear() +"-" +month+"-"+days;
     console.log(url);
