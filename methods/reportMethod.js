@@ -22,42 +22,12 @@ class reportMethod{
         var data={}; 
         var summ={};
         if (reqType=="unbilled"){
-            data = await executeSQL(`SELECT in_date, g_type,SUM(in_weight) AS "total_weight" FROM gin_unbilled WHERE in_date>=${sDate} AND in_date<=${eDate}GROUP BY in_date,g_type;`)
-            // data = await executeSQL(`SELECT * FROM gin_unbilled WHERE in_date >= ${sDate} AND in_date <= ${eDate}`) ;
-            // summ = sumFind(data,"in_weight","bill_amount","g_type");
+            arr = getArray('in_weight','gin_unbilled',sDate,eDate);
         }else if (reqType=="billed"){
-            data=await executeSQL(`SELECT in_date,g_type, SUM(bill_amount) AS "total_bill",SUM(in_weight) AS
-             "total_weight" FROM gin_billed WHERE in_date>=${sDate} AND in_date<=${eDate} GROUP BY in_date,g_type ORDER BY in_date,g_type`);
-            
-            for(var i=0;i<data.length-1;i++){
-                var obj;
-                if(data[i].in_date == data[i+1].in_date){
-                    obj = {
-                        date: data[i].in_date,
-                        deg: data[i].total_weight,
-                        nondeg:data[i+1].total_weight
-                    }
-                }
-                else if(data[i].g_type == 1){
-                    obj = {
-                        date:data[i].in_date,
-                        deg:data[i].total_weight,
-                        nondeg:0
-                    }
-                }
-                else if(data[i].g_type == 2){
-                    obj = {
-                        date: data[i].in_date,
-                        deg:0,
-                        nondeg:data[i].total_weight
-                    }
-                }
-                arr.push(obj);
-            }
-            
-            //data = await executeSQL(`SELECT * FROM gin_billed WHERE in_date >= ${sDate} AND in_date <= ${eDate}`) ;
-            //console.log(data);
-            //summ = sumFind(data,"in_weight","bill_amount","g_type");
+            arr = getArray('in_weight','gin_billed',sDate,eDate);
+        }
+        else if(reqType=="billedAmount"){
+            arr = getArray('bill_amount','gin_billed',sDate,eDate);
         }else if (reqType=="gOut"){
             data=await executeSQL(`SELECT out_date,g_type, SUM(bill_amount) AS "Total bill",SUM(in_weight) AS
              "Total weight" FROM gin_billed WHERE in_date>=${sDate} AND in_date<=${eDate} GROUP BY in_date,g_type`);
@@ -127,6 +97,38 @@ function sumFind(dataList,amStr,prStr,type){
         return(sum);
     }
     
+}
+
+async function getArray(field,table,sDate,eDate){
+    //data=await executeSQL(`SELECT in_date,g_type, SUM(bill_amount) AS "total",SUM(in_weight) AS "total_weight" FROM gin_billed WHERE in_date>=${sDate} AND in_date<=${eDate} GROUP BY in_date,g_type ORDER BY in_date,g_type`); 
+    var arr = [];
+    var data = await executeSQL(`SELECT in_date,g_type, SUM(${field}) AS "total" FROM ${table} WHERE in_date>=${sDate} AND in_date<=${eDate} GROUP BY in_date,g_type ORDER BY in_date,g_type`);   
+    for(var i=0;i<data.length-1;i++){
+        var obj;
+        if(data[i].in_date == data[i+1].in_date){
+            obj = {
+                date: data[i].in_date,
+                deg: data[i].total,
+                nondeg:data[i+1].total
+            }
+        }
+        else if(data[i].g_type == 1){
+            obj = {
+                date:data[i].in_date,
+                deg:data[i].total,
+                nondeg:0
+            }
+        }
+        else if(data[i].g_type == 2){
+            obj = {
+                date: data[i].in_date,
+                deg:0,
+                nondeg:data[i].total
+            }
+        }
+        arr.push(obj);
+    }
+    return arr;
 }
 
 module.exports = {reportMethod};

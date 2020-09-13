@@ -1,0 +1,26 @@
+body{
+    background-color: #1F618D;
+}
+
+.flex-container > div{
+    width: 50px;
+    margin: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #3498DB ;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+    margin: 0 auto; 
+    float: none; 
+    margin-bottom: 10px; 
+}

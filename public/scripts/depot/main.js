@@ -4,7 +4,7 @@ var vehicles;
 
 (async ()=>{
     try{
-        vehicles = await apiCall("GET", `${domain}/api/vehicle/all`);
+        vehicles = await apiCall("GET", `${domain}/api/vehicle/join/left/repair/vehicleId/repairVehicleId/all/all?where=getAvailableVehicles`);
     }
     catch(e){
         alert("Reload and try again!");
@@ -99,7 +99,10 @@ function removeEmp(){
 
 function saveToStorage(){
     var element = document.getElementById('vehiList');
-    const vehicle = element.options[element.selectedIndex].value;
+    var vehicle;
+    if(!document.getElementById('vehiList').disabled){
+        vehicle = element.options[element.selectedIndex].value;
+    } 
     const driverName = document.getElementById('driverName').value;
     if(driverName !=''){
         var vehicle_index;
