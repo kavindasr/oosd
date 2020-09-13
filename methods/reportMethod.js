@@ -18,26 +18,65 @@ class reportMethod{
         const sDate = this.method.searchURL("sDate");
         const eDate = this.method.searchURL("eDate");
         var amStr="",prStr="";
+        var arr=[];
         var data={}; 
         var summ={};
         if (reqType=="unbilled"){
-            data = await executeSQL(`SELECT * FROM gin_unbilled WHERE in_date >= ${sDate} AND in_date <= ${eDate}`) ;
-            summ = sumFind(data,"in_weight","bill_amount","g_type");
+            data = await executeSQL(`SELECT in_date, g_type,SUM(in_weight) AS "total_weight" FROM gin_unbilled WHERE in_date>=${sDate} AND in_date<=${eDate}GROUP BY in_date,g_type;`)
+            // data = await executeSQL(`SELECT * FROM gin_unbilled WHERE in_date >= ${sDate} AND in_date <= ${eDate}`) ;
+            // summ = sumFind(data,"in_weight","bill_amount","g_type");
         }else if (reqType=="billed"){
-            data = await executeSQL(`SELECT * FROM gin_billed WHERE in_date >= ${sDate} AND in_date <= ${eDate}`) ;
-            summ = sumFind(data,"in_weight","bill_amount","g_type");
+            data=await executeSQL(`SELECT in_date,g_type, SUM(bill_amount) AS "total_bill",SUM(in_weight) AS
+             "total_weight" FROM gin_billed WHERE in_date>=${sDate} AND in_date<=${eDate} GROUP BY in_date,g_type ORDER BY in_date,g_type`);
+            
+            for(var i=0;i<data.length-1;i++){
+                var obj;
+                if(data[i].in_date == data[i+1].in_date){
+                    obj = {
+                        date: data[i].in_date,
+                        deg: data[i].total_weight,
+                        nondeg:data[i+1].total_weight
+                    }
+                }
+                else if(data[i].g_type == 1){
+                    obj = {
+                        date:data[i].in_date,
+                        deg:data[i].total_weight,
+                        nondeg:0
+                    }
+                }
+                else if(data[i].g_type == 2){
+                    obj = {
+                        date: data[i].in_date,
+                        deg:0,
+                        nondeg:data[i].total_weight
+                    }
+                }
+                arr.push(obj);
+            }
+            
+            //data = await executeSQL(`SELECT * FROM gin_billed WHERE in_date >= ${sDate} AND in_date <= ${eDate}`) ;
+            //console.log(data);
+            //summ = sumFind(data,"in_weight","bill_amount","g_type");
         }else if (reqType=="gOut"){
-            data = await executeSQL(`SELECT * FROM garbage_out WHERE out_date >= ${sDate} AND out_date <= ${eDate}`) ;
-            summ = sumFind(data,"weight","bill_amount","waste_type");
+            data=await executeSQL(`SELECT out_date,g_type, SUM(bill_amount) AS "Total bill",SUM(in_weight) AS
+             "Total weight" FROM gin_billed WHERE in_date>=${sDate} AND in_date<=${eDate} GROUP BY in_date,g_type`);
+            //data = await executeSQL(`SELECT * FROM garbage_out WHERE out_date >= ${sDate} AND out_date <= ${eDate}`) ;
+            //summ = sumFind(data,"weight","bill_amount","waste_type");
         }else if (reqType=="cOut"){
-            data = await executeSQL(`SELECT * FROM compost_out WHERE out_date >= ${sDate} AND out_date <= ${eDate}`) ;
-            summ = sumFind(data,"pct_sold","bill_amount");
+            data = await executeSQL(`SELECT out_date, SUM(pct_sold) AS "Total pct",SUM(bill_amount) AS "Total bill" FROM 
+            compost_out WHERE out_date>=${sDate} AND out_date<=${eDate} GROUP BY out_date;`)
+            // data = await executeSQL(`SELECT * FROM compost_out WHERE out_date >= ${sDate} AND out_date <= ${eDate}`) ;
+            // summ = sumFind(data,"pct_sold","bill_amount");
+        }else if (reqType=="cin"){
+            data = await executeSQL(`SELECT in_date, SUM(pct_produced) AS "Total pct" FROM compost_in WHERE 
+            in_date>=${sDate} AND in_date<=${eDate} GROUP BY in_date;`)
         }else{
             data = {"error":"cant take action"};
-            summ = {"error":"cant take action"};
+            //summ = {"error":"cant take action"};
         }
         
-        return({'data':data,'summary':summ});
+        return(arr);
     }
 
     async execute(type){
@@ -46,7 +85,7 @@ class reportMethod{
         
         if(this.method.getPath(2)=="absentee" && type == 'moh'){
             res = await this.absenteeCal();
-        }else if (this.method.getPath(2) == "dRange" && type == 'clerk'){
+        }else if (this.method.getPath(2) == "dRange" && type == 'moh'){
             res = await this.getdRange(this.method.getPath(3));
         }
         return new SendJson(JSON.stringify(res));
