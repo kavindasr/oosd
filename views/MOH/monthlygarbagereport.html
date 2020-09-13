@@ -5,11 +5,38 @@
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
         <link rel="stylesheet" href="/public/styles/depot/main.css" />
         <link rel="stylesheet" href="/public/styles/MOH/home.css" />
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        
     </head>
     <body>
         <div id="ginunbilled" style="display: block;"></div>
-        <div id="ginbilledincome"  style="display: block;"></div>
-        <div id="ginbilledprice" style="display: none;"></div>
+        <div id="ginbilledincome"  style="display: block;">
+            <div id="togglepart">
+                <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Month</label>
+                <div id="togglepartadduser">
+                  <div class="box">
+                    <select id="adduserselection" onchange="monthlyginbilledincome()">
+                      <option value="january">January</option>
+                      <option value="february">February</option>
+                      <option value="march">March</option>
+                      <option value="april">April</option>
+                      <option value="may">May</option>
+                      <option value="june">June</option>
+                      <option value="july">July</option>
+                      <option value="august">August</option>
+                      <option value="september">September</option>
+                      <option value="octomber">Octomber</option>
+                      <option value="november">November</option>
+                      <option value="december">December</option>
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+
+        </div>
+        <div id="ginbilledprice" style="display: block;"></div>
         <div id="goutweight" style="display: block;"></div>
         <div id="goutincome" style="display: none;"></div>
         <div id="compostpackets" style="display: block;"></div>
