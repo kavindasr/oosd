@@ -19,7 +19,13 @@ class ApiMethod {
             if(!field){
                 this.isQueryValid = false;
             }
-            arr.push(table+"."+field);
+            //This if else id added to avoid the error in this garbage_out.MAX(invoice_no)
+            if(field=="MAX(invoice_no) AS pr"){
+                arr.push(field);
+            }else{
+                arr.push(table+"."+field);
+            }
+          
         }
         return arr.join();
     }
