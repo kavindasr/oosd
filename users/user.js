@@ -120,7 +120,7 @@ class MOH extends User{
             "clerk":false,
             "mayor":false
         }
-        this.mainPage = '/moh/home';
+        this.mainPage = '/moh/homenew';
     }
 
     
