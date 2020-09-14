@@ -98,7 +98,7 @@ class MOH extends User{
             employee             : {GET:true,POST:true,PUT:true,DELETE:true,HEAD:true},
             attendance           : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:true},
             division             : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
-            vehicle              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
+            vehicle              : {GET:true,POST:false,PUT:false,DELETE:true,HEAD:true},
             gdetail              : {GET:true,POST:true,PUT:true,DELETE:true,HEAD:true},
             ginbill              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
             gunbill              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
