@@ -1,90 +1,80 @@
 var d = new Date();
+var year= d.getFullYear();
 
-function seperatereports(){
-    var month='';
-    var days='';
-    var input = document.getElementById("datesel").value;
-    console.log(input);
-    if(document.getElementById("datesel").value=="january"){
-        month=01;
-        days=31;
-    }else if(document.getElementById("adduserselection").value=="february"){
-        month=02;
-        days=28;
-    }else if(document.getElementById("adduserselection").value=="march"){
-        month=03;
-        days=31;
-    }else if(document.getElementById("adduserselection").value=="april"){
-        month=04;
-        days=30;
-    }else if(document.getElementById("adduserselection").value=="may"){
-        month=05;
-        days=31;
-    }else if(document.getElementById("adduserselection").value=="june"){
-        month=06;
-        days=30;
-    }else if(document.getElementById("adduserselection").value=="july"){
-        month=07;
-        days=31;
-    }else if(document.getElementById("adduserselection").value=="august"){
-        month=08;
-        days=31;
-    }else if(document.getElementById("datesel").value=="september"){
-        month="09";
-        days=30;
-    }else if(document.getElementById("adduserselection").value=="november"){
-        month=10;
-        days=31;
-    }else if (document.getElementById("adduserselection").value=="december"){
-        month=11;
-        days=30;
-    }else{
-        console.log("sjdjs");
-    }
+monthlyginunbilled("09",30);
+monthlyginbilledweight("09",30);
 
-    if(document.getElementById("adduserselection").value=="unbilled"){
-        monthlyginbilledincome(month,days);
-    }if(document.getElementById("adduserselection").value=="billed"){
-        monthlyginbilledincome(month,days);
-    }
-
-
-}
-
-
-function monthlyginbilledincome(month,days) {
-    console.log(month);
-    console.log("hiiiii12345");
-    var xhttp = new XMLHttpRequest();
-    var url ="http://localhost:8000/report/dRange/billed?sDate='" +d.getFullYear() +"-" +month+"-"+"01'&eDate='"+d.getFullYear() +"-" +month+"-"+days+"'";
-    console.log(url);
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        var ginchartdetails = JSON.parse(this.responseText);
-        console.log(ginchartdetails);
-        renerginbilledchart(ginchartdetails);
-      }
-    };
-    xhttp.open("GET", url, true);
-    xhttp.send();
-  }
-  
-  function renerginbilledchart(ginchartdetails){
+//to draw chart 1
+async function monthlyginunbilled(month,days) {
+    try{
+        var url=`${domain}/report/dRange/unbilled?sDate='${year}-${month}-01'&eDate='${year}-${month}-${days}'`;
+        chart1data = await apiCall('GET', url);
+        console.log(chart1data);
+        ginunbilledchart(chart1data)
+    }catch(e){
+        console.log(e);
+    }        
+}  
+function ginunbilledchart(chartdata){
+    chartdata.unshift(["Date","Degradable","Non-Degradable"]);
     google.charts.load('current', {'packages':['bar']});
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-      var data = google.visualization.arrayToDataTable(ginchartdetails);
+        
+      var data = google.visualization.arrayToDataTable(chartdata);
 
       var options = {
           chart: {
-              title: 'Garbage Received Unbilled',
-              subtitle: 'Degradable, Non-Degradable: Weekly Report',
+              title: 'UnBilled Garbage In Summary',
+              subtitle: 'Degradable, Non-Degradable: Monthly Report',
           },
           chartArea: {
               backgroundColor: {
-              fill: '#d6e0f0',
-              fillOpacity: 0.1
+              fill: '#79e0c1',
+              //fillOpacity: 0.1
+              },
+          },
+          backgroundColor: {
+              fill: '#d6e0f0', // this is the background colour of chart area
+          },
+      };
+
+      var chart = new google.charts.Bar(document.getElementById('ginunbilled'));
+
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+  }
+}
+
+//To draw chart2
+async function monthlyginbilledweight(month,days) {
+    try{
+        var url=`${domain}/report/dRange/billed?sDate='${year}-${month}-01'&eDate='${year}-${month}-${days}'`;
+        chartdata = await apiCall('GET', url);
+        console.log(chartdata);
+        ginbilledchart(chartdata)
+    }catch(e){
+        console.log(e);
+    }        
+}
+function ginbilledchart(chartdata){
+    chartdata.unshift(["Date","Degradable","Non-Degradable"]);
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        
+      var data = google.visualization.arrayToDataTable(chartdata);
+
+      var options = {
+          chart: {
+              title: 'Billed Garbage In Summary',
+              subtitle: 'Degradable, Non-Degradable: Monthly Report',
+          },
+          chartArea: {
+              backgroundColor: {
+              fill: '#52afd7',
+              //fillOpacity: 0.1
               },
           },
           backgroundColor: {
@@ -92,63 +82,8 @@ function monthlyginbilledincome(month,days) {
           },
       };
 
-      var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+      var chart = new google.charts.Bar(document.getElementById('ginbilledweight'));
 
       chart.draw(data, google.charts.Bar.convertOptions(options));
   }
 }
-
-function monthlyginbgffilledincome(month,days) {
-    console.log("hiiiii12345");
-    var xhttp = new XMLHttpRequest();
-    var url ='http://localhost:8000/report/dRange/unbilled?sDate=' +d.getFullYear() +"-" +month+"-"+"01&eDate="+d.getFullYear() +"-" +month+"-"+days;
-    console.log(url);
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        var ginchartdetails = JSON.parse(this.responseText);
-        console.log(ginchartdetails);
-        renerginbilledchart(ginchartdetails);
-      }
-    };
-    xhttp.open("GET", url, true);
-    xhttp.send();
-  }
-  
-  function renerginbilledchart(ginchartdetails){
-    google.charts.load('current', {'packages':['bar']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Date', 'Degradable', 'Non-Degradable'],
-        ['Monday', 1000, 400],
-        ['Tuesday', 200 , 190],
-        ['Wednesday', 660, 800],
-        ['Thursday', 103, 540],
-        ['Friday', 117, 0],
-        ['Saturday', 66, 112],
-        ['Sunday', 103, 54]
-      ]);
-
-      var options = {
-          chart: {
-              title: 'Garbage Received Unbilled',
-              subtitle: 'Degradable, Non-Degradable: Weekly Report',
-          },
-          chartArea: {
-              backgroundColor: {
-              fill: '#d6e0f0',
-              fillOpacity: 0.1
-              },
-          },
-          backgroundColor: {
-              fill: '#d6e0f0',
-          },
-      };
-
-      var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-      chart.draw(data, google.charts.Bar.convertOptions(options));
-  }
-}
-  
