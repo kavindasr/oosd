@@ -1,4 +1,3 @@
-
 //get the list of garbegs from the database i and out
 async function getGarbageList(tablename){
     try{

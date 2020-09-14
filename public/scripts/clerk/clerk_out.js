@@ -15,24 +15,32 @@ function renderHtmlGtype(data){
 
 //get the data object
 async function getDetail(){
-    try{
-        crntID = await apiCall('GET', `${domain}/api/gout/maxid`);
-        var currentID= crntID[0].pr;
-        if (!currentID){nextID = 30000;}//This is the starting invoice no
-        else{ nextID=currentID+1;}
-    }catch(e){
-        console.log(e);
-    }
     var gout_type= document.getElementById('selbox1').value;
     var gout_weight = document.getElementById('weight').value;
     var gout_bill = document.getElementById('amount').value;
-
-    return {nextID,date,time,gout_type,gout_weight,gout_bill};
+    
+    if (gout_type=="----SELECT TYPE----"||gout_weight==""||gout_bill==""){
+        if(!alert("Required Fields are null. \nTry again..")){
+            window.location.reload();
+        }
+        return;
+    }
+    else{
+        console.log("rrr");
+        try{
+            crntID = await apiCall('GET', `${domain}/api/gout/maxid`);
+            var currentID= crntID[0].pr;
+            if (!currentID){nextID = 30000;}//This is the starting invoice no
+            else{ nextID=currentID+1;}
+        }catch(e){
+            console.log(e);
+        }
+        return {nextID,date,time,gout_type,gout_weight,gout_bill};
+    }    
 }
 //Invoice details
 async function getData(){
     var arr = await getDetail();
-    console.log(arr);
     document.getElementById("invoice").innerHTML = arr.nextID;
     document.getElementById("date").innerHTML = arr.date;
     document.getElementById("time").innerHTML = arr.time;
