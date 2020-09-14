@@ -21,7 +21,7 @@ function full(){
     document.getElementById("view").className = "col-lg-12";
     document.getElementById("full").style.display = "none";
     document.getElementById("small").style.display = "block";
-    document.getElementsByTagName("object").style.width = "80vw";
+    document.getElementById("content").style.height = "90vh";
 }
 
 function small(){
@@ -30,4 +30,5 @@ function small(){
     document.getElementById("icons").style.display = "block";
     document.getElementById("small").style.display = "none";
     document.getElementById("full").style.display = "block";
+    document.getElementById("content").style.height = "100%";
 }
