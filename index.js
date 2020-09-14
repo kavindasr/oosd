@@ -54,7 +54,6 @@ const server = http.createServer((req,res)=>{
                         response = await apiMethod.execute(user.apiAccessControl(method.getPath(2),method.type));  
                     }
                     else if(method.getPath(1) == 'report'){
-        
                         const report = new reportMethod(method);
                         response = await report.execute(user.type);
                     }

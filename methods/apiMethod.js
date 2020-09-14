@@ -211,7 +211,7 @@ class ApiHead extends ApiMethod {
 }
 
 function getReqType(value){
-    if (typeof value == "number"){
+    if (typeof value == "number" || value == null){
         return (value);
     }else{
         return ("'" + value + "'");

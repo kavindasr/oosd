@@ -53,19 +53,23 @@ async function addToDB(){
   const vehiList = document.getElementById("selectVehicle");
   const vehicle = vehiList.options[vehiList.selectedIndex].value;
   const serviceDate = document.getElementById("serviceDate").value;
-  const returnDate = document.getElementById("returnDate").value;
+  var returnDate = document.getElementById("returnDate").value;
   const other = document.getElementById("other").value;
   const vehiId = availableVehicles.find(v=>v.vehicle_num == vehicle);
+  if(returnDate == ""){
+    returnDate = null;
+  }
   const data = {
     vehicleid :  vehiId.index_no,
     repin     :  serviceDate,
     repout    :  returnDate,
     replace   :  other
   }
+  console.log(data);
   try{
     await apiCall('POST',`${domain}/api/repair`,data)
   }
   catch(e){
-    alert("try again");
+    alert("Service data can not be empty");
   }
 }
