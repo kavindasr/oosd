@@ -182,6 +182,9 @@ Get data from two tables use join
 
 
 ------------------------------------------------------------------------------------------------
+Reports- 
+    1. Get vehicle distribution by date - http://localhost:8000/report/vehicleDistribution?date=2020-9-14
+------------------------------------------------------------------------------------------------
 Can use these end points to interact with the user_table
 
 1.>>>POST - add a user to the user table - localhost:8000/signup

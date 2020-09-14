@@ -14,6 +14,7 @@ function back(){
     document.getElementById("view").style.display = "none";
     document.getElementById("icons").style.display = "block";
     document.getElementById("icons").className = "col-lg-12";
+    document.getElementById("content").style.height = "100%";
 }
 
 function full(){

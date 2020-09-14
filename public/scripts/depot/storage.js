@@ -9,6 +9,7 @@ if(!oosd_data || oosd_data.date != today){
         submitted:false,
         vehiList: []
     }
+    localStorage.setItem("OOSD_STORAGE", JSON.stringify(oosd_data));
 }
 
 function save(){

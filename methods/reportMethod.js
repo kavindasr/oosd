@@ -59,45 +59,19 @@ class reportMethod{
         }else if (this.method.getPath(2) == "dRange" && type == 'moh'){
             res = await this.getdRange(this.method.getPath(3));
         }
+        else if(this.method.getPath(2) == "vehicleDistribution" && type=="depot"){
+            res = await todayVehicleDistribution(this.method.searchURL('date'));
+        }
         return new SendJson(JSON.stringify(res));
 
     }
 }
 
-function sumFind(dataList,amStr,prStr,type){
-    var summ = {};
-    var sum = {"cSold":{"amount":0,"price":0}};
-
-    dataList.forEach(handleSummary);
-
-    function handleSummary(data){
-        var amount = 0, price = 0;
-        if (type){
-            const gType = data[type];
-            try{
-                var value = summ[gType];
-                amount = value.amount + data[amStr];
-                price = value.price + data[prStr];
-            }catch(e){
-                amount = amount + data[amStr];
-                price = price + data[prStr];
-            }
-            summ[gType]={'amount':amount,'price':price};
-        }else{
-            amount = sum["cSold"].amount + data[amStr];
-            price = sum["cSold"].price + data[prStr];
-            sum["cSold"]={'amount':amount,'price':price};
-            
-        }
-        
-            
-    }
-    if (type){
-        return(summ);
-    }else{
-        return(sum);
-    }
-    
+async function todayVehicleDistribution(tdate){
+    const data = await executeSQL(`SELECT division_name,vehicle_num,driver FROM ((vehicle_distribution
+        INNER JOIN vehicle_detail ON vehicle_distribution.vehicle_index = vehicle_detail.index_no)
+        INNER JOIN division_table ON vehicle_distribution.division = division_table.division_no) WHERE tdate='${tdate}';`);
+    return data;
 }
 
 async function getArray(field,table,sDate,eDate){
