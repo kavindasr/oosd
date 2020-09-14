@@ -133,7 +133,7 @@ class Clerk extends User{
         this.apiAccess = {
             employee             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             attendance           : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
-            division             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
+            division             : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false},
             vehicle              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             gdetail              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
             gintype              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false},

@@ -47,17 +47,20 @@
     <div class="mt-5 container">
       <div class="row">
           <!-- image -->
-          <div id="imgdiv" class="col-sm-5 rounded-left" style="background-image: url('/public/images/bc4.svg'); background-size: cover; padding-top: 100px;">
+          <div id="imgdiv" class="col-sm-5 rounded-left" style="background: linear-gradient(to bottom, #7593d3 0%, #061e35 100%); padding-top: 100px;">
+            <div class="img">
+              <img class="my-auto d-block img-fluid" src="/public/images/22.svg">
+            </div>
           </div>
 
-          <div class="col-sm-7 rounded-right" style="background-color: #1194b3;">
+          <div class="col-sm-7 rounded-right" style="background-color: #5268a2;">
 
             <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist" style="font-size: large;">
               <li class="nav-item" role="presentation">
                 <a class="nav-link active text-dark" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-selected="true">Billed</a>
               </li>
               <li class="nav-item" role="presentation">
-                <a class="nav-link text-dark" id="profile-tab" data-toggle="tab" href="#menu1" role="tab" aria-selected="false">Un Billed</a>
+                <a class="nav-link text-dark" id="profile-tab" data-toggle="tab" href="#menu1" role="tab" aria-selected="false" onclick="getDivList()">Un Billed</a>
               </li>
             </ul>
 
@@ -69,7 +72,7 @@
 
                     <div id="gtype" class="form-group">
                         <label for="sel1">Garbage Type</label>
-                        <select class="form-control" id="selbox1" onchange="getPrice('gintype')">
+                        <select class="form-control" id="selbox1"onchange="getPrice('gintype')">
                           <option>----Select TYPE----</option>
                         </select>
                     </div>       
@@ -96,7 +99,7 @@
                     </div> 
                     <!-- Button trigger modal -->
                     <div id="div7" >
-                        <button id="btn" class="btn btn-block" style="background-color:#0c467d;color: white; "type="button" data-toggle="modal" data-target="#myModal" data-backdrop="static" onclick="getData()">SAVE</button>
+                        <button id="btn" class="btn btn-block" style="background-color:#1b3453;color: white; "type="button" data-toggle="modal" data-target="#myModal" data-backdrop="static" onclick="getData()">SAVE</button>
                     </div>
                 </form>
                 <!-- form -->
@@ -107,10 +110,15 @@
                 <!-- form -->
                 <form class="mb-4" style="font-size: large;">
 
+                  <div id="division" class="form-group">
+                    <label for="seldiv">Division</label>
+                    <select class="form-control" id="selboxdiv" size="5" style="background-color: #bec4ec;">
+                    </select>
+                  </div> 
+
                   <div id="gtype" class="form-group">
                     <label for="sel1">Garbage Type</label>
                     <select class="form-control" id="selbox2">
-                      <option>----Select TYPE----</option>
                     </select>
                   </div>  
 
@@ -120,7 +128,7 @@
                   </div>
                 
                   <div id="div7 " >
-                      <button id="btn" class="btn btn-block" style="background-color:#0c467d; color: white;" type="button" onclick="submitData()">SUBMIT</button>
+                      <button id="btn" class="btn btn-block" style="background-color:#1b3453; color: white;" type="button" onclick="submitData()">SUBMIT</button>
                   </div>
               </form>
               <!-- form -->

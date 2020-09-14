@@ -51,6 +51,7 @@ const field = new Map(
         ['date','tdate'],
         ['div', 'division'],
         ['divName','division_name'],
+        ['divno' ,'division_no'],
         ['mode','vehiclewalk'],
         ['gID','gindex'],
         ['gtype','waste_type'],

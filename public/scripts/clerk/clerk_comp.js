@@ -4,18 +4,26 @@ var time = new Date().toTimeString().split(" ")[0];
  
 //add compin data to database
 async function compIn(){
-    var pct_produce = parseInt(document.getElementById('compct').value);
-    var compInObj = {
-        inday   :   date,
-        time    :   time,
-        pctin    :   pct_produce
-    }; 
-    console.log(compInObj);
-    try{
-        await apiCall("POST",`${domain}/api/compin`,compInObj);
-        if(!alert("Produced compost packet details added successfully..")){window.location.reload();}
-    }catch(e){
-        console.log(e);
+    var pct_produce = document.getElementById('compct').value;
+    if (pct_produce==""){
+        if(!alert("Required Fields are null. \nTry again..")){
+            window.location.reload();
+        }
+        return;
+    }else{
+        var compInObj = {
+            inday   :   date,
+            time    :   time,
+            pctin   :   parseInt(pct_produce)
+        }; 
+        console.log(compInObj);
+        try{
+            await apiCall("POST",`${domain}/api/compin`,compInObj);
+            if(!alert("Produced compost packet details added successfully..")){window.location.reload();}
+        }catch(e){
+            console.log(e);
+            alert("Error occured. Try Again");
+        }
     }
 }
 
@@ -30,18 +38,25 @@ async function getPctPrice(){
 }
 
 async function getDetail(){
-    try{
-        crntID = await apiCall('GET', `${domain}/api/compout/maxid`);
-        var currentID= crntID[0].pr;
-        if (!currentID){nextID = 50000;}//This is the starting invoice no
-        else{ nextID=currentID+1;}
-    }catch(e){
-        console.log(e);
-    }
-    var cout_pcts = parseInt(document.getElementById('nofpct').value);
+    var cout_pcts = document.getElementById('nofpct').value;
     var cout_bill = document.getElementById('amount').value;
-
-    return {nextID,cout_pcts,cout_bill};
+    if (cout_pcts==""||cout_bill==""){
+        if(!alert("Required Fields are null. \nTry again..")){
+            window.location.reload();
+        }
+        return;
+    }else{
+        try{
+            crntID = await apiCall('GET', `${domain}/api/compout/maxid`);
+            var currentID= crntID[0].pr;
+            if (!currentID){nextID = 50000;}//This is the starting invoice no
+            else{ nextID=currentID+1;}
+        }catch(e){
+            console.log(e);
+            alert("Error occured. Try Again");
+        }
+        return {nextID,cout_pcts,cout_bill};
+    }    
 }
 //get the invoice data
 async function getData(){
