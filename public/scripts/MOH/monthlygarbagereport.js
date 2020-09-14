@@ -3,6 +3,7 @@ var year= d.getFullYear();
 
 monthlyginunbilled("09",30);
 monthlyginbilledweight("09",30);
+goutweightchart();
 
 //to draw chart 1
 async function monthlyginunbilled(month,days) {
@@ -86,4 +87,26 @@ function ginbilledchart(chartdata){
 
       chart.draw(data, google.charts.Bar.convertOptions(options));
   }
+}
+//function to draw a stack chart for garbage out weight and income
+function goutweightchart(){
+    google.charts.load('current', {packages: ['corechart']}); 
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        // Define the chart to be drawn.
+        var data = google.visualization.arrayToDataTable([
+           ['Date', 'Metal','Cardboard','Plastic', 'Glassbin','Paper','Copper','Aluminium'],
+           ['2020-12-12',  900,120,665,0,222,123,390],
+           ['2020-09-09',  1000,344,400,122,654,32,333],
+           ['2020-09-08',  1530,677,540,123,67,89,23]
+        ]);
+
+        var options = {title: 'Garbage Out Weight Summary', isStacked:true};  
+
+        // Instantiate and draw the chart.
+        var chart = new google.visualization.BarChart(document.getElementById('goutweight'));
+        chart.draw(data, options);
+     }
+    
 }

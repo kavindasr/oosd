@@ -17,30 +17,35 @@ class reportMethod{
     async getdRange(reqType){
         const sDate = this.method.searchURL("sDate");
         const eDate = this.method.searchURL("eDate");
-        var amStr="",prStr="";
         var arr=[];
         var data={}; 
-        var summ={};
-        if (reqType=="unbilled"){
+        if (reqType=="unbilled"){//monthly gin unbilled
             arr = getArray('in_weight','gin_unbilled',sDate,eDate);
-        }else if (reqType=="billed"){
+        }
+        else if (reqType=="billed"){//monthly gin billed weight
             arr = getArray('in_weight','gin_billed',sDate,eDate);
         }
-        else if(reqType=="billedAmount"){
+        else if(reqType=="billedAmount"){//monthly gin billed price
             arr = await getArray('bill_amount','gin_billed',sDate,eDate);
-            console.log(arr);
-        }else if (reqType=="gOut"){
-            data=await executeSQL(`SELECT out_date,g_type, SUM(bill_amount) AS "Total bill",SUM(in_weight) AS
-             "Total weight" FROM gin_billed WHERE in_date>=${sDate} AND in_date<=${eDate} GROUP BY in_date,g_type`);
-            //data = await executeSQL(`SELECT * FROM garbage_out WHERE out_date >= ${sDate} AND out_date <= ${eDate}`) ;
-            //summ = sumFind(data,"weight","bill_amount","waste_type");
-        }else if (reqType=="cOut"){
-            data = await executeSQL(`SELECT out_date, SUM(pct_sold) AS "Total pct",SUM(bill_amount) AS "Total bill" FROM 
+        }
+        else if (reqType=="gOut"){//monthly garbage out weight
+            arr=await executeSQL(`SELECT out_date,waste_type,SUM(weight) AS "Total weight" 
+            FROM garbage_out WHERE out_date>=${sDate} AND out_date<=${eDate} GROUP BY out_date,waste_type;`);
+        }
+        else if (reqType=="gOutPrice"){//monthly garbage out price
+            arr=await executeSQL(`SELECT out_date,waste_type,SUM(bill_amount) AS "Total bill" 
+            FROM garbage_out WHERE out_date>=${sDate} AND out_date<=${eDate} GROUP BY out_date,waste_type;`);
+        }
+        else if (reqType=="cOut"){//monthly compost no of packets
+            arr = await executeSQL(`SELECT out_date, SUM(pct_sold) AS "Total pct" FROM 
             compost_out WHERE out_date>=${sDate} AND out_date<=${eDate} GROUP BY out_date;`)
-            // data = await executeSQL(`SELECT * FROM compost_out WHERE out_date >= ${sDate} AND out_date <= ${eDate}`) ;
-            // summ = sumFind(data,"pct_sold","bill_amount");
-        }else if (reqType=="cin"){
-            data = await executeSQL(`SELECT in_date, SUM(pct_produced) AS "Total pct" FROM compost_in WHERE 
+        }
+        else if (reqType=="cOutPrice"){//monthly compost packet total price
+            arr = await executeSQL(`SELECT out_date, SUM(bill_amount) AS "Total" FROM 
+            compost_out WHERE out_date>=${sDate} AND out_date<=${eDate} GROUP BY out_date;`)
+        }
+        else if (reqType=="cin"){//monthly compost in total packets
+            arr = await executeSQL(`SELECT in_date, SUM(pct_produced) AS "Total pct" FROM compost_in WHERE 
             in_date>=${sDate} AND in_date<=${eDate} GROUP BY in_date;`)
         }else{
             data = {"error":"cant take action"};

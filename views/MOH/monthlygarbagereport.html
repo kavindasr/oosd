@@ -10,7 +10,7 @@
     </head>
     <body>
       <!-- for gin unbilled chart -->
-        <div id="topbar1" style="background-color: #0a3a0a; display: inline-flex;">
+        <div id="topbar1" style="background-color: #0a3a0a;">
           <div class="input-group mb-3">
               <label for="monthsel">Month:</label>
               <input type="month" id="monthselect" name="monthselect">
@@ -22,7 +22,7 @@
         <div id="ginunbilled" style="height: 400px;display: block;"></div><br>
 
         <!-- for gin billed charts -->
-        <div id="topbar2" style="background-color: #1c2576; display: inline-flex;">
+        <div id="topbar2" style="background-color: #1c2576;">
           <div class="input-group mb-3">
               <label for="monthsel">Month:</label>
               <input type="month" id="monthselect" name="monthselect">
@@ -33,10 +33,19 @@
         </div>
         <div id="ginbilledweight"  style="height: 400px; display: block;"></div>
         <!-- this should be displayed when the income chart button is clicked -->
-        <div id="ginbilledprice" style="display: none;"></div>
+        <div id="ginbilledprice" style="display: none;"></div><br>
 
         <!-- for garbage out chart -->
-        <div id="goutweight" style="display: block;"></div>
+        <div id="topbar3" style="background-color: #1c2576;">
+          <div class="input-group mb-3">
+              <label for="monthsel">Month:</label>
+              <input type="month" id="monthselect" name="monthselect">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Go</button>  
+               </div>
+            </div>
+        </div>
+        <div id="goutweight" style="height: 500px;display: block;"></div>
         <!-- this should be displayed when the income chart button is clicked -->
         <div id="goutincome" style="display: none;"></div>
 
