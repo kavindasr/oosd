@@ -10,7 +10,7 @@ function apiCall(method,url,data){
                 else{
                     res("Ok");
                 }
-            }else if(this.readyState == 4 && (this.status == 405 || this.status == 400 || this.status == 500)){
+            }else if(this.readyState == 4 && (this.status == 405 || this.status == 406 || this.status == 400 || this.status == 500)){
                 rej("Error");
             }
         };

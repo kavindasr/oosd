@@ -77,7 +77,8 @@ class DepotSuperviser extends User{
             ginbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             gunbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             vehicleout           : {GET:true,POST:true,PUT:false,DELETE:false},
-            repair               : {GET:true,POST:true,PUT:true,DELETE:true}
+            repair               : {GET:true,POST:true,PUT:true,DELETE:true},
+            changePass           : {PUT:true}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             
         }
@@ -85,7 +86,8 @@ class DepotSuperviser extends User{
             "depot":true,
             "moh"  :false,
             "clerk":false,
-            "mayor":false
+            "mayor":false,
+            "changePassword":true
         }
     }
     
@@ -118,7 +120,8 @@ class MOH extends User{
             "depot":false,
             "moh"  :true,
             "clerk":false,
-            "mayor":false
+            "mayor":false,
+            "changePassword":true
         }
         this.mainPage = '/moh/homenew';
     }
@@ -142,7 +145,8 @@ class Clerk extends User{
             gout                 : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
             compin               : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
             compout              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
-            vehicleout           : {GET:false,POST:false,PUT:false,DELETE:false}
+            vehicleout           : {GET:false,POST:false,PUT:false,DELETE:false},
+            changePass           : {PUT:true}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -152,7 +156,8 @@ class Clerk extends User{
             "depot":false,
             "moh"  :false,
             "clerk":true,
-            "mayor":false
+            "mayor":false,
+            "changePassword":true
         }
     }
     
@@ -168,7 +173,8 @@ class Mayor extends User{
             vehicle              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             gdetail              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false},
             ginbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
-            gunbill              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false}
+            gunbill              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
+            changePass           : {PUT:true}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -178,7 +184,8 @@ class Mayor extends User{
             "depot":false,
             "moh"  :false,
             "clerk":false,
-            "mayor":true
+            "mayor":true,
+            "changePassword":true
         }
     }
 }
