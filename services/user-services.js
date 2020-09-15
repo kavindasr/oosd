@@ -46,22 +46,34 @@ const signup = async (method) =>{
 }
 
 const changePass = async (method) =>{
-    const {NewPassword} = JSON.parse(await method.getBody());
+    const {NewPassword,CurrPassword} = JSON.parse(await method.getBody());
     const uName = method.searchURL("uName");
-    try{
-        const data = await executeSQL(`SELECT user_name FROM user_table WHERE user_name = ${uName}`);
-        if(data[0]){
-            const hashedPassword = await hash(NewPassword,10);
-            const data = await executeSQL(`UPDATE user_table SET password = '${hashedPassword}' WHERE user_name = ${uName} `); 
-            return new Send200("Password Changed");
-        }
-        else{
-            return new Send406("error");
-        }
-    }catch(e){
-        return new Send500(e);
-        
-    }   
+
+    const credential = await executeSQL(`SELECT user_type , password FROM user_table WHERE user_name = ${uName}`);       
+    const hashedPass = credential[0].password;
+    
+    const success = await compare(CurrPassword,hashedPass);
+
+    if(success){
+        try{
+            const data = await executeSQL(`SELECT user_name FROM user_table WHERE user_name = ${uName}`);
+            if(data[0]){
+                const hashedPassword = await hash(NewPassword,10);
+                const data = await executeSQL(`UPDATE user_table SET password = '${hashedPassword}' WHERE user_name = ${uName} `); 
+                return new Send200("Password Changed");
+            }
+            else{
+                return new Send406("error");
+            }
+        }catch(e){
+            return new Send500(e);
+            
+        }   
+    }else{
+        return new Send200("Invalid credentials passed! Check again");
+    }
+            
+    
 }
 
 const logOut = async(token) =>{
@@ -79,7 +91,7 @@ const authUser = async (email,password)=>{
     const user = users.find(u=>u.email===email);
 
     if(user ){
-        const success = await compare(password,user.password);
+        const success = await  (password,user.password);
         if(success){
             return user;
         }
