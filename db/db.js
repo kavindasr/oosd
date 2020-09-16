@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-const {dbConfig} = require('../settings');
+const {dbConfig} = require('../setting');
 var pool  = mysql.createPool(dbConfig);
  
 function executeSQL(sql){
