@@ -4,4 +4,5 @@
     position:absolute;
     top: 50%;
     display: none;
+    z-index: 20;
 }
