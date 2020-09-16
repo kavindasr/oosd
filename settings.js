@@ -34,7 +34,7 @@ const isr = {
 exports.dbConfig = ksr;
 
 exports.webSettings = {
-  webport:  process.env.PORT || 8000,
+  webport: 8000,
   protocol: "http",
   host: "localhost",
 };

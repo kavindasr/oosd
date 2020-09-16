@@ -1,5 +1,5 @@
 const http = require("http");
-const {webSettings} = require("./settings");
+const {webSettings} = require("./setting");
 const views = require("./factories/viewsFolder");
 const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
