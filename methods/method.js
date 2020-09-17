@@ -1,5 +1,5 @@
 const {URL}= require('url');
-const {webSettings} = require("../settings");
+const {webSettings} = require("../setting");
 const Cookies = require("cookies");
 const {ApiGet,ApiPost,ApiPut,ApiDelete,ApiHead} = require("./apiMethod");
 const keys = ['oosd'];

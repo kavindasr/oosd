@@ -22,7 +22,7 @@ function updateView(empId){
 }
 
 document.getElementById("date").innerHTML = today;
-
+document.getElementById("total").innerHTML = newArr.length;
 (async ()=>{
     const vehiDis = await apiCall("GET",`${domain}/report/vehicleDistribution?date=${today}`);
     vehiDis.forEach(e=>{
