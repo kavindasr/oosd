@@ -25,6 +25,7 @@ function apiCall(method,url,data){
         }
     });
 }
-
+console.log("hiiii");
+console.log( sessionStorage.getItem("OOSD_session"));
 document.getElementById("userName").innerHTML = sessionStorage.getItem("OOSD_session");
 const domain = `http://localhost:8000`; //to reduce redundancy
