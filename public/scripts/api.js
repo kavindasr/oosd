@@ -1,8 +1,10 @@
 function apiCall(method,url,data){
+    document.getElementById("loader").style.display = "block";
     return new Promise((res,rej)=>{
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("loader").style.display = "none";
                 if(method == 'GET'){
                     var data = JSON.parse(this.responseText);
                     res(data);
@@ -10,7 +12,7 @@ function apiCall(method,url,data){
                 else{
                     res("Ok");
                 }
-            }else if(this.readyState == 4 && (this.status == 405 || this.status == 400 || this.status == 500)){
+            }else if(this.readyState == 4 && (this.status == 405 || this.status == 406 || this.status == 400 || this.status == 500)){
                 rej("Error");
             }
         };

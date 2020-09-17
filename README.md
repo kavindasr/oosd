@@ -204,6 +204,6 @@ Can use these end points to interact with the user_table
 
 Passwords
     MOH - meelan - password
-    Clerk -rose - clerk
+    Clerk -rose - clerk1
     Depot - kavinda - depot
 ------------------------------------------------------------------------------------------------

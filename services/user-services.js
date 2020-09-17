@@ -48,12 +48,17 @@ const signup = async (method) =>{
 const changePass = async (method) =>{
     const {NewPassword,CurrPassword} = JSON.parse(await method.getBody());
     const uName = method.searchURL("uName");
-
-    const credential = await executeSQL(`SELECT user_type , password FROM user_table WHERE user_name = ${uName}`);       
-    const hashedPass = credential[0].password;
+    console.log(NewPassword,CurrPassword,uName);
+    var credential,hashedPass,success;
+    try{
+        credential = await executeSQL(`SELECT user_type , password FROM user_table WHERE user_name = ${uName}`); 
+        hashedPass = credential[0].password;
+        success = await compare(CurrPassword,hashedPass); 
+    }
+    catch(e){
+        return new Send500();
+    }   
     
-    const success = await compare(CurrPassword,hashedPass);
-
     if(success){
         try{
             const data = await executeSQL(`SELECT user_name FROM user_table WHERE user_name = ${uName}`);
@@ -66,11 +71,10 @@ const changePass = async (method) =>{
                 return new Send406("error");
             }
         }catch(e){
-            return new Send500(e);
-            
+            return new Send500(e); 
         }   
     }else{
-        return new Send200("Invalid credentials passed! Check again");
+        return new Send406("Invalid credentials passed! Check again");
     }
             
     
