@@ -4,6 +4,17 @@ const {SendJson} = require("../responses/response");
 class reportMethod{
     constructor(method){
         this.method = method;
+        this.queryType={
+            unbilled:{coloumn:"in_date,g_type",field:"in_weight",table:"gin_unbilled",finLength:3,redLength:0},
+            billed:{coloumn:"in_date,g_type",field:"in_weight",table:"gin_billed",finLength:3,redLength:0},
+            billedAmount:{coloumn:"in_date,g_type",field:"bill_amount",table:"gin_billed",finLength:3,redLength:0},
+            gOut:{coloumn:"out_date,waste_type",field:"weight",table:"garbage_out",finLength:8,redLength:9},
+            gOutPrice:{coloumn:"out_date,waste_type",field:"bill_amount",table:"garbage_out",finLength:8,redLength:9},
+            cOut:{coloumn:"out_date",field:"pct_sold",table:"compost_out",finLength:2,redLength:0},
+            cOutPrice:{coloumn:"out_date",field:"bill_amount",table:"compost_out",finLength:2,redLength:0},
+            cin:{coloumn:"in_date",field:"pct_produced",table:"compost_in",finLength:2,redLength:0}
+
+        };
     }
     async absenteeCal(){
         const empID = this.method.searchURL("empID");
@@ -20,36 +31,30 @@ class reportMethod{
         var arr=[];
         var data={}; 
         if (reqType=="unbilled"){//monthly gin unbilled
-            arr = getArray('in_weight','gin_unbilled',sDate,eDate);
+            arr = getArray(this.queryType[reqType],sDate,eDate);
         }
         else if (reqType=="billed"){//monthly gin billed weight
-            arr = getArray('in_weight','gin_billed',sDate,eDate);
+            arr = getArray(this.queryType[reqType],sDate,eDate);
         }
         else if(reqType=="billedAmount"){//monthly gin billed price
-            arr = await getArray('bill_amount','gin_billed',sDate,eDate);
+            arr = getArray(this.queryType[reqType],sDate,eDate);
         }
         else if (reqType=="gOut"){//monthly garbage out weight
-            arr=await executeSQL(`SELECT out_date,waste_type,SUM(weight) AS "Total weight" 
-            FROM garbage_out WHERE out_date>=${sDate} AND out_date<=${eDate} GROUP BY out_date,waste_type;`);
+            arr = getArray(this.queryType[reqType],sDate,eDate);
         }
         else if (reqType=="gOutPrice"){//monthly garbage out price
-            arr=await executeSQL(`SELECT out_date,waste_type,SUM(bill_amount) AS "Total bill" 
-            FROM garbage_out WHERE out_date>=${sDate} AND out_date<=${eDate} GROUP BY out_date,waste_type;`);
+            arr = getArray(this.queryType[reqType],sDate,eDate);
         }
         else if (reqType=="cOut"){//monthly compost no of packets
-            arr = await executeSQL(`SELECT out_date, SUM(pct_sold) AS "Total pct" FROM 
-            compost_out WHERE out_date>=${sDate} AND out_date<=${eDate} GROUP BY out_date;`)
+            arr = getArray(this.queryType[reqType],sDate,eDate);
         }
         else if (reqType=="cOutPrice"){//monthly compost packet total price
-            arr = await executeSQL(`SELECT out_date, SUM(bill_amount) AS "Total" FROM 
-            compost_out WHERE out_date>=${sDate} AND out_date<=${eDate} GROUP BY out_date;`)
+            arr = getArray(this.queryType[reqType],sDate,eDate);
         }
         else if (reqType=="cin"){//monthly compost in total packets
-            arr = await executeSQL(`SELECT in_date, SUM(pct_produced) AS "Total pct" FROM compost_in WHERE 
-            in_date>=${sDate} AND in_date<=${eDate} GROUP BY in_date;`)
+            arr = getArray(this.queryType[reqType],sDate,eDate);
         }else{
             data = {"error":"cant take action"};
-            //summ = {"error":"cant take action"};
         }
         
         return(arr);
@@ -79,37 +84,38 @@ async function todayVehicleDistribution(tdate){
     return data;
 }
 
-async function getArray(field,table,sDate,eDate){
-    //data=await executeSQL(`SELECT in_date,g_type, SUM(bill_amount) AS "total",SUM(in_weight) AS "total_weight" FROM gin_billed WHERE in_date>=${sDate} AND in_date<=${eDate} GROUP BY in_date,g_type ORDER BY in_date,g_type`); 
+async function getArray(qType,sDate,eDate){
+     
     var arr = [];
-    var data = await executeSQL(`SELECT in_date,g_type, SUM(${field}) AS "total" FROM ${table} WHERE in_date>=${sDate} AND in_date<=${eDate} GROUP BY in_date,g_type ORDER BY in_date,g_type`);   
-    for(var i=0;i<data.length-1;i++){
-        var obj;
-        if(String(data[i].in_date)== String(data[i+1].in_date)){
-            obj = [
-                data[i].in_date,
-                data[i].total,
-                data[i+1].total
-            ]
-            i++;
+    var arr0 = new Array(parseInt(qType.finLength)).fill(0);
+    arr.push(arr0);
+    var data = await executeSQL(`SELECT ${qType["coloumn"]}, SUM(${qType["field"]}) AS "total" FROM ${qType["table"]} WHERE ${qType["coloumn"].split(",")[0]}>=${sDate} AND  ${qType["coloumn"].split(",")[0]}<=${eDate} GROUP BY ${qType["coloumn"]} ORDER BY ${qType["coloumn"]}`);   
+    
+    data.forEach(data => {
+
+        var date = qType["coloumn"].split(",")[0];
+        var type = qType["coloumn"].split(",")[1];
+        var index=0;
+
+        if(type){
+            index = data[type]-qType.redLength;
+        }else{
+            index = 1;
         }
-        else if(data[i].g_type == 1){
-            obj = [
-                data[i].in_date,
-                data[i].total,
-                0
-            ]
+        
+        if (String(arr[arr.length-1][0])==String(data[date])){
+            arr[arr.length-1][index] = data.total;
+        }else{
+            var obj = new Array(parseInt(qType.finLength)).fill(0);;
+            obj[0] = data[date];
+            obj[index]=data.total;
+            arr.push(obj);
         }
-        else if(data[i].g_type == 2){
-            obj = [
-                data[i].in_date,
-                0,
-                data[i].total
-            ]
-        }
-        arr.push(obj);
-    }
-    return arr;
+        
+    });
+
+    return (arr.slice(1));
 }
+
 
 module.exports = {reportMethod};
