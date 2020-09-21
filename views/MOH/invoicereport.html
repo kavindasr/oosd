@@ -23,26 +23,31 @@
                 </center>
                 <form action="" target="_self">
                   <br />
-                  <div id="togglepart">
-                    <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Invoice Number</label>
-                    <input id="invoicenum" type="int" name="invoicenum" placeholder="180044" />
+                  <div id="togglepart" class=row>
+                    <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);" class="col-12 col-sm-6">Invoice Number</label>
+                    <input class="col-12 col-sm-6" id="invoicenum" type="int" name="invoicenum" placeholder="180044" />
                   </div>
-                  <div id="togglepart">
-                    <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Invoice  Type</label>
-                    <div id="togglepartadduser">
-                      <div class="box">
-                        <select id="invoiceselection">
-                          <option value="ginbill">Garbage In</option>
-                          <option value="gout">Garbage Out</option>
-                          <option value="compout">Compost Out</option>
-                        </select>
+                  <div id="invoiceselection" class="row" style="padding-top: 30px;">
+                    <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);" class="col-12 col-sm-6">Invoice  Type</label>
+                    <!-- Group of default radios - option 1 -->
+                    <div class="radiobtn col-12 col-sm-6">
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios">
+                        <label class="custom-control-label" for="defaultGroupExample1"  data-toggle="modal" data-target="#myModal1" data-backdrop="static" onclick="getinvoice()">Garbage In</label>
                       </div>
-                    </div>
-                  </div>
-                  <div id="sub">
-                    <button id="btn" type="button" onclick="getinvoice()">
-                        SUBMIT
-                    </button>
+
+                      <!-- Group of default radios - option 2 -->
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios" checked>
+                        <label class="custom-control-label" for="defaultGroupExample2"  data-toggle="modal" data-target="#myModal2" data-backdrop="static" onclick="getinvoicegarbageout()">Garbage Out</label>
+                      </div>
+
+                      <!-- Group of default radios - option 3 -->
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="defaultGroupExample3" name="groupOfDefaultRadios">
+                        <label class="custom-control-label" for="defaultGroupExample3"  data-toggle="modal" data-target="#myModal3" data-backdrop="static" onclick="getinvoice()">Compost Out</label>
+                      </div>
+                      </div>
                   </div>
                 </form>
               </div>
@@ -50,6 +55,179 @@
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="myModal1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content" id="modelbody" style= "background-color: #749cef; font-size: large; color: black;">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <!-- <i class="fas fa-recycle"></i> -->
+              <h4 style="line-height: 1.9; padding-left: 12px;" class="modal-title"><b>INVOICE</b></h4>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-6 ml-auto">Disposal Site,
+                    Sundarapola, Yanthampalawa.
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="close" id="btn-close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="container-fluid">
+                
+                <div class="row">
+                  <div class="col-sm-6">Invoice No    :</div>
+                  <div class="col-sm-6" id = "invoice"></div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-sm-6">Date    :</div>
+                  <div class="col-sm-6" id = "date"></div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-sm-6">Time    :</div>
+                  <div class="col-sm-6" id = "time"></div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-sm-6">Garbage Type  :</div>
+                  <div class="col-sm-6" id = "gartype"></div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-sm-6">Weight(kg)   :</div>
+                  <div class="col-sm-6" id = "wght"></div>
+                </div>
+  
+                <div class="row" id ="a">
+                  <div class="col-sm-6">Amount    :</div>
+                  <div class="col-sm-6" id = "amnt"></div>
+                </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content" id="modelbody" style="background: linear-gradient(to bottom, #d4d4e0 0%, #605e63 100%); font-size: large; color: black;">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <!-- <i class="fas fa-recycle"></i> -->
+              <h4 style="line-height: 1.9; padding-left: 12px;" class="modal-title"><b>INVOICE</b></h4>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-6 ml-auto">Disposal Site,
+                    Sundarapola, Yanthampalawa.
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="close" id="btn-close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="container-fluid">
+                
+                <div class="row">
+                  <div class="col-sm-6">Invoice No    :</div>
+                  <div class="col-sm-6" id = "invoice"></div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">Date    :</div>
+                  <div class="col-sm-6" id = "date"></div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">Time    :</div>
+                  <div class="col-sm-6" id = "time"></div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-sm-6">Garbage Type  :</div>
+                  <div class="col-sm-6" id = "gartype"></div>
+                </div>
+              
+                <div class="row">
+                  <div class="col-sm-6">Weight (kg)    :</div>
+                  <div class="col-sm-6" id = "wght"></div>
+                </div>
+
+                <div class="row" id ="a">
+                  <div class="col-sm-6">Amount    :</div>
+                  <div class="col-sm-6" id = "amnt"></div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="modal fade" id="myModal3" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" id="modelbody" style= "background-color: #3aa6a6; font-size: large; color: black;">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <!-- <i class="fas fa-recycle"></i> -->
+          <h4 style="line-height: 1.9; padding-left: 12px;" class="modal-title"><b>INVOICE</b></h4>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6 ml-auto">Disposal Site,
+                Sundarapola, Yanthampalawa.
+              </div>
+            </div>
+          </div>
+          <button type="button" class="close" id="btn-close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="container-fluid">
+            
+            <div class="row">
+              <div class="col-sm-6">Invoice No    :</div>
+              <div class="col-sm-6" id = "invoice"></div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">Type  :</div>
+              <div class="col-sm-6" id = "gartype">Compost</div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">Date    :</div>
+              <div class="col-sm-6" id = "date"></div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">Time    :</div>
+              <div class="col-sm-6" id = "time"></div>
+            </div>
+            
+            <div class="row">
+              <div class="col-sm-6">No of Packets    :</div>
+              <div class="col-sm-6" id = "pct"></div>
+            </div>
+
+            <div class="row" id ="a">
+              <div class="col-sm-6">Amount    :</div>
+              <div class="col-sm-6" id = "amnt"></div>
+            </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
       <script src="/public/scripts/MOH/invoicereport.js"></script>
     </body>
 </html>

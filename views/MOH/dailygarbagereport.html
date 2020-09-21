@@ -43,6 +43,64 @@
           </div>
         </div>
       </div>
+
+      <!-- The Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="modelbody" style="background: linear-gradient(to bottom, #d4d4e0 0%, #605e63 100%); font-size: large; color: black;">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <!-- <i class="fas fa-recycle"></i> -->
+            <h4 style="line-height: 1.9; padding-left: 12px;" class="modal-title"><b>INVOICE</b></h4>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6 ml-auto">Disposal Site,
+                  Sundarapola, Yanthampalawa.
+                </div>
+              </div>
+            </div>
+            <button type="button" class="close" id="btn-close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="container-fluid">
+              
+              <div class="row">
+                <div class="col-sm-6">Invoice No    :</div>
+                <div class="col-sm-6" id = "invoice"></div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">Date    :</div>
+                <div class="col-sm-6" id = "date"></div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">Time    :</div>
+                <div class="col-sm-6" id = "time"></div>
+              </div>
+              
+              <div class="row">
+                <div class="col-sm-6">Garbage Type  :</div>
+                <div class="col-sm-6" id = "gartype"></div>
+              </div>
+            
+              <div class="row">
+                <div class="col-sm-6">Weight (kg)    :</div>
+                <div class="col-sm-6" id = "wght"></div>
+              </div>
+
+              <div class="row" id ="a">
+                <div class="col-sm-6">Amount    :</div>
+                <div class="col-sm-6" id = "amnt"></div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
       <script src="/public/scripts/MOH/garbageReport.js"></script>
     </body>
 </html>
