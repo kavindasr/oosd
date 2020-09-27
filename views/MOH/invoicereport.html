@@ -38,8 +38,8 @@
 
                       <!-- Group of default radios - option 2 -->
                       <div class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios" checked>
-                        <label class="custom-control-label" for="defaultGroupExample2"  data-toggle="modal" data-target="#myModal2" data-backdrop="static" onclick="getinvoicegarbageout()">Garbage Out</label>
+                        <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios">
+                        <label class="custom-control-label" for="defaultGroupExample2" onclick="getinvoicegarbageout()">Garbage Out</label>
                       </div>
 
                       <!-- Group of default radios - option 3 -->
@@ -113,7 +113,7 @@
         </div>
       </div>
 
-      <div class="modal fade" id="myModal2" role="dialog">
+      <div class="modal" id="myModal2" role="dialog" style="display: none;">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content" id="modelbody" style="background: linear-gradient(to bottom, #d4d4e0 0%, #605e63 100%); font-size: large; color: black;">
           
@@ -137,32 +137,27 @@
                 
                 <div class="row">
                   <div class="col-sm-6">Invoice No    :</div>
-                  <div class="col-sm-6" id = "invoice"></div>
+                  <div class="col-sm-6" id = "invoice1"></div>
                 </div>
 
                 <div class="row">
                   <div class="col-sm-6">Date    :</div>
-                  <div class="col-sm-6" id = "date"></div>
+                  <div class="col-sm-6" id = "date1"></div>
                 </div>
 
                 <div class="row">
                   <div class="col-sm-6">Time    :</div>
-                  <div class="col-sm-6" id = "time"></div>
+                  <div class="col-sm-6" id = "time1"></div>
                 </div>
                 
                 <div class="row">
                   <div class="col-sm-6">Garbage Type  :</div>
-                  <div class="col-sm-6" id = "gartype"></div>
+                  <div class="col-sm-6" id = "gartype1"></div>
                 </div>
               
                 <div class="row">
                   <div class="col-sm-6">Weight (kg)    :</div>
-                  <div class="col-sm-6" id = "wght"></div>
-                </div>
-
-                <div class="row" id ="a">
-                  <div class="col-sm-6">Amount    :</div>
-                  <div class="col-sm-6" id = "amnt"></div>
+                  <div class="col-sm-6" id = "wght1"></div>
                 </div>
             </div>
           </div>

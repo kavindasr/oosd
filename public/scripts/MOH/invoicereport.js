@@ -6,7 +6,6 @@ function getinvoicegarbageout() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var empdetails = JSON.parse(this.responseText);
-            console.log(empdetails);
             rendergarbageout(empdetails);
         }
     };
@@ -15,10 +14,13 @@ function getinvoicegarbageout() {
 }
 
 function rendergarbageout(arr){
-    document.getElementById("invoice").innerHTML = arr.nextID;
-    document.getElementById("date").innerHTML = arr.date;
-    document.getElementById("time").innerHTML = arr.time;
-    document.getElementById("gartype").innerHTML = arr.gout_type;
-    document.getElementById("wght").innerHTML = arr.gout_weight;
-    document.getElementById("amnt").innerHTML = "Rs. " + arr.gout_bill
+    console.log(arr);
+    document.getElementById("myModal2").style.display ="block";
+    document.getElementById("invoice1").innerHTML = arr[0].invoice_no;
+    console.log(arr[0]);
+    document.getElementById("date1").innerHTML = arr[0].out_date;
+    console.log(arr.date);
+    document.getElementById("time1").innerHTML = arr[0].out_time;
+    document.getElementById("gartype1").innerHTML = arr[0].waste_type;
+    document.getElementById("wght1").innerHTML = arr[0].weight;
 }
