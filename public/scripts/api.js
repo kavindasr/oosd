@@ -13,6 +13,7 @@ function apiCall(method,url,data){
                     res("Ok");
                 }
             }else if(this.readyState == 4 && (this.status == 405 || this.status == 406 || this.status == 400 || this.status == 500)){
+                document.getElementById("loader").style.display = "none";
                 rej("Error");
             }
         };
