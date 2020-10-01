@@ -60,6 +60,46 @@ class reportMethod{
         return(arr);
     }
 
+    async dailyAttendence(){
+        const data = (await executeSQL(`SELECT * FROM daily_attendance WHERE tdate=${this.method.searchURL("date")}`));
+        const data2 = (await executeSQL(`SELECT * FROM vehicle_distribution INNER JOIN vehicle_detail on vehicle_distribution.vehicle_index = vehicle_detail.index_no WHERE tdate=${this.method.searchURL("date")}`));
+        var ATTarr = new Array();
+        var VEHarr = new Array();
+
+        await data2.forEach(data => {
+            
+            var obj = {};
+            obj["vehicle"] = data.vehicle_num;
+            obj["driver"]= data.driver;
+            obj["employees"] = [];
+            VEHarr[data.division-1] = obj;
+             
+        });
+
+        data.forEach(data =>{
+            if (ATTarr[data.division-1]==null){
+                var obj = [];
+                obj.push(data.employee_id);
+                ATTarr[data.division-1] = obj;
+            }else{
+                ATTarr[data.division-1].push(data.employee_id);
+            } 
+
+            if(data.vehiclewalk==2){
+                VEHarr[data.division-1]["employees"].push(data.employee_id);
+            }
+
+        });
+
+        
+        
+        var ar = new Array();
+        ar.push(ATTarr);
+        ar.push(VEHarr);
+        return (ar);
+        
+    }
+
     async execute(type){
         
         var res = "Cannot access this type of report";
@@ -71,6 +111,9 @@ class reportMethod{
         }
         else if(this.method.getPath(2) == "vehicleDistribution" && type=="depot"){
             res = await todayVehicleDistribution(this.method.searchURL('date'));
+        }
+        else if(this.method.getPath(2) == "dAttendence" && type == "moh"){
+            res = await this.dailyAttendence();
         }
         return new SendJson(JSON.stringify(res));
 

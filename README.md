@@ -31,20 +31,21 @@ Can use these endpoints to interact with daily_attendance
     2.>>>GET  - get attendance by date    - localhost:8000/api/attendance/all?date=2020-02-05
     3.>>>GET  - get attendance of a div by 0 - localhost:8000/api/attendance/all?date=2020-05-16&div=3
     4.>>>GET  - get number of attended dates - localhost:8000/report/absentee?empID='1758'&month=5
-    5.>>>POST - Add employee attendance   - localhost:8000/api/attendance
+    5.>>>GET  - get full daily attendence report - localhost:8000/report/dAttendence?date='2020-09-16'
+    6.>>>POST - Add employee attendance   - localhost:8000/api/attendance
 
                     [
                         {"date": "2020-05-12","div": 2,"empId": 215,"mode": 1},
                         {"date": "2020-05-12","div": 2,"empId": 211,"mode": 2},
                         {"date": "2020-05-12","div": 2,"empId": 212,"mode": 1}
                     ]
-    6. >>>PUT - update the attendance detail - localhost:8000/api/attendance?empid=178&date=2020-05-12
+    7. >>>PUT - update the attendance detail - localhost:8000/api/attendance?empid=178&date=2020-05-12
         body -  
             {
                 "div"   : 1,
                 "mode"  : 0
             }
-    7. >>>DELETE- delete an attendace record      - localhost:8000/api/attendance?empid=178&date='2020-05-12'
+    8. >>>DELETE- delete an attendace record      - localhost:8000/api/attendance?empid=178&date='2020-05-12'
 ------------------------------------------------------------------------------------------------
 Can use these endpoint to interact with vehicle_detail table
     1.>>>GET - get list of vehicles       - localhost:8000/api/vehicle/all
