@@ -11,8 +11,6 @@ const uBuilder = new UserBuilder();
 
 const server = http.createServer((req,res)=>{
 
-    console.log(req.method,req.url);
-
     const method = methodFactory.getMethod(req,res);
     
     (async ()=>{
@@ -94,9 +92,11 @@ const server = http.createServer((req,res)=>{
         }
         if(response){
             response.send(method.res);
+            console.log(req.method,req.url,response.code);
         }
         else{
             method.res.end();
+            console.log(req.method,req.url);
         }
         
     })();

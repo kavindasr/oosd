@@ -109,7 +109,8 @@ class MOH extends User{
             gintype              : {GET:true,POST:true,PUT:true,DELETE:true,HEAD:false},
             vehicleout           : {GET:true,POST:true,PUT:false,DELETE:false},
             signup               : {POST:true},
-            changePass           : {PUT:true}
+            changePass           : {PUT:true},
+            compout              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false},
             
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
