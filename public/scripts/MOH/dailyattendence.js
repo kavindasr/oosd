@@ -1,18 +1,14 @@
-getDivList();
-
-async function getDivList(){
-  var selOp = "<option> ----SELECT DIVISION----</option>";
+async function showattenence(empdtl){
+  arr=[]
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var divisions=JSON.parse(this.responseText);
-      //console.log(divisions);
       for(i=0;i<divisions.length;i++){
-        selOp+= "<option>" + divisions[i].division_no + "-"+divisions[i].division_name + "</option>"  ;
+        arr[i]= '["'+divisions[i].division_no + '","'+divisions[i].division_name +'","'+empdtl[0][i]+'","'+empdtl[0][i].length+'"]';
+        console.log(arr[i]);
       }
-      //console.log(selOp);
-      console.log(document.getElementById("divsel2"));
-      document.getElementById("divsel2").innerHTML = selOp;
+      drawchart1(arr)
     }
   };
   xhttp.open("GET", `http://localhost:8000/api/division/divno&divName`, true);
@@ -26,6 +22,7 @@ function viewattendence() {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var empdetails = JSON.parse(this.responseText);
+      showattenence(empdetails)
       console.log((empdetails));
     }
   };
@@ -33,4 +30,15 @@ function viewattendence() {
   xhttp.send();
 }
 
-
+function drawchart1(arr){
+  console.log(arr[0]);
+  new gridjs.Grid({
+    columns: ["Number", "Division", "workers", "Total"],
+    pagination:true,
+    sort:true,
+    data: [
+      ['1','Gattuwana','233,258,361,525,910','5'],
+      ['8','Negombo Road','476,531','2'],
+    ]
+}).render(document.getElementById("wrapper"));
+}

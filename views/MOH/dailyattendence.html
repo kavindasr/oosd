@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="/public/styles/MOH/home.css" />
         <link rel="stylesheet" href="/public/styles/load.css" />
         <script src="/public/scripts/MOH/dailyattendence.js"></script>
+        <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     </head>
     <body>
       <div id="loader" class="text-center">
@@ -29,29 +30,19 @@
                     <input id="inpdate" type="date" name="attenddate" placeholder="1997-07-28" />
                   </div>
                 </form>
-                <div id="gtype" class="form-group">
-                  <label for="mass">Division</label>
-                      <select class="form-control" id="divsel2">
-                        <!-- <option> ----SELECT DIVISION----</option> -->
-                    </select>
-                </div>
 
                 <div id="sub">
                   <button id="btn" type="button" onclick="viewattendence()">
                     SUBMIT
                   </button>
                 </div>
-                <div id="detail">
-                  <p id="empID"></p>
-                  <p id="empdiv"></p>
-                  <p id="entdate"></p>
-                  <p id="vehiclewalk"></p>
-                </div>
+                <div id="wrapper"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <script src="https://unpkg.com/gridjs/dist/gridjs.production.min.js"></script>
       <script src="/public/scripts/api.js"></script>
       
     </body>
