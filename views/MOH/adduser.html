@@ -25,7 +25,7 @@
                   <br />
                   <div id="togglepart">
                     <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Username</label>
-                    <input id="addusername" type="text" name="username" placeholder="Username" />
+                    <input id="addusername" type="text" onkeypress="return /[a-z]/i.test(event.key)" name="username" placeholder="Username" />
                   </div>
                   <div id="togglepart">
                     <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">User Type</label>

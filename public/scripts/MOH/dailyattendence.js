@@ -21,17 +21,22 @@ async function table2(empdtl){
     console.log(empdtl[1][1].vehicle);
     if (this.readyState == 4 && this.status == 200) {
       var divisions=JSON.parse(this.responseText);
-
+      var x=0;
       for(i=0;i<divisions.length;i++){
         try{
-
-          arr1[i]= [divisions[i].division_no ,divisions[i].division_name ,empdtl[1][i].vehicle , empdtl[1][i].driver  , empdtl[1][i].employees.length];
+          if (divisions[1]==[]){
+            continue
+          }else{
+            arr1[x]= [divisions[i].division_no ,divisions[i].division_name ,empdtl[1][i].vehicle ,empdtl[0][i], empdtl[1][i].driver  , empdtl[1][i].employees.length];
+            x=x+1
+          }
           console.log(arr1[i]);
         }catch(e){
           console.log(arr1[i]);
         }
       };
-      drawchart1(arr1)
+      console.log(arr1);
+      drawchart2(arr1)
     }
   };
   xhttp.open("GET", `http://localhost:8000/api/division/divno&divName`, true);
@@ -55,22 +60,64 @@ function viewattendence() {
 }
 
 function drawchart1(arr){
-  document.getElementById("dailyattendencefile").style.display="none";
-  new gridjs.Grid({
-    columns: ["Number", "Division", "workers", "Total"],
-    sort:true,
-    data: arr,
-    
-    
-  }).render(document.getElementById("wrapper1"));
+  var table = document.createElement("TABLE");
+        table.border = "1";
+ 
+        //Get the count of columns.
+        console.log(arr);
+        var columnCount = 4;
+ 
+        //Add the header row.
+        var row = table.insertRow(-1);
+        headtitle=["Division","Name","Number of Workers","Total"]
+        for (var i = 0; i < columnCount; i++) {
+            var headerCell = document.createElement("TH");
+            headerCell.innerHTML = headtitle[i];
+            row.appendChild(headerCell);
+        }
+ 
+        //Add the data rows.
+        for (var i = 1; i < arr.length; i++) {
+            row = table.insertRow(-1);
+            for (var j = 0; j < columnCount; j++) {
+                var cell = row.insertCell(-1);
+                cell.innerHTML = arr[i][j];
+            }
+        }
+ 
+        var dvTable = document.getElementById("wrapper1");
+        dvTable.innerHTML = "";
+        dvTable.appendChild(table);
 }
 
 function drawchart2(arr1){
-  new gridjs.Grid2({
-    columns: ["Number", "Division","Vehicle","Driver", "Total"],
-    sort:true,
-    data: arr1,
-    
-    
-  }).render(document.getElementById("wrapper2"));
+  console.log("chart2");
+  var table = document.createElement("TABLE");
+        table.border = "1";
+
+        //Get the count of columns.
+        console.log(arr1);
+        var columnCount = 5;
+ 
+        //Add the header row.
+        var row = table.insertRow(-1);
+        headtitle=["Division","Name","Vehicle","Driver","Number of Workers","Total"]
+        for (var i = 0; i < columnCount; i++) {
+            var headerCell = document.createElement("TH");
+            headerCell.innerHTML =  headtitle[i];
+            row.appendChild(headerCell);
+        }
+ 
+        //Add the data rows.
+        for (var i = 1; i < arr1.length; i++) {
+            row = table.insertRow(-1);
+            for (var j = 0; j < columnCount; j++) {
+                var cell = row.insertCell(-1);
+                cell.innerHTML = arr1[i][j];
+            }
+        }
+ 
+        var dvTable = document.getElementById("wrapper2");
+        dvTable.innerHTML = "";
+        dvTable.appendChild(table);
 }

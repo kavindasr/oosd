@@ -1,16 +1,20 @@
-function getinvoicegarbageout() {
+async function getinvoicegarbageout() {
     var invoice_num = document.getElementById("invoicenum").value;
-    var xhttp = new XMLHttpRequest();
-    var url ="http://localhost:8000/api/gout/all?invoice=" +invoice_num;
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var empdetails = JSON.parse(this.responseText);
-            rendergarbageout(empdetails);
-        }
-    };
-    xhttp.open("GET", url, true);
-    xhttp.send();
+    try{
+        validate = await apiCall("GET",`${domain}/api/gout/all?invoice=${invoice_num}`);
+        console.log(validate);
+        console.log(validate.length);
+    }
+    catch(e){
+        validate = e ;
+    }
+    if(validate.length<=0){
+        alert("Try again");
+        
+    }
+    else{
+        rendergarbageout(validate);
+    }
 }
 
 function rendergarbageout(arr){
@@ -23,19 +27,23 @@ function rendergarbageout(arr){
     document.getElementById("wght2").innerHTML = arr[0].weight;
 }
 
-function getinvoicegarbagein() {
+async function getinvoicegarbagein() {
     var invoice_num = document.getElementById("invoicenum").value;
-    var xhttp = new XMLHttpRequest();
-    var url ="http://localhost:8000/api/ginbill/all?invoice=" +invoice_num;
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var empdetails = JSON.parse(this.responseText);
-            rendergarbagein(empdetails);
-        }
-    };
-    xhttp.open("GET", url, true);
-    xhttp.send();
+    try{
+        validate = await apiCall("GET",`${domain}/api/ginbill/all?invoice=${invoice_num}`);
+        console.log(validate);
+        console.log(validate.length);
+    }
+    catch(e){
+        validate = e ;
+    }
+    if(validate.length<=0){
+        alert("Try again");
+        
+    }
+    else{
+        rendergarbagein(validate);
+    }
 }
 
 function rendergarbagein(arr){
@@ -49,20 +57,23 @@ function rendergarbagein(arr){
     document.getElementById("amnt1").innerHTML = arr[0].bill_amount;
 }
 
-function getinvoicecompost() {
+async function getinvoicecompost() {
     var invoice_num = document.getElementById("invoicenum").value;
-    var xhttp = new XMLHttpRequest();
-    var url ="http://localhost:8000/api/compout/all?invoice=" +invoice_num;
-    console.log(url);
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var empdetails = JSON.parse(this.responseText);
-            rendercompost(empdetails);
-        }
-    };
-    xhttp.open("GET", url, true);
-    xhttp.send();
+    try{
+        validate = await apiCall("GET",`${domain}/api/compout/all?invoice=${invoice_num}`);
+        console.log(validate);
+        console.log(validate.length);
+    }
+    catch(e){
+        validate = e ;
+    }
+    if(validate.length<=0){
+        alert("Try again");
+        
+    }
+    else{
+        rendercompost(validate);
+    }
 }
 
 function rendercompost(arr){

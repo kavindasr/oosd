@@ -15,6 +15,7 @@ async function removeemp(){
   var empid = document.getElementById("removeid").value;
   var validate;
     try{
+        console.log(`${domain}/api/employee?empid=${empid}`);
         validate = await apiCall("DELETE",`${domain}/api/employee?empid=${empid}`);
         console.log(validate);
     }

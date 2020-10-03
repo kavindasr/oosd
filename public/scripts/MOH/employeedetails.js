@@ -14,6 +14,7 @@ async function checkEmployee(){
     }
     else{
         alert("Invalid employee ID");
+        window.location.reload();
     }
 }
 

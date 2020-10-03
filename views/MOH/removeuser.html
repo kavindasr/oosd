@@ -25,7 +25,7 @@
                   <br />
                   <div id="togglepart">
                     <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Remove User</label>
-                    <input type="text" id="USERremove" name="user" placeholder="UserName" />
+                    <input type="text" id="USERremove" onkeypress="return /[a-z]/i.test(event.key)" name="user" placeholder="UserName" />
                   </div>
                   <div id="sub">
                     <button id="btn" type="button" onclick="removeuserdb()">
@@ -39,5 +39,6 @@
         </div>
       </div>
       <script src="/public/scripts/MOH/removeUser.js"></script>
+      <script src="/public/scripts/api.js"></script>
     </body>
 </html>

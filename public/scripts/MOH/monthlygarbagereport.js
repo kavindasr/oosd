@@ -1,8 +1,8 @@
 var d = new Date();
 var year= d.getFullYear();
 
-monthlyginunbilled("09",30);
-monthlyginbilledweight("09",30);
+monthlyginunbilled(d.getMonthmonth,30);
+monthlyginbilledweight(d.getMonthmonth,30);
 goutweightchart();
 
 //to draw chart 1
@@ -16,6 +16,19 @@ async function monthlyginunbilled(month,days) {
         console.log(e);
     }        
 }  
+
+async function anymonthlyginunbilled(month,days) {
+    try{
+        month1=document.getElementById("monthselect").value.slice(-2,);
+        console.log(month1);
+        var url=`${domain}/report/dRange/unbilled?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
+        chart1data = await apiCall('GET', url);
+        console.log(chart1data);
+        ginunbilledchart(chart1data)
+    }catch(e){
+        console.log(e);
+    }        
+}
 function ginunbilledchart(chartdata){
     chartdata.unshift(["Date","Degradable","Non-Degradable"]);
     google.charts.load('current', {'packages':['bar']});
@@ -47,6 +60,8 @@ function ginunbilledchart(chartdata){
   }
 }
 
+
+
 //To draw chart2
 async function monthlyginbilledweight(month,days) {
     try{
@@ -58,6 +73,19 @@ async function monthlyginbilledweight(month,days) {
         console.log(e);
     }        
 }
+
+async function anymonthlyginbilledweight(month,days) {
+    try{
+        month1=document.getElementById("monthselect").value.slice(-2,);
+        var url=`${domain}/report/dRange/billed?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
+        chartdata = await apiCall('GET', url);
+        console.log(chartdata);
+        ginbilledchart(chartdata)
+    }catch(e){
+        console.log(e);
+    }        
+}
+
 function ginbilledchart(chartdata){
     chartdata.unshift(["Date","Degradable","Non-Degradable"]);
     google.charts.load('current', {'packages':['bar']});
