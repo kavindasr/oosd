@@ -1,11 +1,13 @@
 async function table1(empdtl){
-  arr=[]
+  arr=[];
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var divisions=JSON.parse(this.responseText);
-      for(i=0;i<divisions.length;i++){
-        arr[i]= [divisions[i].division_no ,divisions[i].division_name ,empdtl[0][i] , empdtl[0][i].length];
+      for(i=0;i<empdtl[0].length;i++){
+        if(empdtl[0][i]!=null){
+          arr[i]= [divisions[i].division_no ,divisions[i].division_name ,empdtl[0][i] , empdtl[0][i].length];
+        }
       }
       drawchart1(arr)
     }
@@ -15,33 +17,23 @@ async function table1(empdtl){
 }
 
 async function table2(empdtl){
-  arr1=[]
+  arrV=[];
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
-    console.log(empdtl[1][1].vehicle);
     if (this.readyState == 4 && this.status == 200) {
       var divisions=JSON.parse(this.responseText);
-      var x=0;
-      for(i=0;i<divisions.length;i++){
-        try{
-          if (divisions[1]==[]){
-            continue
-          }else{
-            arr1[x]= [divisions[i].division_no ,divisions[i].division_name ,empdtl[1][i].vehicle ,empdtl[0][i], empdtl[1][i].driver  , empdtl[1][i].employees.length];
-            x=x+1
-          }
-          console.log(arr1[i]);
-        }catch(e){
-          console.log(arr1[i]);
+      for(i=0;i<empdtl[1].length;i++){
+        if(empdtl[1][i]!=null){
+          arrV[i]= [divisions[i].division_no ,divisions[i].division_name ,empdtl[1][i].vehicle ,empdtl[1][i].driver,empdtl[1][i].employees,  empdtl[1][i].employees.length];
         }
-      };
-      console.log(arr1);
-      drawchart2(arr1)
+      }
+      drawchart2(arrV)
     }
   };
   xhttp.open("GET", `http://localhost:8000/api/division/divno&divName`, true);
   xhttp.send();
 }
+
 
 function viewattendence() {
   var xhttp = new XMLHttpRequest();
@@ -63,8 +55,7 @@ function drawchart1(arr){
   var table = document.createElement("TABLE");
         table.border = "1";
  
-        //Get the count of columns.
-        console.log(arr);
+      
         var columnCount = 4;
  
         //Add the header row.
@@ -77,11 +68,13 @@ function drawchart1(arr){
         }
  
         //Add the data rows.
-        for (var i = 1; i < arr.length; i++) {
+        for (var i = 0; i < arr.length; i++) {
             row = table.insertRow(-1);
             for (var j = 0; j < columnCount; j++) {
-                var cell = row.insertCell(-1);
-                cell.innerHTML = arr[i][j];
+                if (arr[i]!=null){
+                  var cell = row.insertCell(-1);
+                  cell.innerHTML = arr[i][j];
+                }
             }
         }
  
@@ -91,13 +84,11 @@ function drawchart1(arr){
 }
 
 function drawchart2(arr1){
-  console.log("chart2");
   var table = document.createElement("TABLE");
         table.border = "1";
 
         //Get the count of columns.
-        console.log(arr1);
-        var columnCount = 5;
+        var columnCount = 6;
  
         //Add the header row.
         var row = table.insertRow(-1);
@@ -112,8 +103,11 @@ function drawchart2(arr1){
         for (var i = 1; i < arr1.length; i++) {
             row = table.insertRow(-1);
             for (var j = 0; j < columnCount; j++) {
-                var cell = row.insertCell(-1);
-                cell.innerHTML = arr1[i][j];
+                if (arr1[i]!=null){
+                  var cell = row.insertCell(-1);
+                  cell.innerHTML = arr1[i][j];
+                }
+                
             }
         }
  
