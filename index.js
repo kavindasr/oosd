@@ -30,8 +30,8 @@ const server = http.createServer((req,res)=>{
             console.log(req.method,req.url,response.code);
         }
         else{
-            method.res.end();
             console.log(req.method,req.url);
+            method.res.end();
         }
         
     })();
