@@ -75,7 +75,10 @@ Can use these end points to interact with gin_billed
     1.>>>GET - get detail by invoice number   - localhost:8000/api/ginbill/all?invoice=122
     2.>>>GET - get detail by date   - localhost:8000/api/ginbill/all?inday="2020-12-12"
     3.>>>GET - Get all the entries within a given time period and its summary - 
+        Weight Summary
             localhost:8000/report/dRange/billed?sDate='2020-09-01'&eDate='2020-09-30'
+        Price Summary
+            localhost:8000/report/dRange/billedAmount?sDate='2020-09-01'&eDate='2020-09-30'
     4.>>>POST - add a garbage in entry   - localhost:8000/api/ginbill
         body -  [
                     {
@@ -108,7 +111,10 @@ Can use these end points to interact with garbage_out table
     1.>>>GET - get detail by invoice number   - localhost:8000/api/gout/all?invoice=30000
     2.>>>GET - get detail by date   - localhost:8000/api/gout/all?oday='2020-09-06'
     3.>>>GET - Get all the entries within a given time period and its summary - 
+        Weight Summary
             localhost:8000/report/dRange/gOut?sDate='2020-09-01'&eDate='2020-09-30'
+        Price summary
+            localhost:8000/report/dRange/gOutPrice?sDate='2020-09-01'&eDate='2020-09-30'
     4.>>>POST - add garbage out detail  - localhost:8000/api/compout
         body -  [
                     {
@@ -131,12 +137,21 @@ Can use these end points to interact with compost_in table
                         "pctin"   :   "12"
                     }
                 ]
-
+     3.>>>GET - Get all the entries within a given time period and its summary - 
+        Nof packt Summary
+            localhost:8000/report/dRange/cin?sDate='2020-09-01'&eDate='2020-09-30'
 ------------------------------------------------------------------------------------------------
 Can use these end points to interact with compost_out table
     1.>>>GET - get detail by invoice number   - localhost:8000/api/compout/all?invoice=50000
     2.>>>GET - get detail by date   - localhost:8000/api/compout/all?oday=2020-09-06
-    3.>>>POST - add no of sold comp pct   - localhost:8000/api/compout
+
+    3.>>>GET - Get all the entries within a given time period and its summary - 
+        Nof Pct Summary
+            localhost:8000/report/dRange/cOut?sDate='2020-09-01'&eDate='2020-09-30'
+        Price summary
+            localhost:8000/report/dRange/cOutPrice?sDate='2020-09-01'&eDate='2020-09-30'
+
+    4.>>>POST - add no of sold comp pct   - localhost:8000/api/compout
         body -  [
                     {
                         "invoice"   :   "50002",
