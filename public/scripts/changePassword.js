@@ -31,6 +31,9 @@ async function change() {
             document.getElementById("msg").style.color = "#07689f";
             document.getElementById("msg").style.display = "block";
             document.getElementById("msg").innerHTML = "Password changed successfully!";
+            setTimeout(()=>{
+                location.replace("/");
+            },5000);
         }
         catch(e){
             document.getElementById("msg").style.color = "#ff4b5c";
