@@ -1,33 +1,18 @@
-// function removeemp() {
-//   var url ='http://localhost:8000/api/employee?empid=' +document.getElementById("removeid").value;
-//   var xhttp = new XMLHttpRequest();
-//   xhttp.onreadystatechange = function () {
-//     if (this.readyState == 4 && this.status == 200) {
-//       alert("employee removed successfully");
-//       window.location.reload();
-//     }
-//   };s
-//   xhttp.open("DELETE", url, true);
-//   xhttp.send();
-// }
-
 async function removeemp(){
-  var empid = document.getElementById("removeid").value;
-  var validate;
-    try{
-        console.log(`${domain}/api/employee?empid=${empid}`);
-        validate = await apiCall("DELETE",`${domain}/api/employee?empid=${empid}`);
-        console.log(validate);
-    }
-    catch(e){
-        validate = e ;
-    }
-    if(validate == "Ok"){
-      
-        alert("Try Again");
+    
+    var empid = document.getElementById("removeid").value;
 
-    }
-    else{
-        alert("Invalid employee ID");
+    const url = "http://localhost:8000/api/employee?empid=" + empid;
+    const url2 = "http://localhost:8000/api/employee/all?empid=" + empid;
+
+    const data = await apiCall("GET",url2);
+    console.log(data);
+    if (data.length!=0){
+        const data = await apiCall("DELETE",url);
+        alert("Employee removed successfully");
+        window.location.reload();
+    }else{
+        alert("Employee doesn't exist");
+        window.location.reload();
     }
 }
