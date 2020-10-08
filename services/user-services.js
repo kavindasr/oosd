@@ -169,13 +169,3 @@ module.exports = {
 };
 
 
-
-// if(!user){
-        //     try{
-        //         const data = await executeSQL(`SELECT * FROM session_table WHERE sessionID= '${sessionID}'`);
-        //         user = uBuilder.userCreation(data[0].userName,data[0].userType,data[0].sessionID,data[0].startTime);
-        //     }
-        //     catch(e){
-        //         return null;
-        //     }
-        // }

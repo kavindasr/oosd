@@ -140,17 +140,19 @@ async function getArray(qType,sDate,eDate){
         var type = qType["coloumn"].split(",")[1];
         var index=0;
 
+        console.log(date,JSON.stringify(data[date]).slice(1,11));  //data[date].slice(0,10));
+
         if(type){
             index = data[type]-qType.redLength;
         }else{
             index = 1;
         }
         
-        if (String(arr[arr.length-1][0])==String(data[date])){
+        if (String(arr[arr.length-1][0])==JSON.stringify(data[date]).slice(6,11)){
             arr[arr.length-1][index] = data.total;
         }else{
             var obj = new Array(parseInt(qType.finLength)).fill(0);;
-            obj[0] = data[date];
+            obj[0] = JSON.stringify(data[date]).slice(6,11);
             obj[index]=data.total;
             arr.push(obj);
         }
