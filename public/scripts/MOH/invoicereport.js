@@ -85,3 +85,7 @@ function rendercompost(arr){
     document.getElementById("pct3").innerHTML = arr[0].pct_solid;
     document.getElementById("amnt3").innerHTML = arr[0].bill_amount;
 }
+
+function getback(){
+    window.location.reload();
+}
