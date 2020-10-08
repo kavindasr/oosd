@@ -2,7 +2,8 @@ const {hash,compare} = require("bcryptjs");
 const {getUserID} = require('./auth-services');
 const {executeSQL} = require("../db/db");
 const {Send200,Send406,Send500} = require("../responses/response");
-const user = require("../users/user");
+
+//const user = require("../users/user");
 
 const users = new Map();
 
@@ -91,18 +92,18 @@ const logOut = async(token) =>{
     }
 }
 
-const authUser = async (email,password)=>{
-    const user = users.find(u=>u.email===email);
+// const authUser = async (email,password)=>{
+//     const user = users.find(u=>u.email===email);
 
-    if(user ){
-        const success = await  (password,user.password);
-        if(success){
-            return user;
-        }
+//     if(user ){
+//         const success = await  (password,user.password);
+//         if(success){
+//             return user;
+//         }
 
-    }
-    return false;
-};
+//     }
+//     return false;
+// };
 
 const getUser =  (token)=>{
     const sessionID = getUserID(token);
@@ -159,7 +160,7 @@ const getSessions = async (uBuilder) => {
 
 module.exports = {
     addUser,
-    authUser,
+    //authUser,
     getUser,
     signup,
     logOut,
@@ -169,13 +170,3 @@ module.exports = {
 };
 
 
-
-// if(!user){
-        //     try{
-        //         const data = await executeSQL(`SELECT * FROM session_table WHERE sessionID= '${sessionID}'`);
-        //         user = uBuilder.userCreation(data[0].userName,data[0].userType,data[0].sessionID,data[0].startTime);
-        //     }
-        //     catch(e){
-        //         return null;
-        //     }
-        // }

@@ -5,11 +5,13 @@ const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
 const {reportMethod} = require("./methods/reportMethod");
 const UserBuilder = require("./factories/userBuilder");
-const {getUser,addUser,signup,logOut,changePass,checkExpiry,getSessions} = require('./services/user-services');
+//const {getUser,addUser,signup,logOut,changePass} = require('./services/user-services');
 const user = require("./users/user");
 
 
-const login = async (method)=>{
+const login = async (sMethod)=>{
+
+    const method = sMethod.method;
     const uBuilder = new UserBuilder();
     var response = null;
 
@@ -27,7 +29,9 @@ const login = async (method)=>{
         }
         else{
             method.setToken(token,true,50000000);
-            await addUser(user);
+            //await addUser(user);
+
+            await sMethod.addUser(user);/////////////////////////////////////
             redirect(method,user.mainPage);
         }
     }
@@ -36,14 +40,15 @@ const login = async (method)=>{
     return(response);
 }
 
-const tokenedAccess = async (method)=>{
+const tokenedAccess = async (sMethod)=>{
     var response = null;
+    const method = sMethod.method;
 
     // ---------------- starts here
 
     const token = method.getToken();
     if(token){
-        const user = getUser(token);
+        const user = sMethod.getUser(token);
         
         if(user){
             user.setLastUsedTime(new Date().getTime());
@@ -59,13 +64,16 @@ const tokenedAccess = async (method)=>{
             }
             else if(method.getPath(1) == 'signup' && user.apiAccessControl(method.getPath(1),method.type)){
                 //only allowed MOH users
-                response = await signup(method);
+                //response = await signup(method);
+                response = await sMethod.signup();
+
             }
             else if(method.getPath(1) == 'changePass'&& user.apiAccessControl(method.getPath(1),method.type)){
-                response = await changePass(method);
+                //response = await changePass(method);
+                response = await sMethod.changePass();
             }
             else if(method.getPath(1) == 'logOut'){
-                await logOut(token);
+                await sMethod.logOut(token);
                 redirect(method,'/login');
             }
             else{

@@ -4,13 +4,16 @@ const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
 const UserBuilder = require("./factories/userBuilder");
 const {login,tokenedAccess} = require("./facadeIN");
-const {checkExpiry,getSessions} = require('./services/user-services');
+//const {checkExpiry,getSessions} = require('./services/user-services');
+const serviceMethod = require("./methods/serviceMethod");
 
 const uBuilder = new UserBuilder();
+const sMethod = new serviceMethod();
 
 const server = http.createServer((req,res)=>{
 
     const method = methodFactory.getMethod(req,res);
+    sMethod.setMethod(method);
     
     (async ()=>{
         var response = null;
@@ -19,10 +22,10 @@ const server = http.createServer((req,res)=>{
             response = await public.send(method.url.pathname);
         }
         else if(method.getPath(1) == 'login'){ // login and user creation and session maintaining
-            response = await login(method);
+            response = await login(sMethod);
         }
         else{ // access restricted for different users and all database accesses
-            response = await tokenedAccess(method);
+            response = await tokenedAccess(sMethod);
         }
 
         if(response){  // Response handling to end the request
@@ -41,8 +44,11 @@ const server = http.createServer((req,res)=>{
 
 server.listen(webSettings.webport,()=>{
     console.log("Listening on port",webSettings.webport);
-    getSessions(uBuilder); // loads any session data from the db which has not been expired
-    checkExpiry(); // continuously checks for the expiry at each 5 mts 
+    //getSessions(uBuilder); // loads any session data from the db which has not been expired
+    //checkExpiry(); // continuously checks for the expiry at each 5 mts 
+
+    sMethod.getSessions(uBuilder);
+    sMethod.checkExpiry();
     
 });
 
