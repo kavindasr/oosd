@@ -21,11 +21,12 @@
                 <center>
                   <h3 style="color: rgb(250, 250, 250); display: inline-flex;">REMOVE USER</h3>
                 </center>
-                <form action="" target="_self">
+
+                <form name="x" action="" target="_self">
                   <br />
                   <div id="togglepart">
                     <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Remove User</label>
-                    <input type="text" id="USERremove" onkeypress="return /[a-z]/i.test(event.key)" name="user" placeholder="UserName" />
+                    <input type="text" name="uName" id="USERremove" onkeypress="return /[a-z]/i.test(event.key)" name="user" placeholder="UserName" />
                   </div>
                   <div id="sub">
                     <button id="btn" type="button" onclick="removeuserdb()">

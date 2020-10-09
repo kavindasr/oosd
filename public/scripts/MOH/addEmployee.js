@@ -20,6 +20,8 @@ function submitAttendance() {
     if (this.readyState == 4 && this.status == 200) {
       alert("Employee Added Successfully..");
       window.location.reload();
+    }else if (this.readyState==4 && this.status== 500){
+      alert("Check the details again !!!")
     }
   };
   xhttp.open("POST", "http://localhost:8000/api/employee", true);

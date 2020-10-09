@@ -94,6 +94,7 @@ body {
 
 input[type="text"],
 input[type="number"],
+input[type="password"],
 select {
   font-family: arial;
   color: rgb(7, 7, 7);
