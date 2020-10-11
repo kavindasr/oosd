@@ -148,9 +148,6 @@ class Clerk extends User{
             compout              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
             vehicleout           : {GET:false,POST:false,PUT:false,DELETE:false},
             changePass           : {PUT:true}
-            // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
-            // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
-            // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
         }
 
         this.viewAccess = {
@@ -178,9 +175,6 @@ class Mayor extends User{
             changePass           : {PUT:true},
             compout              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false},
             gout                 : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false}
-            // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
-            // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
-            // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
         }
 
         this.viewAccess = {

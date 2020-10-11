@@ -4,7 +4,6 @@ const public = require("./factories/publicFolder");
 const methodFactory = require("./factories/MethodFactory");
 const UserBuilder = require("./factories/userBuilder");
 const {login,tokenedAccess} = require("./facadeIN");
-//const {checkExpiry,getSessions} = require('./services/user-services');
 const serviceMethod = require("./methods/serviceMethod");
 
 const uBuilder = new UserBuilder();
@@ -43,12 +42,9 @@ const server = http.createServer((req,res)=>{
 });
 
 server.listen(webSettings.webport,()=>{
-    console.log("Listening on port",webSettings.webport);
-    //getSessions(uBuilder); // loads any session data from the db which has not been expired
-    //checkExpiry(); // continuously checks for the expiry at each 5 mts 
-
-    sMethod.getSessions(uBuilder);
-    sMethod.checkExpiry();
+    console.log("Listening on port",webSettings.webport); 
+    sMethod.getSessions(uBuilder); //Load session data when the server initiates
+    sMethod.checkExpiry(); // continously check for the user expiry
     
 });
 

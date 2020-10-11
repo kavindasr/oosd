@@ -1,12 +1,8 @@
 const {webSettings} = require("./setting");
-const response = require("./responses/response");
 const views = require("./factories/viewsFolder");
-const public = require("./factories/publicFolder");
-const methodFactory = require("./factories/MethodFactory");
 const {reportMethod} = require("./methods/reportMethod");
 const UserBuilder = require("./factories/userBuilder");
-//const {getUser,addUser,signup,logOut,changePass} = require('./services/user-services');
-const user = require("./users/user");
+
 
 
 const login = async (sMethod)=>{
@@ -29,9 +25,7 @@ const login = async (sMethod)=>{
         }
         else{
             method.setToken(token,true,50000000);
-            //await addUser(user);
-
-            await sMethod.addUser(user);/////////////////////////////////////
+            await sMethod.addUser(user);
             redirect(method,user.mainPage);
         }
     }
@@ -63,13 +57,10 @@ const tokenedAccess = async (sMethod)=>{
                 response = await report.execute(user.type);
             }
             else if(method.getPath(1) == 'signup' && user.apiAccessControl(method.getPath(1),method.type)){
-                //only allowed MOH users
-                //response = await signup(method);
                 response = await sMethod.signup();
 
             }
             else if(method.getPath(1) == 'changePass'&& user.apiAccessControl(method.getPath(1),method.type)){
-                //response = await changePass(method);
                 response = await sMethod.changePass();
             }
             else if(method.getPath(1) == 'logOut'){
