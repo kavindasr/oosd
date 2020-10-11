@@ -106,13 +106,13 @@ class reportMethod{
         
         if(this.method.getPath(2)=="absentee" && type == 'moh'){
             res = await this.absenteeCal();
-        }else if (this.method.getPath(2) == "dRange" && type == 'moh'){
+        }else if (this.method.getPath(2) == "dRange" && (type == 'moh' || type == 'mayor')){
             res = await this.getdRange(this.method.getPath(3));
         }
         else if(this.method.getPath(2) == "vehicleDistribution" && type=="depot"){
             res = await todayVehicleDistribution(this.method.searchURL('date'));
         }
-        else if(this.method.getPath(2) == "dAttendence" && type == "moh"){
+        else if(this.method.getPath(2) == "dAttendence" && (type == 'moh' || type == 'mayor')){
             res = await this.dailyAttendence();
         }
         return new SendJson(JSON.stringify(res));

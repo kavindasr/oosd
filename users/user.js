@@ -170,12 +170,14 @@ class Mayor extends User{
         this.apiAccess = {
             employee             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             attendance           : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:true},
-            division             : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
+            division             : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false},
             vehicle              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
             gdetail              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false},
             ginbill              : {GET:false,POST:false,PUT:false,DELETE:false,HEAD:false},
-            gunbill              : {GET:true,POST:true,PUT:false,DELETE:false,HEAD:false},
-            changePass           : {PUT:true}
+            gunbill              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false},
+            changePass           : {PUT:true},
+            compout              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false},
+            gout                 : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false}
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_repair       : {GET:true,POST:false,PUT:false,DELETE:false},
@@ -188,6 +190,8 @@ class Mayor extends User{
             "mayor":true,
             "changePassword":true
         }
+
+        this.mainPage = '/mayor/Home'
     }
 }
 

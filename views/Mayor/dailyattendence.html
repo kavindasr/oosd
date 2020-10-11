@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+        <link rel="stylesheet" href="/public/styles/depot/main.css" />
+        <link rel="stylesheet" href="/public/styles/MOH/home.css" />
+        <link rel="stylesheet" href="/public/styles/load.css" />
+        <script src="/public/scripts/MOH/dailyattendence.js"></script>
+        <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    </head>
+    <body>
+      <div id="loader" class="text-center">
+        <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div id="dailyattendencefile" style="display: block;">
+        <div class="row row-content bodycontent">
+          <div class="col-12 col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <center>
+                  <h3 style="color: rgb(255, 255, 255); display: inline-flex;">Daily Attendence</h3>
+                </center>
+                <form action="" target="_self">
+                  <br />
+                  <div id="togglepart">
+                    <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Enter Date</label>
+                    <input id="inpdate" type="date" name="attenddate" placeholder="1997-07-28" />
+                  </div>
+                </form>
+
+                <div id="sub">
+                  <button id="btn" type="button" onclick="viewattendence()">
+                    SUBMIT
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="wrapper1" style="display: flex; justify-content: center; padding-top: 30px;"></div>
+      <div id="wrapper2" style="display: flex; justify-content: center; padding-top: 30px; padding-bottom: 30px;"></div>
+      <script src="https://unpkg.com/gridjs/dist/gridjs.production.min.js"></script>
+      <script src="/public/scripts/api.js"></script>
+      
+    </body>
+</html>

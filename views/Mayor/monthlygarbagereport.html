@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+        <link rel="stylesheet" href="/public/styles/depot/main.css" />
+        <link rel="stylesheet" href="/public/styles/MOH/home.css" />
+        <link rel="stylesheet" href="/public/styles/load.css" />
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        
+    </head>
+    <body>
+      <div id="loader" class="text-center">
+        <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <!-- for gin unbilled chart -->
+        <div id="topbar1" style="background-color: #0a3a0a;">
+          <div class="input-group mb-3">
+              <label for="monthsel">Month:</label>
+              <input type="month" id="monthselect" name="monthselect">
+              <div class="input-group-append">
+                <button class="btn btn-success" type="submit" onclick="anymonthlyginunbilled()">Go</button>  
+              </div>
+            </div>
+        </div>
+        <div id="ginunbilled" style="height: 400px;display: block;"></div><br>
+
+        <!-- for gin billed charts -->
+        <div id="topbar2" style="background-color: #1c2576;">
+          <div class="input-group mb-3">
+              <label for="monthsel">Month:</label>
+              <input type="month" id="monthselect" name="monthselect">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" onclick="anymonthlyginbilledweight()">Go</button>  
+               </div>
+            </div>
+        </div>
+        <div id="ginbilledweight"  style="height: 400px; display: block;"></div>
+        <!-- this should be displayed when the income chart button is clicked -->
+        <div id="topbar3" style="background-color: #1c2576;">
+          <div class="input-group mb-3">
+              <label for="monthsel">Month:</label>
+              <input type="month" id="monthselect" name="monthselect">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" onclick="anymonthlyginbilledPrice()">Go</button>  
+               </div>
+            </div>
+        </div>
+        <div id="ginbilledprice" style="height: 400px; display: block;"></div><br>
+
+        <!-- for garbage out chart -->
+        
+        <div id="topbar4" style="background-color: #1c2576;">
+          <div class="input-group mb-3">
+              <label for="monthsel">Month:</label>
+              <input type="month" id="monthselect" name="monthselect">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" onclick="anymonthlygoutweight()">Go</button>  
+               </div>
+            </div>
+        </div>
+        <div id="goutweight" style="height: 500px;display: block;"></div>
+
+        <div id="topbar5" style="background-color: #1c2576;">
+          <div class="input-group mb-3">
+              <label for="monthsel">Month:</label>
+              <input type="month" id="monthselect" name="monthselect">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" onclick="anymonthlygoutPrice()">Go</button>  
+               </div>
+            </div>
+        </div>
+        <div id="goutprice" style="height: 500px;display: block;"></div>
+
+        <!-- this should be displayed when the income chart button is clicked -->
+        <div id="topbar6" style="background-color: #1c2576;">
+          <div class="input-group mb-3">
+              <label for="monthsel">Month:</label>
+              <input type="month" id="monthselect" name="monthselect">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" onclick="anymonthcomin()">Go</button>  
+               </div>
+            </div>
+        </div>
+        <div id="compin" style="height: 500px;display: block;"></div>
+
+        <!-- for compost in and compost ot chart -->
+        <div id="topbar7" style="background-color: #1c2576;">
+          <div class="input-group mb-3">
+              <label for="monthsel">Month:</label>
+              <input type="month" id="monthselect" name="monthselect">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" onclick="anymonthlycompost()">Go</button>  
+               </div>
+            </div>
+        </div>
+        <div id="compostpackets" style="height: 500px;display: block;"></div>
+
+        <!-- this should be displayed when the income chart button is clicked -->
+        <div id="topbar8" style="background-color: #1c2576;">
+          <div class="input-group mb-3">
+              <label for="monthsel">Month:</label>
+              <input type="month" id="monthselect" name="monthselect">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" onclick="anymonthlycomprice()">Go</button>  
+               </div>
+            </div>
+        </div>
+        <div id="compostprice" style="height: 500px;display: block;"></div>
+
+        <script src="/public/scripts/MOH/apiCall.js"></script>
+        <script src="/public/scripts/MOH/monthlygarbagereport.js"></script>
+    </body>
+</html>
