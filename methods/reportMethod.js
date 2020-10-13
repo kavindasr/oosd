@@ -140,7 +140,21 @@ async function getArray(qType,sDate,eDate){
         var type = qType["coloumn"].split(",")[1];
         var index=0;
 
-        console.log(date,JSON.stringify(data[date]).slice(1,11));  //data[date].slice(0,10));
+        const dat = data[date].toLocaleString().split("/"); // converting the time zone
+        
+        var usableDate = "";  // Extractig the required parts
+
+        if(dat[0].length==1){
+            usableDate = "0" + dat[0];
+        }else{
+            usableDate = dat[0];
+        }
+
+        if(dat[1].length==1){
+            usableDate = usableDate + "- 0" + dat[1];
+        }else{
+            usableDate = usableDate + "- " + dat[1];
+        }
 
         if(type){
             index = data[type]-qType.redLength;
@@ -148,11 +162,11 @@ async function getArray(qType,sDate,eDate){
             index = 1;
         }
         
-        if (String(arr[arr.length-1][0])==JSON.stringify(data[date]).slice(6,11)){
+        if (String(arr[arr.length-1][0])==usableDate){//JSON.stringify(data[date]).slice(6,11)){
             arr[arr.length-1][index] = data.total;
         }else{
             var obj = new Array(parseInt(qType.finLength)).fill(0);;
-            obj[0] = JSON.stringify(data[date]).slice(6,11);
+            obj[0] = usableDate;//JSON.stringify(data[date]).slice(6,11);
             obj[index]=data.total;
             arr.push(obj);
         }
