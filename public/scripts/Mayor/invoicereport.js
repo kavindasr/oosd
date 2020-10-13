@@ -1,20 +1,25 @@
 async function getinvoicegarbageout() {
     var invoice_num = document.getElementById("invoicenum").value;
-    try{
-        validate = await apiCall("GET",`${domain}/api/gout/all?invoice=${invoice_num}`);
-        console.log(validate);
-        console.log(validate.length);
+
+    if (invoice_num.length!=0){
+        try{
+            validate = await apiCall("GET",`${domain}/api/gout/all?invoice=${invoice_num}`);
+            console.log(validate);
+            console.log(validate.length);
+        }
+        catch(e){
+            validate = e ;
+        }
+        if(validate.length<=0 || validate == "Error"){
+            alert("Invalid Invoice number!!!");
+        }
+        else{
+            rendergarbageout(validate);
+        }
+    }else{
+        alert("Please fill the invoice number!!!")
     }
-    catch(e){
-        validate = e ;
-    }
-    if(validate.length<=0){
-        alert("Try again");
-        
-    }
-    else{
-        rendergarbageout(validate);
-    }
+    
 }
 
 function rendergarbageout(arr){
@@ -29,21 +34,29 @@ function rendergarbageout(arr){
 
 async function getinvoicegarbagein() {
     var invoice_num = document.getElementById("invoicenum").value;
-    try{
-        validate = await apiCall("GET",`${domain}/api/ginbill/all?invoice=${invoice_num}`);
-        console.log(validate);
-        console.log(validate.length);
+    
+
+    if (invoice_num.length!=0){
+        try{
+            validate = await apiCall("GET",`${domain}/api/ginbill/all?invoice=${invoice_num}`);
+            console.log(validate);
+            console.log(validate.length);
+        }
+        catch(e){
+            validate = e ;
+        }
+        if(validate.length<=0 || validate == "Error"){
+            alert("Invalid Invoice number!!!");
+            
+        }
+        else{
+            rendergarbagein(validate);
+        }
+    }else{
+        alert("Please fill the invoice number!!!")
     }
-    catch(e){
-        validate = e ;
-    }
-    if(validate.length<=0){
-        alert("Try again");
-        
-    }
-    else{
-        rendergarbagein(validate);
-    }
+
+    
 }
 
 function rendergarbagein(arr){
@@ -59,21 +72,29 @@ function rendergarbagein(arr){
 
 async function getinvoicecompost() {
     var invoice_num = document.getElementById("invoicenum").value;
-    try{
-        validate = await apiCall("GET",`${domain}/api/compout/all?invoice=${invoice_num}`);
-        console.log(validate);
-        console.log(validate.length);
+    
+
+    if (invoice_num.length!=0){
+        try{
+            validate = await apiCall("GET",`${domain}/api/compout/all?invoice=${invoice_num}`);
+            console.log(validate);
+            console.log(validate.length);
+        }
+        catch(e){
+            validate = e ;
+        }
+        if(validate.length<=0 || validate == "Error"){
+            alert("Invalid Invoice number!!!");
+            
+        }
+        else{
+            rendercompost(validate);
+        }
+    }else{
+        alert("Please fill the invoice number!!!")
     }
-    catch(e){
-        validate = e ;
-    }
-    if(validate.length<=0){
-        alert("Try again");
-        
-    }
-    else{
-        rendercompost(validate);
-    }
+
+    
 }
 
 function rendercompost(arr){
