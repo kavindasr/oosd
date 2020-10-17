@@ -25,6 +25,10 @@ function setType(i){
 
 async function getDiv(){
     divNo = parseInt(document.getElementById("divNo").value);
+    if(divNo <1 || divNo>21){
+        alert("Invaild division number");
+        return;
+    }
     try{
         const divName = await apiCall('GET', `${domain}/api/division/all?divno=${divNo}`);
         document.getElementById('division_name').innerHTML = 'Division name: '+divName[0].division_name;
@@ -34,6 +38,7 @@ async function getDiv(){
         if(divName[0].vehicle != 0){
             document.getElementById('vehiList').disabled = false;
             document.getElementById('driverName').disabled = false;
+            document.getElementById('profile-tab').className = 'nav-link text-light';
             updateVehiList();
         }
     }catch(e){
@@ -145,6 +150,9 @@ function updateVehiList(){
     const ele = oosd_data.vehiList.find(v=>v.div == divNo);
     if(ele){
         document.getElementById('driverName').value = ele.driver;
+    }
+    else{
+        document.getElementById('driverName').value = "";
     }
     vehicles.forEach(v=>{
         const para = document.createElement("option");
