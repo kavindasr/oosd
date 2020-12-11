@@ -18,6 +18,9 @@ function addusernew() {
                 if (this.readyState == 4 && this.status == 200) {
                     alert("User Added Successfully..");
                     window.location.reload();
+                }else{
+                    alert("Username alreafy exist")
+                    window.location.reload();
                 }
             };
             xhttp.open("POST", "http://localhost:8000/signup", true);

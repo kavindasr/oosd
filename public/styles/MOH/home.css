@@ -1,6 +1,6 @@
 /*home css files*/
 body {
-  background-color: #1f618d;
+  background-color: #0f4c75;
   color: aliceblue;
   font-size: large;
 }
@@ -177,7 +177,7 @@ input[type="submit"]:hover {
   height: 100%;
   display: inline-block;
   font-size: 20px;
-  background-color: rgb(20, 174, 235);
+  background-color: cadetblue;
   font-family: sans-serif;
   color: white;
   font-weight: bold;
