@@ -1,8 +1,8 @@
 var d = new Date();
 var year= d.getFullYear();
-month=document.getElementById("monthselect").value.slice(-2,)
+month=d.getMonth();
 console.log(month)
-days=30
+days=27
 
 monthlyginunbilled(month,days);
 monthlyginbilledweight(month,days);
@@ -27,7 +27,7 @@ async function monthlyginunbilled(month,days) {
 async function anymonthlyginunbilled(month,days) {
     console.log(month)
     try{
-        month1=document.getElementById("monthselect").value.slice(-2,);
+        month1=document.getElementById("monthselect1").value.slice(-2,);
         var url=`${domain}/report/dRange/unbilled?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
         chart1data = await apiCall('GET', url);
         ginunbilledchart(chart1data)
@@ -81,7 +81,7 @@ async function monthlyginbilledweight(month,days) {
 
 async function anymonthlyginbilledweight(month,days) {
     try{
-        month1=document.getElementById("monthselect").value.slice(-2,);
+        month1=document.getElementById("monthselect2").value.slice(-2,);
         var url=`${domain}/report/dRange/billed?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
         chartdata = await apiCall('GET', url);
         ginbilledchart(chartdata)
@@ -133,7 +133,7 @@ async function monthlyginbilledPrice(month,days) {
 
 async function anymonthlyginbilledPrice(month,days) {
     try{
-        month1=document.getElementById("monthselect").value.slice(-2,);
+        month1=document.getElementById("monthselect3").value.slice(-2,);
         var url=`${domain}/report/dRange/billedAmount?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
         chartdata = await apiCall('GET', url);
         ginbilledPricechart(chartdata)
@@ -187,7 +187,7 @@ async function monthlycompost(month,days) {
 
 async function anymonthlycompost(month,days) {
     try{
-        month1=document.getElementById("monthselect").value.slice(-2,);
+        month1=document.getElementById("monthselect7").value.slice(-2,);
         var url=`${domain}/report/dRange/cOut?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
         chartdata = await apiCall('GET', url);
         compostweightchart(chartdata)
@@ -239,7 +239,7 @@ async function monthlycomprice(month,days) {
 
 async function anymonthlycomprice(month,days) {
     try{
-        month1=document.getElementById("monthselect").value.slice(-2,);
+        month1=document.getElementById("monthselect8").value.slice(-2,);
         var url=`${domain}/report/dRange/cOutPrice?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
         chartdata = await apiCall('GET', url);
         compostpricechart(chartdata)
@@ -290,7 +290,7 @@ async function monthcomin(month,days) {
 
 async function anymonthcomin(month,days) {
     try{
-        month1=document.getElementById("monthselect").value.slice(-2,);
+        month1=document.getElementById("monthselect6").value.slice(-2,);
         var url=`${domain}/report/dRange/cin?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
         chartdata = await apiCall('GET', url);
         compinchart(chartdata)
@@ -361,7 +361,7 @@ async function monthlygoutweight(month,days) {
 
 async function anymonthlygoutweight(month,days) {
     try{
-        month1=document.getElementById("monthselect").value.slice(-2,);
+        month1=document.getElementById("monthselect4").value.slice(-2,);
         var url=`${domain}/report/dRange/gOutPrice?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
         chartdata = await apiCall('GET', url);
         goutweightchart(chartdata)
@@ -418,7 +418,7 @@ async function monthlygoutPrice(month,days) {
 
 async function anymonthlygoutPrice(month,days) {
     try{
-        month1=document.getElementById("monthselect").value.slice(-2,);
+        month1=document.getElementById("monthselect5").value.slice(-2,);
         var url=`${domain}/report/dRange/gOutPrice?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
         chartdata = await apiCall('GET', url);
         goutpricechart(chartdata)
