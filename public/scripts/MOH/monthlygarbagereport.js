@@ -24,7 +24,7 @@ async function monthlyginunbilled(month,days) {
     }        
 }  
 
-async function anymonthlyginunbilled(month,days) {
+async function anymonthlyginunbilled() {
     console.log(month)
     try{
         month1=document.getElementById("monthselect1").value.slice(-2,);
@@ -79,7 +79,7 @@ async function monthlyginbilledweight(month,days) {
     }        
 }
 
-async function anymonthlyginbilledweight(month,days) {
+async function anymonthlyginbilledweight() {
     try{
         month1=document.getElementById("monthselect2").value.slice(-2,);
         var url=`${domain}/report/dRange/billed?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
@@ -131,7 +131,7 @@ async function monthlyginbilledPrice(month,days) {
     }        
 }
 
-async function anymonthlyginbilledPrice(month,days) {
+async function anymonthlyginbilledPrice() {
     try{
         month1=document.getElementById("monthselect3").value.slice(-2,);
         var url=`${domain}/report/dRange/billedAmount?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
@@ -185,7 +185,7 @@ async function monthlycompost(month,days) {
     }        
 }
 
-async function anymonthlycompost(month,days) {
+async function anymonthlycompost() {
     try{
         month1=document.getElementById("monthselect7").value.slice(-2,);
         var url=`${domain}/report/dRange/cOut?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
@@ -237,7 +237,7 @@ async function monthlycomprice(month,days) {
     }        
 }
 
-async function anymonthlycomprice(month,days) {
+async function anymonthlycomprice() {
     try{
         month1=document.getElementById("monthselect8").value.slice(-2,);
         var url=`${domain}/report/dRange/cOutPrice?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
@@ -288,7 +288,7 @@ async function monthcomin(month,days) {
     }        
 }
 
-async function anymonthcomin(month,days) {
+async function anymonthcomin() {
     try{
         month1=document.getElementById("monthselect6").value.slice(-2,);
         var url=`${domain}/report/dRange/cin?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
