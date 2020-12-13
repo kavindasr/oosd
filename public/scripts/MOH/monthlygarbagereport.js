@@ -1,6 +1,7 @@
 var d = new Date();
 var year= d.getFullYear();
-month=d.getMonth()
+month=document.getElementById("monthselect").value.slice(-2,)
+console.log(month)
 days=30
 
 monthlyginunbilled(month,days);
@@ -24,6 +25,7 @@ async function monthlyginunbilled(month,days) {
 }  
 
 async function anymonthlyginunbilled(month,days) {
+    console.log(month)
     try{
         month1=document.getElementById("monthselect").value.slice(-2,);
         var url=`${domain}/report/dRange/unbilled?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;

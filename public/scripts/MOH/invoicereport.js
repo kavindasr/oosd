@@ -24,10 +24,9 @@ async function getinvoicegarbageout() {
 }
 
 function rendergarbageout(arr){
-    console.log(arr);
     document.getElementById("myModal2").style.display ="block";
     document.getElementById("invoice2").innerHTML = arr[0].invoice_no;
-    document.getElementById("date2").innerHTML = arr[0].out_date;
+    document.getElementById("date2").innerHTML = (arr[0].out_date).split("T")[0];
     document.getElementById("time2").innerHTML = arr[0].out_time;
     document.getElementById("gartype2").innerHTML = arr[0].waste_type;
     document.getElementById("wght2").innerHTML = arr[0].weight;
@@ -61,10 +60,9 @@ async function getinvoicegarbagein() {
 }
 
 function rendergarbagein(arr){
-    console.log(arr[0]);
     document.getElementById("myModal1").style.display ="block";
     document.getElementById("invoice1").innerHTML = arr[0].invoice_no;
-    document.getElementById("date1").innerHTML = arr[0].in_date;
+    document.getElementById("date1").innerHTML = (arr[0].in_date).split("T")[0];
     document.getElementById("time1").innerHTML = arr[0].in_time;
     document.getElementById("gartype1").innerHTML = arr[0].g_type;
     document.getElementById("wght1").innerHTML = arr[0].in_weight;
@@ -99,10 +97,9 @@ async function getinvoicecompost() {
 }
 
 function rendercompost(arr){
-    console.log(arr[0]);
     document.getElementById("myModal3").style.display ="block";
     document.getElementById("invoice3").innerHTML = arr[0].invoice_no;
-    document.getElementById("date3").innerHTML = arr[0].out_date;
+    document.getElementById("date3").innerHTML = (arr[0].out_date).split("T")[0];
     document.getElementById("time3").innerHTML = arr[0].out_time;
     document.getElementById("pct3").innerHTML = arr[0].pct_solid;
     document.getElementById("amnt3").innerHTML = arr[0].bill_amount;
