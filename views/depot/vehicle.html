@@ -45,6 +45,7 @@
       </div>
     </nav>
     <!--/.Navbar -->
+    
     <div id="loader" class="text-center">
       <div class="spinner-border text-success" role="status">
         <span class="sr-only">Loading...</span>
@@ -114,6 +115,33 @@
             </div>
         </div>
     </div>
+    <br>
+    <!--Modal-->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add new vehicle <i class="fa fa-plus"></i></button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add new vehicle</h5>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Vehicle number:</label>
+                <input type="text" class="form-control" id="vehicle_number">
+              </div>
+            </form>
+            <div class="alert alert-light" role="alert" id='output_alert'></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="addNewVehi()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/MOdal-->
     <br>
     <script src="/public/scripts/api.js"></script>
     <script src="/public/scripts/depot/vehicle.js"></script>

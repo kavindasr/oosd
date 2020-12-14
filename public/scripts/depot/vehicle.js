@@ -73,3 +73,20 @@ async function addToDB(){
     alert("Service data can not be empty");
   }
 }
+
+async function addNewVehi(){
+  const num = document.getElementById('vehicle_number').value;
+  console.log(num);
+  if(num){
+    const data = {vehi_num : num};
+    try{
+      const done = await apiCall('POST',`${domain}/api/vehicle`,data);
+      document.getElementById('output_alert').innerHTML = "Successfully added";
+      document.getElementById('output_alert').className = "alert alert-primary";
+    }
+    catch(e){
+      document.getElementById('output_alert').innerHTML = "Error occured";
+      document.getElementById('output_alert').className = "alert alert-danger";
+    }
+  }
+}

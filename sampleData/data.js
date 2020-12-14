@@ -24,16 +24,16 @@ async function setData(month,lim){
         for(var x=0 ; x<divs.length ; x++){
             val = []
             var k = 0;
-            if(divs[x].v = 1){
+            if(divs[x].v == 1){
                 while(k<divs[x].cnt && k<3){
-                    val.push(`('${date}',${divs[x].divi},${d[j].employee_id},2)`)
+                    val.push(`('${date}',${divs[x].divi},${d[j].employee_id},1)`)
                     j++;
                     k++;
                     
                 }
             }
             while(k<divs[x].cnt){
-                val.push(`('${date}',${divs[x].divi},${d[j].employee_id},1)`);
+                val.push(`('${date}',${divs[x].divi},${d[j].employee_id},2)`);
                 j++;
                 k++;
                 
@@ -42,7 +42,7 @@ async function setData(month,lim){
             //console.log(`INSERT INTO daily_attendance VALUE ${values}`);
             try{
                 const done =  await executeSQL(`INSERT INTO daily_attendance VALUE ${values}`);
-                console.log("DONE");
+                console.log("DONE",i,x);
             }
             catch(e){
                 console.log("ERROR 4");

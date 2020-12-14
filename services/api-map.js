@@ -80,7 +80,8 @@ const field = new Map(
          ['replace','repair_place'],
          ['repairVehicleId','vehicle_index'],
          //vehicle_detail
-         ['vehicleId','index_no']
+         ['vehicleId','index_no'],
+         ['vehi_num','vehicle_num']
         //add unique key to represnt different combinations of fields
     ]
 );
