@@ -85,7 +85,7 @@ class reportMethod{
                 ATTarr[data.division-1].push(data.employee_id);
             } 
 
-            if(data.vehiclewalk==2){
+            if(data.vehiclewalk==1){
                 VEHarr[data.division-1]["employees"].push(data.employee_id);
             }
 

@@ -1,7 +1,6 @@
 var d = new Date();
 var year= d.getFullYear();
-month=d.getMonth();
-console.log(month)
+month=d.getMonth() +1;
 days=27
 
 monthlyginunbilled(month,days);
@@ -331,23 +330,6 @@ function compinchart(chartdata){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //function to draw a stack chart for garbage out weight and income
 async function monthlygoutweight(month,days) {
     try{
@@ -359,10 +341,10 @@ async function monthlygoutweight(month,days) {
     }        
 }
 
-async function anymonthlygoutweight(month,days) {
+async function anymonthlygoutweight() {
     try{
         month1=document.getElementById("monthselect4").value.slice(-2,);
-        var url=`${domain}/report/dRange/gOutPrice?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
+        var url=`${domain}/report/dRange/gOut?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
         chartdata = await apiCall('GET', url);
         goutweightchart(chartdata)
     }catch(e){
@@ -416,7 +398,7 @@ async function monthlygoutPrice(month,days) {
     }        
 }
 
-async function anymonthlygoutPrice(month,days) {
+async function anymonthlygoutPrice() {
     try{
         month1=document.getElementById("monthselect5").value.slice(-2,);
         var url=`${domain}/report/dRange/gOutPrice?sDate='${year}-${month1}-01'&eDate='${year}-${month1}-${days}'`;
