@@ -7,10 +7,10 @@ const {login,tokenedAccess} = require("./facadeIN");
 const serviceMethod = require("./methods/serviceMethod");
 
 const uBuilder = new UserBuilder();
-const sMethod = new serviceMethod();
+const sMethod_out = new serviceMethod();
 
 const server = http.createServer((req,res)=>{
-
+    const sMethod = new serviceMethod();
     const method = methodFactory.getMethod(req,res);
     sMethod.setMethod(method);
     
@@ -43,8 +43,8 @@ const server = http.createServer((req,res)=>{
 
 server.listen(webSettings.webport,()=>{
     console.log("Listening on port",webSettings.webport); 
-    sMethod.getSessions(uBuilder); //Load session data when the server initiates
-    sMethod.checkExpiry(); // continously check for the user expiry
+    sMethod_out.getSessions(uBuilder); //Load session data when the server initiates
+    sMethod_out.checkExpiry(); // continously check for the user expiry
     
 });
 
