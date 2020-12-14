@@ -8,9 +8,15 @@ async function removeemp(){
     const data = await apiCall("GET",url2);
     console.log(data);
     if (data.length!=0){
-        const data = await apiCall("DELETE",url);
-        alert("Employee removed successfully");
-        window.location.reload();
+        try{
+            const data1 = await apiCall("DELETE",url);
+            alert("Employee removed successfully");
+            window.location.reload();
+        }
+        catch(e){
+            alert("Error occured");
+            window.location.reload();
+        }
     }else{
         alert("Employee doesn't exist");
         window.location.reload();

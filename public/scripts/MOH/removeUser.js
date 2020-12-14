@@ -8,9 +8,15 @@ async function removeuserdb() {
         const data = await apiCall("GET",url2);
 
         if (data.length!=0){
-            const data = await apiCall("DELETE",url);
-            alert("User removed successfully");
-            window.location.reload();
+            try{
+                const data = await apiCall("DELETE",url);
+                alert("User removed successfully");
+                window.location.reload();
+            }
+            catch(e){
+                alert("Error Occured");
+                window.location.reload();
+            }
         }else{
             alert("User doesn't exist");
             window.location.reload();
