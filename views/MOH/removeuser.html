@@ -25,7 +25,7 @@
                 <form name="x" action="" target="_self">
                   <br />
                   <div id="togglepart">
-                    <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">Employee Id</label>
+                    <label for="mass" style="font-family: arial; color: rgb(255, 255, 255);">User Name</label>
                     <input type="text" name="uName" id="USERremove" onkeypress="return /[a-z]/i.test(event.key)" name="user" placeholder="UserName" />
                   </div>
                   <div id="sub">
@@ -39,6 +39,20 @@
           </div>
         </div>
       </div>
+
+      
+      <div id="sub" style="padding: 30px;">
+        <button id="btn" type="button" onclick="showUsers()">
+          Show Current Users
+        </button>
+      </div>
+                
+      <div class="card-body" style="color: rgb(0, 0, 0);">
+        <ul class="list-group" id="cUser">
+        </ul>
+      </div>
+      
+      
       <script src="/public/scripts/MOH/removeUser.js"></script>
       <script src="/public/scripts/api.js"></script>
     </body>

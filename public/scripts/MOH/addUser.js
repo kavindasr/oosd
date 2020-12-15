@@ -1,10 +1,29 @@
-function addusernew() {
+async function showUsers(){
+    try{
+        const url = "http://localhost:8000/api/uTable/uName&uType";
+        const cUsers = await apiCall("GET",url);
+        
+        cUsers.forEach(v=>{
+          const ul = document.getElementById("cUser");
+          const li = document.createElement("li");
+          li.className = "list-group-item";
+          const cont = v.user_name + "  -  " + (v.user_type).toUpperCase();
+          li.innerHTML = cont;
+          ul.appendChild(li);
+        });
+      }catch(e){
+        alert("Cannot Load!");
+      }
+}
+
+
+async function addusernew() {
     var emp_Name = document.getElementById("addusername").value;
     var emp_type = (document.getElementById("adduserselection").value);
     var pswd1 = (document.getElementById("adduserpassword12").value);
     var pswd2 = (document.getElementById("adduserpassword34").value);
-
-     console.log(emp_Name,emp_type,pswd1,pswd2);
+    
+    console.log(emp_Name,emp_type,pswd1,pswd2);
     var userObj = {
         password: pswd1,
         userName: emp_Name,

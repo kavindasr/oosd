@@ -28,4 +28,23 @@ async function removeuserdb() {
      
 }
 
+async function showUsers(){
+
+    try{
+        const url = "http://localhost:8000/api/uTable/uName&uType";
+        const cUsers = await apiCall("GET",url);
+        
+        cUsers.forEach(v=>{
+          const ul = document.getElementById("cUser");
+          const li = document.createElement("li");
+          li.className = "list-group-item";
+          const cont = v.user_name + "  -  " + (v.user_type).toUpperCase();
+          li.innerHTML = cont;
+          ul.appendChild(li);
+        });
+      }catch(e){
+        alert("Cannot Load!");
+      }
+}
+
 

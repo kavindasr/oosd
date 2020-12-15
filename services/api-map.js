@@ -15,7 +15,8 @@ const table = new Map(
         ['compout', 'compost_out'],
         ['user','user_table'],
         ['vehicleout', 'vehicle_distribution'],
-        ['repair', 'vehicle_repair']
+        ['repair', 'vehicle_repair'],
+        ['uTable','user_table']
     ]
 );
 
@@ -81,7 +82,10 @@ const field = new Map(
          ['repairVehicleId','vehicle_index'],
          //vehicle_detail
          ['vehicleId','index_no'],
-         ['vehi_num','vehicle_num']
+         ['vehi_num','vehicle_num'],
+         // User table
+         ['uName','user_name'],
+         ['uType','user_type']
         //add unique key to represnt different combinations of fields
     ]
 );

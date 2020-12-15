@@ -111,6 +111,7 @@ class MOH extends User{
             signup               : {POST:true},
             changePass           : {PUT:true},
             compout              : {GET:true,POST:false,PUT:false,DELETE:false,HEAD:false},
+            uTable               : {GET:true}
             
             // user_table           : {GET:true,POST:false,PUT:false,DELETE:false},
             // vehicle_distribution : {GET:true,POST:false,PUT:false,DELETE:false},
