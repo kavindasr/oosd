@@ -16,10 +16,13 @@
         </div>
       </div>
       <!-- for gin unbilled chart -->
-        <div id="topbar1" style="background-color: #0a3a0a;">
+        <div id="topbar1" style="background-color: #5d695d;">
           <div class="input-group mb-3">
-              <label for="monthsel">Month:</label>
-              <input type="month" id="monthselect" name="monthselect">
+              <div style="padding-right: 125px; padding-left: 10px; padding-top: 2px;">
+                <label><b>Garbage in Unbilled</b></label>
+              </div>
+              <label for="monthsel"  style="padding-top: 2px;">Month:</label>
+              <input type="month" id="monthselect1" name="monthselect" value="2020-12">
               <div class="input-group-append">
                 <button class="btn btn-success" type="submit" onclick="anymonthlyginunbilled()">Go</button>  
               </div>
@@ -30,8 +33,11 @@
         <!-- for gin billed charts -->
         <div id="topbar2" style="background-color: #1c2576;">
           <div class="input-group mb-3">
-              <label for="monthsel">Month:</label>
-              <input type="month" id="monthselect" name="monthselect">
+              <div style="padding-right: 125px; padding-left: 10px; padding-top: 2px;">
+                <label><b>Monthly Garbage in billed Weight</b></label>
+              </div>
+              <label for="monthsel"  style="padding-top: 2px;">Month:</label>
+              <input type="month" id="monthselect2" name="monthselect" value="2020-12">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="submit" onclick="anymonthlyginbilledweight()">Go</button>  
                </div>
@@ -39,10 +45,13 @@
         </div>
         <div id="ginbilledweight"  style="height: 400px; display: block;"></div>
         <!-- this should be displayed when the income chart button is clicked -->
-        <div id="topbar3" style="background-color: #1c2576;">
+        <div id="topbar3" style="background-color: #5d695d;">
           <div class="input-group mb-3">
-              <label for="monthsel">Month:</label>
-              <input type="month" id="monthselect" name="monthselect">
+              <div style="padding-right: 125px; padding-left: 10px; padding-top: 2px;">
+                <label><b>Monthly Garbage in Billed Price</b></label>
+              </div>
+              <label for="monthsel"  style="padding-top: 2px;">Month:</label>
+              <input type="month" id="monthselect3" name="monthselect" value="2020-12">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="submit" onclick="anymonthlyginbilledPrice()">Go</button>  
                </div>
@@ -54,8 +63,11 @@
         
         <div id="topbar4" style="background-color: #1c2576;">
           <div class="input-group mb-3">
-              <label for="monthsel">Month:</label>
-              <input type="month" id="monthselect" name="monthselect">
+              <div style="padding-right: 125px; padding-left: 10px; padding-top: 2px;">
+                <label><b>Monthly Garbage Out Weight</b></label>
+              </div>
+              <label for="monthsel"  style="padding-top: 2px;">Month:</label>
+              <input type="month" id="monthselect4" name="monthselect" value="2020-12">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="submit" onclick="anymonthlygoutweight()">Go</button>  
                </div>
@@ -63,10 +75,13 @@
         </div>
         <div id="goutweight" style="height: 500px;display: block;"></div>
 
-        <div id="topbar5" style="background-color: #1c2576;">
+        <div id="topbar5" style="background-color: #5d695d;">
           <div class="input-group mb-3">
-              <label for="monthsel">Month:</label>
-              <input type="month" id="monthselect" name="monthselect">
+              <div style="padding-right: 125px; padding-left: 10px; padding-top: 2px;">
+                <label><b>Monthly Garbage Out Price</b></label>
+              </div>
+              <label for="monthsel"  style="padding-top: 2px;">Month:</label>
+              <input type="month" id="monthselect5" name="monthselect" value="2020-12">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="submit" onclick="anymonthlygoutPrice()">Go</button>  
                </div>
@@ -77,8 +92,11 @@
         <!-- this should be displayed when the income chart button is clicked -->
         <div id="topbar6" style="background-color: #1c2576;">
           <div class="input-group mb-3">
-              <label for="monthsel">Month:</label>
-              <input type="month" id="monthselect" name="monthselect">
+              <div style="padding-right: 125px; padding-left: 10px; padding-top: 2px;">
+                <label><b>Compost In - (Num of Packets)</b></label>
+              </div>
+              <label for="monthsel"  style="padding-top: 2px;">Month:</label>
+              <input type="month" id="monthselect6" name="monthselect" value="2020-12">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="submit" onclick="anymonthcomin()">Go</button>  
                </div>
@@ -87,10 +105,13 @@
         <div id="compin" style="height: 500px;display: block;"></div>
 
         <!-- for compost in and compost ot chart -->
-        <div id="topbar7" style="background-color: #1c2576;">
+        <div id="topbar7" style="background-color: #5d695d;">
           <div class="input-group mb-3">
-              <label for="monthsel">Month:</label>
-              <input type="month" id="monthselect" name="monthselect">
+              <div style="padding-right: 125px; padding-left: 10px; padding-top: 2px;">
+                <label><b>Compost Out - (Num of Packets)</b></label>
+              </div>
+              <label for="monthsel"  style="padding-top: 2px;">Month:</label>
+              <input type="month" id="monthselect7" name="monthselect" value="2020-12">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="submit" onclick="anymonthlycompost()">Go</button>  
                </div>
@@ -101,8 +122,11 @@
         <!-- this should be displayed when the income chart button is clicked -->
         <div id="topbar8" style="background-color: #1c2576;">
           <div class="input-group mb-3">
-              <label for="monthsel">Month:</label>
-              <input type="month" id="monthselect" name="monthselect">
+              <div style="padding-right: 125px; padding-left: 10px; padding-top: 2px;">
+                <label><b>Compost Out Price</b></label>
+              </div>
+              <label for="monthsel"  style="padding-top: 2px;">Month:</label>
+              <input type="month" id="monthselect8" name="monthselect" value="2020-12">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="submit" onclick="anymonthlycomprice()">Go</button>  
                </div>
