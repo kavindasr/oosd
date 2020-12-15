@@ -42,17 +42,19 @@ function viewattendence() {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var empdetails = JSON.parse(this.responseText);
-      
-      if(empdetails=!"error, cant take action"){
+      console.log(empdetails);
+      if (empdetails== "error, cant take action"){
+        alert("No data in the database");
+        document.getElementById("wrapper1").innerHTML = ""
+        document.getElementById("wrapper2").innerHTML = ""
+      }else{
         table1(empdetails);
         table2(empdetails);
-      console.log((empdetails));
-      }else{
-        alert("Error in the database");
-      }
-      
+        console.log((empdetails));
+      } 
     }
   };
+
   xhttp.open("GET", url, true);
   xhttp.send();
 }
