@@ -63,6 +63,7 @@ class reportMethod{
     async dailyAttendence(){
         const data = (await executeSQL(`SELECT * FROM daily_attendance WHERE tdate=${this.method.searchURL("date")}`));
         const data2 = (await executeSQL(`SELECT * FROM vehicle_distribution INNER JOIN vehicle_detail on vehicle_distribution.vehicle_index = vehicle_detail.index_no WHERE tdate=${this.method.searchURL("date")}`));
+        
         var ATTarr = new Array();
         var VEHarr = new Array();
 
@@ -76,28 +77,33 @@ class reportMethod{
              
         });
 
-        data.forEach(data =>{
-            if (ATTarr[data.division-1]==null){
-                var obj = [];
-                obj.push(data.employee_id);
-                ATTarr[data.division-1] = obj;
-            }else{
-                ATTarr[data.division-1].push(data.employee_id);
-            } 
+        console.log(data.length);
 
-            if(data.vehiclewalk==2){
-                VEHarr[data.division-1]["employees"].push(data.employee_id);
-            }
+        if (VEHarr.length>0 && data.length>0){
+            data.forEach(data =>{
+                if (ATTarr[data.division-1]==null){
+                    var obj = [];
+                    obj.push(data.employee_id);
+                    ATTarr[data.division-1] = obj;
+                }else{
+                    ATTarr[data.division-1].push(data.employee_id);
+                } 
+    
+                if(data.vehiclewalk==2){
+                    VEHarr[data.division-1]["employees"].push(data.employee_id);
+                }
+    
+            });
 
-        });
-
-        
-        
-        var ar = new Array();
-        ar.push(ATTarr);
-        ar.push(VEHarr);
-        return (ar);
-        
+            var ar = new Array();
+            ar.push(ATTarr);
+            ar.push(VEHarr);
+            return (ar);
+            
+        }else{
+            return("error, cant take action");
+        }
+         
     }
 
     async execute(type){

@@ -42,9 +42,15 @@ function viewattendence() {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var empdetails = JSON.parse(this.responseText);
-      table1(empdetails);
-      table2(empdetails);
+      
+      if(empdetails=!"error, cant take action"){
+        table1(empdetails);
+        table2(empdetails);
       console.log((empdetails));
+      }else{
+        alert("Error in the database");
+      }
+      
     }
   };
   xhttp.open("GET", url, true);
