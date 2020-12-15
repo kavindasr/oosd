@@ -59,18 +59,30 @@ async function addToDB(){
   if(returnDate == ""){
     returnDate = null;
   }
-  const data = {
-    vehicleid :  vehiId.index_no,
-    repin     :  serviceDate,
-    repout    :  returnDate,
-    replace   :  other
+  var data;
+  try{
+    data = {
+      vehicleid :  vehiId.index_no,
+      repin     :  serviceDate,
+      repout    :  returnDate,
+      replace   :  other
+    }
   }
-  console.log(data);
+  catch{
+    alert('Select vehicle');
+    return false;
+  }
+  
+  if(Date.parse(returnDate)-Date.parse(serviceDate)<0){
+    alert("Invaild return date");
+    return false;
+  }
   try{
     await apiCall('POST',`${domain}/api/repair`,data)
   }
   catch(e){
     alert("Service data can not be empty");
+    return false;
   }
 }
 

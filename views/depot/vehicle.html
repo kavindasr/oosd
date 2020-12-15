@@ -60,7 +60,7 @@
                         Vehicle repair detail
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form onsubmit= "return addToDB()">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>Vehicle</label>
@@ -85,7 +85,7 @@
                                     <input type="text" class="form-control" id="other">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary" onclick="addToDB()">Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>
