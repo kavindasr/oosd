@@ -42,6 +42,7 @@ function change(){
     if(emp){
         if(divNo>0 && divNo<22){
             emp.div = divNo;
+            emp.mode = 1;
             updateAll();
         }
         else{

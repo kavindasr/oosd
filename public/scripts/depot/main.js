@@ -41,6 +41,11 @@ async function getDiv(){
             document.getElementById('profile-tab').className = 'nav-link text-light';
             updateVehiList();
         }
+        else{
+            document.getElementById('driverName').value= '';
+            document.getElementById('vehiList').disabled = true;
+            document.getElementById('driverName').disabled = true;
+        }
     }catch(e){
         alert("Something went wrong!");
     }
@@ -154,15 +159,28 @@ function updateVehiList(){
     else{
         document.getElementById('driverName').value = "";
     }
+    
     vehicles.forEach(v=>{
-        const para = document.createElement("option");
-        const node = document.createTextNode(v.vehicle_num);
-        para.appendChild(node);
-        if(ele){
-            if(ele.vehicleid == v.index_no){
-                para.selected = true;
+        const addedBefore = oosd_data.vehiList.find(x=>x.vehicleid == v.index_no);
+        
+        if(!addedBefore){
+            const para = document.createElement("option");
+            const node = document.createTextNode(v.vehicle_num);
+            para.appendChild(node);
+            document.getElementById("vehiList").appendChild(para);
+        }
+        else{
+            if(ele){
+                if(ele.vehicleid == v.index_no){
+                    const para = document.createElement("option");
+                    const node = document.createTextNode(v.vehicle_num);
+                    para.appendChild(node);
+                    para.selected = true;
+                    document.getElementById("vehiList").appendChild(para);
+                }
             }
         }
-        document.getElementById("vehiList").appendChild(para);
+        
     });
 }
+console.log(oosd_data.vehiList);

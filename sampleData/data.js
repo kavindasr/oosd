@@ -26,14 +26,14 @@ async function setData(month,lim){
             var k = 0;
             if(divs[x].v == 1){
                 while(k<divs[x].cnt && k<3){
-                    val.push(`('${date}',${divs[x].divi},${d[j].employee_id},1)`)
+                    val.push(`('${date}',${divs[x].divi},${d[j].employee_id},2)`)
                     j++;
                     k++;
                     
                 }
             }
             while(k<divs[x].cnt){
-                val.push(`('${date}',${divs[x].divi},${d[j].employee_id},2)`);
+                val.push(`('${date}',${divs[x].divi},${d[j].employee_id},1)`);
                 j++;
                 k++;
                 
@@ -47,9 +47,7 @@ async function setData(month,lim){
             catch(e){
                 console.log("ERROR 4");
             }
-        };
-        
-        
+        };  
     }
 }
 
