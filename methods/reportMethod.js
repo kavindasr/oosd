@@ -77,7 +77,6 @@ class reportMethod{
              
         });
 
-        console.log(data.length);
 
         if (VEHarr.length>0 && data.length>0){
             data.forEach(data =>{
