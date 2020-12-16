@@ -34,11 +34,11 @@ async function addusernew() {
         if (pswd1==pswd2){
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    alert("User Added Successfully..");
+                if (this.status == 406) {
+                    alert("Username already exist")
                     window.location.reload();
                 }else{
-                    alert("Username alreafy exist")
+                    alert("User Added Successfully..");
                     window.location.reload();
                 }
             };
