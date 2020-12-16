@@ -86,7 +86,7 @@
 
                     <div id = "nopct" class="form-group">
                         <label for="compct">Packets Produced</label>
-                        <input type="number" class="form-control" id="compct">
+                        <input type="number" min="0" oninput="this.value = Math.abs(this.value)" class="form-control" id="compct">
                     </div>
                 
                     <div id="div7 " >
@@ -112,7 +112,7 @@
 
                   <div id = "pctsold" class="form-group">
                       <label for="pcts">No of Packets</label>
-                      <input type="number" class="form-control" id="nofpct">
+                      <input type="number" min="0" oninput="this.value = Math.abs(this.value)" class="form-control" id="nofpct">
                   </div>
                   
                   <div id="bill" class="input-group mb-3">
