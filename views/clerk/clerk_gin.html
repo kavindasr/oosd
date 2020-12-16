@@ -92,7 +92,7 @@
 
                     <div id = "gweight" class="form-group">
                         <label for="lweight">Weight(kg)</label>
-                        <input type="number" class="form-control" id="weight" placeholder="kg">
+                        <input type="number" min="0" oninput="this.value = Math.abs(this.value)" class="form-control" id="weight" placeholder="kg">
                     </div>
                 
                     
@@ -132,7 +132,7 @@
 
                   <div id = "gmass" class="form-group">
                       <label for="mass">Weight(kg)</label>
-                      <input type="number" class="form-control" id="mass">
+                      <input type="number" min="0" oninput="this.value = Math.abs(this.value)" class="form-control" id="mass">
                   </div>
                 
                   <div id="div7 " >
