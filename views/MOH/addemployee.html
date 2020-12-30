@@ -23,7 +23,7 @@
                     </center>
                     <form class="form-group">
                       <div id="tooglepart1">
-                        <input id="name" type="text"  name="Weight1" placeholder="Name" />
+                        <input id="name" type="text" onkeypress="return /[a-z\. -]/i.test(event.key)"  name="Weight1" placeholder="Name" />
                       </div>
                       <div id="tooglepart2">
                         <input id="id" type="number" name="Weight2" pattern="[0-9]+" title="number only" placeholder="Employee ID" />

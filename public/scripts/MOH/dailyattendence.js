@@ -1,34 +1,33 @@
 async function table1(empdtl){
   arr=[];
   try{
-    var divisions=JSON.parse(this.responseText);
     divisions = await apiCall("GET", `${domain}/api/division/divno&divName`);
+    for(i=0;i<empdtl[0].length;i++){
+      if(empdtl[0][i]!=null){
+        arr[i]= [divisions[i].division_no ,divisions[i].division_name ,empdtl[0][i] , empdtl[0][i].length];
+      }
+    } 
+    drawchart1(arr)
   }
   catch(e){
       alert("Reload and try again!");
   }
-  for(i=0;i<empdtl[0].length;i++){
-    if(empdtl[0][i]!=null){
-      arr[i]= [divisions[i].division_no ,divisions[i].division_name ,empdtl[0][i] , empdtl[0][i].length];
-    }
-  } 
-  drawchart1(arr)
 }
 
 async function table2(empdtl){
   arrV=[];
   try{
     divisions = await apiCall("GET", `${domain}/api/division/divno&divName`);
+    for(i=0;i<empdtl[1].length;i++){
+      if(empdtl[1][i]!=null){
+        arrV[i]= [divisions[i].division_no ,divisions[i].division_name ,empdtl[1][i].vehicle ,empdtl[1][i].driver,empdtl[1][i].employees,  empdtl[1][i].employees.length];
+      }
+    }
+    drawchart2(arrV)
   }
   catch(e){
       alert("Reload and try again!");
-  } 
-  for(i=0;i<empdtl[1].length;i++){
-    if(empdtl[1][i]!=null){
-      arrV[i]= [divisions[i].division_no ,divisions[i].division_name ,empdtl[1][i].vehicle ,empdtl[1][i].driver,empdtl[1][i].employees,  empdtl[1][i].employees.length];
-    }
   }
-  drawchart2(arrV)
 }
 
 
@@ -36,8 +35,15 @@ async function viewattendence() {
   console.log(document.getElementById("inpdate").value);
   try{
     empdetails = await apiCall("GET", `${domain}/report/dAttendence?date='${document.getElementById("inpdate").value}'`);
-    table1(empdetails);
-    table2(empdetails);
+    if (empdetails== "error, cant take action"){
+      alert("No data in the database");
+      document.getElementById("wrapper1").innerHTML = ""
+      document.getElementById("wrapper2").innerHTML = ""
+    }else{
+      table1(empdetails);
+      table2(empdetails);
+    }
+
   }
   catch(e){
     alert("No data in the database");
