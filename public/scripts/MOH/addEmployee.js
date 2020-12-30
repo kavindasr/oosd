@@ -1,4 +1,4 @@
-function submitAttendance() {
+async function submitAttendance() {
   var emp_Name = document.getElementById("name").value;
   var emp_id = parseInt(document.getElementById("id").value);
   var sal_id = parseInt(document.getElementById("salid").value);
@@ -15,16 +15,13 @@ function submitAttendance() {
     sex: emp_gen,
   };
 
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      alert("Employee Added Successfully..");
-      window.location.reload();
-    }else if (this.readyState==4 && this.status== 500){
-      alert("Check the details again !!!")
-    }
-  };
-  xhttp.open("POST", "http://localhost:8000/api/employee", true);
-  xhttp.send(JSON.stringify(empObj));
+  try{
+    await apiCall("POST",`${domain}/api/employee`,empObj);
+    alert("Employee Added Successfully..");
+    window.location.reload();
+  }
+  catch(e){
+    alert("Check the details again !!!")
+  } 
 }
 

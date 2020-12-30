@@ -19,31 +19,23 @@ async function checkEmployee(){
 }
 
 async function viewEmployee() {
-  var xhttp = new XMLHttpRequest();
-  var url ="http://localhost:8000/api/employee/all?empid=" +document.getElementById("idnum").value;
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      var empdetails = JSON.parse(this.responseText);
-      console.log(empdetails);
-      renderHtml(empdetails);
-    }
-  };
-  xhttp.open("GET", url, true);
-  xhttp.send();
+  try{
+    empdetails = await apiCall("GET", `${domain}/api/employee/all?empid=${document.getElementById("idnum").value}`);
+    renderHtml(empdetails);
+  }
+  catch(e){
+    alert("Reload and try again!");
+  } 
 }
 
 async function workingdays() {
-  var xhttp = new XMLHttpRequest();
-  var url ="http://localhost:8000/report/absentee?empID='" +document.getElementById("idnum").value+"'&month="+(d.getMonth()+1);
-  console.log(url);
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      var empdetails = JSON.parse(this.responseText);
-      document.getElementById("numdays").innerHTML = "Has worked " + empdetails + " days in this month";
-    }
-  };
-  xhttp.open("GET", url, true);
-  xhttp.send();
+  try{
+    empdetails = await apiCall("GET", `${domain}/report/absentee?empID=${document.getElementById("idnum").value}&month=${(d.getMonth()+1)}`);
+    document.getElementById("numdays").innerHTML = "Has worked " + empdetails + " days in this month";
+  }
+  catch(e){
+    alert("Reload and try again!");
+  } 
 }
 
 function renderHtml(data) {
